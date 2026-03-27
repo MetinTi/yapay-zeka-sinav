@@ -162,9 +162,13 @@ var name=document.getElementById('sName').value.trim();
 var email=document.getElementById('sEmail').value.trim();
 var timeStr=em+' dakika '+es+' saniye';
 if(SCRIPT_URL){
-var fd=new FormData();
-fd.append('data',JSON.stringify({name:name,email:email,score:score,correct:cor,wrong:wr,empty:emp,time:timeStr}));
-fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',body:fd}).then(function(){showR(name,score,cor,wr,emp,timeStr,true)}).catch(function(){showR(name,score,cor,wr,emp,timeStr,false)});
+var payload=JSON.stringify({name:name,email:email,score:score,correct:cor,wrong:wr,empty:emp,time:timeStr});
+var ifr=document.createElement('iframe');ifr.name='gasFrame';ifr.style.display='none';document.body.appendChild(ifr);
+var frm=document.createElement('form');frm.method='POST';frm.action=SCRIPT_URL;frm.target='gasFrame';
+var inp=document.createElement('input');inp.type='hidden';inp.name='data';inp.value=payload;frm.appendChild(inp);
+document.body.appendChild(frm);frm.submit();document.body.removeChild(frm);
+setTimeout(function(){try{document.body.removeChild(ifr)}catch(ex){}},10000);
+setTimeout(function(){showR(name,score,cor,wr,emp,timeStr,true)},2500);
 }else{showR(name,score,cor,wr,emp,timeStr,false)}}
 function showR(name,score,cor,wr,emp,timeStr,sent){
 document.getElementById('sendOv').classList.add('hidden');
