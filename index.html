@@ -169,7 +169,7 @@ var formData=new FormData();
 formData.append('data',JSON.stringify({name:name,email:email,score:score,correct:cor,wrong:wr,empty:emp,time:timeStr}));
 var formData=new FormData();
 formData.append('data',JSON.stringify({name:name,email:email,score:score,correct:cor,wrong:wr,empty:emp,time:timeStr}));
-fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',body:formData}).then(function(){showR(name,score,cor,wr,emp,timeStr,true)}).catch(function(){showR(name,score,cor,wr,emp,timeStr,false)})
+var fd=new FormData();fd.append('data',JSON.stringify({name:name,email:email,score:score,correct:cor,wrong:wr,empty:emp,time:timeStr}));fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',body:fd}).then(function(){showR(name,score,cor,wr,emp,timeStr,true)}).catch(function(){showR(name,score,cor,wr,emp,timeStr,false)})
 else{showR(name,score,cor,wr,emp,timeStr,false)}}
 function showR(name,score,cor,wr,emp,timeStr,sent){
 document.getElementById('sendOv').classList.add('hidden');
