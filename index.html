@@ -133,7 +133,7 @@ var P=[
 ["hard","A/B testinde yeni AI modelinin basarisi en dogru nasil dogrulanir?",["Sadece modelin kendi skoruna bakarak","Esit kosullarda mevcut modelle canli metrik karsilastirarak","Yalnizca egitim kaybini inceleyerek","Tek bir kullanici geri bildirimine gore"],1,"A/B testte karar, esit kosullarda canli performans metrikleriyle verilir."]
 ];
 var questions=[],answers={},timerInterval,timeLeft=45*60,startTime;
-var ATTEMPT_KEY='yzExamAttemptsV1';
+var emailHistoryCache={},historyBeforeExam=null,historyReqToken=0;
 function shuffle(a){var b=[].concat(a);for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t}return b}
 function trFix(t){
 if(!t)return t;
@@ -143,34 +143,51 @@ for(var i=0;i<m.length;i++){r=r.replace(m[i][0],m[i][1]);}
 return r;
 }
 function normEmail(e){return(e||'').trim().toLowerCase()}
-function readAttemptStore(){try{return JSON.parse(localStorage.getItem(ATTEMPT_KEY)||'{}')}catch(_){return{}}}
-function writeAttemptStore(v){localStorage.setItem(ATTEMPT_KEY,JSON.stringify(v))}
-function getAttemptHistory(email){var key=normEmail(email),st=readAttemptStore();return key&&Array.isArray(st[key])?st[key]:[]}
-function saveAttempt(email,score){
-var key=normEmail(email);if(!key)return;
-var st=readAttemptStore(),arr=Array.isArray(st[key])?st[key]:[];
-arr.push({score:score,at:new Date().toISOString()});
-if(arr.length>30)arr=arr.slice(-30);
-st[key]=arr;writeAttemptStore(st);
+function fetchHistoryByEmail(email,done){
+if(!SCRIPT_URL||!vEmail(email)){done(null);return;}
+var cb='histCb_'+Date.now()+'_'+Math.floor(Math.random()*99999);
+var doneOnce=false;
+function end(data){if(doneOnce)return;doneOnce=true;try{delete window[cb]}catch(_){window[cb]=undefined}done(data||null)}
+window[cb]=function(resp){
+if(resp&&resp.status==='ok'&&resp.data){end(resp.data);}
+else{end(null);}
+};
+var s=document.createElement('script');
+s.src=SCRIPT_URL+'?action=history&email='+encodeURIComponent(email)+'&callback='+cb+'&_='+Date.now();
+s.async=true;
+s.onerror=function(){end(null)};
+document.body.appendChild(s);
+setTimeout(function(){try{document.body.removeChild(s)}catch(_){ }end(null);},7000);
 }
-function buildTrend(email,score){
-var h=getAttemptHistory(email);
-if(!h.length)return{text:'Bu e-posta ile ilk denemeniz. Başarı trendi bu sınavdan sonra oluşacak.',cls:'first'};
-var last=h[h.length-1].score,d=score-last;
+function buildTrend(history,score){
+if(!history||!history.attemptCount)return{text:'Bu e-posta ile ilk denemeniz. Başarı trendi bu sınavdan sonra oluşacak.',cls:'first'};
+var last=Number(history.lastScore)||0,d=score-last;
 if(d>0)return{text:'Son denemeye göre başarınız '+d+' puan arttı.',cls:'up'};
 if(d<0)return{text:'Son denemeye göre başarınız '+Math.abs(d)+' puan düştü.',cls:'down'};
 return{text:'Son denemeyle aynı puanı aldınız. Başarınız stabil.',cls:'flat'};
 }
 function updateAttemptHint(){
-var email=document.getElementById('sEmail').value.trim(),box=document.getElementById('attemptHint');
+var email=document.getElementById('sEmail').value.trim(),box=document.getElementById('attemptHint'),key=normEmail(email),t=++historyReqToken;
 if(!vEmail(email)){box.classList.add('hidden');box.textContent='';return;}
-var h=getAttemptHistory(email);
-if(!h.length){box.textContent='Bu e-posta ile ilk kez sınava giriyorsunuz.';}
-else{
-var last=h[h.length-1].score,best=h.reduce(function(mx,a){return Math.max(mx,a.score)},0);
-box.textContent='Bu e-posta ile daha önce '+h.length+' sınava girdiniz. Son puan: '+last+' / 100, en iyi puan: '+best+' / 100.';
-}
+if(emailHistoryCache[key]){
+var c=emailHistoryCache[key];
+if(c.attemptCount>0){box.textContent='Bu e-posta ile daha önce '+c.attemptCount+' sınava girdiniz. Son puan: '+c.lastScore+' / 100, en iyi puan: '+c.bestScore+' / 100.';}
+else{box.textContent='Bu e-posta ile ilk kez sınava giriyorsunuz.';}
 box.classList.remove('hidden');
+return;
+}
+box.textContent='Geçmiş bilgiler kontrol ediliyor...';
+box.classList.remove('hidden');
+fetchHistoryByEmail(email,function(data){
+if(t!==historyReqToken)return;
+if(!data){
+box.textContent='Geçmiş bilgiler şu anda alınamadı. Sınava devam edebilirsiniz.';
+return;
+}
+emailHistoryCache[key]={attemptCount:Number(data.attemptCount)||0,lastScore:Number(data.lastScore)||0,bestScore:Number(data.bestScore)||0};
+if(emailHistoryCache[key].attemptCount>0){box.textContent='Bu e-posta ile daha önce '+emailHistoryCache[key].attemptCount+' sınava girdiniz. Son puan: '+emailHistoryCache[key].lastScore+' / 100, en iyi puan: '+emailHistoryCache[key].bestScore+' / 100.';}
+else{box.textContent='Bu e-posta ile ilk kez sınava giriyorsunuz.';}
+});
 }
 function pick(){
 var e=shuffle(P.filter(function(q){return q[0]==="easy"})).slice(0,5);
@@ -190,11 +207,27 @@ else{document.getElementById('sName').classList.remove('error');document.getElem
 if(!e||!vEmail(e)){document.getElementById('sEmail').classList.add('error');document.getElementById('eErr').classList.add('show');ok=false}
 else{document.getElementById('sEmail').classList.remove('error');document.getElementById('eErr').classList.remove('show')}
 if(!ok)return;
+function beginExam(){
 questions=pick();answers={};startTime=Date.now();
 document.getElementById('startScreen').classList.add('hidden');
 document.getElementById('examScreen').classList.remove('hidden');
 document.getElementById('examName').textContent=n;
-renderQ();startTimer();updateStats()}
+renderQ();startTimer();updateStats();
+}
+var key=normEmail(e),btn=document.querySelector('#startScreen .btn-primary');
+if(emailHistoryCache[key]){
+historyBeforeExam=emailHistoryCache[key];
+beginExam();
+return;
+}
+btn.disabled=true;
+fetchHistoryByEmail(e,function(data){
+if(data){emailHistoryCache[key]={attemptCount:Number(data.attemptCount)||0,lastScore:Number(data.lastScore)||0,bestScore:Number(data.bestScore)||0};}
+historyBeforeExam=emailHistoryCache[key]||null;
+btn.disabled=false;
+beginExam();
+});
+}
 function renderQ(){
 var c=document.getElementById('qCont');var lm={easy:'Kolay',medium:'Orta',hard:'Zor'};
 c.innerHTML=questions.map(function(q,qi){return'<div class="question-card '+q.level+'" id="qc-'+qi+'"><div class="q-header"><span class="q-number">Soru '+(qi+1)+'</span><span class="q-level '+q.level+'">'+lm[q.level]+'</span></div><div class="q-text">'+q.text+'</div><div class="options">'+q.options.map(function(o,oi){return'<div class="option" id="o-'+qi+'-'+oi+'" onclick="sel('+qi+','+oi+')"><div class="letter">'+String.fromCharCode(65+oi)+'</div><div class="text">'+o+'</div></div>'}).join('')+'</div></div>'}).join('')}
@@ -214,8 +247,9 @@ var score=cor*5,elapsed=Math.floor((Date.now()-startTime)/1000),em=Math.floor(el
 var name=document.getElementById('sName').value.trim();
 var email=document.getElementById('sEmail').value.trim();
 var timeStr=em+' dakika '+es+' saniye';
-var trend=buildTrend(email,score);
-saveAttempt(email,score);
+var trend=buildTrend(historyBeforeExam,score);
+var cacheKey=normEmail(email),prev=emailHistoryCache[cacheKey]||historyBeforeExam||{attemptCount:0,lastScore:0,bestScore:0};
+emailHistoryCache[cacheKey]={attemptCount:(Number(prev.attemptCount)||0)+1,lastScore:score,bestScore:Math.max(Number(prev.bestScore)||0,score)};
 if(SCRIPT_URL){
 var payload=JSON.stringify({name:name,email:email,score:score,correct:cor,wrong:wr,empty:emp,time:timeStr});
 var ifr=document.createElement('iframe');ifr.name='gasFrame';ifr.style.display='none';document.body.appendChild(ifr);
