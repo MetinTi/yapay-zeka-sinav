@@ -138,7 +138,27 @@ function shuffle(a){var b=[].concat(a);for(var i=b.length-1;i>0;i--){var j=Math.
 function trFix(t){
 if(!t)return t;
 var r=t;
-var m=[[/Sinava/g,"Sınava"],[/sinava/g,"sınava"],[/Sinavi/g,"Sınavı"],[/sinavi/g,"sınavı"],[/Sinav/g,"Sınav"],[/sinav/g,"sınav"],[/Sonuclar/g,"Sonuçlar"],[/sonuclar/g,"sonuçlar"],[/\bLutfen\b/g,"Lütfen"],[/\blutfen\b/g,"lütfen"],[/\bEgitmen\b/g,"Eğitmen"],[/\bEgitim\b/g,"Eğitim"],[/\bEgitimi\b/g,"Eğitimi"],[/\begitim\b/g,"eğitim"],[/\begitimi\b/g,"eğitimi"],[/\bDegerlendirme\b/g,"Değerlendirme"],[/\bFarkli\b/g,"Farklı"],[/\bfarkli\b/g,"farklı"],[/\bKatilimci\b/g,"Katılımcı"],[/\bkatilimci\b/g,"katılımcı"],[/\bSure\b/g,"Süre"],[/\bsure\b/g,"süre"],[/\bGecen\b/g,"Geçen"],[/\bgecen\b/g,"geçen"],[/\bDogru\b/g,"Doğru"],[/\bdogru\b/g,"doğru"],[/\bYanlis\b/g,"Yanlış"],[/\byanlis\b/g,"yanlış"],[/\bBos\b/g,"Boş"],[/\bbos\b/g,"boş"],[/\bBasarili\b/g,"Başarılı"],[/\bbasarili\b/g,"başarılı"],[/\bBasarisiz\b/g,"Başarısız"],[/\bbasarisiz\b/g,"başarısız"],[/\bBasla\b/g,"Başla"],[/\bbasla\b/g,"başla"],[/\bBasladi\b/g,"Başladı"],[/\bbasladi\b/g,"başladı"],[/\bHos\b/g,"Hoş"],[/\bhos\b/g,"hoş"],[/\bMukemmel\b/g,"Mükemmel"],[/\bGecer\b/g,"Geçer"],[/\bgecer\b/g,"geçer"],[/\bsik\b/g,"şık"],[/\bSik\b/g,"Şık"],[/\bkarisik\b/g,"karışık"],[/\bKarisik\b/g,"Karışık"],[/\bgonderildi\b/g,"gönderildi"],[/\bgonderilemedi\b/g,"gönderilemedi"],[/\bgonderilecektir\b/g,"gönderilecektir"],[/\bGorsel\b/g,"Görsel"],[/\bgorsel\b/g,"görsel"],[/\bOgrenme\b/g,"Öğrenme"],[/\bogrenme\b/g,"öğrenme"],[/\bCesitlilik\b/g,"Çeşitlilik"],[/\bcesitlilik\b/g,"çeşitlilik"],[/\bDogruluk\b/g,"Doğruluk"],[/\bYontem\b/g,"Yöntem"],[/\byontem\b/g,"yöntem"],[/\bKisit\b/g,"Kısıt"],[/\bkisit\b/g,"kısıt"],[/\bAcik\b/g,"Açık"],[/\bacik\b/g,"açık"],[/\bAg\b/g,"Ağ"],[/\bag\b/g,"ağ"]];
+var m=[
+[/\bAsagidakilerden\b/g,"Aşağıdakilerden"],
+[/\bSinava\b/g,"Sınava"],[/\bsinava\b/g,"sınava"],[/\bSinavi\b/g,"Sınavı"],[/\bsinavi\b/g,"sınavı"],[/\bSinav\b/g,"Sınav"],[/\bsinav\b/g,"sınav"],
+[/\bSonuclar\b/g,"Sonuçlar"],[/\bsonuclar\b/g,"sonuçlar"],
+[/\bLutfen\b/g,"Lütfen"],[/\blutfen\b/g,"lütfen"],
+[/\bEgitmen\b/g,"Eğitmen"],[/\bEgitim\b/g,"Eğitim"],[/\bEgitimi\b/g,"Eğitimi"],[/\begitim\b/g,"eğitim"],[/\begitimi\b/g,"eğitimi"],
+[/\bDegerlendirme\b/g,"Değerlendirme"],[/\bFarkli\b/g,"Farklı"],[/\bfarkli\b/g,"farklı"],
+[/\bKatilimci\b/g,"Katılımcı"],[/\bkatilimci\b/g,"katılımcı"],[/\bSure\b/g,"Süre"],[/\bsure\b/g,"süre"],[/\bGecen\b/g,"Geçen"],[/\bgecen\b/g,"geçen"],
+[/\bDogru\b/g,"Doğru"],[/\bdogru\b/g,"doğru"],[/\bYanlis\b/g,"Yanlış"],[/\byanlis\b/g,"yanlış"],[/\bBos\b/g,"Boş"],[/\bbos\b/g,"boş"],
+[/\bBasarili\b/g,"Başarılı"],[/\bbasarili\b/g,"başarılı"],[/\bBasarisiz\b/g,"Başarısız"],[/\bbasarisiz\b/g,"başarısız"],
+[/\bBasla\b/g,"Başla"],[/\bbasla\b/g,"başla"],[/\bBasladi\b/g,"Başladı"],[/\bbasladi\b/g,"başladı"],[/\bHos\b/g,"Hoş"],[/\bhos\b/g,"hoş"],[/\bMukemmel\b/g,"Mükemmel"],[/\bGecer\b/g,"Geçer"],[/\bgecer\b/g,"geçer"],
+[/\bsik\b/g,"şık"],[/\bSik\b/g,"Şık"],[/\bkarisik\b/g,"karışık"],[/\bKarisik\b/g,"Karışık"],
+[/\bgonderildi\b/g,"gönderildi"],[/\bgonderilemedi\b/g,"gönderilemedi"],[/\bgonderilecektir\b/g,"gönderilecektir"],
+[/\bGorsel\b/g,"Görsel"],[/\bgorsel\b/g,"görsel"],
+[/\bOgrenme\b/g,"Öğrenme"],[/\bogrenme\b/g,"öğrenme"],[/\bCesitlilik\b/g,"Çeşitlilik"],[/\bcesitlilik\b/g,"çeşitlilik"],[/\bDogruluk\b/g,"Doğruluk"],[/\bYontem\b/g,"Yöntem"],[/\byontem\b/g,"yöntem"],[/\bKisit\b/g,"Kısıt"],[/\bkisit\b/g,"kısıt"],[/\bAcik\b/g,"Açık"],[/\bacik\b/g,"açık"],[/\bAg\b/g,"Ağ"],[/\bag\b/g,"ağ"],
+[/\bCok\b/g,"Çok"],[/\bcok\b/g,"çok"],[/\bHiz\b/g,"Hız"],[/\bhiz\b/g,"hız"],
+[/\bBaslik\b/g,"Başlık"],[/\bIcerik\b/g,"İçerik"],[/\bOzet\b/g,"Özet"],[/\bKaynakca\b/g,"Kaynakça"],
+[/\bGiris\b/g,"Giriş"],[/\bGelisme\b/g,"Gelişme"],[/\bGorev\b/g,"Görev"],[/\bBaglam\b/g,"Bağlam"],
+[/\bFormulunun\b/g,"Formülünün"],[/\bbilesenlernden\b/g,"bileşenlerden"],[/\bbilesenlernini\b/g,"bileşenlerini"],[/\bbilesenleri\b/g,"bileşenleri"],[/\bbileseni\b/g,"bileşeni"],
+[/\bkatmanli\b/g,"katmanlı"],[/\baglari\b/g,"ağları"],[/\bkesfer\b/g,"keşfeder"],[/\bolusur\b/g,"oluşur"],[/\btasir\b/g,"taşır"],[/\bgercek\b/g,"gerçek"],[/\bdunyaya\b/g,"dünyaya"],[/\bdunyayi\b/g,"dünyayı"],[/\bdunya\b/g,"dünya"],[/\bzenginlestirir\b/g,"zenginleştirir"],[/\bgenis\b/g,"geniş"],[/\buretimi\b/g,"üretimi"],[/\buretir\b/g,"üretir"],[/\byillik\b/g,"yıllık"],[/\byoneticileri\b/g,"yöneticileri"],[/\bhaftalik\b/g,"haftalık"],[/\badini\b/g,"adını"],[/\bdegistirmek\b/g,"değiştirmek"],[/\bkullaniminda\b/g,"kullanımında"],[/\bsayisal\b/g,"sayısal"],[/\bbirlestirme\b/g,"birleştirme"],[/\byilinda\b/g,"yılında"],[/\bsatranc\b/g,"satranç"],[/\bsampiyonunu\b/g,"şampiyonunu"],[/\bornegid\b/g,"örneğidir"],[/\bornegiddir\b/g,"örneğidir"],[/\bornektir\b/g,"örnektir"],[/\bornegi\b/g,"örneği"],[/\bartirmak\b/g,"artırmak"],[/\bartirir\b/g,"artırır"],[/\bhazirla\b/g,"hazırla"],[/\byanit\b/g,"yanıt"],[/\btum\b/g,"tüm"],[/\bicin\b/g,"için"]
+];
 for(var i=0;i<m.length;i++){r=r.replace(m[i][0],m[i][1]);}
 return r;
 }
