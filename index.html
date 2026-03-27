@@ -165,7 +165,9 @@ var name=document.getElementById('sName').value.trim();
 var email=document.getElementById('sEmail').value.trim();
 var timeStr=em+' dakika '+es+' saniye';
 if(SCRIPT_URL&&SCRIPT_URL!=="BURAYA_APPS_SCRIPT_URL_YAPISTIRIN"){
-fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({name:name,email:email,score:score,correct:cor,wrong:wr,empty:emp,time:timeStr})}).then(function(){showR(name,score,cor,wr,emp,timeStr,true)}).catch(function(){showR(name,score,cor,wr,emp,timeStr,false)})}
+var formData=new FormData();
+formData.append('data',JSON.stringify({name:name,email:email,score:score,correct:cor,wrong:wr,empty:emp,time:timeStr}));
+fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',body:formData}).then(function(){showR(name,score,cor,wr,emp,timeStr,true)}).catch(function(){showR(name,score,cor,wr,emp,timeStr,false)})
 else{showR(name,score,cor,wr,emp,timeStr,false)}}
 function showR(name,score,cor,wr,emp,timeStr,sent){
 document.getElementById('sendOv').classList.add('hidden');
