@@ -63,7 +63,7 @@
 <div id="sendOv" class="sending-overlay hidden"><div class="sending-box"><div class="spinner"></div><p style="font-weight:600;color:#1a5276">Sonuclar gonderiliyor...</p><p style="font-size:.85em;color:#888">Lutfen bekleyin</p></div></div>
 </div>
 <script>
-var SCRIPT_URL="https://script.google.com/macros/s/AKfycbwTTDG9Z0qz5tql1Eq6ItMqxQ2CRiWcib-bBS7hovoB01fG1P6UTl3tPlXfWAPPV8GL/exec";
+var SCRIPT_URL="https://script.google.com/macros/s/AKfycbxfk3asZXaQhpAa5ajHdVHqQFWDoZoAWSiiLWEQHjXHklCrX4sMmkbocyZhypdMCXT1/exec";
 var P=[
 ["easy","Yapay zeka (AI) en genel tanimiyla nedir?",["Sadece robotlar icin gelistirilen bir yazilim turu","Makinelerin insan zekasini taklit ederek ogrenme, problem cozme ve karar verme gibi bilissel islevleri gerceklestirmesini saglayan bir teknoloji alani","Internette arama yapmayi saglayan bir yazilim","Bilgisayarlarin daha hizli calismасini saglayan bir donanim"],1,"Yapay zeka, makinelerin insan zekasini taklit ederek bilissel islevleri gerceklestirmesini saglayan teknolojidir."],
 ["easy","Yapay zeka alaninda en yaygin kullanilan programlama dili hangisidir?",["Java","C++","Python","JavaScript"],2,"Python, TensorFlow, PyTorch ve scikit-learn gibi kutuphanelerin temelini olusturur."],
@@ -77,6 +77,9 @@ var P=[
 ["easy","Odul ve ceza mantigiyla ogrenen ML turu hangisidir?",["Denetimli Ogrenme","Denetimsiz Ogrenme","Pekistirmeli Ogrenme","NLP"],2,"Pekistirmeli ogrenme odul-ceza mekanizmasiyla calisir."],
 ["easy","Buyuk Veri nin Hiz (Velocity) kavrami neyi ifade eder?",["Guvenilir kaynaklardan veri elde etme","Verinin surekli ve cok hizli uretilip islenmesi","Devasa veri hacmi","Veriden ticari deger cikarma"],1,"Velocity verinin hizli uretilip islenmesidir."],
 ["easy","Kullandigin kadar ode modeline dayanan teknoloji hangisidir?",["IoT","Siber Guvenlik","Bulut Bilisim","AR"],2,"Bulut bilisim fiziksel altyapi gerektirmez."],
+["easy","Asagidakilerden hangisi uretken yapay zeka aracina ornektir?",["ChatGPT","Excel","Photoshop","Bluetooth"],0,"ChatGPT, metin ve icerik uretebilen uretken yapay zeka aracidir."],
+["easy","Basarili bir prompt yazarken ilk olarak ne netlestirilmelidir?",["Modelin rengi","Beklenen gorev ve hedef","Bilgisayarin markasi","Internet hizi"],1,"Iyi prompt icin gorev ve hedef acik olmalidir."],
+["easy","SaaS modeli ne anlama gelir?",["Siber saldiri koruma sistemi","Yazilimin internet uzerinden hizmet olarak sunulmasi","Sadece yerel kurulum","Veri merkezini kapatma"],1,"SaaS, Software as a Service modelidir."],
 ["medium","Makine ogrenme nin uc temel turu hangileridir?",["Denetimli, Denetimsiz ve Pekistirmeli Ogrenme","Hizli, Orta ve Yavas Ogrenme","Yapay, Dogal ve Karma Ogrenme","Tek katmanli, Cok katmanli ve Derin Ogrenme"],0,"ML: Supervised, Unsupervised, Reinforcement Learning."],
 ["medium","DL ile ML arasindaki temel fark nedir?",["DL daha az veri ile calisir","DL cok katmanli sinir aglari ile ozellikleri otomatik kesfer; ML de insan mudahalesi gerekir","ML daha yeni bir teknolojidir","Fark yoktur"],1,"ML rehberli, DL otonom yaklasim kullanir."],
 ["medium","NLP hangi bilesenlernden olusur?",["NLU, NLG, Konusma Tanima ve Konusma Sentezi","Sadece metin cevirisi ve duygu analizi","Goruntu isleme ve ses tanima","Veritabani sorgulama"],0,"NLP: NLU, NLG, Speech Recognition, Speech Synthesis."],
@@ -101,6 +104,9 @@ var P=[
 ["medium","Mukemmel Prompt ta Kisitlamalar neyi belirtir?",["Uzman kimligi","Arka plan bilgisi","Modelin ne yapmamasi gerektigini","Cikti bicimini"],2,"Kisitlamalar AI in sinirlarini belirler."],
 ["medium","Genel ve ozel bulutu birlestiren model hangisidir?",["Genel Bulut","Hibrit Bulut","Acik Kaynak Bulut","Yerel Ag"],1,"Hibrit bulut her ikisini birlestir."],
 ["medium","MLOps icin acik kaynakli platform hangisidir?",["Jupyter","VS Code","MLflow","PyTorch"],2,"MLflow model deployment sureclerini yonetir."],
+["medium","Precision ve Recall dengesini tek sayida ozetleyen metrik hangisidir?",["Accuracy","F1-Score","MAE","ROC"],1,"F1-Score, precision ve recall dengesini olcer."],
+["medium","RAG yaklasiminin temel amaci nedir?",["Modeli sifirdan yeniden egitmek","Model yanitlarini harici bilgi kaynaklariyla zenginlestirmek","GPU kullanimini azaltmak","Sadece goruntu olusturmak"],1,"RAG, retrieval ile ilgili baglami cekip yaniti guclendirir."],
+["medium","Prompt injection saldirisinda hedeflenen nedir?",["Modelin egitim verisini fiziksel olarak silmek","Modeli zararsiz komutlarla hizlandirmak","Modelin talimat hiyerarsisini bozup istenmeyen cikti almak","Sadece e-posta listesi olusturmak"],2,"Prompt injection, modele gizli/zararli komut enjekte etmeyi hedefler."],
 ["hard","Cagri merkezinde sikayetleri otomatik kategorize etmek icin en uygun cozum?",["Computer Vision + Pekistirmeli Ogrenme","NLP + Denetimli Ogrenme","Robotik + Denetimsiz Ogrenme","Buyuk Veri + Derin Pekistirmeli Ogrenme"],1,"Metin tabanli sikayetler NLP + Denetimli Ogrenme gerektirir."],
 ["hard","E-ticaret oneri sistemi icin en etkili yaklasim?",["Sadece Denetimli Ogrenme","Denetimli + Denetimsiz Ogrenme birlikte","Sadece kural tabanli sistemler","Pekistirmeli Ogrenme tek basina"],1,"Hem tahmin hem segmentasyon birlikte kullanilir."],
 ["hard","Rontgende hastalik tespiti icin en uygun mimari?",["RNN - metin analizi","CNN - goruntu tanima ve siniflandirma","GAN - goruntu uretimi","Transformers - dil cevirisi"],1,"CNN goruntu tanima ve siniflandirmada standart tercihtir."],
@@ -115,7 +121,10 @@ var P=[
 ["hard","Veri analisti gibi davran. Adim adim analiz yap. Hangi iki teknik?",["Role Prompting + Chain-of-Thought","Zero-Shot + Few-Shot","Few-Shot + Role Prompting","Zero-Shot + Structured Output"],0,"Rol verme + adim adim dusunme."],
 ["hard","Otonom arac video analizi icin oncelikli yatirim?",["Kural tabanli ML","Insan etiketleme ekibi","DL icin yuksek performansli GPU","Ag guvenlik duvarlari"],2,"Karmasik gorsel isleme DL ve GPU gerektirir."],
 ["hard","Video metin sayisal veri birlestirme hangi V yi vurgular?",["Hiz Velocity","Cesitlilik Variety","Dogruluk Veracity","Hacim Volume"],1,"Farkli formatlar = Cesitlilik Variety."],
-["hard","Sensor veri paylasimi veri koruma hangi teknolojiler?",["AR + Buyuk Veri","IoT + Siber Guvenlik","Bulut + NLP","Computer Vision + Robotik"],1,"Sensor = IoT, koruma = Siber Guvenlik."]
+["hard","Sensor veri paylasimi veri koruma hangi teknolojiler?",["AR + Buyuk Veri","IoT + Siber Guvenlik","Bulut + NLP","Computer Vision + Robotik"],1,"Sensor = IoT, koruma = Siber Guvenlik."],
+["hard","Model drift en cok hangi durumda ortaya cikar?",["Kod dosyalari ayni kaldiginda","Canli verinin dagilimi zamanla degistiginde","Sunucu yeniden baslatildiginda","Model ilk kez egitildiginde"],1,"Canli veri dagilimi degisirse model performansi duser ve drift olusur."],
+["hard","Kurumsal LLM kullaniminda KVKK GDPR riskini azaltmak icin en kritik adim hangisidir?",["Tum veriyi oldugu gibi modele gondermek","PII maskleme ve erisim kontrolu uygulamak","Sadece cevap uzunlugunu kisaltmak","Model adini degistirmek"],1,"Kisisel veriyi maskelemek ve erisimi sinirlamak temel uyum adimidir."],
+["hard","A/B testinde yeni AI modelinin basarisi en dogru nasil dogrulanir?",["Sadece modelin kendi skoruna bakarak","Esit kosullarda mevcut modelle canli metrik karsilastirarak","Yalnizca egitim kaybini inceleyerek","Tek bir kullanici geri bildirimine gore"],1,"A/B testte karar, esit kosullarda canli performans metrikleriyle verilir."]
 ];
 var questions=[],answers={},timerInterval,timeLeft=45*60,startTime;
 function shuffle(a){var b=[].concat(a);for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t}return b}
