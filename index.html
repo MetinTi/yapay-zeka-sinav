@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yapay Zeka Eğitimi — Online Sınav</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f0f4f8;color:#1a1a2e;line-height:1.6}
+.container{max-width:800px;margin:0 auto;padding:20px}
+.header{text-align:center;background:linear-gradient(135deg,#1a5276,#2e86c1);color:#fff;padding:30px 20px;border-radius:16px;margin-bottom:24px;box-shadow:0 4px 20px rgba(26,82,118,.3)}
+.header h1{font-size:1.6em;margin-bottom:8px}
+.header p{opacity:.85;font-size:.95em}
+.stats-bar{display:flex;justify-content:space-between;align-items:center;background:#fff;padding:14px 20px;border-radius:12px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.06);flex-wrap:wrap;gap:10px}
+.stat{text-align:center}
+.stat .label{font-size:.75em;color:#888;text-transform:uppercase;letter-spacing:.5px}
+.stat .value{font-size:1.3em;font-weight:700;color:#1a5276}
+.timer{font-size:1.3em;font-weight:700;color:#e74c3c;font-variant-numeric:tabular-nums}
+.timer.warning{animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.progress-wrap{background:#e0e0e0;border-radius:20px;height:8px;margin-bottom:20px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#27ae60,#2ecc71);border-radius:20px;transition:width .4s ease}
+.question-card{background:#fff;border-radius:14px;padding:24px;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,.06);transition:all .3s ease;border-left:4px solid #ddd}
+.question-card.easy{border-left-color:#27ae60}
+.question-card.medium{border-left-color:#f39c12}
+.question-card.hard{border-left-color:#e74c3c}
+.question-card.answered{opacity:.85}
+.question-card.correct{border-left-color:#27ae60;background:#f0faf4}
+.question-card.wrong{border-left-color:#e74c3c;background:#fdf0f0}
+.q-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:10px}
+.q-number{font-weight:700;color:#1a5276;font-size:1em;white-space:nowrap}
+.q-level{font-size:.7em;padding:3px 10px;border-radius:20px;font-weight:600;text-transform:uppercase;white-space:nowrap}
+.q-level.easy{background:#e8f8f5;color:#1e8449}
+.q-level.medium{background:#fef9e7;color:#b7950b}
+.q-level.hard{background:#fdedec;color:#c0392b}
+.q-text{font-size:1.05em;font-weight:500;margin-bottom:16px;line-height:1.5}
+.options{display:flex;flex-direction:column;gap:8px}
+.option{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border:2px solid #e8e8e8;border-radius:10px;cursor:pointer;transition:all .2s ease;background:#fafafa}
+.option:hover:not(.disabled){border-color:#2e86c1;background:#f0f7fd;transform:translateX(4px)}
+.option.selected{border-color:#2e86c1;background:#e8f4fd}
+.option.correct-answer{border-color:#27ae60;background:#e8f8f0}
+.option.wrong-answer{border-color:#e74c3c;background:#fde8e8}
+.option.disabled{cursor:default;opacity:.8}
+.option .letter{width:32px;height:32px;border-radius:50%;background:#e8e8e8;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85em;flex-shrink:0;transition:all .2s}
+.option.selected .letter{background:#2e86c1;color:#fff}
+.option.correct-answer .letter{background:#27ae60;color:#fff}
+.option.wrong-answer .letter{background:#e74c3c;color:#fff}
+.option .text{font-size:.95em;padding-top:4px}
+.feedback{margin-top:12px;padding:10px 14px;border-radius:8px;font-size:.9em;display:none}
+.feedback.show{display:block}
+.feedback.correct{background:#e8f8f0;color:#1e8449;border:1px solid #a9dfbf}
+.feedback.incorrect{background:#fde8e8;color:#c0392b;border:1px solid #f5b7b1}
+.btn-area{text-align:center;margin:30px 0}
+.btn{padding:14px 40px;border:none;border-radius:12px;font-size:1.1em;font-weight:600;cursor:pointer;transition:all .2s;color:#fff}
+.btn-primary{background:linear-gradient(135deg,#1a5276,#2e86c1);box-shadow:0 4px 15px rgba(26,82,118,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(26,82,118,.4)}
+.btn-secondary{background:linear-gradient(135deg,#27ae60,#2ecc71);box-shadow:0 4px 15px rgba(39,174,96,.3)}
+.btn-secondary:hover{transform:translateY(-2px)}
+.btn-danger{background:linear-gradient(135deg,#e74c3c,#ec7063);box-shadow:0 4px 15px rgba(231,76,60,.3)}
+.result-card{background:#fff;border-radius:16px;padding:30px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.1);margin:20px 0}
+.score-circle{width:150px;height:150px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:20px auto;font-size:2.5em;font-weight:800;color:#fff}
+.score-circle.pass{background:linear-gradient(135deg,#27ae60,#2ecc71)}
+.score-circle.fail{background:linear-gradient(135deg,#e74c3c,#ec7063)}
+.score-circle .of{font-size:.3em;font-weight:400;opacity:.8}
+.result-stats{display:flex;justify-content:center;gap:30px;margin:20px 0;flex-wrap:wrap}
+.result-stat{text-align:center}
+.result-stat .num{font-size:1.8em;font-weight:700}
+.result-stat .lbl{font-size:.8em;color:#888}
+.result-stat.green .num{color:#27ae60}
+.result-stat.red .num{color:#e74c3c}
+.result-stat.gray .num{color:#95a5a6}
+.start-screen{text-align:center;padding:40px 20px}
+.start-screen h2{font-size:1.4em;color:#1a5276;margin-bottom:16px}
+.start-info{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:400px;margin:20px auto;text-align:left}
+.start-info .item{background:#f8f9fa;padding:12px 16px;border-radius:10px;display:flex;align-items:center;gap:10px}
+.start-info .icon{font-size:1.3em}
+.start-info .detail .main{font-weight:600;font-size:.95em}
+.start-info .detail .sub{font-size:.8em;color:#888}
+.name-input{width:100%;max-width:400px;padding:14px 20px;border:2px solid #ddd;border-radius:12px;font-size:1em;margin:16px auto;display:block;text-align:center;outline:none;transition:border .2s}
+.name-input:focus{border-color:#2e86c1}
+.review-toggle{margin-top:20px}
+.hidden{display:none}
+@media(max-width:600px){.header h1{font-size:1.2em}.stats-bar{flex-direction:column;gap:8px}.start-info{grid-template-columns:1fr}.q-text{font-size:.95em}.option .text{font-size:.88em}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <p style="font-size:.8em;letter-spacing:2px;margin-bottom:6px">NEWFOUND CREATIVE ACADEMY</p>
+    <h1>Yapay Zeka Eğitimi</h1>
+    <p>Değerlendirme Sınavı — 20 Çoktan Seçmeli Soru</p>
+  </div>
+
+  <!-- START SCREEN -->
+  <div id="startScreen" class="start-screen">
+    <h2>Sınava Hoş Geldiniz!</h2>
+    <p style="color:#666;margin-bottom:16px">Eğitmen: Metin Tiryaki</p>
+    <input type="text" class="name-input" id="studentName" placeholder="Adınız Soyadınız" />
+    <div class="start-info">
+      <div class="item"><span class="icon">📝</span><div class="detail"><div class="main">20 Soru</div><div class="sub">Çoktan seçmeli</div></div></div>
+      <div class="item"><span class="icon">⏱️</span><div class="detail"><div class="main">45 Dakika</div><div class="sub">Geri sayım</div></div></div>
+      <div class="item"><span class="icon">🎯</span><div class="detail"><div class="main">100 Puan</div><div class="sub">Her soru 5 puan</div></div></div>
+      <div class="item"><span class="icon">🔀</span><div class="detail"><div class="main">Rastgele Sıra</div><div class="sub">Her seferinde farklı</div></div></div>
+    </div>
+    <p style="font-size:.85em;color:#888;margin:16px 0">5 Kolay • 10 Orta • 5 Zor (Analiz)</p>
+    <div class="btn-area"><button class="btn btn-primary" onclick="startExam()">Sınava Başla</button></div>
+  </div>
+
+  <!-- EXAM SCREEN -->
+  <div id="examScreen" class="hidden">
+    <div class="stats-bar">
+      <div class="stat"><div class="label">Soru</div><div class="value" id="qCount">0/20</div></div>
+      <div class="stat"><div class="label">Cevaplanan</div><div class="value" id="answered">0</div></div>
+      <div class="stat"><div class="label">Süre</div><div class="timer" id="timer">45:00</div></div>
+    </div>
+    <div class="progress-wrap"><div class="progress-fill" id="progressBar" style="width:0%"></div></div>
+    <div id="questionsContainer"></div>
+    <div class="btn-area">
+      <button class="btn btn-danger" onclick="finishExam()" id="finishBtn">Sınavı Bitir</button>
+    </div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div id="resultScreen" class="hidden">
+    <div class="result-card">
+      <h2 style="color:#1a5276">Sınav Sonucu</h2>
+      <p id="resultName" style="color:#666;margin-top:4px"></p>
+      <div class="score-circle" id="scoreCircle">
+        <span id="scoreNum">0</span>
+        <span class="of">/ 100</span>
+      </div>
+      <div class="result-stats">
+        <div class="result-stat green"><div class="num" id="correctCount">0</div><div class="lbl">Doğru</div></div>
+        <div class="result-stat red"><div class="num" id="wrongCount">0</div><div class="lbl">Yanlış</div></div>
+        <div class="result-stat gray"><div class="num" id="emptyCount">0</div><div class="lbl">Boş</div></div>
+      </div>
+      <p id="resultMsg" style="font-size:1.1em;font-weight:600;margin:16px 0"></p>
+      <p id="resultTime" style="font-size:.85em;color:#888"></p>
+    </div>
+    <div class="btn-area" style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+      <button class="btn btn-primary review-toggle" onclick="toggleReview()">Cevapları İncele</button>
+      <button class="btn btn-secondary" onclick="location.reload()">Yeni Sınav</button>
+    </div>
+    <div id="reviewContainer" class="hidden" style="margin-top:20px"></div>
+  </div>
+</div>
+
+<script>
+const allQuestions = [
+  {id:1,level:"easy",text:"Yapay zeka (AI) en genel tanımıyla nedir?",
+    options:["Sadece robotlar için geliştirilen bir yazılım türü","Makinelerin insan zekasını taklit ederek öğrenme, problem çözme ve karar verme gibi bilişsel işlevleri gerçekleştirmesini sağlayan bir teknoloji alanı","İnternette arama yapmayı sağlayan bir yazılım","Bilgisayarların daha hızlı çalışmasını sağlayan bir donanım"],
+    correct:1,feedback:"Yapay zeka, makinelerin insan zekasını taklit ederek bilişsel işlevleri gerçekleştirmesini sağlayan teknolojidir."},
+  {id:2,level:"easy",text:"Yapay zeka alanında en yaygın kullanılan programlama dili hangisidir?",
+    options:["Java","C++","Python","JavaScript"],
+    correct:2,feedback:"Python, TensorFlow, PyTorch ve scikit-learn gibi kütüphanelerin tamamının temelini oluşturur."},
+  {id:3,level:"easy",text:"\"Prompt mühendisliği\" kavramı neyi ifade eder?",
+    options:["Yapay zeka modellerinin donanımını tasarlamak","Yapay zeka ile etkili iletişim kurmak için doğru komut ve talimatlar oluşturma sanatı","Bilgisayar ağlarını yapılandırma süreci","Veritabanı tasarımı yapma"],
+    correct:1,feedback:"Prompt mühendisliği, 'Yapay Zeka ile Konuşma Sanatı' olarak da tanımlanır."},
+  {id:4,level:"easy",text:"1997 yılında satranç dünya şampiyonunu yenen yapay zeka sistemi hangisidir?",
+    options:["AlphaGo","Watson","IBM Deep Blue","GPT-1"],
+    correct:2,feedback:"IBM Deep Blue, 1997'de Garry Kasparov'u yenerek AI tarihinde dönüm noktası oluşturmuştur."},
+  {id:5,level:"easy",text:"Aşağıdakilerden hangisi bir \"Zero-Shot\" prompt örneğidir?",
+    options:["\"Örnek 1: Harika → Pozitif. Şimdi bu metni analiz et.\"","\"Adım adım düşünerek çöz.\"","\"Şu metni özetle:\"","\"Sen kıdemli bir CFO olarak cevap ver.\""],
+    correct:2,feedback:"Zero-Shot, örnek vermeden doğrudan talimat verme tekniğidir."},
+  {id:6,level:"medium",text:"Makine öğrenmesinin üç temel türü hangileridir?",
+    options:["Denetimli, Denetimsiz ve Pekiştirmeli Öğrenme","Hızlı, Orta ve Yavaş Öğrenme","Yapay, Doğal ve Karma Öğrenme","Tek katmanlı, Çok katmanlı ve Derin Öğrenme"],
+    correct:0,feedback:"ML'nin üç temel türü: Supervised, Unsupervised ve Reinforcement Learning'dir."},
+  {id:7,level:"medium",text:"Derin öğrenme (Deep Learning) ile makine öğrenmesi (Machine Learning) arasındaki temel fark nedir?",
+    options:["Derin öğrenme daha az veri ile çalışır","Derin öğrenme çok katmanlı yapay sinir ağları kullanarak özellikleri otomatik keşfeder; ML'de uzman insan müdahalesi gerekir","Makine öğrenmesi daha yeni bir teknolojidir","Aralarında hiçbir fark yoktur, farklı isimlerdir"],
+    correct:1,feedback:"ML rehberli yaklaşım (insan müdahalesi), DL ise otonom yaklaşım (kendi keşfeder) kullanır."},
+  {id:8,level:"medium",text:"Doğal Dil İşleme (NLP) hangi temel bileşenlerden oluşur?",
+    options:["Dil Anlama (NLU), Dil Üretimi (NLG), Konuşma Tanıma ve Konuşma Sentezi","Sadece metin çevirisi ve duygu analizi","Görüntü işleme ve ses tanıma","Veri tabanı sorgulama ve raporlama"],
+    correct:0,feedback:"NLP'nin dört temel bileşeni: NLU, NLG, Speech Recognition ve Speech Synthesis'tir."},
+  {id:9,level:"medium",text:"Prompt mühendisliğinde \"Mükemmel Prompt Formülü\"nün bileşenleri nelerdir?",
+    options:["Başlık, İçerik, Sonuç, Özet, Kaynakça","Rol, Görev, Bağlam, Kısıtlamalar, Format","Giriş, Gelişme, Sonuç","Soru, Cevap, Doğrulama, Onay"],
+    correct:1,feedback:"Mükemmel Prompt = Rol + Görev + Bağlam + Kısıtlamalar + Format."},
+  {id:10,level:"medium",text:"Büyük Verinin (Big Data) 5V özelliği aşağıdakilerden hangisidir?",
+    options:["Vision, Value, Verify, Volume, Velocity","Hacim (Volume), Çeşitlilik (Variety), Hız (Velocity), Değer (Value), Doğruluk (Veracity)","Video, Voice, Visual, Virtual, Verified","Veri, Verimlilik, Vizyon, Varsayım, Varlık"],
+    correct:1,feedback:"Büyük Verinin 5V'si: Volume, Variety, Velocity, Value ve Veracity'dir."},
+  {id:11,level:"medium",text:"Siber güvenlikte \"phishing (oltalama)\" saldırısı nedir?",
+    options:["Bilgisayar virüsü ile sistemleri çökertme","DDoS saldırısı ile sunucuları aşırı yükleme","Kullanıcıları kandırarak hassas bilgilerini ele geçirme girişimi","SQL enjeksiyonu ile veritabanlarına izinsiz erişim"],
+    correct:2,feedback:"Phishing, sosyal mühendislik yoluyla kullanıcıları kandırarak bilgi çalma yöntemidir."},
+  {id:12,level:"medium",text:"Sanal Gerçeklik (VR) ile Artırılmış Gerçeklik (AR) arasındaki temel fark nedir?",
+    options:["VR daha ucuzdur, AR daha pahalıdır","VR tamamen sanal bir dünyaya taşırken, AR gerçek dünyayı dijital içeriklerle zenginleştirir","İkisi aynı teknolojidir, sadece isimleri farklıdır","AR yalnızca oyunlarda, VR yalnızca eğitimde kullanılır"],
+    correct:1,feedback:"VR tamamen sanal ortam, AR ise gerçek dünya üzerine dijital katman ekler."},
+  {id:13,level:"medium",text:"Nesnelerin İnterneti (IoT) hangi alanlarda kullanılmaktadır?",
+    options:["Sadece akıllı ev sistemlerinde","Akıllı evler, sağlık, endüstriyel otomasyon, ulaşım ve tarım gibi geniş bir yelpazede","Yalnızca üretim sektöründe","Sadece mobil uygulamalarda"],
+    correct:1,feedback:"IoT, akıllı evlerden tarıma kadar çok geniş bir uygulama yelpazesine sahiptir."},
+  {id:14,level:"medium",text:"Aşağıdaki yapay zeka araçlarından hangisi görsel/resim üretimi için kullanılır?",
+    options:["Suno AI","ElevenLabs","Midjourney","Fireflies.ai"],
+    correct:2,feedback:"Midjourney metinden fotorealistik görseller üreten bir AI aracıdır."},
+  {id:15,level:"medium",text:"Git ve GitHub arasındaki ilişki nedir?",
+    options:["Aynı şeydir, farklı isimlerdir","Git bir programlama dili, GitHub ise bir derleyicidir","Git yerel versiyon kontrol sistemi, GitHub ise Git'in bulut tabanlı uzak depo platformudur","GitHub bir işletim sistemi, Git ise onun terminaldir"],
+    correct:2,feedback:"Git local'de çalışır, GitHub ise Git'in buluttaki evidir."},
+  {id:16,level:"hard",text:"Bir çağrı merkezi müdürü, müşteri şikayetlerini otomatik olarak kategorize etmek istiyor. Hangi yapay zeka alt dalı ve öğrenme türü en uygun çözümü sunar?",
+    options:["Bilgisayarla Görü (Computer Vision) ve Pekiştirmeli Öğrenme","Doğal Dil İşleme (NLP) ve Denetimli Öğrenme (Supervised Learning)","Robotik ve Denetimsiz Öğrenme","Büyük Veri analizi ve Derin Pekiştirmeli Öğrenme"],
+    correct:1,feedback:"Metin tabanlı şikayetler NLP gerektirir; etiketlenmiş verilerden öğrenme ise Denetimli Öğrenme ile yapılır."},
+  {id:17,level:"hard",text:"Bir e-ticaret şirketi, müşteri davranışlarına göre ürün öneri sistemi kurmak istiyor. Hangi ML yaklaşımlarının birlikte kullanılması en etkili sonucu verir?",
+    options:["Sadece Denetimli Öğrenme yeterlidir","Denetimli Öğrenme (geçmiş satın alma verilerine göre tahmin) + Denetimsiz Öğrenme (müşteri segmentasyonu) birlikte","Sadece kural tabanlı sistemler yeterlidir","Pekiştirmeli Öğrenme tek başına en iyi sonucu verir"],
+    correct:1,feedback:"Öneri sistemleri hem tahmin (Denetimli) hem de müşteri gruplaması (Denetimsiz) yaklaşımlarını birlikte kullanır."},
+  {id:18,level:"hard",text:"Bir hastanede tıbbi görüntü analizi projesi tasarlıyorsunuz. Röntgen görüntülerinde hastalık tespiti için en uygun derin öğrenme mimarisi hangisidir?",
+    options:["Yinelemeli Sinir Ağları (RNN) — metin tabanlı hasta kayıtlarını analiz eder","Evrişimli Sinir Ağları (CNN) — görüntü tanıma ve sınıflandırmada uzmanlaşmış derin öğrenme mimarisi","Çekişmeli Üretici Ağlar (GAN) — yeni röntgen görüntüsü üretir","Dönüştürücüler (Transformers) — dil çevirisi için tasarlanmıştır"],
+    correct:1,feedback:"CNN'ler görüntü tanıma ve sınıflandırmada uzmanlaşmış olup tıbbi görüntü analizinde standart tercihtir."},
+  {id:19,level:"hard",text:"Aşağıdaki prompt örneklerinden hangisi, yapay zekadan en kaliteli ve tutarlı çıktıyı alma olasılığı en yüksektir?",
+    options:["\"Pazarlama hakkında bir şeyler yaz.\"","\"Bir pazarlama planı hazırla.\"","\"Sen 15 yıllık deneyimli bir dijital pazarlama uzmanısın. B2B SaaS ürünü için LinkedIn odaklı içerik stratejisi hazırla. Hedef kitle: IT yöneticileri. Format: haftalık takvim tablosu. Kısıt: bütçe 50.000 TL, 3 aylık plan.\"","\"Adım adım düşünerek pazarlama stratejisi oluştur.\""],
+    correct:2,feedback:"Bu prompt Mükemmel Prompt Formülü'nün tüm bileşenlerini (Rol + Görev + Bağlam + Format + Kısıt) içerir."},
+  {id:20,level:"hard",text:"Bir şirket, AI destekli müşteri hizmetleri chatbot'u geliştirmek istiyor. Aşağıdaki etik ve hukuki risklerden hangisi en öncelikli olarak ele alınmalıdır?",
+    options:["Chatbot'un görsel tasarımının beğenilmemesi riski","Chatbot'un çok hızlı yanıt vermesi riski","Kişisel verilerin korunması (KVKK/GDPR uyumu), halüsinasyon (uydurma bilgi üretme) riski ve hesap verebilirlik sorunu","Chatbot'un sadece Türkçe konuşması riski"],
+    correct:2,feedback:"KVKK/GDPR uyumu, halüsinasyon riski ve hesap verebilirlik AI projelerinin en kritik etik ve hukuki sorunlarıdır."}
+];
+
+let questions = [];
+let answers = {};
+let timerInterval;
+let timeLeft = 45 * 60;
+let startTime;
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function shuffleOptions(q) {
+  const indexed = q.options.map((text, i) => ({ text, isCorrect: i === q.correct }));
+  const shuffled = shuffle(indexed);
+  return {
+    ...q,
+    options: shuffled.map(o => o.text),
+    correct: shuffled.findIndex(o => o.isCorrect)
+  };
+}
+
+function startExam() {
+  const name = document.getElementById('studentName').value.trim();
+  if (!name) { document.getElementById('studentName').style.borderColor = '#e74c3c'; document.getElementById('studentName').focus(); return; }
+  
+  questions = shuffle(allQuestions).map(q => shuffleOptions(q));
+  answers = {};
+  startTime = Date.now();
+  
+  document.getElementById('startScreen').classList.add('hidden');
+  document.getElementById('examScreen').classList.remove('hidden');
+  
+  renderQuestions();
+  startTimer();
+  updateStats();
+}
+
+function renderQuestions() {
+  const container = document.getElementById('questionsContainer');
+  const levelMap = { easy: 'Kolay', medium: 'Orta', hard: 'Zor' };
+  container.innerHTML = questions.map((q, qi) => `
+    <div class="question-card ${q.level}" id="qcard-${qi}">
+      <div class="q-header">
+        <span class="q-number">Soru ${qi + 1}</span>
+        <span class="q-level ${q.level}">${levelMap[q.level]}</span>
+      </div>
+      <div class="q-text">${q.text}</div>
+      <div class="options">
+        ${q.options.map((opt, oi) => `
+          <div class="option" id="opt-${qi}-${oi}" onclick="selectOption(${qi},${oi})">
+            <div class="letter">${String.fromCharCode(65 + oi)}</div>
+            <div class="text">${opt}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="feedback" id="fb-${qi}"></div>
+    </div>
+  `).join('');
+}
+
+function selectOption(qi, oi) {
+  if (answers[qi] !== undefined) return;
+  
+  questions[qi].options.forEach((_, i) => {
+    document.getElementById(`opt-${qi}-${i}`).classList.remove('selected');
+  });
+  document.getElementById(`opt-${qi}-${oi}`).classList.add('selected');
+  answers[qi] = oi;
+  updateStats();
+}
+
+function updateStats() {
+  const count = Object.keys(answers).length;
+  document.getElementById('qCount').textContent = `${count}/20`;
+  document.getElementById('answered').textContent = count;
+  document.getElementById('progressBar').style.width = `${(count / 20) * 100}%`;
+}
+
+function startTimer() {
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    if (timeLeft <= 0) { clearInterval(timerInterval); finishExam(); return; }
+    const m = Math.floor(timeLeft / 60);
+    const s = timeLeft % 60;
+    const el = document.getElementById('timer');
+    el.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    if (timeLeft <= 300) el.classList.add('warning');
+  }, 1000);
+}
+
+function finishExam() {
+  const unanswered = 20 - Object.keys(answers).length;
+  if (unanswered > 0) {
+    if (!confirm(`${unanswered} soru henüz cevaplanmadı. Sınavı bitirmek istediğinize emin misiniz?`)) return;
+  }
+  clearInterval(timerInterval);
+  
+  let correct = 0, wrong = 0, empty = 0;
+  questions.forEach((q, i) => {
+    if (answers[i] === undefined) empty++;
+    else if (answers[i] === q.correct) correct++;
+    else wrong++;
+  });
+  
+  const score = correct * 5;
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  const em = Math.floor(elapsed / 60);
+  const es = elapsed % 60;
+  const name = document.getElementById('studentName').value.trim();
+  
+  document.getElementById('examScreen').classList.add('hidden');
+  document.getElementById('resultScreen').classList.remove('hidden');
+  
+  document.getElementById('resultName').textContent = name;
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('correctCount').textContent = correct;
+  document.getElementById('wrongCount').textContent = wrong;
+  document.getElementById('emptyCount').textContent = empty;
+  document.getElementById('resultTime').textContent = `Geçen süre: ${em} dakika ${es} saniye`;
+  
+  const circle = document.getElementById('scoreCircle');
+  const msg = document.getElementById('resultMsg');
+  if (score >= 70) {
+    circle.className = 'score-circle pass';
+    msg.textContent = score >= 90 ? 'Mükemmel! Harika bir performans!' : 'Tebrikler! Başarılı oldunuz!';
+    msg.style.color = '#27ae60';
+  } else {
+    circle.className = 'score-circle fail';
+    msg.textContent = score >= 50 ? 'Geçer not alamadınız. Tekrar çalışmanızı öneriyoruz.' : 'Konuları tekrar gözden geçirmeniz gerekmektedir.';
+    msg.style.color = '#e74c3c';
+  }
+  
+  renderReview();
+}
+
+function renderReview() {
+  const container = document.getElementById('reviewContainer');
+  const levelMap = { easy: 'Kolay', medium: 'Orta', hard: 'Zor' };
+  container.innerHTML = questions.map((q, qi) => {
+    const userAns = answers[qi];
+    const isCorrect = userAns === q.correct;
+    const isEmpty = userAns === undefined;
+    const status = isEmpty ? '' : (isCorrect ? 'correct' : 'wrong');
+    
+    return `
+    <div class="question-card ${status}" style="border-left-color:${isCorrect ? '#27ae60' : isEmpty ? '#95a5a6' : '#e74c3c'}">
+      <div class="q-header">
+        <span class="q-number">Soru ${qi + 1}</span>
+        <span class="q-level ${q.level}">${levelMap[q.level]}</span>
+      </div>
+      <div class="q-text">${q.text}</div>
+      <div class="options">
+        ${q.options.map((opt, oi) => {
+          let cls = 'option disabled';
+          if (oi === q.correct) cls += ' correct-answer';
+          else if (oi === userAns && oi !== q.correct) cls += ' wrong-answer';
+          return `<div class="${cls}"><div class="letter">${String.fromCharCode(65 + oi)}</div><div class="text">${opt}</div></div>`;
+        }).join('')}
+      </div>
+      <div class="feedback show ${isCorrect ? 'correct' : 'incorrect'}">
+        ${isCorrect ? '✅' : isEmpty ? '⬜' : '❌'} ${q.feedback}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleReview() {
+  const el = document.getElementById('reviewContainer');
+  el.classList.toggle('hidden');
+  const btn = document.querySelector('.review-toggle');
+  btn.textContent = el.classList.contains('hidden') ? 'Cevapları İncele' : 'Cevapları Gizle';
+}
+</script>
+</body>
+</html>
