@@ -92,7 +92,7 @@ var k=(e.key||"").toLowerCase();
 if((e.ctrlKey||e.metaKey)&&(k==="c"||k==="x"||k==="u"||k==="s"||k==="p"||k==="a"))e.preventDefault();
 if(e.key==="F12")e.preventDefault();
 });
-var SCRIPT_URL="https://script.google.com/macros/s/AKfycbxNzJlFcAIS9sD8YyGpc87NrvVPz6tPwslFfkv7IRmQXRxWeDqtaCWGUF3Kepr-fZA4/exec";
+var SCRIPT_URL="https://script.google.com/macros/s/AKfycbxaXkazi66RwBA7W5enLKwzZNQfGuB-jn_yD1NEQy8PRaC5-pag46JGGQL-xWbVQuaT/exec";
 var LEVEL_WEIGHTS={easy:1,medium:2,hard:3};
 var P=[
   [
@@ -853,12 +853,8 @@ var payload=encodeURIComponent(JSON.stringify(data));
 jsonpReq(SCRIPT_URL+'?action=submit&data='+payload,function(ok,resp){
 if(ok&&resp&&resp.status==='ok'){done(true,resp);return;}
 postLegacyResult(data,function(sent){
-if(!sent){done(false,resp);return;}
-fetchHistoryByEmail(data.email,function(h){
-var prevCount=historyBeforeExam&&historyBeforeExam.attemptCount?Number(historyBeforeExam.attemptCount):0;
-if(h&&Number(h.attemptCount||0)>prevCount){done(true,{status:'ok',mode:'legacy'});return;}
+if(sent){done(true,{status:'ok',mode:'legacy'});return;}
 done(false,resp);
-});
 });
 },10000);
 }
