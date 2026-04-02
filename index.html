@@ -799,21 +799,37 @@ function trFix(t){
 return t||"";
 }
 function normEmail(e){return(e||'').trim().toLowerCase()}
+function jsonpReq(url,done,timeoutMs){
+var cb='cb_'+Date.now()+'_'+Math.floor(Math.random()*99999),s=document.createElement('script'),ended=false,timer=null;
+function end(ok,payload){
+if(ended)return;
+ended=true;
+if(timer)clearTimeout(timer);
+try{delete window[cb]}catch(_){window[cb]=undefined}
+try{if(s.parentNode)s.parentNode.removeChild(s)}catch(_){}
+done(ok,payload||null);
+}
+window[cb]=function(resp){end(true,resp);};
+s.async=true;
+s.onerror=function(){end(false,null);};
+s.src=url+(url.indexOf('?')>=0?'&':'?')+'callback='+encodeURIComponent(cb)+'&_='+Date.now();
+document.body.appendChild(s);
+timer=setTimeout(function(){end(false,null);},timeoutMs||8000);
+}
 function fetchHistoryByEmail(email,done){
 if(!SCRIPT_URL||!vEmail(email)){done(null);return;}
-var cb='histCb_'+Date.now()+'_'+Math.floor(Math.random()*99999);
-var doneOnce=false;
-function end(data){if(doneOnce)return;doneOnce=true;try{delete window[cb]}catch(_){window[cb]=undefined}done(data||null)}
-window[cb]=function(resp){
-if(resp&&resp.status==='ok'&&resp.data){end(resp.data);}
-else{end(null);}
-};
-var s=document.createElement('script');
-s.src=SCRIPT_URL+'?action=history&email='+encodeURIComponent(email)+'&callback='+cb+'&_='+Date.now();
-s.async=true;
-s.onerror=function(){end(null)};
-document.body.appendChild(s);
-setTimeout(function(){try{document.body.removeChild(s)}catch(_){ }end(null);},7000);
+jsonpReq(SCRIPT_URL+'?action=history&email='+encodeURIComponent(email),function(ok,resp){
+if(ok&&resp&&resp.status==='ok'&&resp.data){done(resp.data);return;}
+done(null);
+},7000);
+}
+function submitResult(data,done){
+if(!SCRIPT_URL){done(false,null);return;}
+var payload=encodeURIComponent(JSON.stringify(data));
+jsonpReq(SCRIPT_URL+'?action=submit&data='+payload,function(ok,resp){
+if(ok&&resp&&resp.status==='ok'){done(true,resp);return;}
+done(false,resp);
+},10000);
 }
 function buildTrend(history,score){
 if(!history||!history.attemptCount)return{text:'Bu e-posta ile ilk denemeniz. Başarı trendi bu sınavdan sonra oluşacak.',cls:'first'};
@@ -888,7 +904,6 @@ function renderQ(){
 var c=document.getElementById('qCont');var lm={easy:'Kolay',medium:'Orta',hard:'Zor'};
 c.innerHTML=questions.map(function(q,qi){return'<div class="question-card '+q.level+'" id="qc-'+qi+'"><div class="q-header"><span class="q-number">Soru '+(qi+1)+'</span><span class="q-level '+q.level+'">'+lm[q.level]+'</span></div><div class="q-text">'+q.text+'</div><div class="options">'+q.options.map(function(o,oi){return'<div class="option" id="o-'+qi+'-'+oi+'" onclick="sel('+qi+','+oi+')"><div class="letter">'+String.fromCharCode(65+oi)+'</div><div class="text">'+o+'</div></div>'}).join('')+'</div></div>'}).join('')}
 function sel(qi,oi){
-if(answers[qi]!==undefined)return;
 questions[qi].options.forEach(function(_,i){document.getElementById('o-'+qi+'-'+i).classList.remove('selected')});
 document.getElementById('o-'+qi+'-'+oi).classList.add('selected');answers[qi]=oi;updateStats()}
 function updateStats(){var c=Object.keys(answers).length;document.getElementById('answered').textContent=c+'/20';document.getElementById('progressBar').style.width=(c/20*100)+'%'}
@@ -905,16 +920,12 @@ var email=document.getElementById('sEmail').value.trim();
 var timeStr=em+' dakika '+es+' saniye';
 var trend=buildTrend(historyBeforeExam,score);
 var cacheKey=normEmail(email),prev=emailHistoryCache[cacheKey]||historyBeforeExam||{attemptCount:0,lastScore:0,bestScore:0};
+submitResult({name:name,email:email,score:score,correct:cor,wrong:wr,empty:emp,time:timeStr},function(sent){
+if(sent){
 emailHistoryCache[cacheKey]={attemptCount:(Number(prev.attemptCount)||0)+1,lastScore:score,bestScore:Math.max(Number(prev.bestScore)||0,score)};
-if(SCRIPT_URL){
-var payload=JSON.stringify({name:name,email:email,score:score,correct:cor,wrong:wr,empty:emp,time:timeStr});
-var ifr=document.createElement('iframe');ifr.name='gasFrame';ifr.style.display='none';document.body.appendChild(ifr);
-var frm=document.createElement('form');frm.method='POST';frm.action=SCRIPT_URL;frm.target='gasFrame';
-var inp=document.createElement('input');inp.type='hidden';inp.name='data';inp.value=payload;frm.appendChild(inp);
-document.body.appendChild(frm);frm.submit();document.body.removeChild(frm);
-setTimeout(function(){try{document.body.removeChild(ifr)}catch(ex){}},10000);
-setTimeout(function(){showR(name,score,cor,wr,emp,timeStr,true,trend)},2500);
-}else{showR(name,score,cor,wr,emp,timeStr,false,trend)}}
+}
+showR(name,score,cor,wr,emp,timeStr,sent,trend);
+});}
 function showR(name,score,cor,wr,emp,timeStr,sent,trend){
 document.getElementById('sendOv').classList.add('hidden');
 document.getElementById('examScreen').classList.add('hidden');
@@ -933,7 +944,7 @@ trEl.className='trend-msg '+(trend&&trend.cls?trend.cls:'first');
 trEl.textContent=trend&&trend.text?trend.text:'';
 var es=document.getElementById('eStat');
 if(sent){es.innerHTML='<div class="email-sent">Sınav sonuçlarınız e-posta adresinize gönderildi.</div>'}
-else{es.innerHTML='<div style="background:#fef9e7;border:1px solid #f9e79f;border-radius:10px;padding:12px;margin:16px 0;color:#7d6608;font-size:.9em">E-posta gönderilemedi.</div>'}
+else{es.innerHTML='<div style="background:#fef9e7;border:1px solid #f9e79f;border-radius:10px;padding:12px;margin:16px 0;color:#7d6608;font-size:.9em">Sonuçlar sunucuya doğrulanmış şekilde gönderilemedi. Lütfen internet bağlantınızı kontrol edip tekrar deneyin.</div>'}
 renderRev()}
 function renderRev(){
 var c=document.getElementById('revCont'),lm={easy:'Kolay',medium:'Orta',hard:'Zor'};
