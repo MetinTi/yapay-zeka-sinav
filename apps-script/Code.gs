@@ -155,24 +155,43 @@ function sendResultEmail(name, email, score, correct, wrong, empty, time, passed
     "NEWFOUND CREATIVE ACADEMY\n";
 
   var logoUrl = "https://sinav.metintiryaki.com/assets/newfoundlogo-1024x264.jpg";
+  var statusBg = passed ? "#E8F8EF" : "#FDEDEC";
+  var statusColor = passed ? "#1E8449" : "#C0392B";
+  var statusBorder = passed ? "#A9DFBF" : "#F5B7B1";
+  var scoreColor = passed ? "#1E8449" : "#C0392B";
   var htmlBody =
-    '<div style="font-family:Segoe UI,Arial,sans-serif;line-height:1.55;color:#1f2937">' +
-      '<div style="margin-bottom:16px">' +
-        '<img src="' + logoUrl + '" alt="Newfound Creative Academy" style="max-width:260px;height:auto;display:block" />' +
-      '</div>' +
-      "<p>Sayın " + escapeHtml(name) + ",</p>" +
-      "<p>Yapay Zekâ Eğitimi sınav sonucunuz aşağıdadır:</p>" +
-      '<table style="border-collapse:collapse;font-size:15px;margin:8px 0 14px 0">' +
-        "<tr><td style='padding:2px 10px 2px 0'><strong>Puan:</strong></td><td>" + score + " / 100</td></tr>" +
-        "<tr><td style='padding:2px 10px 2px 0'><strong>Doğru:</strong></td><td>" + correct + "</td></tr>" +
-        "<tr><td style='padding:2px 10px 2px 0'><strong>Yanlış:</strong></td><td>" + wrong + "</td></tr>" +
-        "<tr><td style='padding:2px 10px 2px 0'><strong>Boş:</strong></td><td>" + empty + "</td></tr>" +
-        "<tr><td style='padding:2px 10px 2px 0'><strong>Süre:</strong></td><td>" + escapeHtml(time) + "</td></tr>" +
-        "<tr><td style='padding:2px 10px 2px 0'><strong>Durum:</strong></td><td>" + statusText + "</td></tr>" +
-      "</table>" +
-      "<p>" + resultNote + "</p>" +
-      "<p style='margin-top:18px'>Eğitmen: Metin Tiryaki<br/>NEWFOUND CREATIVE ACADEMY</p>" +
-    "</div>";
+    '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f3f6fa;padding:24px 0">' +
+      '<tr><td align="center">' +
+        '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="640" style="width:640px;max-width:640px;background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;font-family:Segoe UI,Arial,sans-serif;color:#1f2937">' +
+          '<tr><td style="padding:20px 24px 8px 24px">' +
+            '<img src="' + logoUrl + '" alt="Newfound Creative Academy" style="max-width:260px;height:auto;display:block" />' +
+          "</td></tr>" +
+          '<tr><td style="padding:0 24px 8px 24px;font-size:18px;font-weight:700;color:#0f3f5f">Yapay Zekâ Sınav Sonucu</td></tr>' +
+          '<tr><td style="padding:0 24px 16px 24px;font-size:15px">Sayın ' + escapeHtml(name) + ',</td></tr>' +
+          '<tr><td style="padding:0 24px 16px 24px;font-size:15px">Yapay Zekâ Eğitimi sınav sonucunuz aşağıdadır:</td></tr>' +
+          '<tr><td style="padding:0 24px 16px 24px">' +
+            '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border:1px solid #e5e7eb;border-radius:10px;background:#fbfdff">' +
+              '<tr><td style="padding:14px 16px">' +
+                '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="font-size:15px">' +
+                  '<tr><td style="padding:4px 0"><strong>Puan:</strong></td><td align="right" style="padding:4px 0;color:' + scoreColor + ';font-weight:700">' + score + ' / 100</td></tr>' +
+                  '<tr><td style="padding:4px 0"><strong>Doğru:</strong></td><td align="right" style="padding:4px 0">' + correct + '</td></tr>' +
+                  '<tr><td style="padding:4px 0"><strong>Yanlış:</strong></td><td align="right" style="padding:4px 0">' + wrong + '</td></tr>' +
+                  '<tr><td style="padding:4px 0"><strong>Boş:</strong></td><td align="right" style="padding:4px 0">' + empty + '</td></tr>' +
+                  '<tr><td style="padding:4px 0"><strong>Süre:</strong></td><td align="right" style="padding:4px 0">' + escapeHtml(time) + '</td></tr>' +
+                "</table>" +
+              "</td></tr>" +
+            "</table>" +
+          "</td></tr>" +
+          '<tr><td style="padding:0 24px 8px 24px">' +
+            '<span style="display:inline-block;padding:8px 12px;border-radius:999px;background:' + statusBg + ';color:' + statusColor + ';border:1px solid ' + statusBorder + ';font-size:13px;font-weight:700">Durum: ' + statusText + "</span>" +
+          "</td></tr>" +
+          '<tr><td style="padding:0 24px 20px 24px;font-size:15px">' + resultNote + "</td></tr>" +
+          '<tr><td style="padding:16px 24px 24px 24px;border-top:1px solid #e5e7eb;color:#4b5563;font-size:14px">' +
+            "Eğitmen: Metin Tiryaki<br/>NEWFOUND CREATIVE ACADEMY" +
+          "</td></tr>" +
+        "</table>" +
+      "</td></tr>" +
+    "</table>";
 
   try {
     GmailApp.sendEmail(email, subject, body, {
