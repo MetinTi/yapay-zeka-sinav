@@ -29,7 +29,7 @@
 <div class="start-info">
 <div class="item"><span class="icon">&#128221;</span><div class="detail"><div class="main">20 Soru</div><div class="sub">60 sorudan rastgele</div></div></div>
 <div class="item"><span class="icon">&#9201;</span><div class="detail"><div class="main">45 Dakika</div><div class="sub">Geri sayım</div></div></div>
-<div class="item"><span class="icon">&#127919;</span><div class="detail"><div class="main">100 Puan</div><div class="sub">Her soru 5 puan</div></div></div>
+<div class="item"><span class="icon">&#127919;</span><div class="detail"><div class="main">100 Puan</div><div class="sub">Zorluk katsayılı puanlama</div></div></div>
 <div class="item"><span class="icon">&#128256;</span><div class="detail"><div class="main">Rastgele</div><div class="sub">Her sınavda farklı sorular</div></div></div>
 </div>
 <div class="pool-info">60 soruluk havuzdan her sınavda rastgele 20 soru seçilir.</div>
@@ -93,6 +93,7 @@ if((e.ctrlKey||e.metaKey)&&(k==="c"||k==="x"||k==="u"||k==="s"||k==="p"||k==="a"
 if(e.key==="F12")e.preventDefault();
 });
 var SCRIPT_URL="https://script.google.com/macros/s/AKfycbxNzJlFcAIS9sD8YyGpc87NrvVPz6tPwslFfkv7IRmQXRxWeDqtaCWGUF3Kepr-fZA4/exec";
+var LEVEL_WEIGHTS={easy:1,medium:2,hard:3};
 var P=[
   [
     "easy",
@@ -921,6 +922,18 @@ return shuffle(e.concat(m).concat(h)).map(function(q){
 var idx=q[3];var opts=q[2].map(function(t,i){return{t:t,c:i===idx}});var sh=shuffle(opts);
 return{level:q[0],text:trFix(q[1]),options:sh.map(function(o){return trFix(o.t)}),correct:sh.findIndex(function(o){return o.c}),feedback:trFix(q[4])};
 })}
+function calcExamResult(){
+var cor=0,wr=0,emp=0,rawScore=0,maxRaw=0;
+questions.forEach(function(q,i){
+var w=LEVEL_WEIGHTS[q.level]||1;
+maxRaw+=w;
+if(answers[i]===undefined){emp++;return;}
+if(answers[i]===q.correct){cor++;rawScore+=w;}
+else{wr++;}
+});
+var score=maxRaw?Math.round(rawScore*100/maxRaw):0;
+return{score:score,correct:cor,wrong:wr,empty:emp,rawScore:rawScore,maxRaw:maxRaw};
+}
 function vEmail(e){return/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)}
 function startExam(){
 var n=document.getElementById('sName').value.trim();
@@ -964,9 +977,9 @@ function finishExam(){
 var u=20-Object.keys(answers).length;
 if(u>0&&!confirm(u+' soru cevaplanmadı. Bitirmek istediğinize emin misiniz?'))return;
 clearInterval(timerInterval);document.getElementById('sendOv').classList.remove('hidden');
-var cor=0,wr=0,emp=0;
-questions.forEach(function(q,i){if(answers[i]===undefined)emp++;else if(answers[i]===q.correct)cor++;else wr++});
-var score=cor*5,elapsed=Math.floor((Date.now()-startTime)/1000),em=Math.floor(elapsed/60),es=elapsed%60;
+var result=calcExamResult();
+var cor=result.correct,wr=result.wrong,emp=result.empty,score=result.score;
+var elapsed=Math.floor((Date.now()-startTime)/1000),em=Math.floor(elapsed/60),es=elapsed%60;
 var name=document.getElementById('sName').value.trim();
 var email=document.getElementById('sEmail').value.trim();
 var timeStr=em+' dakika '+es+' saniye';

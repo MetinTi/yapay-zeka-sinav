@@ -1,6 +1,8 @@
 var SPREADSHEET_ID = "1IqKKZb8E7VR0x9rs0lzZ7yjm7P9ftJ7r1LbdrpOaOsE";
 var RESULTS_SHEET_NAME = "Sonuclar";
 var PASS_SCORE = 70;
+var SENDER_EMAIL = "metin@metintiryaki.com";
+var SENDER_NAME = "Newfound Creative Academy";
 
 function doGet(e) {
   try {
@@ -112,11 +114,29 @@ function sendResultEmail(name, email, score, correct, wrong, empty, time, passed
     "www.metintiryaki.com\n" +
     "NEWFOUND CREATIVE ACADEMY\n";
 
+  var aliases = [];
+  try {
+    aliases = GmailApp.getAliases();
+  } catch (err) {
+    Logger.log("Alias bilgisi okunamadi: " + String(err));
+  }
+
+  if (aliases.indexOf(SENDER_EMAIL) !== -1) {
+    GmailApp.sendEmail(email, subject, body, {
+      name: SENDER_NAME,
+      from: SENDER_EMAIL,
+      replyTo: SENDER_EMAIL
+    });
+    return;
+  }
+
+  Logger.log("UYARI: " + SENDER_EMAIL + " alias tanimli degil. Varsayilan gonderici kullanildi.");
   MailApp.sendEmail({
     to: email,
     subject: subject,
     body: body,
-    name: "Newfound Creative Academy"
+    name: SENDER_NAME,
+    replyTo: SENDER_EMAIL
   });
 }
 
