@@ -98,8 +98,11 @@ function processSubmission(data) {
   var emailError = "";
   if (email) {
     try {
-      sendResultEmail(name, email, score, correct, wrong, empty, time, passed);
-      emailSent = true;
+      var mailResult = sendResultEmail(name, email, score, correct, wrong, empty, time, passed);
+      emailSent = !!mailResult.sent;
+      if (mailResult.fallback) {
+        emailError = "Alias gonderimi basarisiz, varsayilan hesap ile gonderildi: " + (mailResult.aliasError || "");
+      }
     } catch (err) {
       emailSent = false;
       emailError = String(err);
@@ -155,13 +158,26 @@ function sendResultEmail(name, email, score, correct, wrong, empty, time, passed
       from: SENDER_EMAIL,
       replyTo: SENDER_EMAIL
     });
+    return { sent: true, fallback: false };
   } catch (err) {
-    throw new Error(
-      "Mail gonderimi basarisiz. '" +
-      SENDER_EMAIL +
-      "' Gmail'de Send mail as olarak dogrulanmis olmali. Hata: " +
-      String(err)
-    );
+    // Alias gonderimi basarisizsa teslimati kaybetmemek icin varsayilan hesapla gonder.
+    try {
+      MailApp.sendEmail({
+        to: email,
+        subject: subject,
+        body: body,
+        name: SENDER_NAME,
+        replyTo: SENDER_EMAIL
+      });
+      return { sent: true, fallback: true, aliasError: String(err) };
+    } catch (fallbackErr) {
+      throw new Error(
+        "Mail gonderimi basarisiz. Alias hata: " +
+        String(err) +
+        " | Fallback hata: " +
+        String(fallbackErr)
+      );
+    }
   }
 }
 

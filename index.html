@@ -851,10 +851,15 @@ function submitResult(data,done){
 if(!SCRIPT_URL){done(false,null);return;}
 var payload=encodeURIComponent(JSON.stringify(data));
 jsonpReq(SCRIPT_URL+'?action=submit&data='+payload,function(ok,resp){
-if(ok&&resp&&resp.status==='ok'){done(true,{saved:true,emailSent:resp.emailSent,mode:'submit',resp:resp});return;}
+if(ok&&resp){
+if(resp.status==='ok'){done(true,{saved:true,emailSent:resp.emailSent,mode:'submit',resp:resp});return;}
+done(false,{saved:false,emailSent:false,mode:'submit_error',resp:resp});
+return;
+}
+// Yanit hic donmediyse (baglanti/cdn engeli vb.) tek seferlik POST fallback kullan.
 postLegacyResult(data,function(sent){
-if(sent){done(true,{saved:true,emailSent:null,mode:'legacy',resp:resp});return;}
-done(false,{saved:false,emailSent:false,mode:'none',resp:resp});
+if(sent){done(true,{saved:true,emailSent:null,mode:'legacy',resp:null});return;}
+done(false,{saved:false,emailSent:false,mode:'none',resp:null});
 });
 },10000);
 }
