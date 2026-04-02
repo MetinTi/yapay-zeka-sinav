@@ -118,26 +118,23 @@ function sendResultEmail(name, email, score, correct, wrong, empty, time, passed
   try {
     aliases = GmailApp.getAliases();
   } catch (err) {
-    Logger.log("Alias bilgisi okunamadi: " + String(err));
+    throw new Error("Alias bilgisi okunamadi: " + String(err));
   }
 
-  if (aliases.indexOf(SENDER_EMAIL) !== -1) {
-    GmailApp.sendEmail(email, subject, body, {
-      name: SENDER_NAME,
-      from: SENDER_EMAIL,
-      replyTo: SENDER_EMAIL
-    });
-    return;
+  if (aliases.indexOf(SENDER_EMAIL) === -1) {
+    throw new Error("Gonderici alias bulunamadi: " + SENDER_EMAIL + ". Gmail > Settings > Accounts and Import > Send mail as bolumunden aliasi dogrulayin.");
   }
 
-  Logger.log("UYARI: " + SENDER_EMAIL + " alias tanimli degil. Varsayilan gonderici kullanildi.");
-  MailApp.sendEmail({
-    to: email,
-    subject: subject,
-    body: body,
+  GmailApp.sendEmail(email, subject, body, {
     name: SENDER_NAME,
+    from: SENDER_EMAIL,
     replyTo: SENDER_EMAIL
   });
+}
+
+function testAliases() {
+  Logger.log("Effective user: " + Session.getEffectiveUser().getEmail());
+  Logger.log("Aliases: " + JSON.stringify(GmailApp.getAliases()));
 }
 
 function getHistoryByEmail(email) {
