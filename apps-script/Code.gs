@@ -135,7 +135,7 @@ function processSubmission(data) {
 }
 
 function sendResultEmail(name, email, score, correct, wrong, empty, time, passed) {
-  var subject = "Yapay Zekâ Sınav Sonucunuz - " + (passed ? "BAŞARILI" : "BAŞARISIZ");
+  var subject = "Yapay Zeka Sınav Sonucunuz - " + (passed ? "BAŞARILI" : "BAŞARISIZ");
   var statusText = passed ? "Geçti" : "Kaldı";
   var resultNote = passed
     ? "Tebrikler! Sınavı başarıyla tamamladınız."
@@ -143,7 +143,7 @@ function sendResultEmail(name, email, score, correct, wrong, empty, time, passed
 
   var body =
     "Sayın " + name + ",\n\n" +
-    "Yapay Zekâ Eğitimi sınav sonucunuz aşağıdadır:\n\n" +
+    "Yapay Zeka Eğitimi sınav sonucunuz aşağıdadır:\n\n" +
     "Puan: " + score + " / 100\n" +
     "Doğru: " + correct + "\n" +
     "Yanlış: " + wrong + "\n" +
@@ -166,9 +166,9 @@ function sendResultEmail(name, email, score, correct, wrong, empty, time, passed
           '<tr><td style="padding:20px 24px 8px 24px">' +
             '<img src="' + logoUrl + '" alt="Newfound Creative Academy" style="max-width:260px;height:auto;display:block" />' +
           "</td></tr>" +
-          '<tr><td style="padding:0 24px 8px 24px;font-size:18px;font-weight:700;color:#0f3f5f">Yapay Zekâ Sınav Sonucu</td></tr>' +
+          '<tr><td style="padding:0 24px 8px 24px;font-size:18px;font-weight:700;color:#0f3f5f">Yapay Zeka Sınav Sonucu</td></tr>' +
           '<tr><td style="padding:0 24px 16px 24px;font-size:15px">Sayın ' + escapeHtml(name) + ',</td></tr>' +
-          '<tr><td style="padding:0 24px 16px 24px;font-size:15px">Yapay Zekâ Eğitimi sınav sonucunuz aşağıdadır:</td></tr>' +
+          '<tr><td style="padding:0 24px 16px 24px;font-size:15px">Yapay Zeka Eğitimi sınav sonucunuz aşağıdadır:</td></tr>' +
           '<tr><td style="padding:0 24px 16px 24px">' +
             '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border:1px solid #e5e7eb;border-radius:10px;background:#fbfdff">' +
               '<tr><td style="padding:14px 16px">' +
