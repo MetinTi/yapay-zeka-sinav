@@ -66,6 +66,7 @@ function testManual() {
 }
 
 function processSubmission(data) {
+  var submissionId = String(data.submissionId || "").trim();
   var name = String(data.name || "Bilinmiyor").trim();
   var email = normalizeEmail(String(data.email || ""));
   var score = Number(data.score || 0);
@@ -77,6 +78,35 @@ function processSubmission(data) {
 
   var ss = SpreadsheetApp.openById(SPREADSHEET_ID);
   var sheet = ss.getSheetByName(RESULTS_SHEET_NAME) || ss.getSheets()[0];
+
+  // Ayni sinav gonderimi tekrar edilirse (ag timeout vb.) ikinci kaydi engelle.
+  if (submissionId) {
+    var existing = findSubmissionRow(sheet, submissionId);
+    if (existing > 0) {
+      var emailState = getEmailStateFromRow(sheet, existing);
+      return {
+        status: "ok",
+        score: score,
+        passed: passed,
+        duplicate: true,
+        emailSent: emailState
+      };
+    }
+  }
+
+  var emailSent = null;
+  var emailError = "";
+  if (email) {
+    try {
+      sendResultEmail(name, email, score, correct, wrong, empty, time, passed);
+      emailSent = true;
+    } catch (err) {
+      emailSent = false;
+      emailError = String(err);
+      Logger.log("MAIL HATA: " + emailError);
+    }
+  }
+
   sheet.appendRow([
     new Date(),
     name,
@@ -86,14 +116,19 @@ function processSubmission(data) {
     wrong,
     empty,
     time,
-    passed ? "Gecti" : "Kaldi"
+    passed ? "Gecti" : "Kaldi",
+    submissionId,
+    emailSent === true ? "OK" : (emailSent === false ? "ERR: " + emailError : "")
   ]);
 
-  if (email) {
-    sendResultEmail(name, email, score, correct, wrong, empty, time, passed);
-  }
-
-  return { status: "ok", score: score, passed: passed };
+  return {
+    status: "ok",
+    score: score,
+    passed: passed,
+    duplicate: false,
+    emailSent: emailSent,
+    emailError: emailError
+  };
 }
 
 function sendResultEmail(name, email, score, correct, wrong, empty, time, passed) {
@@ -114,27 +149,45 @@ function sendResultEmail(name, email, score, correct, wrong, empty, time, passed
     "www.metintiryaki.com\n" +
     "NEWFOUND CREATIVE ACADEMY\n";
 
-  var aliases = [];
   try {
-    aliases = GmailApp.getAliases();
+    GmailApp.sendEmail(email, subject, body, {
+      name: SENDER_NAME,
+      from: SENDER_EMAIL,
+      replyTo: SENDER_EMAIL
+    });
   } catch (err) {
-    throw new Error("Alias bilgisi okunamadi: " + String(err));
+    throw new Error(
+      "Mail gonderimi basarisiz. '" +
+      SENDER_EMAIL +
+      "' Gmail'de Send mail as olarak dogrulanmis olmali. Hata: " +
+      String(err)
+    );
   }
-
-  if (aliases.indexOf(SENDER_EMAIL) === -1) {
-    throw new Error("Gonderici alias bulunamadi: " + SENDER_EMAIL + ". Gmail > Settings > Accounts and Import > Send mail as bolumunden aliasi dogrulayin.");
-  }
-
-  GmailApp.sendEmail(email, subject, body, {
-    name: SENDER_NAME,
-    from: SENDER_EMAIL,
-    replyTo: SENDER_EMAIL
-  });
 }
 
-function testAliases() {
-  Logger.log("Effective user: " + Session.getEffectiveUser().getEmail());
-  Logger.log("Aliases: " + JSON.stringify(GmailApp.getAliases()));
+function findSubmissionRow(sheet, submissionId) {
+  try {
+    var cell = sheet.getRange("J:J")
+      .createTextFinder(submissionId)
+      .matchEntireCell(true)
+      .findNext();
+    return cell ? cell.getRow() : 0;
+  } catch (err) {
+    Logger.log("findSubmissionRow hatasi: " + String(err));
+    return 0;
+  }
+}
+
+function getEmailStateFromRow(sheet, row) {
+  try {
+    var val = String(sheet.getRange(row, 11).getValue() || "").trim();
+    if (!val) return null;
+    if (val === "OK") return true;
+    if (val.indexOf("ERR:") === 0) return false;
+  } catch (err) {
+    Logger.log("getEmailStateFromRow hatasi: " + String(err));
+  }
+  return null;
 }
 
 function getHistoryByEmail(email) {

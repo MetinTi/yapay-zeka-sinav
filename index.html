@@ -851,10 +851,10 @@ function submitResult(data,done){
 if(!SCRIPT_URL){done(false,null);return;}
 var payload=encodeURIComponent(JSON.stringify(data));
 jsonpReq(SCRIPT_URL+'?action=submit&data='+payload,function(ok,resp){
-if(ok&&resp&&resp.status==='ok'){done(true,resp);return;}
+if(ok&&resp&&resp.status==='ok'){done(true,{saved:true,emailSent:resp.emailSent,mode:'submit',resp:resp});return;}
 postLegacyResult(data,function(sent){
-if(sent){done(true,{status:'ok',mode:'legacy'});return;}
-done(false,resp);
+if(sent){done(true,{saved:true,emailSent:null,mode:'legacy',resp:resp});return;}
+done(false,{saved:false,emailSent:false,mode:'none',resp:resp});
 });
 },10000);
 }
@@ -981,13 +981,14 @@ var email=document.getElementById('sEmail').value.trim();
 var timeStr=em+' dakika '+es+' saniye';
 var trend=buildTrend(historyBeforeExam,score);
 var cacheKey=normEmail(email),prev=emailHistoryCache[cacheKey]||historyBeforeExam||{attemptCount:0,lastScore:0,bestScore:0};
-submitResult({name:name,email:email,score:score,correct:cor,wrong:wr,empty:emp,time:timeStr},function(sent){
-if(sent){
+var submissionId='sub_'+Date.now()+'_'+Math.floor(Math.random()*1000000);
+submitResult({submissionId:submissionId,name:name,email:email,score:score,correct:cor,wrong:wr,empty:emp,time:timeStr},function(sent,state){
+if(sent&&state&&state.saved){
 emailHistoryCache[cacheKey]={attemptCount:(Number(prev.attemptCount)||0)+1,lastScore:score,bestScore:Math.max(Number(prev.bestScore)||0,score)};
 }
-showR(name,score,cor,wr,emp,timeStr,sent,trend);
+showR(name,score,cor,wr,emp,timeStr,sent,state,trend);
 });}
-function showR(name,score,cor,wr,emp,timeStr,sent,trend){
+function showR(name,score,cor,wr,emp,timeStr,sent,state,trend){
 document.getElementById('sendOv').classList.add('hidden');
 document.getElementById('examScreen').classList.add('hidden');
 document.getElementById('resultScreen').classList.remove('hidden');
@@ -1004,7 +1005,11 @@ var trEl=document.getElementById('trendMsg');
 trEl.className='trend-msg '+(trend&&trend.cls?trend.cls:'first');
 trEl.textContent=trend&&trend.text?trend.text:'';
 var es=document.getElementById('eStat');
-if(sent){es.innerHTML='<div class="email-sent">Sınav sonuçlarınız e-posta adresinize gönderildi.</div>'}
+if(sent&&state&&state.saved){
+if(state.emailSent===false){es.innerHTML='<div style="background:#fde8e8;border:1px solid #f5b7b1;border-radius:10px;padding:12px;margin:16px 0;color:#c0392b;font-size:.9em">Sonuç kaydedildi ancak e-posta gönderilemedi. Lütfen yöneticiyle iletişime geçin.</div>'}
+else if(state.emailSent===null){es.innerHTML='<div style="background:#fef9e7;border:1px solid #f9e79f;border-radius:10px;padding:12px;margin:16px 0;color:#7d6608;font-size:.9em">Sonuç kaydedildi. E-posta teslim durumu sunucu tarafından ayrıca doğrulanacaktır.</div>'}
+else{es.innerHTML='<div class="email-sent">Sınav sonuçlarınız e-posta adresinize gönderildi.</div>'}
+}
 else{es.innerHTML='<div style="background:#fef9e7;border:1px solid #f9e79f;border-radius:10px;padding:12px;margin:16px 0;color:#7d6608;font-size:.9em">Sonuçlar sunucuya doğrulanmış şekilde gönderilemedi. Lütfen internet bağlantınızı kontrol edip tekrar deneyin.</div>'}
 renderRev()}
 function renderRev(){
