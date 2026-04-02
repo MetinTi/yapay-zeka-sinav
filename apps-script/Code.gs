@@ -135,28 +135,51 @@ function processSubmission(data) {
 }
 
 function sendResultEmail(name, email, score, correct, wrong, empty, time, passed) {
-  var subject = "Yapay Zeka Sinav Sonucunuz - " + (passed ? "BASARILI" : "BASARISIZ");
+  var subject = "Yapay Zekâ Sınav Sonucunuz - " + (passed ? "BAŞARILI" : "BAŞARISIZ");
+  var statusText = passed ? "Geçti" : "Kaldı";
+  var resultNote = passed
+    ? "Tebrikler! Sınavı başarıyla tamamladınız."
+    : "Maalesef sınavı geçemediniz. Konuları tekrar gözden geçirmenizi öneririz.";
+
   var body =
-    "Sayin " + name + ",\n\n" +
-    "Yapay Zeka Egitimi sinav sonucunuz asagidadir:\n\n" +
+    "Sayın " + name + ",\n\n" +
+    "Yapay Zekâ Eğitimi sınav sonucunuz aşağıdadır:\n\n" +
     "Puan: " + score + " / 100\n" +
-    "Dogru: " + correct + "\n" +
-    "Yanlis: " + wrong + "\n" +
-    "Bos: " + empty + "\n" +
-    "Sure: " + time + "\n" +
-    "Durum: " + (passed ? "Gecti" : "Kaldi") + "\n\n" +
-    (passed
-      ? "Tebrikler! Sinavi basariyla tamamladiniz.\n\n"
-      : "Maalesef sinavi gecemediniz. Konulari tekrar gozden gecirmenizi oneririz.\n\n") +
-    "Egitmen: Metin Tiryaki\n" +
-    "www.metintiryaki.com\n" +
+    "Doğru: " + correct + "\n" +
+    "Yanlış: " + wrong + "\n" +
+    "Boş: " + empty + "\n" +
+    "Süre: " + time + "\n" +
+    "Durum: " + statusText + "\n\n" +
+    resultNote + "\n\n" +
+    "Eğitmen: Metin Tiryaki\n" +
     "NEWFOUND CREATIVE ACADEMY\n";
+
+  var logoUrl = "https://sinav.metintiryaki.com/assets/newfoundlogo-1024x264.jpg";
+  var htmlBody =
+    '<div style="font-family:Segoe UI,Arial,sans-serif;line-height:1.55;color:#1f2937">' +
+      '<div style="margin-bottom:16px">' +
+        '<img src="' + logoUrl + '" alt="Newfound Creative Academy" style="max-width:260px;height:auto;display:block" />' +
+      '</div>' +
+      "<p>Sayın " + escapeHtml(name) + ",</p>" +
+      "<p>Yapay Zekâ Eğitimi sınav sonucunuz aşağıdadır:</p>" +
+      '<table style="border-collapse:collapse;font-size:15px;margin:8px 0 14px 0">' +
+        "<tr><td style='padding:2px 10px 2px 0'><strong>Puan:</strong></td><td>" + score + " / 100</td></tr>" +
+        "<tr><td style='padding:2px 10px 2px 0'><strong>Doğru:</strong></td><td>" + correct + "</td></tr>" +
+        "<tr><td style='padding:2px 10px 2px 0'><strong>Yanlış:</strong></td><td>" + wrong + "</td></tr>" +
+        "<tr><td style='padding:2px 10px 2px 0'><strong>Boş:</strong></td><td>" + empty + "</td></tr>" +
+        "<tr><td style='padding:2px 10px 2px 0'><strong>Süre:</strong></td><td>" + escapeHtml(time) + "</td></tr>" +
+        "<tr><td style='padding:2px 10px 2px 0'><strong>Durum:</strong></td><td>" + statusText + "</td></tr>" +
+      "</table>" +
+      "<p>" + resultNote + "</p>" +
+      "<p style='margin-top:18px'>Eğitmen: Metin Tiryaki<br/>NEWFOUND CREATIVE ACADEMY</p>" +
+    "</div>";
 
   try {
     GmailApp.sendEmail(email, subject, body, {
       name: SENDER_NAME,
       from: SENDER_EMAIL,
-      replyTo: SENDER_EMAIL
+      replyTo: SENDER_EMAIL,
+      htmlBody: htmlBody
     });
     return { sent: true, fallback: false };
   } catch (err) {
@@ -167,7 +190,8 @@ function sendResultEmail(name, email, score, correct, wrong, empty, time, passed
         subject: subject,
         body: body,
         name: SENDER_NAME,
-        replyTo: SENDER_EMAIL
+        replyTo: SENDER_EMAIL,
+        htmlBody: htmlBody
       });
       return { sent: true, fallback: true, aliasError: String(err) };
     } catch (fallbackErr) {
@@ -179,6 +203,15 @@ function sendResultEmail(name, email, score, correct, wrong, empty, time, passed
       );
     }
   }
+}
+
+function escapeHtml(text) {
+  return String(text || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 function findSubmissionRow(sheet, submissionId) {
