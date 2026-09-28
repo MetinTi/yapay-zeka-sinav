@@ -4,7 +4,7 @@
 
 `v2/`, iki günlük Yapay Zeka Eğitimi için Türkçe sınıf değerlendirmesidir: **10 sabit soru, 10 dakika, her doğru 10 puan; ad soyad zorunlu**. Başlangıç ve bitiş aynı soruları kullanır. İlk başlangıç puanı korunur; bitiş sonucu ve puan farkı gösterilir.
 
-- Eğitim adresi: https://sinav2.metintiryaki.com/ — `?asama=baslangic` veya `?asama=bitis`. Firebase alternatif adresi: https://yapay-zeka-sinav2-mt.web.app/ . **Revizyon 6 / giriş metni sadeleştirmesi yayında:** `766629d323b0b03d`; altı dosyanın canlı SHA256 eşitliği ve gerçek Chrome açılışı doğrulandı.
+- Eğitim adresi: https://sinav2.metintiryaki.com/ — `?asama=baslangic` veya `?asama=bitis`. Firebase alternatif adresi: https://yapay-zeka-egitim-mt.web.app/ . **Revizyon 6 / giriş metni sadeleştirmesi yayında:** `f4c63895a7e7c5eb` (ana siteye kopyalanan Revizyon 6); altı dosyanın canlı SHA256 eşitliği ve gerçek Chrome açılışı doğrulandı.
 - Katılımcı kodu unutulursa adla **yalnız aynı tarayıcıdaki kayıtlar** aranır; bulunan kod kullanıcı tarafından seçilir. Farklı cihaz/alan adı arasında otomatik kurtarma yoktur. Yanıtlar ve kalan süre sayfa yenilendiğinde korunur.
 - Kayıtlar özel eğitmen tablosuna yazılır; erişim yalnız eğitmenin hesabındadır. Katılımcı listesi herkese açık değildir.
 - E-posta **isteğe bağlı ve ayrı bir işlemdir**; gerçek e-posta gönderimi/teslim testi yapılmadı. Sonuç JSON olarak indirilebilir.
@@ -13,7 +13,7 @@
 
 Bu GitHub deposu herkese açıktır. Gerçek `apps-script/V2.gs`, özel tablo kimliği, katılımcı kayıtları ve ekran kanıtları Git'e alınmaz; kamuya uygun backend şablonu `apps-script/V2.template.gs` dosyasındadır. Yerel özel teslim kaydı korunur. Önceki mobil/çeviri taslakları bu V2 kapanışının kapsamı değildir.
 
-HTTPS sertifikası geçerlidir; 28 Eylül kontrolünde Chrome'un eski sertifika uyarısı oturum durumuna ayrıştırıldı ve temiz gizli pencerede güvenli bağlantı doğrulandı. Boş varsayılan Firebase sitesi bırakıldı; aktif sınav `yapay-zeka-sinav2-mt` sitesidir.
+HTTPS sertifikası geçerlidir; 28 Eylül kontrolünde Chrome'un eski sertifika uyarısı oturum durumuna ayrıştırıldı ve temiz gizli pencerede güvenli bağlantı doğrulandı. 28 Eylül akşamı kullanıcı kararıyla Revizyon 6 ana Hosting sitesi `yapay-zeka-egitim-mt` üzerine kopyalandı. `sinav2.metintiryaki.com` CNAME hedefi ana siteye alındı; özel alan adı ana sitede Connected olarak doğrulandı. Eski `yapay-zeka-sinav2-mt` sitesi silindi (22:05 TRT); eski adres HTTP 404, ana site ve özel alan adı HTTP 200 dönüyor.
 
 Yerel açılış: `python3 -m http.server 4179 --bind 127.0.0.1 --directory v2`
 

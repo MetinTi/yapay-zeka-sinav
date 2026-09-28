@@ -22,8 +22,8 @@ Eğitmen özel Google tablosunda adı, kodu ve başlangıç/bitiş puanlarını 
 
 | Alan | Sonuç |
 |---|---|
-| Firebase proje / site | `yapay-zeka-egitim-mt` / `yapay-zeka-sinav2-mt` |
-| Son Hosting sürümü | `766629d323b0b03d`; altı dosya HTTP 200 ve yerel SHA256 ile eşit |
+| Firebase proje / site | `yapay-zeka-egitim-mt` / `yapay-zeka-egitim-mt` |
+| Son Hosting sürümü | `f4c63895a7e7c5eb` (Revizyon 6 klonu); altı dosya HTTP 200 ve yerel SHA256 ile eşit |
 | Apps Script | v15; üretim kaynakları yerelde korunuyor |
 | Frontend | 8 test geçti; soru, süre, ad/kod kurtarma, eski taslak, yenileme ve e-posta yanıt durumları |
 | Backend | 12 temel mock kontrolü ve 2 yeniden deneme senaryosu geçti; ağ/e-posta isteği yok |
@@ -50,8 +50,14 @@ firebase deploy --only hosting --config firebase.v2.json --project yapay-zeka-eg
 
 Yayınlanan dizin yalnız `v2/` olur. Ders belgeleri, özel tablo içerikleri, QA dosyaları ve sunum bu Hosting paketine girmez. Gün sonu belge/repo kapanışı için çalışan sürüm yeniden yayımlanmadı; yeni plan, ücretli API veya worker açılmadı. Fiili fatura tutarı doğrulanmadı.
 
-## HTTPS ve boş varsayılan site
+## HTTPS ve Hosting birleştirme
 
 28 Eylül kontrolünde geçerli Google Trust Services sertifikası, TLS 1.3, HTTP 200 ve HTTP→HTTPS 301 yönlendirmesi doğrulandı. Normal Chrome oturumu daha önce izin verilmiş sertifika hatası durumunu taşıyordu; aynı adreste temiz gizli pencere güvenli bağlantı gösterdi. Tarayıcı verileri ve katılımcı kayıtları silinmedi; sertifika denetimi atlanmadı.
 
-`yapay-zeka-egitim-mt` boş varsayılan Hosting sitesidir. Firebase varsayılan sitenin silinmesine izin vermediği için korundu. Aktif sınav `yapay-zeka-sinav2-mt` sitesindedir. [Firebase çoklu site açıklaması](https://firebase.google.com/docs/hosting/multisites).
+~~`yapay-zeka-egitim-mt` boş varsayılan site olarak bırakılmıştı; aktif sınav ikinci sitedeydi.~~ 28 Eylül akşamı kullanıcı tek Hosting sitesi istedi. Canlı sürüm ana `yapay-zeka-egitim-mt` sitesine klonlandı ve özel alan adının CNAME hedefi güncellendi. Özel alan adı ana sitede Connected olarak doğrulandıktan sonra eski `yapay-zeka-sinav2-mt` sitesi 22:05 TRT itibarıyla silindi. Hosting listesinde yalnız ana site kaldı; eski adres HTTP 404, ana site ve özel alan adı HTTP 200 dönüyor. [Firebase çoklu site açıklaması](https://firebase.google.com/docs/hosting/multisites).
+
+## Açık işler ve tamamlanan Hosting görevi
+
+- [x] **HOST-20260928:** Ana siteye taşıma, özel alan adı bağlantısı ve ikinci Hosting sitesinin silinmesi doğrulandı.
+- [ ] **EXAM-V2-MAIL:** Gerçek e-posta teslim testi bekliyor.
+- [ ] **EXAM-V1-SHEET:** Eski V1 tablo bağlantısı onarımı ayrı iş olarak bekliyor.

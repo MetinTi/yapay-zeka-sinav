@@ -7,6 +7,15 @@
 
 ## 2026-09-28
 
+- **Hosting repo kapanışı:** Kullanıcının sonraki “update docs and repo” talebiyle README, dağıtım belgesi, V2 işletim/açık iş listesi, Hosting hedefi ve kamuya uygun QA kaydı son durumla eşitlendi. Aşağıdaki yerel-only/bekleyen ifadeler önceki aşamaların kaydıdır; Hosting silme işi tamamlandı. Eski mobil/çeviri taslakları ve özel üretim dosyaları kapsam dışı kaldı. Yeni deploy yapılmadı.
+
+- **İkinci Hosting sitesi silindi (22:05 TRT):** Kullanıcının açık talebiyle `yapay-zeka-sinav2-mt`, Firebase CLI üzerinden `yapay-zeka-egitim-mt` projesinden kalıcı olarak silindi. İşlem başarılı; Hosting listesinde yalnız ana site kaldı ve eski `yapay-zeka-sinav2-mt.web.app` adresi HTTP 404 döndü. Firebase Console üzerinde `sinav2.metintiryaki.com` ana siteye **Connected**; CNAME ana siteyi gösteriyor. Silme sonrası ana site ve özel alan adı HTTP 200, ana sayfa SHA256 değerleri eşit. Önceki bekleyen kayıtlar tarihçe olarak korunur. Bu işlemde yeni deploy, commit veya push yapılmadı.
+
+- **Hosting birleştirme — son durum (yerel history kaydı):** `sinav2.metintiryaki.com` sitesi ana Firebase Hosting sitesi `yapay-zeka-egitim-mt` üzerine taşındı. Eski Hosting sitesi `yapay-zeka-sinav2-mt` silinecek; silme işlemi henüz tamamlandı sayılmıyor. 28 Eylül akşamı salt okunur kontrolde `sinav2` CNAME → `yapay-zeka-egitim-mt.web.app` ve HTTPS HTTP 200 doğrulandı. Önceki klon/sürüm ve altı dosya eşleşmesi aşağıdaki kayıtta korunur. Kullanıcının açık talebiyle bu ek yalnız yerelde tutulur; bu işlemde sınav projesine commit/push, deploy veya Hosting silme yapılmadı.
+
+- **Hosting birleştirme (kapanış sonrası):** Kullanıcı ikinci Hosting sitesinin ana siteye taşınmasını ve silinmesini istedi. Revizyon 6 `f4c63895a7e7c5eb` olarak ana siteye klonlandı; altı dosya HTTP 200/SHA256 eşitliği doğrulandı. Wix `sinav2` CNAME ana siteye güncellendi; özel alan adı aktarımı ve eski site silme doğrulaması sürüyor. Kaynak değişiklikleri yerelde; yeni repo kapanışı istenmedi.
+
+
 - **Sınıf sınavı V2:** Sunum konularından 10 sabit soru hazırlandı; başlangıç ve bitiş aynı soruları kullanır. Son kullanıcı kararıyla süre 10 dakikadır. İlk başlangıç puanı korunur; bitişte puan farkı ve açıklamalar gösterilir.
 - **Katılımcı kaydı:** Ad soyad zorunlu; katılımcı kodu, tarayıcıda adla kod bulma ve yenilemede yanıt/süre koruma eklendi. Kayıtlar yalnız eğitmenin eriştiği özel Google tablosunda tutulur. Apps Script v15 yayımlandı; kayıt tekrarları, ad/kod çakışması ve başarısız e-posta yeniden denemeleri ele alındı. E-posta isteğe bağlıdır; gerçek e-posta teslimi test edilmedi.
 - **Yayın:** `sinav2.metintiryaki.com` için Wix DNS bağlantısı ve Firebase özel alan adı tamamlandı. Son Hosting sürümü `766629d323b0b03d`; altı istemci dosyasının canlı hash eşitliği ve Chrome açılışı doğrulandı. Kullanıcının istediği iki kayıt açıklaması kaldırıldı; ad zorunluluğu ve kayıt davranışı değişmedi.
