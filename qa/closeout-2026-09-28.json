@@ -43,5 +43,24 @@
     "private QA screenshots and records",
     "detailed internal delivery notes",
     "earlier mobile and translation drafts"
-  ]
+  ],
+  "hosting_consolidation": {
+    "verified_date": "2026-09-28",
+    "project": "yapay-zeka-egitim-mt",
+    "remaining_site": "yapay-zeka-egitim-mt",
+    "deleted_site": "yapay-zeka-sinav2-mt",
+    "deleted_site_http": 404,
+    "custom_domain": "sinav2.metintiryaki.com",
+    "custom_domain_console_status": "Connected",
+    "main_and_custom_http": 200,
+    "custom_domain_six_source_hashes_rechecked": [
+      "app.mjs",
+      "index.html",
+      "participant-state.mjs",
+      "persistence.mjs",
+      "questions.mjs",
+      "style.css"
+    ],
+    "new_deploy_at_repo_closeout": false
+  }
 }

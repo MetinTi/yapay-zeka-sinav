@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "yapay-zeka-sinav2-mt",
+    "site": "yapay-zeka-egitim-mt",
     "public": "v2",
     "ignore": [".*"],
     "headers": [
