@@ -1,0 +1,18 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
+const sheets={};let mails=0;
+function range(s,r,c,n=1,w=1){return {getValues:()=>Array.from({length:n},(_,i)=>Array.from({length:w},(_,j)=>s.rows[r+i-1]?.[c+j-1]??'')),getValue:()=>s.rows[r-1]?.[c-1]??'',setValues(v){v.forEach((row,i)=>row.forEach((val,j)=>{s.rows[r+i-1]??=[];s.rows[r+i-1][c+j-1]=val}));return this},setFontWeight(){return this},setBackground(){return this},setFontColor(){return this},createFilter(){return this},createTextFinder(v){return {matchEntireCell(){return this},useRegularExpression(){return this},findNext(){let idx=s.rows.findIndex((row,i)=>i>=r-1&&i<r-1+n&&row[c-1]===v);return idx<0?null:{getRow:()=>idx+1}}}}}}
+function sheet(){return {rows:[],getRange(...a){return range(this,...a)},getLastRow(){return this.rows.length},appendRow(r){this.rows.push(r)},setFrozenRows(){},setColumnWidths(){},setColumnWidth(){},getMaxRows:()=>1000}}
+const ctx={SpreadsheetApp:{openById:()=>({getSheetByName:n=>sheets[n],insertSheet:n=>sheets[n]=sheet()})},LockService:{getScriptLock:()=>({tryLock:()=>true,releaseLock(){}})},jsonOut:x=>x,getParam:(e,k,f)=>e.parameter[k]??f,normalizeEmail:x=>x.trim().toLowerCase(),sendResultEmail:()=>{mails++;return {sent:true}},PASS_SCORE:70};vm.createContext(ctx);vm.runInContext(fs.readFileSync(fs.existsSync('apps-script/V2.gs')?'apps-script/V2.gs':'apps-script/V2.template.gs','utf8'),ctx);
+const base={version:'ai-training-v2-20260928',name:'QA Deneme',code:'QA-REV6'};
+const req=(action,data=base,callback='v2_test')=>ctx.v2Response({parameter:{data:JSON.stringify(data)}},action,callback);
+assert.equal(req('register-v2').saved,true);assert.equal(req('register-v2').saved,true);assert.equal(sheets['Katılımcılar'].rows.length,2);
+assert.equal(req('register-v2',{...base,name:'Başka kişi'}).saved,false);
+const result={...base,id:'qa_result_0001',phase:'pre',score:50,correct:5,wrong:4,empty:1,elapsed:600};
+assert.equal(req('result-v2',result).saved,true);assert.equal(req('result-v2',result).duplicate,true);assert.equal(sheets['Sınav kayıtları'].rows.length,2);
+assert.equal(req('result-v2',{...result,id:'qa_result_0002',score:100,correct:10,wrong:0,empty:0}).saved,true);assert.equal(sheets['Katılımcılar'].rows[1][3],50);
+assert.equal(req('result-v2',{...result,id:'qa_result_0003',phase:'post',score:90,correct:9,wrong:0,empty:1}).saved,true);assert.equal(JSON.stringify(sheets['Katılımcılar'].rows[1].slice(3,6)),'[50,90,40]');
+sheets['Katılımcılar'].rows[1][3]=''; req('result-v2',result); assert.equal(sheets['Katılımcılar'].rows[1][3],50);
+assert.equal(mails,0);assert.equal(req('result-v2',{...result,elapsed:601}).saved,false);assert.equal(req('result-v2',{...result,score:100}).saved,false);assert.equal(req('result-v2',result,'evil()').status,'error');
+assert.equal(ctx.v2Cell('=IMPORTXML("x")'),'\'=IMPORTXML("x")');
+assert.equal(req('email-v2',{...result,id:'qa_email_0001',email:'qa@example.invalid'}).emailSent,true);assert.equal(req('email-v2',{...result,id:'qa_email_0001',email:'qa@example.invalid'}).duplicate,true);assert.equal(mails,1); sheets['E-posta gönderimleri'].rows[1][4]='ERR'; req('email-v2',{...result,id:'qa_email_0001',email:'qa@example.invalid'}); assert.equal(mails,2); assert.equal(sheets['E-posta gönderimleri'].rows.length,2);
+console.log(JSON.stringify({status:'PASS',checks:['private-write-only-interface','registration-idempotence','name-code-collision','result-idempotence','first-baseline-preserved','pre-post-delta','10-minute-validation','score-validation','callback-validation','formula-neutralization','no-auto-mail','explicit-mail-idempotence'],networkCalls:0},null,2));

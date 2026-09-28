@@ -1,0 +1,15 @@
+# Local caches, logs and credentials
+.DS_Store
+.firebase/
+firebase-debug.log*
+.env
+.env.*
+!.env.example
+
+# Production instructor configuration and private evidence stay local.
+apps-script/V2.gs
+docs/exam-v2-2026-09-28.md
+qa/*
+!qa/participant-state.test.mjs
+!qa/v2-backend.test.cjs
+!qa/closeout-2026-09-28.json
