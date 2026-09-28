@@ -1,5 +1,26 @@
 # yapay-zeka-sinav
 
+## Eğitim sınavı V2 — 28 Eylül 2026 / Revizyon 6
+
+`v2/`, iki günlük Yapay Zeka Eğitimi için Türkçe sınıf değerlendirmesidir: **10 sabit soru, 10 dakika, her doğru 10 puan; ad soyad zorunlu**. Başlangıç ve bitiş aynı soruları kullanır. İlk başlangıç puanı korunur; bitiş sonucu ve puan farkı gösterilir.
+
+- Eğitim adresi: https://sinav2.metintiryaki.com/ — `?asama=baslangic` veya `?asama=bitis`. Firebase alternatif adresi: https://yapay-zeka-sinav2-mt.web.app/ . **Revizyon 6 / giriş metni sadeleştirmesi yayında:** `766629d323b0b03d`; altı dosyanın canlı SHA256 eşitliği ve gerçek Chrome açılışı doğrulandı.
+- Katılımcı kodu unutulursa adla **yalnız aynı tarayıcıdaki kayıtlar** aranır; bulunan kod kullanıcı tarafından seçilir. Farklı cihaz/alan adı arasında otomatik kurtarma yoktur. Yanıtlar ve kalan süre sayfa yenilendiğinde korunur.
+- Kayıtlar özel eğitmen tablosuna yazılır; erişim yalnız eğitmenin hesabındadır. Katılımcı listesi herkese açık değildir.
+- E-posta **isteğe bağlı ve ayrı bir işlemdir**; gerçek e-posta gönderimi/teslim testi yapılmadı. Sonuç JSON olarak indirilebilir.
+- Apps Script V2 ek yolları 28 Eylül'de **v15** olarak yayımlandı. V1 davranışı korunuyor; V1 `index.html` ve mobil uygulama bu sınıf revizyonuyla değişmedi.
+- Frontend 8 test; backend 12 temel kontrol ve 2 yeniden deneme senaryosu geçti. Yerel gerçek tarayıcıda başlangıç **10**, bitiş **20**, fark **+10**; ad/kod kurtarma, yenileme ve sunucu kayıt yanıtı doğrulandı. Ayrıntı ve yayın kanıtı: [V2 teslim kaydı](docs/exam-v2.md).
+
+Bu GitHub deposu herkese açıktır. Gerçek `apps-script/V2.gs`, özel tablo kimliği, katılımcı kayıtları ve ekran kanıtları Git'e alınmaz; kamuya uygun backend şablonu `apps-script/V2.template.gs` dosyasındadır. Yerel özel teslim kaydı korunur. Önceki mobil/çeviri taslakları bu V2 kapanışının kapsamı değildir.
+
+HTTPS sertifikası geçerlidir; 28 Eylül kontrolünde Chrome'un eski sertifika uyarısı oturum durumuna ayrıştırıldı ve temiz gizli pencerede güvenli bağlantı doğrulandı. Boş varsayılan Firebase sitesi bırakıldı; aktif sınav `yapay-zeka-sinav2-mt` sitesidir.
+
+Yerel açılış: `python3 -m http.server 4179 --bind 127.0.0.1 --directory v2`
+
+V2 yayını: `firebase deploy --only hosting --config firebase.v2.json --project yapay-zeka-egitim-mt`
+
+Bu sınıf sürümü mobil ürünün çok dilli geliştirme kapsamından ayrıdır. Aşağıdaki genel Apps Script kurulum/e-posta yönergeleri önceki V1 hattını anlatır; V2 ek dosya ve yolları için teslim kaydını kullanın.
+
 **Yapay Zeka Eğitimi — Online sınav** (statik sayfa + Google Apps Script + Google Sheets).
 
 > **FlowFit ile ilgisi yok.** Bu depo, FlowFit mobil uygulamasından bağımsız ayrı bir projedir (eğitim sınavı / sonuç e-postası / tablo kaydı). FlowFit kodu veya lisansları bu repoda yoktur.
@@ -50,4 +71,3 @@ Google bazen **pencere göstermeden** bu hatayı yazar. Çoğunlukla: daha önce
 **Workspace (kurumsal) hesap:** Yönetici Gmail/Apps Script’i kısıtladıysa pencere hiç gelmez veya Allow sonrası yine bloklanır — IT gerekir.
 
 Projeye **`appsscript.json`** eklemediysen mail kapsamları hiç talep edilmemiş olabilir; mutlaka **B** adımlarını uygula.
-

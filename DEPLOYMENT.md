@@ -6,7 +6,7 @@
 
 ### Son güncelleme
 
-2026-05-15
+2026-09-28
 
 ---
 
@@ -68,3 +68,9 @@ Buradaki **Web app URL** ile `SCRIPT_URL` **aynı** olmalı.
 
 1. Web app URL sonuna örnek: `?callback=cb&action=history&email=test@test.com` — JSON/JSONP beklenir.
 2. Apps Script’te `testManual()` → mail + Sheet.
+
+## 28 Eylül 2026 — V2 ek kayıt servisi
+
+Mevcut `/exec` dağıtımı **v15** olarak güncellendi; URL değişmedi. Yerel üretim kaynağı `apps-script/Code.gs` + Git'e alınmayan `apps-script/V2.gs` dosyalarıdır. Yeni kurulumda `V2.template.gs` dosyasını `V2.gs` olarak kopyalayıp özel tablo kimliğini yerel dosyada ayarlayın; iki V2 dosyasını birlikte Apps Script'e yüklemeyin. V1 davranışı aynı; eski V1 tablo bağlantısının silinmiş olduğu saptandı, bu revizyon V1 kayıt onarımı değildir.
+
+V2 web yayını `firebase.v2.json` ile yalnız `yapay-zeka-egitim-mt` projesinin `yapay-zeka-sinav2-mt` Hosting sitesine gider. Son sürüm `766629d323b0b03d`; altı canlı dosya kaynakla eşleşir. Gün sonu belge/repo kapanışı yeni deploy başlatmaz. [V2 işletim ve doğrulama özeti](docs/exam-v2.md).

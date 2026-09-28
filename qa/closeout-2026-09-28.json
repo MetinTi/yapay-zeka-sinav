@@ -1,0 +1,47 @@
+{
+  "date": "2026-09-28",
+  "scope": "Public V2 repository closeout; production configuration and private evidence excluded",
+  "source_sha256": {
+    "v2/app.mjs": "3ef56126743f671b16ffd04e05a6f55f7a3437ef51d535f800c6dfd2723e7389",
+    "v2/index.html": "3a3ad23385939fa9d114765887641ee79b369d7d8aaa9bc6d15c46746e0b7725",
+    "v2/participant-state.mjs": "42347ef2814f9e104a4db5e3da75563941cb224664e244b5f867035cfc321f6d",
+    "v2/persistence.mjs": "9d79b2bdd29678dcda6a00f2e7c9e3e2222688963648bba051711079a77c5505",
+    "v2/questions.mjs": "7d60cf805542ef98f96ba3b9ce62104bb2069bb0aaec1c819962becc0291194c",
+    "v2/style.css": "4c97b66f136fc8dbd508a7b0ef5d5f8d62927682b663715a6b91b49a3490d21e"
+  },
+  "v1_sha256": "58b4fe41f5cc42cdfc848e5bbdb33056815f46e7da67c1162b321cff182e2447",
+  "previous_live_evidence": {
+    "hosting_project": "yapay-zeka-egitim-mt",
+    "hosting_site": "yapay-zeka-sinav2-mt",
+    "hosting_version": "766629d323b0b03d",
+    "apps_script_version": 15,
+    "six_source_hashes_still_match_verified_live_snapshot": true,
+    "frontend_tests": 8,
+    "backend_core_checks": 12,
+    "backend_retry_scenarios": 2,
+    "private_sheet_anonymous_access_http": 401,
+    "real_browser_pre_post_delta": [
+      10,
+      20,
+      10
+    ],
+    "mobile_overflow_320_390": false,
+    "email_delivery": "NOT_TESTED"
+  },
+  "closeout_checks": {
+    "fresh_public_checkout_frontend_tests": "8 PASS",
+    "public_backend_template_checks": "12 checks and 2 retry scenarios PASS; no network or real emails",
+    "public_allowlist_secret_and_private_id_scan": "PASS",
+    "whitespace": "PASS"
+  },
+  "tls_evidence": "Valid TLS certificate and redirect; incognito secure. Normal Chrome retained an earlier certificate-error state. No bypass or storage clearing.",
+  "deploy_at_closeout": "NOT_NEEDED: runtime sources unchanged",
+  "git_review_policy": "No branch protection or mandatory external review in this repository; Training-specific review policy not applied",
+  "dependabot_open_alerts": 0,
+  "excluded_local_work": [
+    "apps-script/V2.gs production configuration",
+    "private QA screenshots and records",
+    "detailed internal delivery notes",
+    "earlier mobile and translation drafts"
+  ]
+}

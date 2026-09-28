@@ -9,6 +9,10 @@ function doGet(e) {
     var action = getParam(e, "action", "");
     var callback = getParam(e, "callback", "");
 
+    if (/^(register|result|email)-v2$/.test(action)) {
+      return v2Response(e, action, callback);
+    }
+
     if (action === "history") {
       var email = normalizeEmail(getParam(e, "email", ""));
       var data = getHistoryByEmail(email);
