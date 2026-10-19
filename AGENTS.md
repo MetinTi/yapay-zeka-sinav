@@ -44,7 +44,9 @@ Always:
 
 ---
 
-## 4. App Store & Play Store rules
+## 4. App Store & Play Store rules — separate mobile scope only
+
+These inherited platform checks apply only if separate mobile work is explicitly authorized; the current web product does not require a store release.
 
 Always warn before implementing anything that could cause a store rejection. Known risk areas:
 
@@ -62,15 +64,7 @@ When in doubt: **warn first, implement second.**
 
 ## 5. Localization
 
-Every project ships in at least **5 languages** from day one:
-
-- 🇬🇧 English
-- 🇹🇷 Turkish
-- 🇩🇪 German
-- 🇫🇷 French
-- 🇪🇸 Spanish
-
-Arabic may be added in V2 (RTL layout support required).
+Current classroom V2 is **Turkish-only web**; see `README.md` and `docs/exam-v2.md`. The separate historical mobile plan proposed EN/TR/DE/FR/ES, with Arabic/RTL in V2; that is not authorization to expand this classroom release.
 
 **Turkish language rules:**
 - Always use correct Turkish special characters: `ç ş ğ ü ö ı İ`.
@@ -96,47 +90,9 @@ Arabic may be added in V2 (RTL layout support required).
 
 ---
 
-## 8. Tech stack
+## 8. Tech stack and product context
 
-**Fixed defaults — do not change without explicit instruction:**
-
-| Layer | Default | Notes |
-|-------|---------|-------|
-| Platform | **iOS + Android** (both, always) | Web / Desktop optional — confirm before adding |
-| Framework | Cross-platform (Flutter, React Native, or equivalent) | Must run natively on both iOS and Android from a single codebase |
-| Auth | **Firebase Auth** | |
-| Database | **Firestore** | |
-| Storage | **Firebase Storage** | |
-| Functions | **Firebase Cloud Functions** | |
-| Analytics | **Firebase Analytics** | |
-| Crash reporting | **Firebase Crashlytics** | |
-| Remote config | **Firebase Remote Config** | |
-
-**Fill in per project:**
-
-```
-Framework:    [ Flutter / React Native / … ]
-Language:     [ Dart / TypeScript / … ]
-Payments:     [ RevenueCat / StoreKit+Billing / … ]
-CI/CD:        [ Fastlane / GitHub Actions / … ]
-Extra:        [ any non-Firebase service ]
-```
-
-> If a non-Firebase service is introduced (e.g. Supabase, AWS, custom API), document it here with the reason. Firebase is the default until explicitly overridden.
-
----
-
-## 9. Product context
-
-> Fill in when the project is initialized.
-
-```
-App name:
-One-liner:
-Target users:
-Key flows:
-Monetization:
-```
+Current classroom V2 is the Turkish static web exam in `v2/`, with Google Apps Script and a private instructor Google Sheet; see `README.md` and `docs/exam-v2.md`. The separate earlier mobile plan is outside that V2 release scope. Do not add Flutter/React Native, Firebase Auth, Firestore, Storage, Analytics, Crashlytics or Remote Config merely because they appeared in the inherited generic mobile defaults. Document any explicitly authorized new service and its reason.
 
 ---
 
@@ -202,3 +158,28 @@ Animation:          spring · stiffness 300 · damping 20
 ### Prompt contract
 
 When the user asks for a new screen or component without specifying style, always apply the above defaults. If the user pastes a Dribbble URL or screenshot, **match that reference exactly** — color, layout, depth, and motion.
+
+
+## Ortak çalışma ve teslim akışı — 20 Ekim 2026
+
+Bu son kullanıcı kararı mevcut proje, tasarım, dil, platform, güvenlik, maliyet ve yetki kurallarına eklenir; bunları topluca değiştirmez. Çelişkiyi sessizce çözme: aşağıdaki dar uzlaştırma dışında tam metni ve engeli bildir.
+
+- **Belge kapanışı:** “update docs and repo” tüm backlogun güncel kod/test, kullanıcı kararları, PR ve yayın kanıtıyla gözden geçirilmesidir; tüm backlogu uygulama emri değildir. ID, önceki kanıt, bağımlılık ve engelleri koru; iptal, erteleme ve açıkça risk-kabul edilmiş işi ayrı tut, risk kabulü uydurma. Tamamlananları ilgili konu gruplarıyla belgenin en altında tarih + tek cümle + mevcut geçmiş arşivine bağlantı olarak tut; ayrıntı/karar/kanıtı arşive taşı. Eski “silme” kuralı kayıpsız taşımayı engellemez: özgün kayıt arşivde eksiksiz kalır, aktif belgede ID ve bağlantı korunur; kayıp doğuracak değişiklik yapma.
+- **Git ve inceleme:** İzole görev dalında çalış; önce commit, sonra PR; main’e doğrudan push yok. Merge’den önce değişiklikle orantılı gerekli doğrulama, güvenlik incelemesi ve tamamlanmış Codex incelemesi en son ilgili PR HEAD’ini kapsamalıdır. Yeni düzeltmede etkilenen kontrol/incelemeyi yenile. Boş/atlanan kontrol, sessizlik, tetikleme veya emoji tamamlanma kanıtı değildir; sırf bot emojisi almak için sonsuz tekrar yapma. İnceleme/erişim eksikse PR açık kalır, engel raporlanır.
+- **Bulgu ele alma:** Her bulguyu değerlendir: doğrulanmış kapsam içi kusuru rutin onay beklemeden düzelt ve hedefli doğrula; yanlış pozitifi somut kanıtla açıkla; belgelenmiş bilinçli kullanıcı/ürün kararını kaynağıyla koru, yeni maddi risk/bağlam olmadan tekrar açma. Düzeltme yeni kapsam veya aşağıdaki özel onay sınırına giriyorsa o sınırı uygula.
+- **Yayın ve temizlik:** Önceden yetkili görev/servis/ortam kapsamında gerekli kontrol → scoped deploy → sağlık/canlı kontrol → kaynak/hedef kaydı → rapor akışını ayrıca rutin onay sormadan tamamla. Belge bakımı runtime deploy, build, Store upload/review/publication yetkisi vermez. Geri döndürülemez silme, credential/erişim/güvenlik değişikliği, yeni ücret, özel veri aktarımı ve kapsam genişlemesinde mevcut özel onay kuralları sürer. Gerçek merge’i ve hedef dalı doğrula; yalnız bu görevin dalını, yeni/birleşmemiş/aktif işi olmadığını doğruladıktan sonra projenin özel temizlik kuralıyla temizle; ilgisiz değişiklik/worktree korunur.
+- **Yayın özeti:** Bu web/backend/araştırma projesine mobil mağaza tablosu uygulanmaz; kaynak, hedef, yayın ve kabul kanıtını kendi mevcut belgelerinde ayır. Mobil ürün ayrıca yetkilendirilirse mobil backlogun başında App Store/Play/Galaxy özeti gerekir; planlanan Galaxy dağıtımını yayın sayma.
+
+- **Subagent kullanımı:** Birden fazla geliştirme, test veya inceleme işi gerektiğinde bağımsız işleri hızlandırmak için ihtiyaç kadar subagent kullan; sabit sayı sınırı veya ayrıca rutin izin şartı yoktur. Dosya çakışmasını ve gereksiz mükerrer işi önle, sonuçları birleştirerek doğrula. Mevcut kapsam/güvenlik/maliyet kuralları bütün subagentlara uygulanır. Bu son karar, eski sayı/izin ve bağımsız işleri paralel yürütmeme kısıtlarının yalnız bu kısmının yerini alır.
+- **Firebase/GCP EU bölgesi:** Kurulum ve deploy öncesinde her ilgili kaynağın gerçek bölgesini ayrı ayrı kontrol et; US varsayılanına sessizce düşme. Bölgesi seçilebilen yeni kaynaklarda öncelik Frankfurt (`europe-west3`), desteklenmiyorsa Belçika (`europe-west1`) veya uygun başka bir AB bölgesidir. Functions, Cloud Run/SSR, App Hosting, Firestore/Realtime Database, Storage ve ilgili yardımcı kaynakları birlikte değerlendir; istemci endpoint’leri ile Hosting rewrite hedefleri de seçilen bölgeyle uyuşsun. Mevcut uygun EU bölgesini sırf tercih sırası için taşıma; deploy sonrasında gerçek hedefi doğrula. Firebase Hosting global CDN ve Google’ın bölge seçtirmediği/zorunlu tuttuğu hizmetler istisnadır: gerekçesini kaydet, EU’ya sabitlenmiş gibi sunma. [Resmî kaynak](https://firebase.google.com/docs/projects/locations) · [Hosting](https://firebase.google.com/docs/hosting). Mevcut US kaynağında bağımlılık/veri/geri dönüş planıyla EU geçiş işini backlog’a yaz; veri taşıma, kaynak silme, erişim değişikliği veya yeni ücret için gereken onayı atlama. Bu belge işi altyapı taşıması başlatmaz.
+- **Geçmiş düzeni — P0:** Ayrı history arşivi olmayan bu projede kayıpsız `history.md` kısa tarihli dizin + `history_archive.md` ayrıntılı kanıt/karar düzenine geçiş backlog’da P0’dır. Şimdilik mevcut history dosyası kanonik ayrıntılı geçmiş olarak kullanılır; taşıma veya yeni arşiv bu görevde yapılmaz. Eski arşiv oluşturma yasağı bu son kullanıcı kararıyla yalnız planlanan P0 geçişi için aşılmıştır; gereksiz paralel TODO/ikinci arşiv açma.
+
+Hesap/anahtar erişimi veya eski genel “tam yetki” ifadesi tek başına credential, erişim/güvenlik, ücret ya da özel veri aktarımı yetkisi değildir; mevcut özel onay sınırları geçerlidir.
+
+**yapay-zeka-sinav uyarlaması:** Bu repoda sürümlenen `.github/workflows/` bulunmuyor; [28 Eylül kapanış kaydı](qa/closeout-2026-09-28.json) o tarihte branch protection/zorunlu dış inceleme olmadığını kaydeder. 20 Ekim kararıyla son ilgili PR HEAD’i için hedefli yerel doğrulama, güvenlik ve tamamlanmış Codex incelemesi yine gereklidir; bunlar mevcut olmayan GitHub CI kontrolü gibi sunulmaz. Gelecekte CI yapılandırılırsa gerçekten tanımlanan ilgili kontrolleri de tamamla; yapılandırma veya sessizlik başarı kanıtı değildir. README’deki güncel V2 Türkçe sınıf web sınavı ve özel katılımcı/backend verisinin public repo dışında kalması korunur. V1/mobil/beş dil planları tarihsel veya ayrı kapsamdır; mevcut web kapanışına mağaza özeti uygulanmaz, ileride ayrıca yetkilendirilen mobil backlog için uygulanır. Yerel untracked backlog.md/mobile çalışması bu PR’a taşınmaz; ayrı arşiv yerine mevcut history.md kullanılır.
+
+Bu görevdeki P0 takibi [docs/WORKFLOW_BACKLOG.md](docs/WORKFLOW_BACKLOG.md) içindedir; yerel untracked backlog bu public PR’a kopyalanmaz.
+
+Mevcut takip kaynakları: [history.md](history.md) · [ayrıntılı geçmiş](history.md).
+
+Ayrıca yetkilendirilecek mobil çalışma için: **Mobil build makinesi:** iOS build/archive/sign yalnız MacBook’ta macOS/Xcode ile yapılır. Android ve Galaxy Store dağıtım/release paketleri yalnız Windows PC’de üretilir; Mac’te Android/Galaxy için APK/AAB üretim komutu çalıştırma. Mac’te Android debug çalıştırma, test ve emülatör/simülatör kontrolü yapılabilir; bunun gerektirdiği debug derlemesi dağıtım paketi üretme izni değildir. Build ve Store upload/review/publication için mevcut açık yetki kapıları korunur; PC’ye aynı kaynak commit’i ve sabitlenmiş araç sürümleriyle geç. Bu madde eski genel Mac/Windows Android geliştirme izninin build sınırını belirler.

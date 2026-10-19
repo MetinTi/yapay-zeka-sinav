@@ -66,3 +66,17 @@
 - **Modül 1 (v2) yazıldı:** `mobile/assets/data/lessons.json` — “Yapay Zeka Nedir, Neden Şimdi?”; sınav ipucu yok; pratik ve öz-değerlendirme bölümleri eklendi. Şu an listede yalnızca 1 modül.
 - **Müfredat düzeltmesi:** Kullanıcı 12 modül / daha detaylı istedi; v2 plan 10 modüle indirilmişti — **12 modüle geri alındı** (Prompt ve iş hayatı ikiye bölündü; LLM + sohbet araçları ayrıldı). `backlog.md` güncellendi.
 - **Logo ve ana sayfa:** Kullanıcı logosu `assets/images/app_logo.png`; ana sayfa üstünde görsel; `flutter_launcher_icons` ile iOS/Android uygulama ikonu güncellendi.
+
+<a id="workflow-2026-10-20"></a>
+
+## 2026-10-20 — Ortak agent akışı, kullanıcı önizlemesi ve toplu kapanış
+
+- Kullanıcı 15 projeyi tek tek önizledi; tüm mevcut özel kuralların korunmasına ek olarak boş/tekrarlı/yanlış talimatların temizlenmesini ve subagentlarla çalışmayı açıkça yetkilendirdi. İlk hazırlık PR’ları önizlemeden önce açılmıştı; kullanıcı durdurunca yayınlama süreci kesildi. Sonraki açık toplu teslim talimatıyla devam edildi; bu kayıt tek başına inceleme veya merge kanıtı değildir.
+- Taban: `dda4210d11b8dda2fd47198fe95883f3e7f2cd54`; görev dalı `docs/preserve-rules-workflow-20261020`. Yalnız ilgili doküman yolları izole worktree’de hazırlandı; başka görevlerin değişiklikleri stage edilmedi.
+- Ortak backlog taraması (otomatik bütün backlog geliştirmesi değil), son-HEAD doğrulama/güvenlik/Codex kapısı, bulgu sınıflandırması, yetkili scoped deploy ve güvenli dal temizliği eklendi. İhtiyaç kadar subagent, her kaynak için EU bölge doğrulaması ve mobil projelerde MacBook iOS / Windows PC Android-Galaxy build ayrımı son kullanıcı kararlarıdır; mevcut kapsam, güvenlik, maliyet ve özel veri sınırları sürer.
+- Boş şablon ve mobil/beş dil varsayımları güncel Türkçe V2 web kapsamından ayrıldı; eski mobil kayıtlar tarihsel kapsamda korundu.
+- History/archive ayrımına kayıpsız geçiş yalnız P0 backlog işidir; bu görevde arşiv oluşturulmadı/taşınmadı.
+- Yayın tablosu varsa public sürüm, paket numarası, aday/inceleme ve kaynak provenance ayrı kanıtlardır. Projenin önceki ürün kabul kayıtları bu doküman işiyle yeniden sertifikalandırılmadı. Aktarılan başka canlı kontrol, bu ajanın yönetim API’si sorgusu olarak sunulmaz; public Apple metadata sonucu yalnız ilgili projede arındırılmış JSON’a kaydedilir.
+- Kapsam: doküman/instruction; uygulama kaynakları, yerel build, model indirmesi, runtime deploy, credential/security ayarı veya Store yazımı yapılmadı. Bu repoda sürümlenen GitHub Actions workflow’u bulunmadığı doğrulandı; mevcut olmayan zorunlu CI kapısı iddiası kaldırıldı. Son ilgili PR HEAD’i için hedefli yerel doğrulama, güvenlik ve tamamlanmış Codex incelemesi korunur; ileride yapılandırılan ilgili CI kontrolleri ayrıca geçmelidir. Son diff/kapsam, ID/korunan kural/bağlantı kontrolleri ve eklenen metin secret taraması; son commit’e bağlı güvenlik ve Codex sonuçları PR’da izlenir. Sonraki düzeltme yalnız etkilenen kontrol/incelemeyi yeniler; yapılmayan kontrol başarılı sayılmaz.
+
+- Codex P2 `4319485096` doğrulandı: `qa/closeout-2026-09-28.json` önceki review-policy durumunu kaydeder ve Git ağacında `.github/workflows/` yoktur; bu tarihsel kayıt yeni inceleme kararını iptal etmez. AGENTS proje uyarlaması gerçek CI kullanılabilirliğiyle netleştirildi; CI yapılandırması veya branch protection değiştirilmedi.
