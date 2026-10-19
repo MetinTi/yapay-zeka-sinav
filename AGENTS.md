@@ -202,3 +202,18 @@ Animation:          spring · stiffness 300 · damping 20
 ### Prompt contract
 
 When the user asks for a new screen or component without specifying style, always apply the above defaults. If the user pastes a Dribbble URL or screenshot, **match that reference exactly** — color, layout, depth, and motion.
+
+
+## Ortak çalışma ve teslim akışı — 20 Ekim 2026
+
+Bu son kullanıcı kararı mevcut proje, tasarım, dil, platform, güvenlik, maliyet ve yetki kurallarına eklenir; bunları topluca değiştirmez. Çelişkiyi sessizce çözme: aşağıdaki dar uzlaştırma dışında tam metni ve engeli bildir.
+
+- **Belge kapanışı:** “update docs and repo” tüm backlogun güncel kod/test, kullanıcı kararları, PR ve yayın kanıtıyla gözden geçirilmesidir; tüm backlogu uygulama emri değildir. ID, önceki kanıt, bağımlılık ve engelleri koru; iptal, erteleme ve açıkça risk-kabul edilmiş işi ayrı tut, risk kabulü uydurma. Tamamlananları ilgili konu gruplarıyla belgenin en altında tarih + tek cümle + mevcut geçmiş arşivine bağlantı olarak tut; ayrıntı/karar/kanıtı arşive taşı. Eski “silme” kuralı kayıpsız taşımayı engellemez: özgün kayıt arşivde eksiksiz kalır, aktif belgede ID ve bağlantı korunur; kayıp doğuracak değişiklik yapma.
+- **Git ve inceleme:** İzole görev dalında çalış; önce commit, sonra PR; main’e doğrudan push yok. Merge’den önce değişiklikle orantılı gerekli doğrulama, güvenlik incelemesi ve tamamlanmış Codex incelemesi en son ilgili PR HEAD’ini kapsamalıdır. Yeni düzeltmede etkilenen kontrol/incelemeyi yenile. Boş/atlanan kontrol, sessizlik, tetikleme veya emoji tamamlanma kanıtı değildir; sırf bot emojisi almak için sonsuz tekrar yapma. İnceleme/erişim eksikse PR açık kalır, engel raporlanır.
+- **Bulgu ele alma:** Her bulguyu değerlendir: doğrulanmış kapsam içi kusuru rutin onay beklemeden düzelt ve hedefli doğrula; yanlış pozitifi somut kanıtla açıkla; belgelenmiş bilinçli kullanıcı/ürün kararını kaynağıyla koru, yeni maddi risk/bağlam olmadan tekrar açma. Düzeltme yeni kapsam veya aşağıdaki özel onay sınırına giriyorsa o sınırı uygula.
+- **Yayın ve temizlik:** Önceden yetkili görev/servis/ortam kapsamında gerekli kontrol → scoped deploy → sağlık/canlı kontrol → kaynak/hedef kaydı → rapor akışını ayrıca rutin onay sormadan tamamla. Belge bakımı runtime deploy, build, Store upload/review/publication yetkisi vermez. Geri döndürülemez silme, credential/erişim/güvenlik değişikliği, yeni ücret, özel veri aktarımı ve kapsam genişlemesinde mevcut özel onay kuralları sürer. Gerçek merge’i ve hedef dalı doğrula; yalnız bu görevin dalını, yeni/birleşmemiş/aktif işi olmadığını doğruladıktan sonra projenin özel temizlik kuralıyla temizle; ilgisiz değişiklik/worktree korunur.
+- **Yayın özeti:** Bu web/backend/araştırma projesine mobil mağaza tablosu uygulanmaz; kaynak, hedef, yayın ve kabul kanıtını kendi mevcut belgelerinde ayır. Mobil ürün ayrıca yetkilendirilirse mobil backlogun başında App Store/Play/Galaxy özeti gerekir; planlanan Galaxy dağıtımını yayın sayma.
+
+**yapay-zeka-sinav uyarlaması:** README’deki güncel V2 Türkçe sınıf web sınavı ve özel katılımcı/backend verisinin public repo dışında kalması korunur. V1/mobil/beş dil planları tarihsel veya ayrı kapsamdır; mevcut web kapanışına mağaza özeti uygulanmaz, ileride ayrıca yetkilendirilen mobil backlog için uygulanır. Yerel untracked backlog.md/mobile çalışması bu PR’a taşınmaz; ayrı arşiv yerine mevcut history.md kullanılır.
+
+Mevcut takip kaynakları: [history.md](history.md) · [ayrıntılı geçmiş](history.md).

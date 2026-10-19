@@ -66,3 +66,12 @@
 - **Modül 1 (v2) yazıldı:** `mobile/assets/data/lessons.json` — “Yapay Zeka Nedir, Neden Şimdi?”; sınav ipucu yok; pratik ve öz-değerlendirme bölümleri eklendi. Şu an listede yalnızca 1 modül.
 - **Müfredat düzeltmesi:** Kullanıcı 12 modül / daha detaylı istedi; v2 plan 10 modüle indirilmişti — **12 modüle geri alındı** (Prompt ve iş hayatı ikiye bölündü; LLM + sohbet araçları ayrıldı). `backlog.md` güncellendi.
 - **Logo ve ana sayfa:** Kullanıcı logosu `assets/images/app_logo.png`; ana sayfa üstünde görsel; `flutter_launcher_icons` ile iOS/Android uygulama ikonu güncellendi.
+
+<a id="workflow-2026-10-20"></a>
+
+## 2026-10-20 — yapay-zeka-sinav ortak agent akışı uyarlaması
+
+- Kullanıcı tüm projelere uyarlamayı, mevcut kuralları silmeden ve branch/PR/inceleme akışıyla açıkça istedi. Taban: `dda4210d11b8dda2fd47198fe95883f3e7f2cd54`; görev dalı `docs/preserve-rules-workflow-20261020`. Ayrı çalışma ağacı kullanıldı; mevcut kullanıcı dosyaları ve diğer dallar taşınmadı/stage edilmedi.
+- Eski AGENTS gövdesi eksiksiz korundu; yalnız ortak backlog taraması, son-HEAD kontrol/güvenlik/Codex incelemesi, bulgu sınıflandırması ve yetkili scoped deploy/merge/temizlik kuralları eklendi. Projeye özel uyarlama: README’deki güncel V2 Türkçe sınıf web sınavı ve özel katılımcı/backend verisinin public repo dışında kalması korunur. V1/mobil/beş dil planları tarihsel veya ayrı kapsamdır; mevcut web kapanışına mağaza özeti uygulanmaz, ileride ayrıca yetkilendirilen mobil backlog için uygulanır. Yerel untracked backlog.md/mobile çalışması bu PR’a taşınmaz; ayrı arşiv yerine mevcut history.md kullanılır.
+- Tam backlogun kod/test kabul denetimi yapılmış sayılmaz: bu görev iş akışını tanımlar; eski ürün işlerinin durumları ve ID’leri yeniden onaylanmadı. Mobil mağaza özeti bu web/backend/araştırma kapsamına uygulanmaz.
+- Doğrulama kapısı: son diff/kapsam, özgün gövde ve ID korunumu, eklenen yerel bağlantılar, boşluk ve eklenen metin secret taraması; uygulama testi/build/runtime deploy, credential veya Store yazımı bu görevin dışındadır. Son commit kontrolü ve gerçek Codex incelemesi/merge durumu PR’ın sunucu kayıtlarından okunur; bu hazırlık kaydı bunları geçmiş saymaz.
