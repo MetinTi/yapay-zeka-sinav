@@ -80,3 +80,9 @@
 - Kapsam: doküman/instruction; uygulama kaynakları, yerel build, model indirmesi, runtime deploy, credential/security ayarı veya Store yazımı yapılmadı. Bu repoda sürümlenen GitHub Actions workflow’u bulunmadığı doğrulandı; mevcut olmayan zorunlu CI kapısı iddiası kaldırıldı. Son ilgili PR HEAD’i için hedefli yerel doğrulama, güvenlik ve tamamlanmış Codex incelemesi korunur; ileride yapılandırılan ilgili CI kontrolleri ayrıca geçmelidir. Son diff/kapsam, ID/korunan kural/bağlantı kontrolleri ve eklenen metin secret taraması; son commit’e bağlı güvenlik ve Codex sonuçları PR’da izlenir. Sonraki düzeltme yalnız etkilenen kontrol/incelemeyi yeniler; yapılmayan kontrol başarılı sayılmaz.
 
 - Codex P2 `4319485096` doğrulandı: `qa/closeout-2026-09-28.json` önceki review-policy durumunu kaydeder ve Git ağacında `.github/workflows/` yoktur; bu tarihsel kayıt yeni inceleme kararını iptal etmez. AGENTS proje uyarlaması gerçek CI kullanılabilirliğiyle netleştirildi; CI yapılandırması veya branch protection değiştirilmedi.
+
+<a id="main-protection-p0-2026-10-20"></a>
+
+## 2026-10-20 — Main koruması P0 planı
+
+- Salt okunur GitHub denetiminde korumasız `main` doğrulandı; `DOC-MAIN-PROTECTION-P0` açık P0 olarak [docs/WORKFLOW_BACKLOG.md](docs/WORKFLOW_BACKLOG.md) içine eklendi. Gerçek CI/Codex/PR ve bypass-risk planı kullanıcı onayına bağlıdır; koruma/yetki/CI ayarı veya runtime değişmedi, mevcut görev kimlikleri ve kabulleri korunur. Bu kayıt merge/inceleme başarısı değildir.
