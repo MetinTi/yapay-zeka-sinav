@@ -176,7 +176,7 @@ Bu son kullanıcı kararı mevcut proje, tasarım, dil, platform, güvenlik, mal
 
 Hesap/anahtar erişimi veya eski genel “tam yetki” ifadesi tek başına credential, erişim/güvenlik, ücret ya da özel veri aktarımı yetkisi değildir; mevcut özel onay sınırları geçerlidir.
 
-**yapay-zeka-sinav uyarlaması:** README’deki güncel V2 Türkçe sınıf web sınavı ve özel katılımcı/backend verisinin public repo dışında kalması korunur. V1/mobil/beş dil planları tarihsel veya ayrı kapsamdır; mevcut web kapanışına mağaza özeti uygulanmaz, ileride ayrıca yetkilendirilen mobil backlog için uygulanır. Yerel untracked backlog.md/mobile çalışması bu PR’a taşınmaz; ayrı arşiv yerine mevcut history.md kullanılır.
+**yapay-zeka-sinav uyarlaması:** Bu repoda sürümlenen `.github/workflows/` bulunmuyor; [28 Eylül kapanış kaydı](qa/closeout-2026-09-28.json) o tarihte branch protection/zorunlu dış inceleme olmadığını kaydeder. 20 Ekim kararıyla son ilgili PR HEAD’i için hedefli yerel doğrulama, güvenlik ve tamamlanmış Codex incelemesi yine gereklidir; bunlar mevcut olmayan GitHub CI kontrolü gibi sunulmaz. Gelecekte CI yapılandırılırsa gerçekten tanımlanan ilgili kontrolleri de tamamla; yapılandırma veya sessizlik başarı kanıtı değildir. README’deki güncel V2 Türkçe sınıf web sınavı ve özel katılımcı/backend verisinin public repo dışında kalması korunur. V1/mobil/beş dil planları tarihsel veya ayrı kapsamdır; mevcut web kapanışına mağaza özeti uygulanmaz, ileride ayrıca yetkilendirilen mobil backlog için uygulanır. Yerel untracked backlog.md/mobile çalışması bu PR’a taşınmaz; ayrı arşiv yerine mevcut history.md kullanılır.
 
 Bu görevdeki P0 takibi [docs/WORKFLOW_BACKLOG.md](docs/WORKFLOW_BACKLOG.md) içindedir; yerel untracked backlog bu public PR’a kopyalanmaz.
 
