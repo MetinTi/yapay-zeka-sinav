@@ -42,7 +42,7 @@ Mobil kaynaklar ve eğitim taslakları, 22 Ekim 2026 kullanıcı kararıyla ayr�
 ## Belgeler ve veri sınırı
 
 - [V2 akışı, backend kurulumu ve açık işler](docs/exam-v2.md)
-- [Dağıtım bilgileri](DEPLOYMENT.md) ve [maliyet kaydı](cost.md)
+- [Dağıtım bilgileri](DEPLOYMENT.md)
 - [Çalışma kuralları](AGENTS.md) ve [çalışma düzeni P0 işleri](docs/WORKFLOW_BACKLOG.md)
 - [Geliştirme ve yayın geçmişi](history.md); [önceki README'nin V1 kurulum/e-posta notları](history.md#readme-snapshot-2026-10-22)
 

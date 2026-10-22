@@ -182,3 +182,13 @@ Projeye **`appsscript.json`** eklemediysen mail kapsamları hiç talep edilmemi�
 - Flutter 3.47.2 / Dart 3.13.2 ile `flutter pub get` eski yerel SDK çözümlemesini yeniledi; `pubspec.lock` güncellendi. `flutter analyze --no-pub` temiz. Eski ana sayfa beklentisi mevcut AuthGate başlangıcına uyarlanmış widget testiyle değiştirildi; `flutter test --no-pub` 1 test geçti. Bu yerel kontroller Firebase oturumu, cihaz veya Store kabulü değildir.
 - Public eklenecek 254 dosya üzerinde Gitleaks taramasındaki 5 uyarı `mobile/ios/Podfile.lock` içindeki SPEC CHECKSUMS değerleridir; anahtar değil, bağımlılık bütünlük hashleridir. Diğer gerçek istemci anahtarları stage dışında kaldı. Python AST/JSON ayrıştırma ve `git diff --cached --check` geçti. Web ön yüz/backend hedefli kontrolleri geçti; gerçek ağa/e-postaya çıkılmadı.
 - Son kaynak incelemesinde kurulum rehberinin FlutterFire'ın projeye özel `isConfigured` alanını ürettiği iddiası düzeltildi: CLI çıktısına alanın yerelde elle eklenmesi gerektiği ve public örneğin `false` kalacağı açıklandı. Runtime/auth davranışı değiştirilmedi.
+
+
+<a id="main-protection-2026-10-22"></a>
+
+## 2026-10-22 — Main koruması ve agent kurallarının düzenlenmesi
+
+- Kullanıcı CI kullanılmadığını, Codex ve güvenlik incelemesinin yeterli olduğunu belirterek main korumasının uygulanmasını açıkça yetkilendirdi. Subagent, aktif ve main'e özel ruleset `25666505` oluşturdu; bağımsız ruleset GET ve `/rules/branches/main` okumalarında `pull_request`, `non_fast_forward`, `deletion` kuralları doğrulandı. Bypass listesi boş; mevcut yönetici `current_user_can_bypass=never`.
+- Tek-maintainer kilitlenmesini önlemek için required approving review sayısı 0, codeowner/last-push approval kapalı; stale review dismissal ve review thread resolution açık. CI/status gate eklenmedi. Son ilgili PR HEAD'inde tamamlanmış Codex ve güvenlik incelemesi manuel gerekliliktir; GitHub otomatik review garantisi değildir. [Ruleset](https://github.com/MetinTi/yapay-zeka-sinav/rules/25666505).
+- Kullanıcı AGENTS tekrarlarının birleştirilmesini, başlıklara göre gruplanmasını, çelişkilerin son kararlarla çözülmesini ve eski maliyet dosyası kullanımının kaldırılmasını yetkilendirdi; 20 USD ön onay sınırı ve özel erişim/güvenlik kuralları korunur. Kullanıcı beyanıyla mağaza şifre/anahtarlarının Google Drive kök klasöründe tutulduğu yalnız konum bilgisi olarak kaydedilir; anahtarlar okunmadı/aktarılmadı. Eski maliyet dosyası yerelde korunur ve Git takibinden çıkarılır.
+- Temiz `git archive` kopyasında gerçek Firebase dosyaları olmadan public örnekle `flutter pub get`, `flutter analyze --no-pub` ve widget testi geçti. Temiz SDK çözümlemesiyle kilit dosyası uyumlandı; ardından `flutter pub get --enforce-lockfile` geçti.

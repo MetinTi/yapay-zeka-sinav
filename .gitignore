@@ -19,3 +19,6 @@ mobile/lib/firebase_options.dart
 mobile/android/app/google-services.json
 mobile/ios/Runner/GoogleService-Info.plist
 **/__pycache__/
+
+# Retired local cost ledger; ongoing file reporting is not used.
+/cost.md
