@@ -28,10 +28,37 @@ class AuthGate extends StatelessWidget {
           );
         }
         if (snapshot.data != null) {
-          return const HomeScreen();
+          return AccountNavigator(
+            key: ValueKey(snapshot.data!.uid),
+            child: const HomeScreen(),
+          );
         }
         return const LoginScreen();
       },
     );
   }
+}
+
+/// Disposes every authenticated route when its UID-keyed parent changes.
+class AccountNavigator extends StatefulWidget {
+  const AccountNavigator({super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  State<AccountNavigator> createState() => _AccountNavigatorState();
+}
+
+class _AccountNavigatorState extends State<AccountNavigator> {
+  final _navigatorKey = GlobalKey<NavigatorState>();
+
+  @override
+  Widget build(BuildContext context) => NavigatorPopHandler<void>(
+    onPopWithResult: (_) => _navigatorKey.currentState!.pop(),
+    child: Navigator(
+      key: _navigatorKey,
+      onGenerateRoute: (_) =>
+          MaterialPageRoute<void>(builder: (_) => widget.child),
+    ),
+  );
 }

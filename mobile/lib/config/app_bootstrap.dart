@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:yz_egitim_sinav/firebase_options.dart';
 import 'package:yz_egitim_sinav/services/ad_service.dart';
+import 'package:yz_egitim_sinav/services/account_local_data.dart';
 import 'package:yz_egitim_sinav/services/auth_service.dart';
 import 'package:yz_egitim_sinav/services/reminder_notification_service.dart';
 
@@ -13,6 +14,7 @@ abstract final class AppBootstrap {
   static Future<void> init() async {
     WidgetsFlutterBinding.ensureInitialized();
 
+    await AccountLocalData.instance.clearLegacy();
     await MobileAds.instance.initialize();
     await AdService.instance.initialize();
     await ReminderNotificationService.instance.initialize();

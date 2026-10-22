@@ -1,5 +1,7 @@
 # YZ Sınav — Deployment notları
 
+> Bu dosyadaki canlı sürüm/erişim kanıtları 28 Eylül 2026 tarihlidir. 22 Ekim 2026 belge kapanışında yeni deploy veya canlı kabul kontrolü yapılmadı. Son kaynak aktarımı [PR #5](https://github.com/MetinTi/yapay-zeka-sinav/pull/5), `bb65dad`; kaynak sürümü Hosting/Apps Script sürümü değildir.
+
 **Deploy → Manage deployments** penceresindeki değerleri buraya yapıştırın. Her **New version → Deploy** sonrası bu dosyayı ve `index.html` içindeki `SCRIPT_URL` satırını güncelleyin.
 
 ---

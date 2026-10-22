@@ -1,3 +1,5 @@
+> **22 Ekim 2026 kapsam notu:** Bu EN/TR kılavuz önceki V1/mobil akışın tarihsel açıklamasıdır; güncel Türkçe sınıf V2 kullanımı için [README](../README.md) ve [V2 rehberi](exam-v2.md) esas alınır. Mobil kaynakların Git'e alınması bu kılavuzdaki akışların cihaz/mağaza kabulü değildir.
+
 # Yapay Zeka Eğitimi — User Guide / Kullanıcı Kılavuzu
 
 **Instructor / Eğitmen:** Metin Tiryaki · [metintiryaki.com](https://www.metintiryaki.com)

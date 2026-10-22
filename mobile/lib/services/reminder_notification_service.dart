@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:yz_egitim_sinav/services/account_local_data.dart';
 import 'package:timezone/data/latest_all.dart' as tz_data;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -22,15 +23,16 @@ class ReminderSettings {
     return '$h:$m';
   }
 
-  String get summary =>
-      enabled ? 'Her gün $timeLabel' : 'Kapalı';
+  String get summary => enabled ? 'Her gün $timeLabel' : 'Kapalı';
 }
 
 /// Günlük eğitim hatırlatması (yerel bildirim).
 class ReminderNotificationService {
-  ReminderNotificationService._();
+  ReminderNotificationService({AccountLocalData? accountData})
+    : _accountData = accountData ?? AccountLocalData.instance;
   static final ReminderNotificationService instance =
-      ReminderNotificationService._();
+      ReminderNotificationService();
+  final AccountLocalData _accountData;
 
   static const _prefEnabled = 'reminder_enabled';
   static const _prefHour = 'reminder_hour';
@@ -42,6 +44,27 @@ class ReminderNotificationService {
       FlutterLocalNotificationsPlugin();
 
   bool _initialized = false;
+  String? _scheduledUid;
+  Future<void> _pending = Future<void>.value();
+
+  Future<void> _serialize(Future<void> Function() action) {
+    final result = _pending.then((_) => action());
+    _pending = result.catchError((Object _) {});
+    return result;
+  }
+
+  Future<void> cancelPending() => _serialize(() async {
+    if (!_initialized) await initialize();
+    await _plugin.cancel(_notificationId);
+    _scheduledUid = null;
+  });
+
+  Future<void> clearAccount(String uid) => _serialize(() async {
+    if (_scheduledUid == uid) {
+      await _plugin.cancel(_notificationId);
+      _scheduledUid = null;
+    }
+  });
 
   Future<void> initialize() async {
     if (_initialized) return;
@@ -73,32 +96,44 @@ class ReminderNotificationService {
     );
     await _plugin
         .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
+          AndroidFlutterLocalNotificationsPlugin
+        >()
         ?.createNotificationChannel(channel);
 
     _initialized = true;
-    await rescheduleIfEnabled();
+    // Also remove notifications created by old, ownerless installations.
+    await _plugin.cancel(_notificationId);
   }
 
-  Future<ReminderSettings> loadSettings() async {
+  Future<ReminderSettings> loadSettings() =>
+      _loadSettings(_accountData.currentUid);
+
+  Future<ReminderSettings> _loadSettings(String? uid) async {
+    if (uid == null) {
+      return const ReminderSettings(enabled: false, hour: 9, minute: 0);
+    }
     final prefs = await SharedPreferences.getInstance();
     return ReminderSettings(
-      enabled: prefs.getBool(_prefEnabled) ?? false,
-      hour: prefs.getInt(_prefHour) ?? 9,
-      minute: prefs.getInt(_prefMinute) ?? 0,
+      enabled: prefs.getBool(AccountLocalData.key(uid, _prefEnabled)) ?? false,
+      hour: prefs.getInt(AccountLocalData.key(uid, _prefHour)) ?? 9,
+      minute: prefs.getInt(AccountLocalData.key(uid, _prefMinute)) ?? 0,
     );
   }
 
   Future<bool> requestPermission() async {
-    final android = _plugin.resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin>();
+    final android = _plugin
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >();
     if (android != null) {
       final granted = await android.requestNotificationsPermission();
       if (granted == false) return false;
     }
 
-    final ios = _plugin.resolvePlatformSpecificImplementation<
-        IOSFlutterLocalNotificationsPlugin>();
+    final ios = _plugin
+        .resolvePlatformSpecificImplementation<
+          IOSFlutterLocalNotificationsPlugin
+        >();
     if (ios != null) {
       final granted = await ios.requestPermissions(
         alert: true,
@@ -111,43 +146,62 @@ class ReminderNotificationService {
     return true;
   }
 
-  Future<void> applySettings(ReminderSettings settings) async {
-    if (!_initialized) await initialize();
+  Future<void> applySettings(ReminderSettings settings) {
+    final uid = _accountData.requireUid();
+    return _serialize(() async {
+      if (_accountData.currentUid != uid) return;
+      if (!_initialized) await initialize();
 
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_prefEnabled, settings.enabled);
-    await prefs.setInt(_prefHour, settings.hour);
-    await prefs.setInt(_prefMinute, settings.minute);
-
-    await _plugin.cancel(_notificationId);
-
-    if (!settings.enabled) return;
-
-    final permitted = await requestPermission();
-    if (!permitted) {
-      await prefs.setBool(_prefEnabled, false);
-      throw ReminderNotificationException(
-        'Bildirim izni verilmedi. Ayarlardan izin açabilirsiniz.',
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool(
+        AccountLocalData.key(uid, _prefEnabled),
+        settings.enabled,
       );
-    }
+      await prefs.setInt(AccountLocalData.key(uid, _prefHour), settings.hour);
+      await prefs.setInt(
+        AccountLocalData.key(uid, _prefMinute),
+        settings.minute,
+      );
 
-    await _scheduleDaily(settings.hour, settings.minute);
-    debugPrint(
-      '[ReminderNotificationService] Günlük hatırlatma: ${settings.timeLabel}',
-    );
+      await _plugin.cancel(_notificationId);
+
+      _scheduledUid = null;
+      if (!settings.enabled) return;
+
+      final permitted = await requestPermission();
+      if (!permitted) {
+        await prefs.setBool(AccountLocalData.key(uid, _prefEnabled), false);
+        throw ReminderNotificationException(
+          'Bildirim izni verilmedi. Ayarlardan izin açabilirsiniz.',
+        );
+      }
+
+      if (_accountData.currentUid != uid) return;
+      await _scheduleDaily(settings.hour, settings.minute);
+      _scheduledUid = uid;
+      debugPrint(
+        '[ReminderNotificationService] Günlük hatırlatma: ${settings.timeLabel}',
+      );
+    });
   }
 
-  Future<void> rescheduleIfEnabled() async {
-    final settings = await loadSettings();
-    if (!settings.enabled) return;
+  Future<void> rescheduleIfEnabled() => _serialize(() async {
     if (!_initialized) await initialize();
     await _plugin.cancel(_notificationId);
+    _scheduledUid = null;
+    final uid = _accountData.currentUid;
+    final settings = await _loadSettings(uid);
+    if (!settings.enabled || uid != _accountData.currentUid) {
+      return;
+    }
     try {
+      // Restoring a session never requests permission; the user opts in in UI.
       await _scheduleDaily(settings.hour, settings.minute);
+      _scheduledUid = uid;
     } catch (e) {
       debugPrint('[ReminderNotificationService] yeniden planlama: $e');
     }
-  }
+  });
 
   Future<void> _scheduleDaily(int hour, int minute) async {
     final scheduled = _nextInstance(hour, minute);
