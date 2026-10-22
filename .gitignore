@@ -13,3 +13,9 @@ qa/*
 !qa/participant-state.test.mjs
 !qa/v2-backend.test.cjs
 !qa/closeout-2026-09-28.json
+
+# Mobile production client configuration stays local; use the example.
+mobile/lib/firebase_options.dart
+mobile/android/app/google-services.json
+mobile/ios/Runner/GoogleService-Info.plist
+**/__pycache__/
