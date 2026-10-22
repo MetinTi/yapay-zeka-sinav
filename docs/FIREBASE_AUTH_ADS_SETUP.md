@@ -1,6 +1,8 @@
 # Firebase Auth + AdMob kurulumu
 
-Uygulama **ücretsiz**; giriş **Google veya Apple (zorunlu)**; her **modül tamamlandığında** tam ekran reklam.
+> Tarihsel mobil kurulum notlarıdır; aşağıdaki Console/servis/erişim ve mağaza adımları ayrıca yetkilendirilir. Kaynak aktarımı bunları uygulamaz. Gerçek istemci yapılandırmaları Git dışında kalır.
+
+Mobil kaynaklar e-posta/parola, Google ve Apple girişini ve modül sonunda reklam entegrasyonunu içerir; güncel cihaz/Store kabulü bu belgeyle doğrulanmaz.
 
 ## 1. Firebase projesi
 
@@ -12,7 +14,8 @@ dart pub global activate flutterfire_cli
 flutterfire configure --project=yapay-zeka-egitim-mt --platforms=android,ios --yes
 ```
 
-- `lib/firebase_options.dart` güncellenir (`isConfigured = true`).
+- `lib/firebase_options.dart` güncellenir. **FlutterFire, bu projenin özel `isConfigured` alanını üretmez ve önceki dosyayı ezebilir.** Gerçek yerel yapılandırma tamamlandıktan sonra `DefaultFirebaseOptions` sınıfına elle `static const bool isConfigured = true;` ekle; `AppBootstrap` bu alanı kullanır.
+- Firebase kurmadan yalnız kaynakları incelemek/test etmek için `lib/firebase_options.dart.example` dosyasını `lib/firebase_options.dart` olarak kopyala; örnekteki `isConfigured = false` değerini koru.
 - `android/app/google-services.json` ve `ios/Runner/GoogleService-Info.plist` eklenir.
 - iOS: `GoogleService-Info.plist` Xcode Runner hedefine bağlanır.
 
@@ -100,7 +103,7 @@ Manifest / Info.plist içindeki `GADApplicationIdentifier` prod App ID ile günc
 
 ## 6. Test
 
-1. `flutterfire configure` sonrası `isConfigured = true`.
+1. `flutterfire configure` sonrası yukarıdaki özel `isConfigured` alanını elle ekle; gerçek yapılandırma için `true`, public örnek için `false`.
 2. Simulator’da Google / Apple girişi.
 3. Modülü tamamla → test interstitial görünmeli.
 
