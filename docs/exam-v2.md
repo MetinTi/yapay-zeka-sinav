@@ -1,6 +1,6 @@
 # Eğitim sınavı V2
 
-28 Eylül 2026 gün sonu. Canlı adres: https://sinav2.metintiryaki.com/ . Başlangıç için `?asama=baslangic`, bitiş için `?asama=bitis` kullanılır.
+Yayın ve kabul kanıtlarının tarihi **28 Eylül 2026**; 22 Ekim belge kapanışı bunları yeniden canlı doğrulama saymaz. Yayın adresi: https://sinav2.metintiryaki.com/ . Başlangıç için `?asama=baslangic`, bitiş için `?asama=bitis` kullanılır.
 
 ## Katılımcı akışı
 
@@ -16,14 +16,14 @@ Eğitmen özel Google tablosunda adı, kodu ve başlangıç/bitiş puanlarını 
 - `apps-script/Code.gs`: V1 davranışı ve V2 yollarına yönlendirme.
 - `apps-script/V2.template.gs`: Kamuya uygun backend şablonu. `V2.gs` olarak kopyalayıp özel eğitmen tablosu kimliğini yerel dosyada ayarlayın. Apps Script'e `Code.gs` ve yapılandırılmış `V2.gs` yüklenir; şablonu üçüncü dosya olarak eklemeyin.
 - Gerçek `V2.gs`, özel tablo kimliği, katılımcı/ekran kanıtları ve ayrıntılı iç teslim kaydı Git'e alınmaz. Canlı v15 kaynağı yerelde korunur; repo şablonu yalnız tablo kimliği ve açıklama satırı bakımından farklıdır.
-- Önceki mobil ve çeviri taslakları bu kapanışın kapsamı değildir. Bunlar yerelde korunmuştur. Sunumun ayrıntılı geçmişi Training projesinde tutulur.
+- Önceki mobil ve çeviri taslakları 28 Eylül V2 yayınının kapsamı değildir. 22 Ekim 2026 ayrı kaynak aktarımında Git’e alınmıştır; bu aktarım mobil build/yayın veya cihaz kabulü değildir. Bkz. [mobil kaynaklar](../mobile/README.md) ve [ürün backlogu](../backlog.md). Sunumun ayrıntılı geçmişi Training projesinde tutulur.
 
 ## Yayın ve doğrulama
 
 | Alan | Sonuç |
 |---|---|
 | Firebase proje / site | `yapay-zeka-egitim-mt` / `yapay-zeka-egitim-mt` |
-| Son Hosting sürümü | `f4c63895a7e7c5eb` (Revizyon 6 klonu); altı dosya HTTP 200 ve yerel SHA256 ile eşit |
+| 28 Eylül’de doğrulanan Hosting sürümü | `f4c63895a7e7c5eb` (Revizyon 6 klonu); altı dosya HTTP 200 ve yerel SHA256 ile eşit |
 | Apps Script | v15; üretim kaynakları yerelde korunuyor |
 | Frontend | 8 test geçti; soru, süre, ad/kod kurtarma, eski taslak, yenileme ve e-posta yanıt durumları |
 | Backend | 12 temel mock kontrolü ve 2 yeniden deneme senaryosu geçti; ağ/e-posta isteği yok |

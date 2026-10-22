@@ -227,7 +227,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     try {
       await _saveNames();
       await AuthService.instance.deleteAccount();
-      await UserProfileService.instance.clearLocal();
     } on AuthException catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.message)));

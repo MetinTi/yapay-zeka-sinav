@@ -1,5 +1,9 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+import 'package:yz_egitim_sinav/services/account_local_data.dart';
+import 'package:yz_egitim_sinav/services/reminder_notification_service.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -27,6 +31,11 @@ class AuthService {
 
   Future<void> warmUp() async {
     if (!AppBootstrap.firebaseReady) return;
+    _auth!.authStateChanges().listen((_) {
+      ReminderNotificationService.instance.rescheduleIfEnabled().catchError(
+        (Object error) => debugPrint('[AuthService] reminder: $error'),
+      );
+    });
   }
 
   Future<UserCredential> signInWithGoogle() async {
@@ -106,10 +115,8 @@ class AuthService {
 
   Future<void> signOut() async {
     _requireFirebase();
-    await Future.wait([
-      _auth!.signOut(),
-      GoogleSignIn().signOut(),
-    ]);
+    await ReminderNotificationService.instance.cancelPending();
+    await Future.wait([_auth!.signOut(), GoogleSignIn().signOut()]);
   }
 
   /// Firebase Auth hesabını kalıcı siler. Son giriş gerekirse [AuthException].
@@ -119,19 +126,29 @@ class AuthService {
     if (user == null) {
       throw AuthException('Aktif oturum bulunamadı.');
     }
+    final uid = user.uid;
     try {
-      await user.delete();
+      await deleteAccountAndLocalData(
+        deleteRemote: user.delete,
+        clearLocal: () async {
+          try {
+            await ReminderNotificationService.instance.clearAccount(uid);
+          } finally {
+            await AccountLocalData.instance.clear(uid);
+          }
+        },
+        signOutProvider: () async {
+          await GoogleSignIn().signOut();
+        },
+      );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'requires-recent-login') {
         throw AuthException(
           'Güvenlik için yeniden giriş yapın, ardından hesabı silin.',
         );
       }
-      throw AuthException(
-        e.message ?? 'Hesap silinemedi.',
-      );
+      throw AuthException(e.message ?? 'Hesap silinemedi.');
     }
-    await GoogleSignIn().signOut();
   }
 
   void _requireFirebase() {

@@ -18,3 +18,9 @@ Flutter eğitim ve değerlendirme uygulamasının kaynak çalışmasıdır. Canl
 - [İçerik araçları](../tools/) ve [referans brief](../yz-akademi-cursor-brief/).
 
 Mobil build, Store upload ve yayın ayrıca yetki gerektirir. iOS release yalnız MacBook; Android/Galaxy release paketleri yalnız Windows PC üzerinde hazırlanır.
+
+## Yerel hesap verileri
+
+Profil, avatar, ders ilerlemesi ve hatırlatıcı ayarları Firebase UID'sine göre ayrılır. Oturum kapatmak hesabın yerel kaydını silmez; diğer kullanıcılar bu kaydı yüklemez. Başarılı hesap silme, silinen UID'nin yerel verilerini ve hatırlatıcısını temizler; Firebase silmeyi reddederse yerel veri korunur.
+
+Önceki sürümdeki global kayıtların hangi hesaba ait olduğu kanıtlanamaz. Bu kayıtlar ilk hazırlıkta temizlenir; ilk giriş yapan hesaba taşınmaz. Bu nedenle eski yerel profil/ilerleme/hatırlatıcı tercihleri yeniden girilmek zorunda kalabilir. Yeni UID kapsamındaki diğer hesap kayıtları korunur. Bu kaynak düzeltmesi gerçek hesap silme veya cihaz/Store kabulü değildir.
