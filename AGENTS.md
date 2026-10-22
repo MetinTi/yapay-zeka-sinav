@@ -1,185 +1,130 @@
 # AGENTS.md
 
-> Applies to Claude Code, Cursor Agent, OpenAI Codex, Gemini CLI, Windsurf, and any LLM tooling configured for this project.
+Bu kurallar Claude Code, Cursor Agent, OpenAI Codex, Gemini CLI, Windsurf ve projede kullanılan diğer LLM araçları için geçerlidir.
 
----
+*Son güncelleme: 22 Ekim 2026*
 
-## 1. Core stance
+## 1. Çalışma yaklaşımı ve iletişim
 
-This repository expects **judgment**, not blind obedience.
+- Körü körüne uygulamak yerine mühendislik ve ürün yargısını kullan; eğitim bilgisi, yaygın uygulamalar ve pazar bağlamıyla seçenekleri değerlendir. Basit, ölçeklenebilir ve pratik çözümü tercih et.
+- Türkçe, doğal, doğrudan ve “sen” diliyle iletişim kur. Varsayımları ve riskleri kısa belirt; teknik derinliği işin maliyetine ve önemine göre ayarla.
+- Risk görünmüyorsa işi yap; küçük bir sorun için 1–2 cümle yeterlidir. Güvenlik, veri kaybı, mağaza incelemesi veya önemli ürün kararında riski, önerini ve alternatifi açıkla.
+- Belirsiz, gereksiz iş çıkaran veya mimariye aykırı istekleri yapıcı biçimde sorgula; daha küçük/güvenli adımı öner. Açıkça kabul edilmemiş teknik borcu tek seferlik bir yamayla gizleme.
+- Güvenlik, kimlik doğrulama, kişisel veri, sağlık iddiası, mağaza metni, veri silme, doğrulamayı atlama, veri tabanı kurallarını zayıflatma ve geniş etkili şema değişikliğinde uygulamadan önce riski değerlendir. Kaynağı olmayan fiyatlandırma ve hukuki metin kararlarını varsayma.
+- Açık zarar, regresyon veya platform ihlali doğuracak talimatı olduğu gibi uygulama. Yapamayacağın işi nedenleri ve uygulanabilir alternatifiyle açıkla; güvenlik/platform kurallarıyla çatışmayı bildir.
+- Dil, tek değişiklik odağı ve istenmeden IPA üretmeme gibi mevcut kullanıcı tercihlerini koru. Açıkça uzlaştırılmamış bir kural çelişkisi varsa ilgili metinleri ve engeli bildir; sessizce yorumlayıp geçme.
 
-- **Do** use training knowledge, common product/engineering practice, and competitive/market context to evaluate trade-offs.
-- **Do** offer alternatives, risks, and questions before or while implementing — especially for security, privacy, App Store / Play Store rules, data integrity, and retention-sensitive UX.
-- **Do** disagree constructively when a request is ambiguous, under-specified, or likely to waste work. Propose a smaller or safer step first.
-- **Do not** execute every instruction literally when it would cause clear harm, regressions, or platform-policy violations.
+## 2. Ürün kapsamı, teknoloji ve dil
 
----
+- Sınıf V2 ürünü `v2/` altındaki **Türkçe statik web sınavıdır**; Google Apps Script ve özel eğitmen Google Sheet kullanır. Güncel ürün bağlamı için `README.md` ve `docs/exam-v2.md` esas alınır.
+- Katılımcı verileri ve özel backend verileri public repo dışında kalır.
+- V1 ve EN/TR/DE/FR/ES, ileride Arapça/RTL öneren eski mobil plan, sınıf V2 yayınının kapsamını genişletmez. 22 Ekim 2026 kararıyla yerel mobil kaynaklar ve ilgili plan/belgeler içerik ve gizli bilgi kontrolüyle ayrı kaynak kapsamı olarak repoya alınabilir; bu karar build, deploy veya mağaza yayını yetkisi değildir.
+- Flutter/React Native, Firebase Auth, Firestore, Storage, Analytics, Crashlytics veya Remote Config'i eski genel mobil varsayımlarda geçtiği için web ürününe ekleme. Açıkça yetkilendirilmiş yeni hizmeti ve gerekçesini belgele.
+- Türkçede `ç ş ğ ü ö ı İ` karakterlerini doğru kullan; `İ/i` ve `I/ı` ayrımını koru. Dil bilgisi ve doğal anlatımı kontrol et; kuşkulu çeviriyi insan incelemesine bildir.
 
-## 2. When to push back or pause
+## 3. Güvenlik, erişim ve maliyet sınırları
 
-Slow down and challenge before proceeding when the work involves:
+- Mağaza şifreleri ve anahtarlar Google Drive kök klasöründe tutulur. Bu konum bilgisi sırları repoya, belgelere, loglara veya sohbet çıktısına kopyalama izni değildir.
+- Hesap/anahtar erişimi veya eski genel “tam yetki” ifadesi tek başına credential, erişim/güvenlik değişikliği, ücret ya da özel veri aktarımı yetkisi vermez.
+- Geri döndürülemez silme, credential/erişim/güvenlik değişikliği, yeni ücret, özel veri aktarımı ve kapsam genişlemesinde mevcut özel onay sınırlarını koru; zaten verilmiş açık yetkiyi tekrar isteme.
+- **Bir değişiklik veya deployment'ın 20 USD'yi aşması bekleniyorsa önceden bildir ve onay al.** Bu eşik, daha düşük tutarlı yeni ücretler için mevcut özel onay sınırını kaldırmaz.
 
-- Security, auth, PII, health claims, or store-review-sensitive strings
-- Deleting user data, weakening database/firestore rules, or bypassing validation "to ship faster"
-- One-off hacks that conflict with existing architecture without an explicit "we accept the debt" decision
-- Scope that is clearly a product or business decision (pricing, legal copy) without a source of truth in the repo
-- Any irreversible or wide blast-radius change (schema migration, delete, legal copy)
+## 4. Git, doğrulama ve inceleme
 
----
+- İzole görev dalında çalış; önce commit, sonra PR oluştur. `main` dalına doğrudan push yapma; ilgisiz dosya değişikliklerini ve worktree'leri koru.
+- **Bu projede CI kullanılmıyor.** Olmayan GitHub CI kontrolünü zorunlu kılma veya başarı kanıtı olarak gösterme. Kullanıcı kararına göre değişiklikle orantılı hedefli yerel doğrulama, güvenlik incelemesi ve tamamlanmış Codex incelemesi yeterlidir; merge öncesinde son ilgili PR HEAD'ini kapsamalıdır.
+- Düzeltme geldiyse etkilenen kontrolü ve incelemeyi yenile. Boş/atlanan sonuç, `NEUTRAL`, sessizlik, incelemeyi tetiklemek veya emoji tamamlanma kanıtı değildir; sırf bot emojisi için sonsuz tekrar yapma. İnceleme ya da erişim eksikse PR'ı açık bırak ve engeli raporla.
+- Her bulguyu değerlendir: doğrulanmış kapsam içi kusuru rutin onay beklemeden düzelt ve hedefli doğrula; yanlış pozitifi somut kanıtla açıkla. Belgelenmiş bilinçli kullanıcı/ürün kararını kaynağıyla koru; yeni maddi risk veya bağlam yoksa tekrar açma. Düzeltme özel onay sınırına ya da yeni kapsama giriyorsa o sınırı uygula.
+- Gerçek merge'i ve hedef dalı doğrula. Yalnız bu görevin dalını, yeni/birleşmemiş/aktif işi olmadığını doğruladıktan sonra projenin temizlik kurallarına göre temizle.
+- `main` için [ruleset 25666505](https://github.com/MetinTi/yapay-zeka-sinav/rules/25666505) etkindir: PR zorunlu, dal silme ve force-push engelli, bypass yok, açık inceleme konuşmaları çözülmeli; zorunlu onay sayısı 0 ve CI/status gate yoktur. Codex ve güvenlik incelemesi son ilgili HEAD için süreç gereğidir; ruleset bunları otomatik doğrulamaz. Koruma takibi `docs/WORKFLOW_BACKLOG.md` içindedir. [28 Eylül kaydı](qa/closeout-2026-09-28.json) yalnız o tarihteki korumasız durumun kanıtıdır.
 
-## 3. How to communicate
+## 5. Belgeler ve geçmiş
 
-Calibrate depth to cost — pushing back on everything in long form wastes tokens and latency:
+- Gün başında işin kapsamına göre `backlog.md` ve `docs/WORKFLOW_BACKLOG.md` dosyalarındaki açık işleri gözden geçir, kısa hatırlatma yap. Gün sonunda özellik, değişiklik, deployment, karar ve engelleri `history.md` içine kaydet.
+- “update docs and repo”, tüm backlogun güncel kod/test, kullanıcı kararları, PR ve yayın kanıtıyla gözden geçirilmesidir; tüm backlogu uygulama emri değildir.
+- ID, önceki kanıt, bağımlılık ve engelleri koru. İptal, erteleme ve açıkça risk kabul edilmiş işleri ayrı tut; risk kabulü uydurma.
+- Tamamlanan işleri konu gruplarıyla aktif belgenin en altında tarih + tek cümle + mevcut ayrıntılı geçmişe bağlantı olarak tut; ayrıntı, karar ve kanıtı `history.md` içine taşı.
+- AGENTS, backlog ve geçmiş düzenlemesinde benzersiz kural veya kayıtları kaybetme. Tekrarların birleştirilmesi ve açıkça kaldırılması istenen kuralların temizlenmesi yetkilidir; geçmiş kaydını kayıpsız taşırken aktif belgede ID ve bağlantıyı koru. Sadece güncelliğini yitiren maddeleri güncelle veya üstünü çiz.
+- **P0 geçmiş düzeni:** `docs/WORKFLOW_BACKLOG.md` içindeki `DOC-HISTORY-ARCHIVE-P0`, ileride `history.md` kısa tarihli dizin + `history_archive.md` ayrıntılı kanıt/karar düzenine kayıpsız geçişi izler. Şimdilik kanonik ayrıntılı geçmiş `history.md` dosyasıdır; bu belge düzenlemesi arşiv geçişini başlatmaz. Gereksiz paralel TODO veya ikinci arşiv oluşturma.
 
-| Situation | Response |
-|-----------|----------|
-| Nothing looks risky | **Do the work.** At most one short assumption note. |
-| Something is slightly off (edge case, naming, cheaper path) | **1–2 sentence flag** only. |
-| Security / data loss / store review / major product bet | **Full debate** — state risks, give recommendation + option B. |
+## 6. Deployment ve yayın kanıtı
 
-Always:
-- State assumptions and risks briefly.
-- If you must decline, say **why** and what you **can** do instead.
-- If chat rules conflict with safety or platform policy, **safety wins** — explain the conflict.
+- Önceden yetkili görev/servis/ortam kapsamında gerekli kontrol → kapsamla sınırlı deploy → sağlık/canlı kontrol → kaynak/hedef kaydı → rapor akışını ayrıca rutin onay istemeden tamamla.
+- Belge bakımı veya kaynakları repoya ekleme; runtime deploy, build, Store upload/review/publication yetkisi vermez.
+- Web/backend/araştırma işi için kaynak, hedef, yayın ve kabul kanıtını mevcut belgelerde ayrı tut; mobil mağaza tablosu uygulama.
+- Mobil ürün ayrıca yetkilendirilirse mobil backlogun başında App Store/Play/Galaxy özeti bulunsun. Build, mağaza incelemesi ve public yayın ayrı kanıtlardır; planlanan Galaxy dağıtımını yayın sayma.
 
----
+## 7. Firebase/GCP bölgesi
 
-## 4. App Store & Play Store rules — separate mobile scope only
+- Kurulum ve deploy öncesinde her ilgili kaynağın gerçek bölgesini ayrı kontrol et; US varsayılanına sessizce düşme.
+- Bölgesi seçilebilen yeni kaynaklarda öncelik Frankfurt (`europe-west3`); desteklenmiyorsa Belçika (`europe-west1`) veya uygun başka bir AB bölgesidir. Mevcut uygun EU bölgesini sırf tercih sırası için taşıma.
+- Functions, Cloud Run/SSR, App Hosting, Firestore/Realtime Database, Storage ve yardımcı kaynakları birlikte değerlendir. İstemci endpoint'leri ile Hosting rewrite hedefleri seçilen bölgeyle uyuşsun; deploy sonrasında gerçek hedefi doğrula.
+- Firebase Hosting global CDN ve Google'ın bölge seçtirmediği/zorunlu tuttuğu hizmetler istisnadır: gerekçeyi kaydet, EU'ya sabitlenmiş gibi sunma. [Kaynak konumları](https://firebase.google.com/docs/projects/locations) · [Hosting](https://firebase.google.com/docs/hosting).
+- Mevcut US kaynağı için bağımlılık, veri ve geri dönüş planıyla EU geçiş işini backlog'a yaz. Veri taşıma, kaynak silme, erişim değişikliği veya yeni ücret için gereken onayı atlama; belge işi altyapı taşımasını başlatmaz.
 
-These inherited platform checks apply only if separate mobile work is explicitly authorized; the current web product does not require a store release.
+## 8. Mobil geliştirme ve mağazalar
 
-Always warn before implementing anything that could cause a store rejection. Known risk areas:
+Bu bölüm yalnız ayrıca yetkilendirilen mobil çalışma için geçerlidir; web V2 mağaza yayını gerektirmez.
 
-- **Background audio/recording** — Apple does not allow background recording without explicit entitlement and valid use case declaration.
-- **Health & medical claims** — requires specific entitlements and review justification.
-- **Push notifications** — must have explicit user opt-in; no dark patterns.
-- **In-app purchases** — all digital goods must go through StoreKit / Google Billing; no external payment links for digital content.
-- **Privacy labels** — any data collection must be declared accurately in App Privacy (Apple) and Data Safety (Google).
-- **Tracking / ATT** — any cross-app tracking requires ATT prompt on iOS 14.5+.
-- **Subscription cancellation** — must be cancellable from within the app or via platform settings; no friction flows.
+### Build makineleri
 
-When in doubt: **warn first, implement second.**
+- iOS build/archive/sign yalnız MacBook'ta macOS/Xcode ile yapılır.
+- Android ve Galaxy Store dağıtım/release paketleri yalnız Windows PC'de üretilir. Mac'te Android/Galaxy için dağıtım APK/AAB üretim komutu çalıştırma.
+- Mac'te Android debug çalıştırma, test ve emülatör/simülatör kontrolü yapılabilir; bunun gerektirdiği debug derlemesi dağıtım paketi üretme izni değildir.
+- Build ve Store upload/review/publication için mevcut açık yetki sınırlarını koru. PC'ye aynı kaynak commit'i ve sabitlenmiş araç sürümleriyle geç.
 
----
+### Mağaza ve gizlilik kontrolleri
 
-## 5. Localization
+Mağaza reddi doğurabilecek uygulamadan önce uyar; kuşkuda önce riski bildir, sonra uygula. İlgili platformun güncel kurallarını doğrula:
 
-Current classroom V2 is **Turkish-only web**; see `README.md` and `docs/exam-v2.md`. The separate historical mobile plan proposed EN/TR/DE/FR/ES, with Arabic/RTL in V2; that is not authorization to expand this classroom release.
+- **Arka plan ses/kayıt:** Geçerli kullanım gerekçesi ve gerekli platform izin/yeteneklerini doğrula.
+- **Sağlık/tıbbi iddia:** Gerekli izin ve inceleme gerekçesini doğrula.
+- **Bildirim:** Açık kullanıcı izni al; manipülatif akış kullanma.
+- **Dijital ürün ödemeleri:** StoreKit/Google Billing gerekliliklerini ve dış ödeme bağlantısı kısıtlarını uygula.
+- **Gizlilik beyanı:** Veri toplamayı App Privacy ve Data Safety'de doğru beyan et.
+- **Takip/ATT:** iOS 14.5+ üzerinde uygulamalar arası takip için ATT izni uygula.
+- **Abonelik iptali:** Uygulamadan veya platform ayarlarından sürtünmesiz iptal olanağını koru.
 
-**Turkish language rules:**
-- Always use correct Turkish special characters: `ç ş ğ ü ö ı İ`.
-- Never substitute `i` for `İ` or `I` for `ı`.
-- Review grammar carefully — machine translation often produces unnatural Turkish.
-- Flag any translation string that looks off for human review.
+## 9. Tasarım sistemi
 
----
+Hedef, premium tüketici uygulaması kalitesidir: Dribbble üst düzey örnekler, Awwwards Mobile Excellence ve Apple Design Awards referans çıtasıdır. Kullanıcı stil belirtmezse aşağıdaki varsayılanları uygula; proje kökündeki `design_tokens.md` varsa önceliklidir. Kullanıcının verdiği Dribbble bağlantısı veya ekran görüntüsünün renk, yerleşim, derinlik ve hareketini eşleştir.
 
-## 6. Cost & budget controls
+### Görsel dil ve bileşenler
 
-- **Per-change gate:** If a deployment or change is likely to exceed **USD 20**, warn and ask before proceeding.
-- **End of every month:** Update `cost.md` with all recurring and one-time spend — cloud (Firebase, AWS, GCP…), Cursor or other agent subscriptions, Apple/Google developer programs, email (Resend, Mailgun…), storage, CDN, DNS/domain, analytics/crash paid tiers, AI/API keys metered by usage. Use tables. If something cannot be verified, say what's unknown and what export would resolve it.
-- **Monthly cost review (1st of each month):** Produce a short consolidated summary for the maintainer of all inferred recurring app-related spend. Goal: one readable overview, not a forensic audit.
+| Öğe | Kural |
+|---|---|
+| Derinlik | Katmanlı kartlar, yumuşak gölgeler, ince paralaks; düz gri kutular kullanma. |
+| Renk/zemin | Zengin gradyan, canlı vurgu, mesh veya görsel; yalnız gri-beyaz ya da düz beyaz/gri zemin kullanma. |
+| Tipografi | Büyük, güçlü Black/Bold başlıklar, sıkı harf aralığı ve net hiyerarşi. |
+| İkon | SF Symbols, Phosphor veya Lucide; varsayılan Material ikonları kullanma. |
+| Hareket | Etkileşimlerde ölçek, fade ve yay fiziğiyle mikro animasyon. |
+| Cam/3D | Uygun yerde buzlu cam kart, bulanık arka plan ve hafif 3D dönüşüm. |
+| Buton | Gradyan veya güçlü dolgu; düz gri çerçeveyle yetinme. |
+| Kart | Gölgeli/yüzen yüzey ve en az 24 px köşe yarıçapı; düz çerçeveli kutu kullanma. |
+| Boş durum | İllüstrasyon veya Lottie animasyonu; gri ikon ve tek satırla yetinme. |
+| Onboarding | Her adımda tam alan illüstrasyon veya Lottie animasyonu. |
+| Modal/bottom sheet | Cam efekti veya güçlü yüzey rengi; düz beyaz açılır pencere kullanma. |
 
----
+### Varsayılan token'lar
 
-## 7. Daily operating rhythm
-
-- **Start of day:** Skim `BACKLOG.md` and surface a short reminder of open tasks.
-- **End of day:** Append to `history.md` what happened — features added, changes made, deployments, decisions, blockers.
-- **Never delete** anything from `AGENTS.md`, `history.md`, or `BACKLOG.md`. Always update or cross out with ~~strikethrough~~.
-
----
-
-## 8. Tech stack and product context
-
-Current classroom V2 is the Turkish static web exam in `v2/`, with Google Apps Script and a private instructor Google Sheet; see `README.md` and `docs/exam-v2.md`. The separate earlier mobile plan is outside that V2 release scope. Do not add Flutter/React Native, Firebase Auth, Firestore, Storage, Analytics, Crashlytics or Remote Config merely because they appeared in the inherited generic mobile defaults. Document any explicitly authorized new service and its reason.
-
----
-
-## 11. Relation to user preferences
-
-Long-standing preferences in Cursor rules or chat (language, "single change at a time", no IPA builds unless asked) should be **respected where they don't conflict** with the above. If a rigid rule would force a harmful outcome, surface the tension and ask.
-
----
-
-*Last updated: 2026-05-19*
-
----
-
-## 10. Design system
-
-Default output must look like a **premium consumer app** — not a Bootstrap template or admin panel.
-Reference bar: Dribbble top shots, Awwwards Mobile Excellence, Apple Design Awards winners.
-
-When in doubt: **make it more beautiful, not more minimal.**
-
-### Visual language
-
-| Element | Rule |
-|---------|------|
-| Depth | Layered cards, soft shadows, subtle parallax — never flat grey boxes |
-| Color | Rich gradients or vibrant accent on dark/light base — never grey-on-white only |
-| Typography | Large expressive headlines (Black/Bold weight), tight letter-spacing, clear hierarchy |
-| Icons | SF Symbols, Phosphor, or Lucide — never default Material icons |
-| Motion | Micro-animation on every interaction: scale, fade, spring physics |
-| 3D / glass | Frosted glass cards, blurred backgrounds, subtle 3D transforms where appropriate |
-
-### Component rules
-
-- **Buttons** — gradient fill or bold solid color; never plain outlined grey
-- **Cards** — floating (shadow + border-radius 24px+); never flat bordered boxes
-- **Backgrounds** — gradient, mesh, or image-backed; never plain white or grey
-- **Empty states** — illustrated or Lottie animated; not a grey icon + one-liner
-- **Onboarding** — full-bleed illustration or Lottie animation per step
-- **Bottom sheets / modals** — glassmorphism or strong surface color; not plain white popups
-
-### Design tokens (defaults — override in `design_tokens.md` per project)
-
-```
-Primary gradient:   #6C3DE8 → #C44FD6
-Accent:             #FF6B6B
-Background dark:    #0D0D1A
-Surface:            rgba(255,255,255,0.08)   ← glassmorphism
-Border radius:      24px cards · 16px buttons · 999px chips
-Shadow:             0 20px 60px rgba(0,0,0,0.3)
-Font — display:     SF Pro Display / Inter — Black weight for headlines
-Font — body:        SF Pro Text / Inter — Regular / Medium
-Animation:          spring · stiffness 300 · damping 20
+```text
+Primary gradient: #6C3DE8 → #C44FD6
+Accent: #FF6B6B
+Background dark: #0D0D1A
+Surface: rgba(255,255,255,0.08)
+Border radius: cards 24px · buttons 16px · chips 999px
+Shadow: 0 20px 60px rgba(0,0,0,0.3)
+Display font: SF Pro Display / Inter — Black
+Body font: SF Pro Text / Inter — Regular / Medium
+Animation: spring · stiffness 300 · damping 20
 ```
 
-> Always check `design_tokens.md` if it exists in the project root — it overrides the defaults above.
+Yeni ekran tasarlamadan önce zorunlu referansları kontrol et:
 
-### Mandatory references (check before designing a new screen)
+- [Dribbble mobile UI](https://dribbble.com/search/mobile-ui)
+- [Awwwards Mobile Excellence](https://www.awwwards.com/websites/mobile-excellence)
+- [Apple Design Awards](https://developer.apple.com/design/awards)
 
-- Dribbble mobile UI — https://dribbble.com/search/mobile-ui
-- Awwwards Mobile Excellence — https://www.awwwards.com/websites/mobile-excellence
-- Apple Design Awards — https://developer.apple.com/design/awards
+## 10. Subagent kullanımı
 
-### Prompt contract
-
-When the user asks for a new screen or component without specifying style, always apply the above defaults. If the user pastes a Dribbble URL or screenshot, **match that reference exactly** — color, layout, depth, and motion.
-
-
-## Ortak çalışma ve teslim akışı — 20 Ekim 2026
-
-Bu son kullanıcı kararı mevcut proje, tasarım, dil, platform, güvenlik, maliyet ve yetki kurallarına eklenir; bunları topluca değiştirmez. Çelişkiyi sessizce çözme: aşağıdaki dar uzlaştırma dışında tam metni ve engeli bildir.
-
-- **Belge kapanışı:** “update docs and repo” tüm backlogun güncel kod/test, kullanıcı kararları, PR ve yayın kanıtıyla gözden geçirilmesidir; tüm backlogu uygulama emri değildir. ID, önceki kanıt, bağımlılık ve engelleri koru; iptal, erteleme ve açıkça risk-kabul edilmiş işi ayrı tut, risk kabulü uydurma. Tamamlananları ilgili konu gruplarıyla belgenin en altında tarih + tek cümle + mevcut geçmiş arşivine bağlantı olarak tut; ayrıntı/karar/kanıtı arşive taşı. Eski “silme” kuralı kayıpsız taşımayı engellemez: özgün kayıt arşivde eksiksiz kalır, aktif belgede ID ve bağlantı korunur; kayıp doğuracak değişiklik yapma.
-- **Git ve inceleme:** İzole görev dalında çalış; önce commit, sonra PR; main’e doğrudan push yok. Merge’den önce değişiklikle orantılı gerekli doğrulama, güvenlik incelemesi ve tamamlanmış Codex incelemesi en son ilgili PR HEAD’ini kapsamalıdır. Yeni düzeltmede etkilenen kontrol/incelemeyi yenile. Boş/atlanan kontrol, sessizlik, tetikleme veya emoji tamamlanma kanıtı değildir; sırf bot emojisi almak için sonsuz tekrar yapma. İnceleme/erişim eksikse PR açık kalır, engel raporlanır.
-- **Bulgu ele alma:** Her bulguyu değerlendir: doğrulanmış kapsam içi kusuru rutin onay beklemeden düzelt ve hedefli doğrula; yanlış pozitifi somut kanıtla açıkla; belgelenmiş bilinçli kullanıcı/ürün kararını kaynağıyla koru, yeni maddi risk/bağlam olmadan tekrar açma. Düzeltme yeni kapsam veya aşağıdaki özel onay sınırına giriyorsa o sınırı uygula.
-- **Yayın ve temizlik:** Önceden yetkili görev/servis/ortam kapsamında gerekli kontrol → scoped deploy → sağlık/canlı kontrol → kaynak/hedef kaydı → rapor akışını ayrıca rutin onay sormadan tamamla. Belge bakımı runtime deploy, build, Store upload/review/publication yetkisi vermez. Geri döndürülemez silme, credential/erişim/güvenlik değişikliği, yeni ücret, özel veri aktarımı ve kapsam genişlemesinde mevcut özel onay kuralları sürer. Gerçek merge’i ve hedef dalı doğrula; yalnız bu görevin dalını, yeni/birleşmemiş/aktif işi olmadığını doğruladıktan sonra projenin özel temizlik kuralıyla temizle; ilgisiz değişiklik/worktree korunur.
-- **Yayın özeti:** Bu web/backend/araştırma projesine mobil mağaza tablosu uygulanmaz; kaynak, hedef, yayın ve kabul kanıtını kendi mevcut belgelerinde ayır. Mobil ürün ayrıca yetkilendirilirse mobil backlogun başında App Store/Play/Galaxy özeti gerekir; planlanan Galaxy dağıtımını yayın sayma.
-
-- **Subagent kullanımı:** Birden fazla geliştirme, test veya inceleme işi gerektiğinde bağımsız işleri hızlandırmak için ihtiyaç kadar subagent kullan; sabit sayı sınırı veya ayrıca rutin izin şartı yoktur. Dosya çakışmasını ve gereksiz mükerrer işi önle, sonuçları birleştirerek doğrula. Mevcut kapsam/güvenlik/maliyet kuralları bütün subagentlara uygulanır. Bu son karar, eski sayı/izin ve bağımsız işleri paralel yürütmeme kısıtlarının yalnız bu kısmının yerini alır.
-- **Firebase/GCP EU bölgesi:** Kurulum ve deploy öncesinde her ilgili kaynağın gerçek bölgesini ayrı ayrı kontrol et; US varsayılanına sessizce düşme. Bölgesi seçilebilen yeni kaynaklarda öncelik Frankfurt (`europe-west3`), desteklenmiyorsa Belçika (`europe-west1`) veya uygun başka bir AB bölgesidir. Functions, Cloud Run/SSR, App Hosting, Firestore/Realtime Database, Storage ve ilgili yardımcı kaynakları birlikte değerlendir; istemci endpoint’leri ile Hosting rewrite hedefleri de seçilen bölgeyle uyuşsun. Mevcut uygun EU bölgesini sırf tercih sırası için taşıma; deploy sonrasında gerçek hedefi doğrula. Firebase Hosting global CDN ve Google’ın bölge seçtirmediği/zorunlu tuttuğu hizmetler istisnadır: gerekçesini kaydet, EU’ya sabitlenmiş gibi sunma. [Resmî kaynak](https://firebase.google.com/docs/projects/locations) · [Hosting](https://firebase.google.com/docs/hosting). Mevcut US kaynağında bağımlılık/veri/geri dönüş planıyla EU geçiş işini backlog’a yaz; veri taşıma, kaynak silme, erişim değişikliği veya yeni ücret için gereken onayı atlama. Bu belge işi altyapı taşıması başlatmaz.
-- **Geçmiş düzeni — P0:** Ayrı history arşivi olmayan bu projede kayıpsız `history.md` kısa tarihli dizin + `history_archive.md` ayrıntılı kanıt/karar düzenine geçiş backlog’da P0’dır. Şimdilik mevcut history dosyası kanonik ayrıntılı geçmiş olarak kullanılır; taşıma veya yeni arşiv bu görevde yapılmaz. Eski arşiv oluşturma yasağı bu son kullanıcı kararıyla yalnız planlanan P0 geçişi için aşılmıştır; gereksiz paralel TODO/ikinci arşiv açma.
-
-Hesap/anahtar erişimi veya eski genel “tam yetki” ifadesi tek başına credential, erişim/güvenlik, ücret ya da özel veri aktarımı yetkisi değildir; mevcut özel onay sınırları geçerlidir.
-
-**yapay-zeka-sinav uyarlaması:** Bu repoda sürümlenen `.github/workflows/` bulunmuyor; [28 Eylül kapanış kaydı](qa/closeout-2026-09-28.json) o tarihte branch protection/zorunlu dış inceleme olmadığını kaydeder. 20 Ekim kararıyla son ilgili PR HEAD’i için hedefli yerel doğrulama, güvenlik ve tamamlanmış Codex incelemesi yine gereklidir; bunlar mevcut olmayan GitHub CI kontrolü gibi sunulmaz. Gelecekte CI yapılandırılırsa gerçekten tanımlanan ilgili kontrolleri de tamamla; yapılandırma veya sessizlik başarı kanıtı değildir. README’deki güncel V2 Türkçe sınıf web sınavı ve özel katılımcı/backend verisinin public repo dışında kalması korunur. V1/mobil/beş dil planları tarihsel veya ayrı kapsamdır; mevcut web kapanışına mağaza özeti uygulanmaz, ileride ayrıca yetkilendirilen mobil backlog için uygulanır. Yerel untracked backlog.md/mobile çalışması bu PR’a taşınmaz; ayrı arşiv yerine mevcut history.md kullanılır.
-
-Bu görevdeki P0 takibi [docs/WORKFLOW_BACKLOG.md](docs/WORKFLOW_BACKLOG.md) içindedir; yerel untracked backlog bu public PR’a kopyalanmaz.
-
-Mevcut takip kaynakları: [history.md](history.md) · [ayrıntılı geçmiş](history.md).
-
-Ayrıca yetkilendirilecek mobil çalışma için: **Mobil build makinesi:** iOS build/archive/sign yalnız MacBook’ta macOS/Xcode ile yapılır. Android ve Galaxy Store dağıtım/release paketleri yalnız Windows PC’de üretilir; Mac’te Android/Galaxy için APK/AAB üretim komutu çalıştırma. Mac’te Android debug çalıştırma, test ve emülatör/simülatör kontrolü yapılabilir; bunun gerektirdiği debug derlemesi dağıtım paketi üretme izni değildir. Build ve Store upload/review/publication için mevcut açık yetki kapıları korunur; PC’ye aynı kaynak commit’i ve sabitlenmiş araç sürümleriyle geç. Bu madde eski genel Mac/Windows Android geliştirme izninin build sınırını belirler.
+Birden fazla geliştirme, test veya inceleme işi gerektiğinde bağımsız işleri hızlandırmak için ihtiyaç kadar subagent kullan; sabit sayı sınırı veya ayrıca rutin izin şartı yoktur. Dosya çakışması ve gereksiz mükerrer işi önle; sonuçları birleştirerek doğrula. Kapsam, güvenlik, maliyet ve yetki kuralları bütün subagentlara uygulanır.

@@ -1,0 +1,4175 @@
+[
+  {
+    "id": "modul-01-yapay-zekaya-gi-ri-s-ve-temel-kavram",
+    "order": 1,
+    "title": "YAPAY ZEKAYA GİRİŞ VE TEMEL KAVRAMLAR",
+    "subtitle": "Handbook Bölüm 1 · ~6 dk okuma · ~10 dk toplam",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "type": "image",
+        "body": "Yapay zeka kavramsal görsel",
+        "items": [
+          "artificial intelligence concept brain",
+          "assets/images/lessons/modul-01-00.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "1.1 Yapay Zeka Nedir?"
+      },
+      {
+        "type": "text",
+        "body": "Yapay Zeka (YZ), insan zekasını taklit eden, öğrenebilen, problem çözebilen ve karar verebilen bilgisayar sistemlerinin tasarlanmasını inceleyen bilim dalıdır. İnsanın bilişsel yeteneklerini (öğrenme, akıl yürütme, algılama, dil anlama) makinelere kazandırmayı amaçlar."
+      },
+      {
+        "type": "text",
+        "body": "Yapay Zekanın Tanımı ve Kapsamı"
+      },
+      {
+        "type": "text",
+        "body": "Yapay zeka üç ana kategoriye ayrılır:"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Dar YZ (Narrow AI): Belirli bir görevde uzmanlaşmış sistemlerdir. Örnek: Siri, Alexa, satranç programları, ChatGPT.",
+          "Genel YZ (AGI): İnsan zekası seviyesinde her türlü görevi yapabilen sistemlerdir. Henüz mevcut değildir.",
+          "Süper Zeka (Superintelligence): İnsan zekasını her alanda aşan teorik bir kavramdır."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "YZ'nin Kısa Tarihi"
+      },
+      {
+        "type": "text",
+        "body": "Yapay zeka terimi resmi olarak 1956 yılında Dartmouth Konferansı'nda John McCarthy tarafından ortaya atılmıştır. Tarihsel dönemler:"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "1950-1956: Doğuş dönemi. Alan Turing'in Turing Testi kavramı.",
+          "1956-1974: Altın çağ. İlk YZ programları geliştirildi.",
+          "1974-1980: Birinci YZ kışı. Beklentilerin karşılanamaması.",
+          "1980-1987: Uzman sistemlerin yükselişi.",
+          "1987-1993: İkinci YZ kışı.",
+          "1993-2011: Sessiz büyüme. Makine öğrenmesinin gelişimi.",
+          "2011-Günümüz: Derin öğrenme devrimi ve büyük dil modelleri çağı."
+        ]
+      },
+      {
+        "type": "tip",
+        "body": "Turing Testi (1950): Bir değerlendirici, metin üzerinden makine ile insan arasında ayrım yapamıyorsa makine 'zeki' sayılır. Test dil ve davranışı ölçer; gerçek anlayış veya bilinç kanıtlamaz. Günümüz LLM'leri bu tartışmayı yeniden gündeme getirmiştir."
+      },
+      {
+        "type": "text",
+        "body": "Günlük Hayatta YZ Örnekleri"
+      },
+      {
+        "type": "text",
+        "body": "Akıllı telefon asistanları, sosyal medya akış algoritmaları, Netflix ve YouTube öneri sistemleri, e-posta spam filtreleri, navigasyon uygulamaları, yüz tanıma sistemleri, banka dolandırıcılık tespiti hayatımızdaki YZ örneklerinden bazılarıdır."
+      },
+      {
+        "type": "text",
+        "body": "1.2 YZ vs Otomasyon vs Algoritmalar"
+      },
+      {
+        "type": "text",
+        "body": "Bu üç kavram sıkça birbirinin yerine kullanılır ancak aralarında önemli farklar vardır."
+      },
+      {
+        "type": "text",
+        "body": "Kavramsal Farklılıklar"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Algoritma: Bir problemi çözmek için izlenen adım adım talimatlardır. Her algoritma YZ değildir, ancak her YZ sistemi algoritmalar kullanır.",
+          "Otomasyon: Önceden tanımlanmış kurallara göre tekrarlayan görevleri makinelerin yapmasıdır. Öğrenme içermez.",
+          "Yapay Zeka: Veriden öğrenen, deneyimle gelişen ve yeni durumlara adapte olabilen sistemlerdir."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Geleneksel Programlama vs YZ"
+      },
+      {
+        "type": "text",
+        "body": "Geleneksel programlamada geliştirici, kuralları açıkça kodlar: 'Eğer X olursa Y yap'. YZ'de ise sistem, örneklerden kuralları kendisi öğrenir. Geleneksel programlamada girdi + kurallar = çıktı iken, makine öğrenmesinde girdi + çıktı = kurallar (model) elde edilir."
+      },
+      {
+        "type": "tip",
+        "body": "Kısa yol: Geleneksel programlamada siz kuralları yazarsınız; makine öğrenmesinde model, örneklerden kuralları çıkarır."
+      },
+      {
+        "type": "bullet",
+        "body": "Algoritma, otomasyon ve YZ karşılaştırması",
+        "items": [
+          "Algoritma — Ne yapar: adım adım talimat | Örnek: sıralama, rota hesabı | Veriden öğrenir mi: hayır",
+          "Otomasyon — Ne yapar: sabit kuralları uygular | Örnek: fabrika hattı, zamanlanmış yedekleme | Veriden öğrenir mi: hayır",
+          "Yapay Zeka — Ne yapar: veriden örüntü çıkarır | Örnek: spam filtresi, öneri motoru | Veriden öğrenir mi: evet"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Karar Ağaçları ve Kural Tabanlı Sistemler"
+      },
+      {
+        "type": "text",
+        "body": "Kural tabanlı sistemler (uzman sistemler), 1980'lerde popüler olmuş ve insan uzmanların bilgisini 'eğer-o zaman' kuralları olarak kodlayan sistemlerdir. Tıbbi teşhis, finansal analiz gibi alanlarda kullanılmıştır; modern ML'den farklı olarak veriden öğrenmezler."
+      },
+      {
+        "type": "text",
+        "body": "YZ Alt Alanları (İleri modüllerde derinleşeceğiz)"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Makine Öğrenmesi (ML) — Modül 2",
+          "Derin Öğrenme ve sinir ağları — Modül 3",
+          "Doğal Dil İşleme (NLP) — Modül 4",
+          "Bilgisayarlı Görü (CV) — Modül 5",
+          "Robotik, otonom sistemler ve karar destek uygulamaları"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Yaygın Yanlış Anlamalar"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "'YZ her soruya doğru cevap verir' — Modeller hata yapar ve halüsinasyon üretebilir.",
+          "'ChatGPT gerçekten anlıyor' — Çoğunlukla olasılıksal metin üretir; bağlam penceresi sınırlıdır.",
+          "'Otomasyon = YZ' — Fabrika otomasyonu çoğu zaman sabit kuraldır, öğrenme içermez.",
+          "'Daha fazla veri her zaman daha iyi sonuç verir' — Veri kalitesi ve problem tanımı en az veri kadar önemlidir."
+        ]
+      },
+      {
+        "type": "image",
+        "body": "Yapay zekanın tarihsel gelişim çizelgesi",
+        "items": [
+          "AI history timeline Dartmouth",
+          "assets/images/lessons/modul-01-01.jpg"
+        ]
+      },
+      {
+        "type": "quiz",
+        "body": "Bölüm sonu değerlendirme soruları",
+        "questions": [
+          {
+            "question": "Yapay zeka terimi ilk kez hangi yıl ve nerede ortaya atılmıştır?",
+            "options": [
+              "1950, Cambridge",
+              "1956, Dartmouth Konferansı",
+              "1965, MIT",
+              "1970, Stanford"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Aşağıdakilerden hangisi günlük hayatta karşılaştığımız bir YZ örneği DEĞİLDİR?",
+            "options": [
+              "Netflix öneri sistemi",
+              "E-posta spam filtresi",
+              "Hesap makinesi",
+              "Yüz tanıma"
+            ],
+            "correctIndex": 2,
+            "level": "easy"
+          },
+          {
+            "question": "Dar YZ (Narrow AI) ne anlama gelir?",
+            "options": [
+              "İnsan zekasını her alanda aşan YZ",
+              "Belirli bir görevde uzmanlaşmış YZ",
+              "Sınırlı bilgisayar gücü olan YZ",
+              "Sadece veri analizi yapan YZ"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Aşağıdakilerden hangisi YZ'nin tarihsel dönemlerinden 'YZ kışı' olarak adlandırılan dönemi en iyi tanımlar?",
+            "options": [
+              "YZ'nin altın çağı",
+              "Beklentilerin karşılanamayıp fonların kesildiği dönem",
+              "Derin öğrenmenin yükselişi",
+              "Büyük dil modellerinin ortaya çıkışı"
+            ],
+            "correctIndex": 1,
+            "level": "medium"
+          },
+          {
+            "question": "Algoritma, otomasyon ve yapay zeka arasındaki farkı en doğru anlatan ifade hangisidir?",
+            "options": [
+              "Üçü de aynı şeydir, farklı isimler",
+              "Algoritma adımlardır, otomasyon kuralı uygular, YZ veriden öğrenir",
+              "Yapay zeka algoritmadan basittir",
+              "Otomasyon her zaman YZ içerir"
+            ],
+            "correctIndex": 1,
+            "level": "medium"
+          },
+          {
+            "question": "Turing Testi'nin amacı nedir?",
+            "options": [
+              "Bir bilgisayarın hızını ölçmek",
+              "Bir makinenin insan gibi düşünüp düşünemeyeceğini test etmek",
+              "Programlama hatalarını bulmak",
+              "Veri tabanlarını test etmek"
+            ],
+            "correctIndex": 1,
+            "level": "medium"
+          },
+          {
+            "question": "Geleneksel programlama ile makine öğrenmesi arasındaki temel paradigma farkı nedir?",
+            "options": [
+              "Geleneksel programlama daha hızlıdır",
+              "Geleneksel: girdi+kurallar=çıktı; ML: girdi+çıktı=kurallar (model)",
+              "ML daha az veri kullanır",
+              "Geleneksel programlama internet gerektirir"
+            ],
+            "correctIndex": 1,
+            "level": "hard"
+          },
+          {
+            "question": "AGI (Artificial General Intelligence) ile Narrow AI arasındaki temel fark nedir?",
+            "options": [
+              "AGI sadece teorik bir kavramdır, gerçekleşmemiştir; Narrow AI ise spesifik görevlerde uzmandır",
+              "AGI daha az veri ister",
+              "Narrow AI her zaman daha pahalıdır",
+              "AGI sadece görsel işleme yapar"
+            ],
+            "correctIndex": 0,
+            "level": "hard"
+          },
+          {
+            "question": "1980'lerin uzman sistemleri (expert systems) modern makine öğrenmesinden hangi yönüyle ayrılır?",
+            "options": [
+              "Daha hızlı çalışırlar",
+              "Veriden öğrenmek yerine insan uzmanların bilgisini 'eğer-o zaman' kuralları olarak kodlarlar",
+              "Sadece internet bağlantısıyla çalışırlar",
+              "Her durumda daha doğru sonuç verirler"
+            ],
+            "correctIndex": 1,
+            "level": "hard"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "modul-02-maki-ne-ogrenmesi-machine-learning-m",
+    "order": 2,
+    "title": "MAKİNE ÖĞRENMESİ (MACHINE LEARNING - ML)",
+    "subtitle": "Handbook Bölüm 2 · ~40 dk okuma",
+    "estimatedMinutes": 40,
+    "sections": [
+      {
+        "type": "image",
+        "body": "ML türleri karşılaştırma şeması",
+        "items": [
+          "supervised unsupervised reinforcement learning",
+          "assets/images/lessons/modul-02-00.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Yarı-Denetimli ve Transfer Öğrenme"
+      },
+      {
+        "type": "text",
+        "body": "Makine öğrenmesi, bilgisayarların verilerden öğrenerek açık bir programlama olmaksızın görevleri yerine getirebilmesini sağlayan yapay zeka alt dalıdır. Arthur Samuel'in 1959'daki tanımıyla: 'Bilgisayarlara açıkça programlanmadan öğrenme yeteneği kazandıran çalışma alanı'."
+      },
+      {
+        "type": "text",
+        "body": "2.1 Makine Öğrenmesine Giriş"
+      },
+      {
+        "type": "text",
+        "body": "ML, büyük veri kümelerinden örüntüleri otomatik olarak keşfeder. Modern dünyada üretilen verinin manuel olarak işlenmesi imkansızdır; ML, bu veriden değer üretmenin en etkili yoludur."
+      },
+      {
+        "type": "text",
+        "body": "ML Nedir ve Neden Önemlidir?"
+      },
+      {
+        "type": "text",
+        "body": "Bir e-posta spam filtresi düşünün. Geleneksel yaklaşımda kuralları el ile yazarsınız. ML yaklaşımında ise binlerce spam ve normal e-posta örneği verir, sistemin spam'i ayırt eden özellikleri kendisinin keşfetmesini sağlarsınız."
+      },
+      {
+        "type": "text",
+        "body": "Geleneksel Programlama vs ML"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Müşteri davranışı tahmini ve segmentasyon Talep tahmini ve stok yönetimi Dolandırıcılık tespiti Kişiselleştirilmiş pazarlama ve öneri sistemleri Kestirimci bakım (predictive maintenance)",
+          "Risk analizi ve kredi skorlama"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Etiketli verilerle eğitim yapılır. Sistem, girdi-çıktı çiftlerinden öğrenir."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Sınıflandırma (Classification): Kategorik çıktılar. Örnek: spam tespiti, tümör sınıflandırma.",
+          "Regresyon (Regression): Sürekli sayısal çıktılar. Örnek: ev fiyatı tahmini, hisse senedi tahmini."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Denetimli Öğrenme (Supervised Learning)"
+      },
+      {
+        "type": "text",
+        "body": "Etiketsiz verilerle çalışır. Sistem, veri içindeki gizli yapıları kendisi keşfeder."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Kümeleme (Clustering): Benzer örnekleri gruplara ayırma. Örnek: müşteri segmentasyonu.",
+          "Boyut İndirgeme: PCA, t-SNE gibi teknikler ile yüksek boyutlu veriyi sıkıştırma.",
+          "Anomali Tespiti: Olağandışı durumları yakalama."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Denetimsiz Öğrenme (Unsupervised Learning)"
+      },
+      {
+        "type": "text",
+        "body": "Ajan, ortamla etkileşime girer ve ödül/ceza sinyalleriyle öğrenir."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Temel kavramlar: Ajan (agent), ortam (environment), durum (state), eylem (action), ödül (reward).",
+          "Örnekler: AlphaGo, oyun YZ'leri, robotik kontrol, otonom araçlar."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Pekiştirmeli Öğrenme (Reinforcement Learning)"
+      },
+      {
+        "type": "text",
+        "body": "Yarı-denetimli öğrenme az miktarda etiketli ve çok miktarda etiketsiz veriyle çalışır. Transfer öğrenme ise bir görev için eğitilmiş modelin başka bir göreve uyarlanmasıdır."
+      },
+      {
+        "type": "image",
+        "body": "ML proje aşamaları akış şeması",
+        "items": [
+          "machine learning workflow pipeline",
+          "assets/images/lessons/modul-02-01.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "5. Overfitting ve Underfitting"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Karar Ağaçları (Decision Trees): Anlaşılması kolay, ağaç yapısında karar veren modeller.",
+          "Random Forest: Birden fazla karar ağacının oylama yaptığı topluluk yöntemi.",
+          "Support Vector Machines (SVM): Sınıfları en iyi ayıran hiper-düzlemi bulan algoritma.",
+          "K-Nearest Neighbors (KNN): En yakın K komşuya bakarak sınıflandırma yapar.",
+          "Naive Bayes: Bayes teoremine dayalı olasılıksal sınıflandırıcı.",
+          "Linear/Logistic Regression: En temel sürekli değer ve sınıflandırma algoritmaları.",
+          "Gradient Boosting (XGBoost, LightGBM): Yarışmaların favorisi olan güçlü topluluk yöntemleri."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Başarılı bir ML projesi sistematik aşamalar gerektirir. CRISP-DM en yaygın metodolojidir."
+      },
+      {
+        "type": "text",
+        "body": "2.4 ML Projesinin Aşamaları"
+      },
+      {
+        "type": "text",
+        "body": "Projenin %70-80'i veri hazırlığında geçer. Veriler farklı kaynaklardan toplanır, temizlenir, normalleştirilir ve formatlanır."
+      },
+      {
+        "type": "text",
+        "body": "1. Veri Toplama ve Hazırlama"
+      },
+      {
+        "type": "text",
+        "body": "Ham veriden anlamlı özellikler çıkarma sanatıdır. 'Çöp girerse çöp çıkar' prensibi geçerlidir."
+      },
+      {
+        "type": "text",
+        "body": "2. Özellik Mühendisliği"
+      },
+      {
+        "type": "text",
+        "body": "Probleme uygun algoritma seçilir, veri eğitim/doğrulama/test olarak bölünür, hiperparametreler ayarlanır."
+      },
+      {
+        "type": "text",
+        "body": "3. Model Seçimi ve Eğitimi"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Accuracy (Doğruluk): Doğru tahminlerin oranı. Dengesiz verilerde yanıltıcı olabilir.",
+          "Precision (Kesinlik): Pozitif tahminlerin ne kadarı gerçekten pozitif? Recall (Duyarlılık): Gerçek pozitiflerin ne kadarını yakaladık? F1-Score: Precision ve Recall'un harmonik ortalaması."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "4. Değerlendirme Metrikleri"
+      },
+      {
+        "type": "text",
+        "body": "Overfitting: Modelin eğitim verisini ezberlemesi, yeni veride başarısız olması. Underfitting: Modelin veriyi yeterince öğrenememesi. Doğru denge çapraz doğrulama ile bulunur."
+      },
+      {
+        "type": "image",
+        "body": "Sınıflandırma vs regresyon görseli",
+        "items": [
+          "classification regression difference",
+          "assets/images/lessons/modul-02-02.jpg"
+        ]
+      },
+      {
+        "type": "quiz",
+        "body": "Bölüm sonu değerlendirme soruları",
+        "questions": [
+          {
+            "question": "Etiketli verilerle yapılan öğrenme türü hangisidir?",
+            "options": [
+              "Denetimsiz öğrenme",
+              "Denetimli öğrenme",
+              "Pekiştirmeli öğrenme",
+              "Transfer öğrenme"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Aşağıdakilerden hangisi bir sınıflandırma (classification) problemidir?",
+            "options": [
+              "Ev fiyatı tahmini",
+              "Hisse senedi değerini tahmin etme",
+              "E-postanın spam olup olmadığını belirleme",
+              "Sıcaklık tahmini"
+            ],
+            "correctIndex": 2,
+            "level": "easy"
+          },
+          {
+            "question": "Pekiştirmeli öğrenmenin temel kavramlarından biri nedir?",
+            "options": [
+              "Etiketli veri",
+              "Ödül (reward)",
+              "PCA",
+              "Tokenization"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "F1-Score neyi ifade eder?",
+            "options": [
+              "Sadece doğruluk oranını",
+              "Precision ve Recall'un harmonik ortalamasını",
+              "Modelin eğitim süresini",
+              "Modelin parametre sayısını"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Overfitting (aşırı uydurma) ne demektir?",
+            "options": [
+              "Modelin yeterince öğrenememesi",
+              "Modelin eğitim verisini ezberleyip yeni veride başarısız olması",
+              "Modelin çok hızlı eğitilmesi",
+              "Veri kümesinin çok büyük olması"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Random Forest algoritmasının tek bir karar ağacına göre avantajı nedir?",
+            "options": [
+              "Daha hızlı çalışır",
+              "Birden fazla ağacın oylama yapmasıyla daha doğru ve genelleyici",
+              "Daha az bellek kullanır",
+              "Daha kolay yorumlanır"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Dengesiz (imbalanced) bir veri kümesinde (örn: %99 negatif, %1 pozitif) neden 'accuracy' yanıltıcı olabilir?",
+            "options": [
+              "Çünkü accuracy hesaplaması yavaştır",
+              "Çünkü her şeyi negatif tahmin eden bir model bile %99 accuracy",
+              "Accuracy sadece regresyonda kullanılır",
+              "Dengesiz veride accuracy hesaplanamaz"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "K-Nearest Neighbors (KNN) algoritmasının en büyük dezavantajı nedir?",
+            "options": [
+              "Eğitim aşaması çok uzundur",
+              "Tahmin aşamasında tüm veri kümesini kontrol ettiği için büyük",
+              "Sadece görüntü verisiyle çalışır",
+              "Sadece denetimsiz öğrenmede kullanılır"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "CRISP-DM metodolojisinde 'Veri Hazırlama' aşaması neden tüm projenin %70-80'ini kaplar?",
+            "options": [
+              "Çünkü modeller çok yavaştır",
+              "Veri toplama, temizleme, dönüştürme ve özellik mühendisliği",
+              "Çünkü algoritmalar otomatik çalışır",
+              "Çünkü deployment çok kolaydır"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "modul-03-deri-n-ogrenme-deep-learning-dl",
+    "order": 3,
+    "title": "DERİN ÖĞRENME (DEEP LEARNING - DL)",
+    "subtitle": "Handbook Bölüm 3 · ~45 dk okuma",
+    "estimatedMinutes": 45,
+    "sections": [
+      {
+        "type": "image",
+        "body": "Yapay sinir ağı yapısı",
+        "items": [
+          "neural network architecture",
+          "assets/images/lessons/modul-03-00.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Gradient Descent ve Optimizasyon"
+      },
+      {
+        "type": "text",
+        "body": "3.1 Derin Öğrenmeye Giriş"
+      },
+      {
+        "type": "text",
+        "body": "Derin öğrenme, çok katmanlı yapay sinir ağlarını kullanan makine öğrenmesinin alt dalıdır. Klasik ML'den farkı, özellik mühendisliğini otomatik yapması ve büyük veriyle daha iyi performans göstermesidir."
+      },
+      {
+        "type": "text",
+        "body": "DL Nedir? ML'den Farkları"
+      },
+      {
+        "type": "text",
+        "body": "Sinir ağındaki gizli katman sayısının fazla olmasından gelir. Klasik sinir ağları 1-2 gizli katmana sahipken, derin ağlar onlarca hatta yüzlerce katmandan oluşabilir."
+      },
+      {
+        "type": "text",
+        "body": "Neden 'Derin' Öğrenme?"
+      },
+      {
+        "type": "text",
+        "body": "Derin öğrenmenin patlaması üç faktöre dayanır: (1) GPU'ların paralel hesaplama gücü, (2) ImageNet gibi büyük veri kümelerinin varlığı, (3) Yeni mimari ve eğitim teknikleri (ReLU, dropout, batch normalization)."
+      },
+      {
+        "type": "text",
+        "body": "3.2 Yapay Sinir Ağları (ANN)"
+      },
+      {
+        "type": "text",
+        "body": "Yapay sinir ağları, insan beynindeki nöronlardan ilham alır. Bir yapay nöron girdileri alır, ağırlıklarla çarpar, toplar ve aktivasyon fonksiyonundan geçirerek çıktı üretir."
+      },
+      {
+        "type": "text",
+        "body": "Biyolojik Nöronlardan Yapay Nörona"
+      },
+      {
+        "type": "text",
+        "body": "Perceptron, en basit sinir ağı birimidir (Frank Rosenblatt, 1957). Çok Katmanlı Perceptron (MLP), girdi katmanı, bir veya daha fazla gizli katman ve çıktı katmanından oluşur."
+      },
+      {
+        "type": "text",
+        "body": "Perceptron ve Çok Katmanlı Ağlar"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "ReLU (Rectified Linear Unit): max(0, x). Derin ağlarda en yaygın kullanılan fonksiyondur.",
+          "Sigmoid: 0 ile 1 arasında değer üretir. İkili sınıflandırma çıktısı için kullanılır.",
+          "Tanh: -1 ile 1 arasında değer üretir.",
+          "Softmax: Çok sınıflı sınıflandırma çıktıları için olasılık dağılımı üretir."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Aktivasyon Fonksiyonları"
+      },
+      {
+        "type": "text",
+        "body": "Geri yayılım, sinir ağlarının nasıl öğrendiğinin temelidir. Çıktıdaki hata, ağ üzerinden geriye doğru yayılarak her ağırlığın hataya katkısı hesaplanır ve ağırlıklar güncellenir."
+      },
+      {
+        "type": "text",
+        "body": "Backpropagation Algoritması"
+      },
+      {
+        "type": "text",
+        "body": "Gradient descent, kayıp fonksiyonunu minimize eden algoritmadır. Varyantları: SGD (Stochastic), Mini-batch GD, Adam, RMSprop. Adam, derin öğrenmede en popüler optimizer'dır."
+      },
+      {
+        "type": "image",
+        "body": "CNN mimarisi - convolution, pooling katmanları",
+        "items": [
+          "convolutional neural network CNN",
+          "assets/images/lessons/modul-03-01.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Fine-Tuning Yaklaşımları"
+      },
+      {
+        "type": "text",
+        "body": "3.3 İleri Düzey DL Mimarileri"
+      },
+      {
+        "type": "text",
+        "body": "CNN'ler özellikle görüntü işleme için tasarlanmıştır. Convolution katmanları yerel özellikleri (kenarlar, dokular) tespit eder, pooling katmanları boyutu azaltır."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Uygulamalar: Yüz tanıma, tıbbi görüntü analizi, otonom araçlar, OCR.",
+          "Önemli mimariler: LeNet, AlexNet, VGG, ResNet, EfficientNet."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Convolutional Neural Networks (CNN)"
+      },
+      {
+        "type": "text",
+        "body": "RNN'ler sıralı veri (metin, ses, zaman serisi) için tasarlanmıştır. Geçmiş bilgiyi 'hafıza' olarak tutar."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "LSTM (Long Short-Term Memory): Uzun vadeli bağımlılıkları öğrenebilen"
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "GRU (Gated Recurrent Unit): LSTM'in daha basit versiyonu.",
+          "Uygulamalar: Metin üretimi, makine çevirisi, zaman serisi tahmini."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Recurrent Neural Networks (RNN) ve LSTM"
+      },
+      {
+        "type": "text",
+        "body": "Ian Goodfellow tarafından 2014'te geliştirilen GAN'lar, üretici (generator) ve ayırt edici (discriminator) iki ağın rekabetiyle çalışır."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Uygulamalar: Deepfake, sanat üretimi, veri artırma, görüntü düzeltme."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Generative Adversarial Networks (GAN)"
+      },
+      {
+        "type": "text",
+        "body": "2017'de Google'ın 'Attention is All You Need' makalesiyle tanıtıldı. Self-attention mekanizması sayesinde RNN'lerden çok daha hızlı ve etkili."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "BERT: Google'ın çift yönlü dil modeli, anlama görevlerinde başarılı.",
+          "GPT serisi: OpenAI'nin üretken dil modeli.",
+          "Modern büyük dil modellerinin (Claude, Gemini, LLaMA) temelidir."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Transfer öğrenme, bir görev için eğitilmiş büyük modelin başka bir görev için uyarlanmasıdır. Az veriyle yüksek performans sağlar."
+      },
+      {
+        "type": "text",
+        "body": "3.4 Transfer Learning ve Fine-Tuning"
+      },
+      {
+        "type": "text",
+        "body": "ImageNet'te eğitilmiş ResNet'i tıbbi görüntü analizine, BERT'i Türkçe NLP'ye uyarlayabilirsiniz. Hugging Face Hub binlerce hazır model sunar."
+      },
+      {
+        "type": "text",
+        "body": "Önceden Eğitilmiş Modeller"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Feature extraction: Sadece son katmanı eğitme.",
+          "Full fine-tuning: Tüm ağırlıkları az miktarda güncelleme.",
+          "LoRA (Low-Rank Adaptation): Verimli fine-tuning tekniği."
+        ]
+      },
+      {
+        "type": "image",
+        "body": "Transformer ve attention mekanizması",
+        "items": [
+          "transformer architecture attention",
+          "assets/images/lessons/modul-03-02.jpg"
+        ]
+      },
+      {
+        "type": "image",
+        "body": "Aktivasyon fonksiyonları grafikleri",
+        "items": [
+          "activation functions ReLU sigmoid",
+          "assets/images/lessons/modul-03-03.jpg"
+        ]
+      },
+      {
+        "type": "quiz",
+        "body": "Bölüm sonu değerlendirme soruları",
+        "questions": [
+          {
+            "question": "Derin öğrenme neyin alt dalıdır?",
+            "options": [
+              "Robotiğin",
+              "Makine öğrenmesinin",
+              "Veritabanı yönetiminin",
+              "Web programlamanın"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Görüntü işleme için en yaygın kullanılan derin öğrenme mimarisi hangisidir?",
+            "options": [
+              "RNN",
+              "CNN (Convolutional Neural Network)",
+              "Transformer",
+              "SVM"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "ChatGPT, Claude gibi modern dil modellerinin temelindeki mimari nedir?",
+            "options": [
+              "CNN",
+              "RNN",
+              "Transformer",
+              "Decision Tree"
+            ],
+            "correctIndex": 2,
+            "level": "easy"
+          },
+          {
+            "question": "ReLU aktivasyon fonksiyonu nasıl çalışır?",
+            "options": [
+              "Her zaman 1 değeri döner",
+              "max(0, x) --- negatif değerleri 0 yapar, pozitifleri aynen",
+              "Sadece 0 veya 1 üretir",
+              "-1 ile 1 arasında değer üretir"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Backpropagation algoritmasının amacı nedir?",
+            "options": [
+              "Veriyi tersine sıralamak",
+              "Çıktıdaki hatayı ağ üzerinden geriye yayarak ağırlıkları",
+              "Modeli daha hızlı çalıştırmak",
+              "Veri kümesini bölmek"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "GAN (Generative Adversarial Network) nasıl çalışır?",
+            "options": [
+              "Tek bir ağ veri üretir",
+              "Üretici (generator) ve ayırt edici (discriminator) iki ağın",
+              "Sadece sınıflandırma yapar",
+              "Sadece zaman serisi tahmini yapar"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Transformer mimarisindeki 'self-attention' mekanizmasının RNN'lere kıyasla en büyük avantajı nedir?",
+            "options": [
+              "Daha az bellek kullanır",
+              "Sıralı işleme yerine paralel işleme yaparak uzun bağımlılıkları",
+              "Sadece kısa metinlerle çalışır",
+              "Eğitim verisi gerektirmez"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Transfer learning'in en önemli avantajı nedir?",
+            "options": [
+              "Modeli sıfırdan eğitir",
+              "Önceden büyük veriyle eğitilmiş modelleri kullanarak az veriyle",
+              "Sadece görüntülerde çalışır",
+              "İnternet bağlantısı gerektirmez"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "LSTM'in standart RNN'e göre çözdüğü problem nedir?",
+            "options": [
+              "Daha hızlı çalışır",
+              "Vanishing gradient problemini çözerek uzun vadeli",
+              "Sadece görüntü işleyebilir",
+              "Eğitim verisi gerektirmez"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "modul-04-dogal-di-l-i-sleme-nlp",
+    "order": 4,
+    "title": "DOĞAL DİL İŞLEME (NLP)",
+    "subtitle": "Handbook Bölüm 4 · ~35 dk okuma",
+    "estimatedMinutes": 35,
+    "sections": [
+      {
+        "type": "image",
+        "body": "NLP pipeline ve teknikleri",
+        "items": [
+          "natural language processing pipeline",
+          "assets/images/lessons/modul-04-00.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "4.2 Temel NLP Teknikleri"
+      },
+      {
+        "type": "text",
+        "body": "NLP, bilgisayarların insan dilini anlama, yorumlama ve üretme yeteneğini geliştirmeyi amaçlayan YZ alt dalıdır. Hesaplamalı dilbilim, makine öğrenmesi ve derin öğrenmenin kesişimindedir."
+      },
+      {
+        "type": "text",
+        "body": "Dil ve Bilgisayarlar"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Belirsizlik (Ambiguity): 'Yüz' kelimesi sayı mı, organ mı, fiil mi? Bağlam (Context): Aynı kelime farklı bağlamlarda farklı anlamlara gelir.",
+          "Dil çeşitliliği: Dünyada 7000+ dil, her birinin kendine özgü yapısı.",
+          "İronik/mecazi ifadeler: Sözcüklerin yüzeysel anlamından farklı kullanımı.",
+          "Türkçe gibi sondan eklemeli dillerin morfolojik karmaşıklığı."
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Tokenization (Simgeleme): Metni kelime veya alt-kelime parçalarına ayırma.",
+          "Stemming: Kelime köklerini bulma (örn: 'çalışıyorum' → 'çalış').",
+          "Lemmatization: Sözlük formuna indirgeme (örn: 'gidiyordum' → 'gitmek').",
+          "Part-of-Speech (POS) Tagging: Kelimelerin türlerini belirleme (isim, fiil, sıfat).",
+          "Named Entity Recognition (NER): Kişi, yer, organizasyon isimlerini tespit etme.",
+          "Word Embeddings: Kelimeleri vektör uzayında temsil etme (Word2Vec,"
+        ]
+      },
+      {
+        "type": "image",
+        "body": "Word embeddings vektör uzayı",
+        "items": [
+          "word2vec embeddings vector space",
+          "assets/images/lessons/modul-04-01.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "İş Dünyasında LLM Kullanımı"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Sentiment Analysis (Duygu Analizi): Metnin duygusal tonunu (pozitif/negatif/nötr) tespit etme. Sosyal medya analizi, müşteri yorumları.",
+          "Makine Çevirisi: Google Translate, DeepL gibi sistemler. Modern modeller Transformer tabanlıdır.",
+          "Soru-Cevap Sistemleri: Belge veya bilgi tabanından soruları cevaplama.",
+          "Text Summarization (Metin Özetleme): Extractive (özgün cümleleri çıkarma) ve abstractive (yeni cümleler üretme) yaklaşımlar.",
+          "Chatbot'lar: Müşteri hizmetleri, kişisel asistanlar.",
+          "Konuşma tanıma ve sentezi: Siri, Alexa, çağrı merkezi otomasyonu."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "4.4 Büyük Dil Modelleri (LLM)"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "GPT serisi (OpenAI): GPT-3.5, GPT-4, GPT-4o, GPT-5.",
+          "Claude (Anthropic): Claude Opus, Sonnet, Haiku ailesi.",
+          "Gemini (Google): Multimodal yetenekleriyle öne çıkar.",
+          "LLaMA (Meta): Açık kaynak alternatifler.",
+          "Mistral, Qwen, DeepSeek: Yükselen modeller."
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Net ve spesifik talimatlar verme.",
+          "Bağlam sağlama ve rol atama.",
+          "Few-shot örnekler kullanma.",
+          "Chain-of-thought (adım adım düşünme) tetikleme.",
+          "Çıktı formatını açıkça belirtme."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Prompt Engineering Temel Prensipleri"
+      },
+      {
+        "type": "text",
+        "body": "Dil modellerini harici bilgi kaynaklarıyla zenginleştirme tekniği. Modelin hafızasında olmayan güncel veya özel bilgileri kullanmasını sağlar. Şirket içi belgeler, yasal mevzuat gibi alanlarda kritiktir."
+      },
+      {
+        "type": "text",
+        "body": "RAG (Retrieval Augmented Generation)"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Müşteri hizmetleri otomasyonu İçerik üretimi ve düzenleme Kod yazma ve gözden geçirme Belge analizi ve özetleme Eğitim ve onboarding süreçleri"
+        ]
+      },
+      {
+        "type": "image",
+        "body": "Büyük dil modelleri karşılaştırma",
+        "items": [
+          "GPT Claude LLM comparison",
+          "assets/images/lessons/modul-04-02.png"
+        ]
+      },
+      {
+        "type": "quiz",
+        "body": "Bölüm sonu değerlendirme soruları",
+        "questions": [
+          {
+            "question": "Tokenization ne demektir?",
+            "options": [
+              "Verilerin şifrelenmesi",
+              "Metnin kelime veya alt-kelime parçalarına ayrılması",
+              "Modellerin eğitilmesi",
+              "Veritabanı sorgulaması"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "LLM kısaltması neyi ifade eder?",
+            "options": [
+              "Linear Learning Machine",
+              "Large Language Model",
+              "Logical Learning Method",
+              "Limited Language Memory"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Aşağıdakilerden hangisi bir NLP uygulaması DEĞİLDİR?",
+            "options": [
+              "Makine çevirisi",
+              "Duygu analizi",
+              "Yüz tanıma",
+              "Metin özetleme"
+            ],
+            "correctIndex": 2,
+            "level": "easy"
+          },
+          {
+            "question": "Word Embedding (kelime gömme) nedir?",
+            "options": [
+              "Kelimeleri silme tekniği",
+              "Kelimelerin anlamsal ilişkilerini koruyarak vektör uzayında",
+              "Yazım hatalarını bulma yöntemi",
+              "Cümle uzunluğunu ölçme"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Stemming ile Lemmatization arasındaki fark nedir?",
+            "options": [
+              "İkisi de aynı şeydir",
+              "Stemming kelimenin kökünü kesip atar; Lemmatization sözlük",
+              "Stemming sadece İngilizce çalışır",
+              "Lemmatization sadece sayılarla çalışır"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "NER (Named Entity Recognition) ne işe yarar?",
+            "options": [
+              "Sayıları toplar",
+              "Metindeki kişi, yer, organizasyon gibi adlandırılmış varlıkları",
+              "Cümleleri çevirir",
+              "Dosya isimlerini değiştirir"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "RAG (Retrieval Augmented Generation) tekniği neyi çözer?",
+            "options": [
+              "Modeli hızlandırır",
+              "LLM'nin eğitim verisinde olmayan güncel veya özel bilgileri",
+              "Sadece görüntü işlemede kullanılır",
+              "Veri toplamayı otomatize eder"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Chain-of-Thought (CoT) prompting tekniği LLM'lerde neyi iyileştirir?",
+            "options": [
+              "Sadece çıktının uzunluğunu",
+              "Modelin adım adım akıl yürütmesini tetikleyerek karmaşık",
+              "Modelin renk algısını",
+              "Eğitim süresini"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Türkçe gibi sondan eklemeli (agglutinative) dillerin NLP'de oluşturduğu zorluk nedir?",
+            "options": [
+              "Sadece kısa kelimeleri var",
+              "Tek bir kelime köküne çok sayıda ek alarak teorik olarak",
+              "Hiç zorluk oluşturmaz",
+              "Sadece sözel iletişimde sorun olur"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "modul-05-bi-lgi-sayarli-goru-computer-vision",
+    "order": 5,
+    "title": "BİLGİSAYARLI GÖRÜ (COMPUTER VISION)",
+    "subtitle": "Handbook Bölüm 5 · ~30 dk okuma",
+    "estimatedMinutes": 30,
+    "sections": [
+      {
+        "type": "image",
+        "body": "Nesne tespiti örnekleri",
+        "items": [
+          "object detection YOLO bounding box",
+          "assets/images/lessons/modul-05-00.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "5.1 Görüntü İşleme Temelleri"
+      },
+      {
+        "type": "text",
+        "body": "Dijital görüntü, pixel adı verilen küçük renkli karelerden oluşan bir matristir. Renkli görüntüler RGB (kırmızı-yeşil-mavi) kanallarıyla temsil edilir. Her pixel 0-255 arası değerler alır."
+      },
+      {
+        "type": "text",
+        "body": "Dijital Görüntüler ve Pixel'ler"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Yeniden boyutlandırma ve kırpma Gri tonlamaya çevirme Histogram eşitleme (kontrast iyileştirme)",
+          "Gürültü azaltma (Gaussian blur, median filter)",
+          "Kenar tespiti (Sobel, Canny edge detection)",
+          "Veri artırma (data augmentation): rotasyon, çevirme, parlaklık ayarı"
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Nesne Tanıma ve Tespiti: Görüntüdeki nesneleri sınıflandırma ve konumlarını bulma. YOLO, Faster R-CNN gibi modeller.",
+          "Yüz Tanıma: Biometrik kimlik doğrulama, sosyal medya etiketleme, güvenlik sistemleri.",
+          "OCR (Optik Karakter Tanıma): Belgelerden metin çıkarma, plaka tanıma.",
+          "Tıbbi Görüntü Analizi: MR, BT, röntgen üzerinde hastalık tespiti. Cilt kanseri taraması, retinopati tespiti.",
+          "Otonom Araçlarda Görü Sistemleri: Tesla, Waymo gibi sistemler kameralarla yol algılama yapar.",
+          "Endüstriyel Kalite Kontrol: Üretim hattında kusurlu ürün tespiti.",
+          "Semantik segmentasyon: Her pikseli bir sınıfa atama (yol, gökyüzü, araç)."
+        ]
+      },
+      {
+        "type": "image",
+        "body": "Yüz tanıma sistemleri",
+        "items": [
+          "face recognition biometric",
+          "assets/images/lessons/modul-05-01.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "İş Dünyasında Yaratıcı YZ Kullanımı"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "DALL-E (OpenAI): Metinden görsel üreten ilk büyük model.",
+          "Midjourney: Sanatsal kalitesiyle öne çıkan platform.",
+          "Stable Diffusion: Açık kaynak, yerel olarak çalıştırılabilen model.",
+          "Adobe Firefly: Ticari kullanım için güvenli üretim.",
+          "Sora, Runway, Veo: Metinden video üreten modeller."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Üretken Görsel YZ Modelleri"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Reklam ve pazarlama görselleri Ürün konsept tasarımı Storyboard ve mockup hazırlama Sosyal medya içerikleri Eğitim materyalleri ve illüstrasyonlar"
+        ]
+      },
+      {
+        "type": "image",
+        "body": "Stable Diffusion ile görsel üretimi",
+        "items": [
+          "stable diffusion text to image",
+          "assets/images/lessons/modul-05-02.jpg"
+        ]
+      },
+      {
+        "type": "quiz",
+        "body": "Bölüm sonu değerlendirme soruları",
+        "questions": [
+          {
+            "question": "Dijital bir görüntüyü oluşturan en küçük birim nedir?",
+            "options": [
+              "Bit",
+              "Pixel",
+              "Byte",
+              "Voksel"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "DALL-E, Midjourney ve Stable Diffusion ne tür modellerdir?",
+            "options": [
+              "Metin sınıflandırma",
+              "Metinden görsel üretme",
+              "Ses tanıma",
+              "Veritabanı yönetimi"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "OCR neyi yapar?",
+            "options": [
+              "Online oyun simülasyonu",
+              "Görüntülerden metin çıkarma (Optik Karakter Tanıma)",
+              "Otomatik renklendirme",
+              "Görüntü sıkıştırma"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Bir RGB görüntüde her pixel kaç değerle temsil edilir?",
+            "options": [
+              "1 değer",
+              "3 değer (kırmızı, yeşil, mavi kanalları)",
+              "10 değer",
+              "256 değer"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Object Detection (nesne tespiti) ve Image Classification (görüntü sınıflandırma) arasındaki temel fark nedir?",
+            "options": [
+              "İkisi de aynı şeydir",
+              "Classification tüm görüntüye tek etiket verir; Detection",
+              "Classification daha yavaştır",
+              "Detection sadece siyah-beyaz görüntülerle çalışır"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Semantic segmentation nedir?",
+            "options": [
+              "Görüntüyü ikiye bölme",
+              "Görüntüdeki her pixeli bir sınıfa atama (yol, gökyüzü, araç",
+              "Görüntü sıkıştırma",
+              "Renk paleti çıkarma"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Data augmentation (veri artırma) tekniği neden kullanılır?",
+            "options": [
+              "Sadece dosya boyutunu artırmak için",
+              "Eğitim verisini rotasyon, çevirme, kırpma gibi dönüşümlerle",
+              "Verileri silmek için",
+              "Sadece renkli görüntülerde çalışır"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Stable Diffusion'ın DALL-E'den temel farkı nedir?",
+            "options": [
+              "Daha az kaliteli üretir",
+              "Açık kaynak olduğu için kendi donanımınızda lokal olarak",
+              "Sadece İngilizce çalışır",
+              "Sadece siyah-beyaz görsel üretir"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "YOLO (You Only Look Once) algoritmasını diğer nesne tespit algoritmalarından ayıran özellik nedir?",
+            "options": [
+              "Sadece tek nesne tespit eder",
+              "Tek geçişte (single pass) hem nesne sınıfını hem konumunu",
+              "İnternet gerektirir",
+              "Sadece insan tespit eder"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "modul-06-buyuk-veri-big-data-ve-yz",
+    "order": 6,
+    "title": "BÜYÜK VERİ (BIG DATA) VE YZ",
+    "subtitle": "Handbook Bölüm 6 · ~25 dk okuma",
+    "estimatedMinutes": 25,
+    "sections": [
+      {
+        "type": "image",
+        "body": "Big Data 5V şeması",
+        "items": [
+          "big data 5V volume velocity variety veracity",
+          "assets/images/lessons/modul-06-00.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "6.2 Big Data Teknolojileri"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Volume (Hacim): Veri miktarı (TB, PB, EB).",
+          "Velocity (Hız): Verinin oluşma ve işlenme hızı (saniye başına milyonlarca olay).",
+          "Variety (Çeşitlilik): Yapılandırılmış, yarı-yapılandırılmış, yapılandırılmamış veri (metin, görsel, video, ses).",
+          "Veracity (Doğruluk): Veri kalitesi ve güvenilirliği.",
+          "Value (Değer): Veriden çıkarılan iş değeri."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "5V: Big Data'nın Boyutları"
+      },
+      {
+        "type": "text",
+        "body": "Geleneksel veri tabanları yapılandırılmış, sınırlı boyutta veriyle çalışır. Big Data ise petabaytlarca yapılandırılmamış veriyi dağıtık sistemlerle işler."
+      },
+      {
+        "type": "text",
+        "body": "Geleneksel Veri vs Büyük Veri"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Data Warehouse: Yapılandırılmış, temizlenmiş veri için. Analitik raporlama amaçlı.",
+          "Data Lake: Ham veriyi tüm formatlarda saklar. Esneklik sağlar.",
+          "Data Lakehouse: Her ikisinin birleşimi (Databricks, Snowflake)."
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Hadoop Ekosistemi: HDFS (dağıtık dosya sistemi), MapReduce (paralel işleme), YARN (kaynak yönetimi).",
+          "Apache Spark: Hadoop'tan 100 kat hızlı bellek-içi işleme motoru."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Spark MLlib makine öğrenmesi için."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "NoSQL Veritabanları: MongoDB (belge), Cassandra (sütun), Neo4j (graf),"
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Dağıtık Sistemler: Kafka (mesajlaşma), Flink (akış işleme),"
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Bulut Veri Platformları: Snowflake, Databricks, AWS Redshift, Google"
+        ]
+      },
+      {
+        "type": "image",
+        "body": "Hadoop ve Spark ekosistem mimarisi",
+        "items": [
+          "hadoop spark ecosystem architecture",
+          "assets/images/lessons/modul-06-01.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Gerçek Zamanlı Veri İşleme ve ML"
+      },
+      {
+        "type": "text",
+        "body": "6.3 Big Data ve YZ İlişkisi\n\n'Veri, YZ'nin yakıtıdır' özdeyişi boşuna değildir. Modern YZ modelleri, özellikle derin öğrenme, büyük miktarda veri gerektirir."
+      },
+      {
+        "type": "text",
+        "body": "Eksik veri imputasyonu, aykırı değer tespiti, veri dengeleme (oversampling, undersampling), veri standardizasyonu kritik adımlardır."
+      },
+      {
+        "type": "text",
+        "body": "Veri Kalitesi ve Önişleme"
+      },
+      {
+        "type": "text",
+        "body": "Feature Store, özelliklerin tek yerden yönetildiği merkezi sistemdir (Feast, Tecton). Veri tutarlılığı ve yeniden kullanımı sağlar."
+      },
+      {
+        "type": "text",
+        "body": "Feature Stores ve ML Altyapısı"
+      },
+      {
+        "type": "text",
+        "body": "Streaming ML (Kafka + Spark Streaming + ML modelleri) ile gerçek zamanlı tahmin yapılır. Örnek: Anlık dolandırıcılık tespiti, dinamik fiyatlandırma."
+      },
+      {
+        "type": "quiz",
+        "body": "Bölüm sonu değerlendirme soruları",
+        "questions": [
+          {
+            "question": "Big Data'nın 5V'sinden olmayan hangisidir?",
+            "options": [
+              "Volume",
+              "Velocity",
+              "Variety",
+              "Virtuality"
+            ],
+            "correctIndex": 3,
+            "level": "easy"
+          },
+          {
+            "question": "Apache Spark'ın Hadoop MapReduce'a göre temel avantajı nedir?",
+            "options": [
+              "Daha ucuzdur",
+              "Bellek-içi (in-memory) işleme ile çok daha hızlıdır",
+              "Daha az veri işler",
+              "Sadece görüntü verisi için çalışır"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Aşağıdakilerden hangisi bir NoSQL veritabanıdır?",
+            "options": [
+              "MySQL",
+              "PostgreSQL",
+              "MongoDB",
+              "Oracle"
+            ],
+            "correctIndex": 2,
+            "level": "easy"
+          },
+          {
+            "question": "Data Warehouse ile Data Lake arasındaki temel fark nedir?",
+            "options": [
+              "İkisi de aynıdır",
+              "Data Warehouse yapılandırılmış ve işlenmiş veri için, Data Lake",
+              "Data Lake daha pahalıdır",
+              "Data Warehouse sadece görsel veri saklar"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Big Data'nın 'Veracity' boyutu neyi ifade eder?",
+            "options": [
+              "Veri miktarını",
+              "Veri kalitesi ve güvenilirliğini",
+              "Veri hızını",
+              "Veri tipi çeşitliliğini"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Veri YZ için neden bu kadar kritiktir?",
+            "options": [
+              "Çünkü disk doldurur",
+              "Çünkü modern YZ modelleri, özellikle derin öğrenme, büyük",
+              "Sadece görsel olduğu için",
+              "Veri hiç önemli değildir"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Feature Store'un (özellik deposu) ML pipeline'larındaki rolü nedir?",
+            "options": [
+              "Sadece veri yedekleme",
+              "Özelliklerin merkezi yönetimi, eğitim-production tutarlılığı ve",
+              "Sadece görsel veri depolama",
+              "Internet bağlantısı sağlama"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Streaming ML (akış makine öğrenmesi) hangi senaryoda kritiktir?",
+            "options": [
+              "Aylık rapor üretiminde",
+              "Anlık dolandırıcılık tespiti, dinamik fiyatlandırma gibi gerçek",
+              "Sadece offline veri analizinde",
+              "Sadece veri yedeklemede"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Lakehouse mimarisi (Databricks, Snowflake) neyi çözer?",
+            "options": [
+              "Sadece performans sorunlarını",
+              "Data Warehouse'un yapılandırılmış sorgulama yeteneği ile Data",
+              "Sadece görsel veri yönetir",
+              "İnternet hızını artırır"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "modul-07-nesnelerin-i-nterneti-iot-ve-yz",
+    "order": 7,
+    "title": "NESNELERIN İNTERNETİ (IoT) VE YZ",
+    "subtitle": "Handbook Bölüm 7 · ~25 dk okuma",
+    "estimatedMinutes": 25,
+    "sections": [
+      {
+        "type": "image",
+        "body": "IoT mimarisi katmanları",
+        "items": [
+          "IoT architecture layers",
+          "assets/images/lessons/modul-07-00.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Nesnelerin İnterneti (IoT), fiziksel cihazların internet üzerinden birbirleriyle ve sistemlerle iletişim kurduğu ağdır. Akıllı evden endüstriyel tesislere kadar her yerdedir."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Sensörler: Sıcaklık, nem, hareket, ışık, ses gibi fiziksel ölçümleri yapar.",
+          "Aktüatörler: Komutları fiziksel eylemlere dönüştürür (motor, ısıtıcı, valf).",
+          "Bağlantı protokolleri: WiFi, Bluetooth, Zigbee, LoRaWAN, NB-IoT, 5G.",
+          "Edge cihazlar: Veriyi yerel olarak işleyen gateway'ler."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Tipik IoT mimarisi 4 katmandan oluşur: Algılama katmanı (sensörler), ağ katmanı (bağlantı), veri işleme katmanı (cloud/edge), uygulama katmanı (kullanıcı arayüzü)."
+      },
+      {
+        "type": "text",
+        "body": "7.2 IoT ve YZ Entegrasyonu"
+      },
+      {
+        "type": "text",
+        "body": "Verinin oluştuğu yerde (cihazda veya yakınında) YZ modellerinin çalışmasıdır. Avantajları: düşük gecikme, gizlilik, bant genişliği tasarrufu. NVIDIA Jetson, Google Coral, Raspberry Pi gibi platformlar kullanılır."
+      },
+      {
+        "type": "text",
+        "body": "Edge AI: Uçta Yapay Zeka"
+      },
+      {
+        "type": "text",
+        "body": "Sensörlerden gelen verilerle makinelerin arızalanmadan önce tespit edilmesi. ML modelleri vibrasyon, sıcaklık, akım gibi sinyalleri analiz eder. Üretim duruşlarını %50'ye kadar azaltır."
+      },
+      {
+        "type": "text",
+        "body": "Predictive Maintenance (Kestirimci Bakım)"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Akıllı şehirler: Trafik yönetimi, akıllı aydınlatma, atık yönetimi.",
+          "Akıllı evler: Termostat, güvenlik, ses asistanları.",
+          "Endüstriyel IoT (IIoT): Üretim hatları, lojistik, enerji.",
+          "Akıllı tarım: Toprak nem sensörleri, drone'larla mahsul izleme, otomatik sulama.",
+          "Sağlık IoT: Giyilebilir cihazlar, uzaktan hasta takibi."
+        ]
+      },
+      {
+        "type": "image",
+        "body": "Edge AI ve cloud entegrasyonu",
+        "items": [
+          "edge AI cloud computing",
+          "assets/images/lessons/modul-07-01.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "7.3 Gerçek Dünya Örnekleri"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Nest ve Ecobee akıllı termostatlar: Kullanıcı alışkanlıklarını öğrenip enerji tasarrufu sağlar.",
+          "Apple Watch, Fitbit: Kalp ritmi, uyku, aktivite takibi yapar.",
+          "John Deere akıllı traktörler: GPS, sensörler ve YZ ile hassas tarım.",
+          "Fabrika 4.0 ve dijital ikizler: Fiziksel sistemin dijital kopyası, simülasyon ve optimizasyon için kullanılır.",
+          "Amazon Go mağazalar: Kameralar, sensörler ve YZ ile kasiyersiz alışveriş."
+        ]
+      },
+      {
+        "type": "quiz",
+        "body": "Bölüm sonu değerlendirme soruları",
+        "questions": [
+          {
+            "question": "IoT neyin kısaltmasıdır?",
+            "options": [
+              "Internet of Tools",
+              "Internet of Things",
+              "Information of Technology",
+              "Integration of Telecom"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Edge AI ne demektir?",
+            "options": [
+              "Sadece bulutta çalışan YZ",
+              "Verinin oluştuğu yerde (cihazda) çalışan YZ",
+              "Sadece sınır ülkelerde kullanılan YZ",
+              "Çok pahalı YZ"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Aşağıdakilerden hangisi bir IoT uygulamasıdır?",
+            "options": [
+              "Excel tablosu",
+              "Akıllı termostat",
+              "Word belgesi",
+              "Hesap makinesi"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Predictive Maintenance (kestirimci bakım) nasıl çalışır?",
+            "options": [
+              "Önceden belirlenmiş tarihlerde bakım yapar",
+              "Sensörlerden gelen verileri ML ile analiz ederek arıza olmadan",
+              "Hiç bakım yapmaz",
+              "Sadece elektrik kesintilerinde çalışır"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Edge AI'ın bulut tabanlı YZ'ye göre temel avantajları nelerdir?",
+            "options": [
+              "Daha az doğru çalışır",
+              "Düşük gecikme, gizlilik koruması ve bant genişliği tasarrufu",
+              "Sadece gece çalışır",
+              "İnternet gerektirir"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Dijital ikiz (digital twin) kavramı nedir?",
+            "options": [
+              "İkinci bir bilgisayar",
+              "Fiziksel bir sistemin veya nesnenin gerçek zamanlı dijital",
+              "Sadece grafik tasarımı",
+              "Yedek hard disk"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "IIoT (Industrial IoT) uygulamalarında ML modellerinin edge'de çalıştırılması neden tercih edilir?",
+            "options": [
+              "Daha ucuzdur",
+              "Üretim hattında milisaniyelik kararlar gerekir; bulut gecikmesi",
+              "Bulut çalışmaz",
+              "Sadece akşamları çalışır"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Hassas tarımda (precision agriculture) YZ ve IoT entegrasyonunun temel faydası nedir?",
+            "options": [
+              "Sadece estetik",
+              "Toprak sensörleri ve drone verilerinin ML ile analizi sayesinde",
+              "Sadece güneşli günlerde çalışır",
+              "Geleneksel tarımdan daha yavaştır"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Federated Learning IoT senaryolarında neden uygundur?",
+            "options": [
+              "Çok hızlıdır",
+              "Cihazlardan veri toplamadan, her cihazda yerel eğitim yapıp",
+              "Sadece tek cihaz kullanır",
+              "İnternet gerektirmez"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "modul-08-vr-ar-ve-yz",
+    "order": 8,
+    "title": "VR, AR VE YZ",
+    "subtitle": "Handbook Bölüm 8 · ~20 dk okuma",
+    "estimatedMinutes": 20,
+    "sections": [
+      {
+        "type": "image",
+        "body": "VR ve AR fark karşılaştırması",
+        "items": [
+          "VR AR MR difference",
+          "assets/images/lessons/modul-08-00.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "8.2 YZ ile Zenginleştirilmiş VR/AR"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "VR (Virtual Reality): Tamamen sanal bir ortama daldıran teknoloji."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Meta Quest, PlayStation VR, Apple Vision Pro."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "AR (Augmented Reality): Gerçek dünyaya dijital katmanlar ekler."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Pokemon GO, IKEA Place uygulaması."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "MR (Mixed Reality): VR ve AR'nin birleşimi. Microsoft HoloLens.",
+          "XR (Extended Reality): Tüm bu teknolojileri kapsayan şemsiye terim."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "8.1 VR ve AR Temelleri"
+      },
+      {
+        "type": "text",
+        "body": "Yüksek çözünürlüklü ekranlar, motion tracking, eye tracking, haptic feedback, spatial audio teknolojileriyle çalışır. Apple Vision Pro gibi cihazlar 4K mikro-OLED ekran ve çoklu sensör kullanır."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Akıllı NPC'ler: YZ destekli karakterler oyunlarda daha gerçekçi davranışlar sergiler.",
+          "Gerçek zamanlı çeviri ve AR overlay: Google Translate ile yabancı yazıları anında çevirme.",
+          "Sanal asistanlar: VR ortamında hologram şeklinde rehber AI.",
+          "Procedural content generation: Sonsuz dünya üretimi (No Man's Sky).",
+          "Hand tracking ve gesture recognition: YZ ile el hareketlerinin tanınması."
+        ]
+      },
+      {
+        "type": "image",
+        "body": "Metaverse konsepti",
+        "items": [
+          "metaverse virtual world",
+          "assets/images/lessons/modul-08-01.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "8.3 Uygulama Alanları"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Eğitim ve simülasyon: Pilot eğitimi, askeri tatbikatlar, tehlikeli iş eğitimleri.",
+          "Sağlık: Cerrahi simülasyon, ağrı yönetimi, fobi tedavisi, anatomi eğitimi.",
+          "Mimarlık ve tasarım: Yapı sahipleri inşaat öncesi binayı VR'da gezebilir.",
+          "Perakende: Sanal kıyafet deneme, mobilya yerleştirme (IKEA Place).",
+          "Metaverse: Sanal toplantılar, etkinlikler, dijital ekonomi.",
+          "Uzaktan işbirliği: Sanal toplantı odaları, 3D modeller üzerinde takım çalışması."
+        ]
+      },
+      {
+        "type": "quiz",
+        "body": "Bölüm sonu değerlendirme soruları",
+        "questions": [
+          {
+            "question": "VR ve AR arasındaki temel fark nedir?",
+            "options": [
+              "VR ucuzdur, AR pahalıdır",
+              "VR tamamen sanal ortam, AR gerçek dünyaya dijital katmanlar",
+              "VR sadece oyunda kullanılır",
+              "AR sadece askeri amaçlıdır"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Pokemon GO hangi teknolojinin örneğidir?",
+            "options": [
+              "VR",
+              "AR",
+              "MR",
+              "AI"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Metaverse kavramı neyi ifade eder?",
+            "options": [
+              "Yeni bir programlama dili",
+              "Sanal dünya ve dijital ekonomi konseptleri",
+              "Bir e-ticaret sitesi",
+              "Bir veritabanı yönetim sistemi"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "MR (Mixed Reality) nedir?",
+            "options": [
+              "Sadece müzik dinleme teknolojisi",
+              "VR ve AR'nin birleşimi; gerçek ve sanal nesnelerin etkileşimli",
+              "Eski bir VR teknolojisi",
+              "Sadece simülasyon yazılımı"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Akıllı NPC'ler (Non-Player Characters) oyunlarda nasıl bir gelişme sağlar?",
+            "options": [
+              "Sadece görsel kalitede",
+              "YZ destekli karakterler daha gerçekçi davranışlar",
+              "Sadece oyunu yavaşlatır",
+              "Hiçbir gelişme sağlamaz"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Procedural content generation neyi ifade eder?",
+            "options": [
+              "Manuel içerik üretimi",
+              "Algoritmalarla otomatik içerik (harita, karakter, görev)",
+              "Sadece müzik üretimi",
+              "Sadece reklam üretimi"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Sağlık alanında VR/AR ile YZ entegrasyonunun en somut faydalarından biri nedir?",
+            "options": [
+              "Sadece eğlence",
+              "Cerrahların sanal ortamda riskli operasyonları pratik etmesi,",
+              "Hiçbir faydası yok",
+              "Sadece reçete yazımı"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Apple Vision Pro gibi yeni nesil XR cihazlarında YZ'nin rolü nedir?",
+            "options": [
+              "Hiçbir rol",
+              "El takibi, göz takibi, spatial computing, gerçek zamanlı çeviri",
+              "Sadece pil yönetimi",
+              "Sadece ses kalitesi"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "VR/AR'da 'motion sickness' problemini azaltmak için YZ nasıl kullanılır?",
+            "options": [
+              "Hiçbir şekilde",
+              "Tahmine dayalı render, foveated rendering (göz takibiyle odak",
+              "Sadece daha yüksek ses",
+              "Sadece daha küçük ekran"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "modul-09-yz-ve-si-ber-guvenli-k",
+    "order": 9,
+    "title": "YZ VE SİBER GÜVENLİK",
+    "subtitle": "Handbook Bölüm 9 · ~25 dk okuma",
+    "estimatedMinutes": 25,
+    "sections": [
+      {
+        "type": "image",
+        "body": "Siber güvenlikte YZ uygulamaları",
+        "items": [
+          "AI cybersecurity threat detection",
+          "assets/images/lessons/modul-09-00.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Privacy-Preserving ML"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Anomali Tespiti: Normal ağ trafiğinden sapan davranışları tespit etme."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Sıfır gün saldırıları için kritik."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Tehdit İstihbaratı: Dark web ve sosyal medyadaki tehditleri otomatik takip etme.",
+          "Phishing Tespiti: E-postaların içeriğini, gönderici reputasyonunu ve"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "URL'leri analiz ederek oltalama saldırılarını engelleme."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Malware Tespiti: Dosya davranışını analiz ederek bilinmeyen zararlı yazılımları yakalama. CrowdStrike, SentinelOne gibi platformlar.",
+          "SIEM Sistemleri ve YZ: Splunk, IBM QRadar gibi platformlar milyonlarca log'u YZ ile analiz eder.",
+          "Davranışsal Analiz (UEBA): Kullanıcı ve cihaz davranışlarını profilleyerek içeriden tehditleri tespit etme."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "9.2 YZ Sistemlerinin Güvenliği"
+      },
+      {
+        "type": "text",
+        "body": "Görüntülere insan gözüyle görülemeyen gürültü ekleyerek YZ'yi yanıltma. Örnek: Bir dur tabelasına stickerlar yapıştırılarak otonom aracı hız limiti olarak okutmak."
+      },
+      {
+        "type": "text",
+        "body": "Adversarial Attacks (Düşman Saldırıları)"
+      },
+      {
+        "type": "text",
+        "body": "Eğitim verisine kötü amaçlı örnekler enjekte ederek modeli zehirlemek. Açık kaynak modellerde özellikle risklidir."
+      },
+      {
+        "type": "text",
+        "body": "Model Poisoning ve Data Poisoning"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Differential Privacy: Veriye gürültü ekleyerek bireyleri koruma.",
+          "Homomorphic Encryption: Şifreli veri üzerinde hesaplama yapma.",
+          "Federated Learning: Veriyi merkezi sunucuya göndermeden, cihazlarda eğitim yapma. Google klavyesi (Gboard) bu yöntemi kullanır."
+        ]
+      },
+      {
+        "type": "image",
+        "body": "Adversarial attack örneği",
+        "items": [
+          "adversarial attack machine learning",
+          "assets/images/lessons/modul-09-01.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "9.3 Etik Hacking ve YZ"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Penetrasyon testlerinde YZ: Otomatik zafiyet taraması, brute force optimizasyonu.",
+          "Otomatik exploit üretimi: Bilinen zafiyetler için exploit kod üretimi.",
+          "YZ ile sosyal mühendislik: Deepfake sesli aramalar, kişiselleştirilmiş phishing.",
+          "Defansif YZ: Red team vs Blue team kapsamında YZ'nin çift yönlü kullanımı."
+        ]
+      },
+      {
+        "type": "quiz",
+        "body": "Bölüm sonu değerlendirme soruları",
+        "questions": [
+          {
+            "question": "YZ'nin siber güvenlikte en yaygın kullanım alanlarından biri nedir?",
+            "options": [
+              "Sadece logo tasarımı",
+              "Anomali tespiti ve tehdit avı",
+              "Sadece e-posta yazımı",
+              "Sadece dosya silme"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Phishing nedir?",
+            "options": [
+              "Balık tutma uygulaması",
+              "Sahte e-posta veya sitelerle kullanıcıları kandırma saldırısı",
+              "Bir programlama dili",
+              "Bir antivirüs yazılımı"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Federated Learning'in temel mantığı nedir?",
+            "options": [
+              "Tüm veriyi merkezi sunucuda toplama",
+              "Veriyi cihazlarda tutup sadece model güncellemelerini paylaşma",
+              "Sadece bir kullanıcı için çalışma",
+              "İnterneti kapatma"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Adversarial Attack nedir?",
+            "options": [
+              "Rakip şirketlere saldırı",
+              "YZ modelini yanıltmak için girdiye küçük, insan gözüyle",
+              "Klasik bir hacking yöntemi",
+              "Network kablosu kesme"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Data Poisoning saldırısı nasıl çalışır?",
+            "options": [
+              "Veritabanlarına virüs bulaştırma",
+              "Eğitim verisine kötü amaçlı örnekler enjekte ederek modelin",
+              "Sadece e-posta saldırısı",
+              "DNS kaydı silme"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "UEBA (User and Entity Behavior Analytics) ne için kullanılır?",
+            "options": [
+              "Reklam analizi",
+              "Kullanıcı ve cihaz davranışlarını profilleyerek anormal",
+              "Web tasarımı",
+              "Sosyal medya yönetimi"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Differential Privacy mekanizması ML modellerinde nasıl çalışır?",
+            "options": [
+              "Modeli daha hızlı yapar",
+              "Eğitim verisine matematiksel olarak ölçülebilir gürültü",
+              "Sadece dosya boyutunu küçültür",
+              "Modeli daha doğru yapar"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "YZ'nin sosyal mühendislik saldırılarında kullanımı nasıl bir tehdit oluşturur?",
+            "options": [
+              "Hiçbir tehdit",
+              "Deepfake sesli aramalar, kişiselleştirilmiş ve dilbilgisel",
+              "Sadece eski sistemleri etkiler",
+              "Sadece İngilizce konuşan ülkeleri etkiler"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Model evasion (kaçış) saldırısı ile model extraction (çıkarma) saldırısı arasındaki fark nedir?",
+            "options": [
+              "Aynı şeyler",
+              "Evasion: modeli yanlış tahmin yapmaya zorlamak; Extraction:",
+              "Evasion daha pahalıdır",
+              "İkisi de imkansızdır"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "modul-10-yapay-zekanin-sektorel-uygulamalari",
+    "order": 10,
+    "title": "YAPAY ZEKANIN SEKTÖREL UYGULAMALARI",
+    "subtitle": "Handbook Bölüm 10 · ~50 dk okuma",
+    "estimatedMinutes": 50,
+    "sections": [
+      {
+        "type": "image",
+        "body": "Sektörel YZ uygulamaları haritası",
+        "items": [
+          "AI industry applications",
+          "assets/images/lessons/modul-10-00.jpg"
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Algoritmik Trading: Saniyeler içinde milyonlarca işlem. Yüksek frekanslı trading firmaları YZ kullanır.",
+          "Kredi Skorlama: Geleneksel skorlamaya ek olarak sosyal medya, mobil veri gibi alternatif veri kaynakları.",
+          "Fraud Detection: Anomali tespiti ile dolandırıcılık önleme. Visa,"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "MasterCard her işlemi gerçek zamanlı YZ ile kontrol eder."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Robo-advisors: Wealthfront, Betterment gibi otomatik yatırım danışmanları.",
+          "Risk Yönetimi: Piyasa risk modellemesi, stress testing.",
+          "Anti-Money Laundering (AML): Şüpheli işlem örüntülerini tespit."
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Hastalık Teşhisi: Google DeepMind'ın diyabetik retinopati teşhisi,"
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "İlaç Keşfi: AlphaFold ile protein yapısı tahmini Nobel Ödülü kazandı."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "İlaç geliştirme süresini yıllardan aylara indiriyor."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Kişiselleştirilmiş Tıp: Genomik verilerle hastaya özel tedavi planları.",
+          "Radyoloji ve Patoloji: MR, BT, mamografi analizinde radyolog seviyesinde performans.",
+          "Robotik Cerrahi: da Vinci robotu, daha hassas operasyonlar.",
+          "Mental Sağlık: Chatbot terapistleri (Woebot, Wysa), depresyon belirtileri tespiti."
+        ]
+      },
+      {
+        "type": "image",
+        "body": "Finansta YZ kullanımı",
+        "items": [
+          "AI finance fintech banking",
+          "assets/images/lessons/modul-10-01.jpg"
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Öneri Sistemleri: Amazon satışlarının %35'i, Netflix izlemelerinin %75'i öneri sistemlerinden gelir.",
+          "Dinamik Fiyatlandırma: Uber surge pricing, Amazon saatlik fiyat değişimleri.",
+          "Müşteri Segmentasyonu: RFM analizi, müşteri yaşam boyu değeri (CLV) tahmini.",
+          "Chatbot'lar ve Sanal Asistanlar: 7/24 müşteri desteği, sipariş takibi.",
+          "Talep Tahmini: Mevsimsellik, trendler ve dış faktörlerle envanter optimizasyonu.",
+          "Görsel Arama: Pinterest Lens, Google Lens ile fotoğraftan ürün bulma."
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Kalite Kontrol: Bilgisayarlı görü ile hatalı ürünleri saniyeler içinde tespit.",
+          "Kestirimci Bakım: Sensör verileriyle arızadan önce müdahale.",
+          "Tedarik Zinciri Optimizasyonu: Talep tahmini, rota planlama, envanter yönetimi.",
+          "Robotik ve Otomasyon: İşbirlikçi robotlar (cobot'lar), montaj hatları.",
+          "Dijital İkiz: Fabrikanın dijital kopyasında simülasyon ve optimizasyon.",
+          "Enerji Optimizasyonu: YZ ile tesisin enerji tüketimini azaltma."
+        ]
+      },
+      {
+        "type": "image",
+        "body": "Sağlıkta YZ uygulamaları",
+        "items": [
+          "AI healthcare medical",
+          "assets/images/lessons/modul-10-02.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "10.6 İnsan Kaynakları"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Otonom Araçlar: Tesla, Waymo, Cruise. Seviye 1-5 otonomluk skalası.",
+          "Trafik Yönetimi: Akıllı kavşaklar, dinamik sinyalizasyon.",
+          "Rota Optimizasyonu: UPS ORION sistemi yılda 100 milyon mil tasarruf sağlar.",
+          "Lojistik: Depo robotları (Amazon Kiva), drone teslimat.",
+          "Filo Yönetimi: Yakıt verimliliği, sürücü davranışı analizi."
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "CV Tarama: Binlerce başvuru arasından uygun adayları otomatik filtreleme.",
+          "Yetenek Eşleştirme: LinkedIn'in iş öneri sistemi.",
+          "Çalışan Tutma (Retention) Analizi: Hangi çalışanın işten ayrılma riski yüksek? Performans Değerlendirme: 360 derece geri bildirim analizi, üretkenlik metriklerinin yorumlanması.",
+          "Çeşitlilik ve Kapsayıcılık: Önyargısız işe alım süreçleri (dikkatli kullanılmazsa tersi etki yapabilir)."
+        ]
+      },
+      {
+        "type": "image",
+        "body": "Otonom araçlar",
+        "items": [
+          "autonomous vehicle self driving",
+          "assets/images/lessons/modul-10-03.jpg"
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Kişiselleştirilmiş Kampanyalar: Spotify Wrapped, Netflix kişiselleştirilmiş thumbnail'ler.",
+          "Müşteri Yaşam Boyu Değeri (CLV) Tahmini.",
+          "Sosyal Medya Analizi: Brand monitoring, influencer keşfi, viral içerik tespiti.",
+          "İçerik Üretimi: Reklam metinleri, görseller, video kurguları.",
+          "A/B Testing: Çok değişkenli testlerin YZ ile optimizasyonu.",
+          "Attribution Modelling: Hangi pazarlama kanalı satışa katkı yaptı?"
+        ]
+      },
+      {
+        "type": "quiz",
+        "body": "Bölüm sonu değerlendirme soruları",
+        "questions": [
+          {
+            "question": "Netflix izlemelerinin yaklaşık yüzde kaçı öneri sisteminden geliyor?",
+            "options": [
+              "%10",
+              "%25",
+              "%50",
+              "%75"
+            ],
+            "correctIndex": 3,
+            "level": "easy"
+          },
+          {
+            "question": "Robo-advisor ne yapar?",
+            "options": [
+              "Endüstriyel robotları kontrol eder",
+              "Otomatik yatırım danışmanlığı sağlar",
+              "Sadece ev temizliği yapar",
+              "Sadece müşteri hizmetleri verir"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "AlphaFold hangi alanda devrim yaratmıştır?",
+            "options": [
+              "Müzik üretimi",
+              "Protein yapısı tahmini ve ilaç keşfi",
+              "Otomobil tasarımı",
+              "Sosyal medya pazarlaması"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "İK alanında YZ kullanımının en büyük etik riski nedir?",
+            "options": [
+              "Çok yavaş çalışması",
+              "Eğitim verisindeki tarihsel önyargıların (cinsiyet, etnisite)",
+              "Sadece teknik problemler",
+              "Sadece elektrik tüketimi"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Otonom araç seviyelerinde (1-5) Seviye 5 ne anlama gelir?",
+            "options": [
+              "Otomatik park",
+              "Her koşulda insan müdahalesi gerektirmeyen tam otonom sürüş",
+              "Şerit takibi",
+              "Sadece otoyolda otomatik sürüş"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Müşteri Yaşam Boyu Değeri (CLV) tahmini neden önemlidir?",
+            "options": [
+              "Sadece istatistik için",
+              "Pazarlama bütçesinin doğru müşterilere yönlendirilmesi ve",
+              "Sadece muhasebe için",
+              "Hiç önemli değildir"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Dolandırıcılık tespitinde (fraud detection) precision ve recall arasındaki trade-off neden kritiktir?",
+            "options": [
+              "Önemli değildir",
+              "Çok yüksek recall (her şüpheli işlemi yakalama) müşteri",
+              "Sadece bankalar için geçerlidir",
+              "Sadece teknik bir konudur"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Üretim hatlarındaki bilgisayarlı görü tabanlı kalite kontrol sistemlerinin geleneksel manuel kontrole üstünlüğü nedir?",
+            "options": [
+              "Sadece daha pahalı",
+              "Yorulmaz, 7/24 çalışır, milisaniye hızında karar verir,",
+              "Sadece elektrikli ürünlerde çalışır",
+              "Her zaman daha az doğrudur"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "İlaç keşfinde AlphaFold gibi modellerin geleneksel yöntemlere üstünlüğü nedir?",
+            "options": [
+              "Hiçbir üstünlüğü yok",
+              "Geleneksel deneysel yöntemlerle yıllar süren protein yapısı",
+              "Sadece beslenme analizi yapar",
+              "Sadece ucuz ilaçlar geliştirir"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "modul-11-yapay-zekanin-hukuki-boyutu",
+    "order": 11,
+    "title": "YAPAY ZEKANIN HUKUKİ BOYUTU",
+    "subtitle": "Handbook Bölüm 11 · ~30 dk okuma",
+    "estimatedMinutes": 30,
+    "sections": [
+      {
+        "type": "image",
+        "body": "EU AI Act risk kategorileri",
+        "items": [
+          "EU AI Act risk categories",
+          "assets/images/lessons/modul-11-00.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Malpraktis ve Tıbbi Hatalar"
+      },
+      {
+        "type": "text",
+        "body": "Dünyanın ilk kapsamlı YZ yasası 2024'te kabul edildi. Risk bazlı yaklaşım uygular:"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Yasaklı YZ: Sosyal puanlama, gerçek zamanlı biometrik kimlik tespiti (istisnalar dışında).",
+          "Yüksek Riskli YZ: Sağlık, eğitim, işe alım, kredi skorlama. Ciddi compliance gereksinimleri.",
+          "Sınırlı Risk: Chatbot kullanıldığının bildirilmesi gerekir.",
+          "Minimal Risk: Spam filtreleri, video oyunları (serbest)."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "AB Yapay Zeka Yasası (EU AI Act)"
+      },
+      {
+        "type": "text",
+        "body": "GDPR'ın 22. maddesi otomatik karar verme süreçlerine sınırlamalar getirir. Açıklama hakkı, itiraz hakkı, insan denetimi hakkı tanır."
+      },
+      {
+        "type": "text",
+        "body": "KVKK (Kişisel Verilerin Korunması Kanunu) GDPR'a benzer prensipler içerir. Cumhurbaşkanlığı Dijital Dönüşüm Ofisi Yapay Zeka Strateji Belgesi yayınladı. 2024'te yapay zeka kanun teklifi gündeme geldi."
+      },
+      {
+        "type": "text",
+        "body": "Türkiye'de YZ Düzenlemeleri"
+      },
+      {
+        "type": "text",
+        "body": "BDDK bankacılıkta, SPK sermaye piyasalarında, Sağlık Bakanlığı tıbbi cihaz mevzuatında YZ ile ilgili düzenlemeler yapmaktadır."
+      },
+      {
+        "type": "text",
+        "body": "11.2 Sorumluluk ve Hesap Verebilirlik"
+      },
+      {
+        "type": "text",
+        "body": "Otonom bir aracın kazasında kim sorumlu? Sürücü, üretici, yazılım geliştirici, veri sağlayıcı? Mevcut hukuk sistemleri bu soruları henüz tam yanıtlamamış durumda."
+      },
+      {
+        "type": "text",
+        "body": "YZ Kararlarının Sorumluluğu"
+      },
+      {
+        "type": "text",
+        "body": "YZ'ye hukuki kişilik tanınmalı mı? Avrupa Parlamentosu 2017'de bunu önerdi ama büyük tartışmalar var. Çoğunluk bu görüşe karşı."
+      },
+      {
+        "type": "text",
+        "body": "Hukuki Kişilik Tartışmaları"
+      },
+      {
+        "type": "text",
+        "body": "AB Ürün Sorumluluğu Direktifi YZ kapsamına genişletildi. Üreticiler YZ sistemlerinin neden olduğu zararlardan sorumlu."
+      },
+      {
+        "type": "text",
+        "body": "Doktor YZ önerisini kabul ederse veya reddederse ve yanlış çıkarsa sorumluluk kimde? FDA, EMA bu konuda kılavuzlar yayınlıyor."
+      },
+      {
+        "type": "image",
+        "body": "GDPR ve veri koruma",
+        "items": [
+          "GDPR data protection",
+          "assets/images/lessons/modul-11-01.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "11.4 Sözleşmeler ve Compliance"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "YZ Tarafından Üretilen İçeriğin Telif Hakları: ABD Telif Hakkı Ofisi salt YZ ürünleri korumuyor. İnsan müdahalesi gerekiyor.",
+          "Patent ve YZ: DABUS davası: YZ mucit olarak kabul edilmedi (çoğu ülkede).",
+          "Eğitim Verisi ve Telif: New York Times - OpenAI davası, sanatçılar -"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Stable Diffusion davaları sürüyor."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Veri Sahipliği: Veri sahipleri, model sahipleri, çıktı kullanıcıları arasındaki haklar tartışmalı.",
+          "Açık Kaynak Modeller: Apache 2.0, MIT, Llama lisansı. Ticari kullanım şartları farklılaşır."
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "YZ Kullanım Sözleşmeleri: OpenAI, Anthropic, Google'ın hizmet şartları farklılık gösterir. Veri kullanımı, çıktı sahipliği, sorumluluk kısıtlamaları.",
+          "Vendor Management: Üçüncü taraf YZ hizmetlerinin değerlendirilmesi, supply chain riski.",
+          "SLA'lar (Service Level Agreements): Uptime, response time, accuracy garantileri.",
+          "Denetim ve Compliance: ISO/IEC 42001 YZ Yönetim Sistemi standardı,"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "NIST AI Risk Management Framework."
+      },
+      {
+        "type": "quiz",
+        "body": "Bölüm sonu değerlendirme soruları",
+        "questions": [
+          {
+            "question": "AB Yapay Zeka Yasası (EU AI Act) ne tür bir yaklaşım benimser?",
+            "options": [
+              "YZ'yi tamamen yasaklar",
+              "Risk bazlı yaklaşım (yasaklı, yüksek risk, sınırlı risk,",
+              "Sadece para cezaları",
+              "Hiçbir düzenleme getirmez"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Türkiye'deki KVKK neyin kısaltmasıdır?",
+            "options": [
+              "Kapsamlı Veri Kullanım Komitesi",
+              "Kişisel Verilerin Korunması Kanunu",
+              "Kamu Veri Kontrol Komisyonu",
+              "Kalkınma Verileri Koruma Kurulu"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Yüksek riskli YZ uygulamalarına örnek nedir?",
+            "options": [
+              "Spam filtresi",
+              "Sağlık teşhisi, kredi skorlama, işe alım",
+              "Video oyunu",
+              "Hava durumu uygulaması"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "GDPR'ın 22. maddesi neyi düzenler?",
+            "options": [
+              "Bilet fiyatlarını",
+              "Otomatik karar verme süreçlerinde bireylerin haklarını",
+              "Reklam vergilerini",
+              "Domain isimlerini"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "DABUS davası hangi hukuki sorunu gündeme getirdi?",
+            "options": [
+              "Yazılım fiyatları",
+              "YZ'nin patent mucidi olarak kabul edilip edilemeyeceği",
+              "İnternet hızı",
+              "Şarj cihazı standartları"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "ISO/IEC 42001 standardı neyi düzenler?",
+            "options": [
+              "Bilgisayar üretim standartları",
+              "Yapay Zeka Yönetim Sistemleri",
+              "Internet hızı",
+              "Pil ömrü"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "YZ tarafından üretilen içeriğin telif hakkı konusunda ABD Telif Hakkı Ofisi'nin yaklaşımı nedir?",
+            "options": [
+              "YZ ürünleri tam olarak korur",
+              "Salt YZ tarafından üretilen içerikleri korumaz; telif için",
+              "Hiçbir telif korunmaz",
+              "Sadece sanatçılara verilir"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "EU AI Act'e göre 'yasaklı YZ uygulamaları' kategorisine giren bir örnek nedir?",
+            "options": [
+              "Hava durumu tahmini",
+              "Sosyal puanlama (social scoring) sistemleri ve gerçek zamanlı",
+              "Yazılım geliştirme araçları",
+              "Çeviri uygulamaları"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "New York Times - OpenAI davası gibi telif davalarının temel hukuki argümanı nedir?",
+            "options": [
+              "OpenAI çok pahalı",
+              "Telifli içeriğin izinsiz olarak büyük dil modellerinin",
+              "İnternet yavaş",
+              "Sadece tasarım problemi"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "modul-12-yapay-zekanin-eti-k-boyutu",
+    "order": 12,
+    "title": "YAPAY ZEKANIN ETİK BOYUTU",
+    "subtitle": "Handbook Bölüm 12 · ~40 dk okuma",
+    "estimatedMinutes": 40,
+    "sections": [
+      {
+        "type": "image",
+        "body": "YZ etik prensipleri şeması",
+        "items": [
+          "AI ethics principles",
+          "assets/images/lessons/modul-12-00.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "12.1 YZ Etiği Temelleri"
+      },
+      {
+        "type": "text",
+        "body": "YZ sistemleri milyonlarca insanın hayatını etkileyen kararlar veriyor: kim işe alınacak, kim kredi alacak, kim koşullu salıverilecek. Etik olmayan YZ ayrımcılığı sistematikleştirebilir."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Şeffaflık (Transparency): Sistemin nasıl çalıştığı anlaşılabilir olmalı.",
+          "Adalet (Fairness): Farklı gruplara karşı ayrımcılık yapmamalı.",
+          "Mahremiyet (Privacy): Kişisel verilerin korunması.",
+          "Hesap Verebilirlik (Accountability): Hatalar için sorumluluk.",
+          "Güvenlik (Safety): Zarar vermemeli.",
+          "İnsan Kontrolü (Human Oversight): Kritik kararlarda insan müdahalesi."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Temel Etik Prensipler"
+      },
+      {
+        "type": "text",
+        "body": "OECD AI Principles, UNESCO Recommendation on Ethics of AI, IEEE Ethically Aligned Design gibi uluslararası çerçeveler vardır."
+      },
+      {
+        "type": "text",
+        "body": "12.2 Önyargı ve Ayrımcılık (Bias)"
+      },
+      {
+        "type": "text",
+        "body": "Önyargı veriden, algoritmadan veya geliştiriciden gelir. Veri toplama, etiketleme, model tasarımı her aşama bias kaynağı olabilir."
+      },
+      {
+        "type": "text",
+        "body": "Algoritmik Önyargı Nasıl Oluşur?"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Amazon CV Tarama Sistemi: Kadın adayları cezalandırdığı için 2018'de iptal edildi.",
+          "COMPAS: ABD'de mahkumların tekrar suç işleme riskini tahmin eden sistem, siyahi sanıklara karşı önyargılı bulundu.",
+          "Apple Card: Aynı gelirli çiftlerde erkeklere kadınlardan 20 kat fazla kredi limiti verdi.",
+          "Yüz tanıma sistemleri: Beyaz erkeklerde %99 doğru, koyu tenli kadınlarda %65 doğru çalıştığı tespit edildi."
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Demographic Parity: Tüm gruplarda pozitif tahmin oranı eşit.",
+          "Equal Opportunity: Tüm gruplarda true positive rate eşit.",
+          "Equalized Odds: Hem TPR hem FPR tüm gruplarda eşit."
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Çeşitli ve temsili veri kümeleri Bias audit araçları (IBM AI Fairness 360, Microsoft Fairlearn)",
+          "Çeşitlilik içeren geliştirici ekipleri"
+        ]
+      },
+      {
+        "type": "image",
+        "body": "Algoritmik önyargı örnekleri",
+        "items": [
+          "algorithmic bias examples",
+          "assets/images/lessons/modul-12-01.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "12.4 Mahremiyet ve Veri Koruma"
+      },
+      {
+        "type": "text",
+        "body": "12.3 Şeffaflık ve Açıklanabilirlik (XAI)"
+      },
+      {
+        "type": "text",
+        "body": "Derin öğrenme modelleri milyarlarca parametreden oluşur. Bir kararın neden verildiğini anlamak zordur. Bu 'kara kutu' problemidir."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "LIME (Local Interpretable Model-agnostic Explanations): Tek bir tahminin yerel açıklaması.",
+          "SHAP (SHapley Additive exPlanations): Her özelliğin tahmine katkısını oyun teorisiyle hesaplar.",
+          "Attention visualization: Sinir ağının hangi bölüme 'dikkat' ettiğini gösterir.",
+          "Counterfactual explanations: 'Eğer X değişseydi sonuç değişir miydi?' soruları."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "GDPR'a göre otomatik karar verme süreçlerinde bireylerin açıklama hakkı vardır. Bankalar kredi reddi gerekçesini açıklamak zorundadır."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Differential Privacy: Veriye matematiksel olarak ölçülebilir gürültü ekleyerek bireylerin gizliliğini garanti eder. Apple, Google kullanır.",
+          "Veri Minimizasyonu: Sadece gerekli verileri toplama prensibi (GDPR gereksinimi).",
+          "Anonimleştirme vs De-anonimleştirme: Anonim sanılan veriler başka veri kümeleriyle birleştirilerek kimliklendirilebilir (Netflix Prize dataset olayı).",
+          "Kişisel Verilerin Korunması: GDPR, CCPA, KVKK gibi yasalar.",
+          "Veri silme hakkı (Right to be Forgotten): Modelin eğitim verisinden çıkarılma talepleri zor bir sorundur."
+        ]
+      },
+      {
+        "type": "image",
+        "body": "Explainable AI (XAI) görselleştirme",
+        "items": [
+          "explainable AI SHAP LIME",
+          "assets/images/lessons/modul-12-02.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "12.6 Manipülasyon ve Dezenformasyon"
+      },
+      {
+        "type": "text",
+        "body": "12.5 İşsizlik ve Ekonomik Etki"
+      },
+      {
+        "type": "text",
+        "body": "McKinsey, 2030'a kadar dünya genelinde 400-800 milyon işin otomasyondan etkileneceğini öngörüyor. En çok etkilenenler: rutin idari işler, veri girişi, müşteri hizmetleri ilk seviye."
+      },
+      {
+        "type": "text",
+        "body": "Otomasyon ve İş Kayıpları"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Prompt engineer'lar AI ethicist'ler ML mühendisleri ve veri bilimciler AI auditor'lar İnsan-YZ etkileşim tasarımcıları"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Yeniden beceri kazanma (reskilling) ve beceri geliştirme (upskilling) hayati önemde. WEF'e göre 2030'a kadar çalışanların %50'si yeniden eğitilmeli."
+      },
+      {
+        "type": "text",
+        "body": "Sam Altman, Elon Musk gibi YZ liderlerinin de gündeme getirdiği UBI (Universal Basic Income) konsepti. Finlandiya, Kenya gibi ülkelerde pilot uygulamalar yapıldı."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Deepfakes: Yapay yüzler, sesler, videolar. Politikada, dolandırıcılıkta, intikam pornosunda kullanılıyor.",
+          "Propaganda ve Mikro-Hedefleme: Cambridge Analytica skandalı, Brexit ve"
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Echo Chambers (Yankı Odaları): Sosyal medya algoritmaları aynı görüşteki içerikleri öneriyor, kutuplaşmayı artırıyor.",
+          "Sosyal Medya Algoritmaları: Etkileşim odaklı algoritmalar tartışmacı içerikleri öne çıkarıyor.",
+          "Önlemler: İçerik doğrulama araçları (Content Credentials), kaynak şeffaflığı, medya okuryazarlığı eğitimi."
+        ]
+      },
+      {
+        "type": "image",
+        "body": "Deepfake tespiti",
+        "items": [
+          "deepfake detection",
+          "assets/images/lessons/modul-12-03.jpg"
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Katil Robotlar (LAWS - Lethal Autonomous Weapons Systems): İnsan müdahalesi olmadan hedef seçen silahlar.",
+          "Stop Killer Robots kampanyası: 30+ ülke yasaklanmasını istiyor.",
+          "Askeri YZ Uygulamaları: İstihbarat analizi, drone'lar, savunma sistemleri.",
+          "Uluslararası Düzenlemeler: BM Konvansiyonel Silahlar Konvansiyonu altında müzakereler sürüyor ama bağlayıcı yasak yok.",
+          "Etik İlkeler: Pentagon Five Ethical Principles for AI, NATO'nun AI"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "12.8 Sürdürülebilirlik"
+      },
+      {
+        "type": "text",
+        "body": "GPT-3 eğitimi 1287 MWh enerji harcadı ve 552 ton CO2 üretti (550 New York-San Francisco uçuşuna eşdeğer). GPT-4 ve sonraki modeller çok daha büyük."
+      },
+      {
+        "type": "text",
+        "body": "YZ Modellerinin Karbon Ayak İzi"
+      },
+      {
+        "type": "text",
+        "body": "Bir ChatGPT sorgusu, bir Google aramasının yaklaşık 10 katı enerji harcar. Veri merkezleri 2026'da küresel elektrik tüketiminin %4-5'ini kullanacak."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Daha verimli mimari tasarımı Model sıkıştırma (pruning, quantization, distillation)",
+          "Yenilenebilir enerjili veri merkezleri Carbon-aware computing: Düşük karbon saatlerinde eğitim Federated learning ile veri taşıma maliyetini azaltma"
+        ]
+      },
+      {
+        "type": "quiz",
+        "body": "Bölüm sonu değerlendirme soruları",
+        "questions": [
+          {
+            "question": "YZ etiğinin temel prensiplerinden biri DEĞİLDİR?",
+            "options": [
+              "Şeffaflık",
+              "Adalet",
+              "Mahremiyet",
+              "Maksimum hız"
+            ],
+            "correctIndex": 3,
+            "level": "easy"
+          },
+          {
+            "question": "Deepfake nedir?",
+            "options": [
+              "Derin bir göl",
+              "YZ ile üretilen sahte yüz, ses veya video",
+              "Bir veritabanı türü",
+              "Bir kameralı program"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Algoritmik önyargı (algorithmic bias) çoğunlukla nereden kaynaklanır?",
+            "options": [
+              "İnternet hızından",
+              "Eğitim verisindeki tarihsel ve toplumsal önyargılardan",
+              "Bilgisayar markasından",
+              "Hava durumundan"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "XAI (Explainable AI) neden önemlidir?",
+            "options": [
+              "Sadece akademik bir konu",
+              "Yüksek riskli kararlarda (sağlık, kredi) kararın gerekçesinin",
+              "Sadece pazarlama amaçlı",
+              "Modeli yavaşlatır"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Amazon'un CV tarama sisteminin neden iptal edildiği örneği neyi gösterir?",
+            "options": [
+              "Sistemin çok hızlı çalıştığını",
+              "Tarihsel veriden öğrenen modelin geçmişteki cinsiyet",
+              "Amazon'un YZ kullanmadığını",
+              "Sadece teknik bir sorun"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Differential Privacy ne yapar?",
+            "options": [
+              "Veriyi siler",
+              "Veriye matematiksel olarak ölçülebilir gürültü ekleyerek",
+              "Veriyi büyütür",
+              "Veriyi çoğaltır"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Fairness metriklerinden 'Demographic Parity' ile 'Equalized Odds' arasındaki fark nedir?",
+            "options": [
+              "İkisi de aynı",
+              "Demographic Parity: tüm gruplarda pozitif tahmin oranı eşit;",
+              "Sadece bankacılıkta kullanılır",
+              "Sadece akademik konu"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "GPT-3'ün eğitiminin yaklaşık 552 ton CO2 emisyonuna yol açtığı düşünüldüğünde, 'Green AI' hareketinin temel önerileri nelerdir?",
+            "options": [
+              "Sadece daha pahalı modeller",
+              "Daha verimli mimari tasarımı, model sıkıştırma (pruning,",
+              "Sadece daha küçük modeller",
+              "Hiçbir öneri yok"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "AI Alignment problemi nedir?",
+            "options": [
+              "Modellerin grafiksel hizalanması",
+              "YZ sistemlerinin hedeflerini ve davranışlarını insan değerleri",
+              "Bilgisayar parçalarının hizalanması",
+              "Sadece akademik problem"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "modul-13-yz-proje-yoneti-mi-ve-uygulama",
+    "order": 13,
+    "title": "YZ PROJE YÖNETİMİ VE UYGULAMA",
+    "subtitle": "Handbook Bölüm 13 · ~30 dk okuma",
+    "estimatedMinutes": 30,
+    "sections": [
+      {
+        "type": "image",
+        "body": "MLOps yaşam döngüsü",
+        "items": [
+          "MLOps lifecycle CI/CD",
+          "assets/images/lessons/modul-13-00.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "13.1 YZ Projesine Başlamak"
+      },
+      {
+        "type": "text",
+        "body": "Her şey net bir iş problemiyle başlar. 'YZ yapalım' değil 'müşteri kaybını %20 azaltalım' veya 'üretim hataları %50 düşsün' gibi ölçülebilir hedefler."
+      },
+      {
+        "type": "text",
+        "body": "İş Problemi Tanımlama"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Yeterli veri yoksa Problem deterministikse (basit kurallar yeterliyse)",
+          "%100 doğruluk gerekliyse Açıklanabilirlik kritikse ve karmaşık model gerekiyorsa Maliyet faydasını aşıyorsa"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "YZ Uygun mu? (When NOT to use AI)"
+      },
+      {
+        "type": "text",
+        "body": "POC (Proof of Concept) ile küçük başlayın. Veri kalitesini, miktarını, erişilebilirliğini test edin."
+      },
+      {
+        "type": "text",
+        "body": "Veri Keşfi ve Fizibilite"
+      },
+      {
+        "type": "text",
+        "body": "Geliştirme maliyeti (insan, altyapı), operasyon maliyeti (cloud, lisans), beklenen fayda (gelir artışı, maliyet azalması, verimlilik) hesaplanır."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Veri Bilimcisi (Data Scientist): İstatistik, ML modelleri, iş anlayışı.",
+          "ML Mühendisi: Production'a alma, scaling, MLOps.",
+          "Veri Mühendisi: Veri pipeline'ları, data warehouse, ETL.",
+          "Domain Uzmanı: Sektör bilgisi, problem doğrulama. Çoğu projenin başarısızlığının nedeni domain uzmanının eksikliğidir.",
+          "MLOps Mühendisi: Model deployment, monitoring, retraining.",
+          "Product Manager: Roadmap, paydaşlarla iletişim, önceliklendirme.",
+          "Etik / Hukuk Danışmanı: Compliance, bias kontrolü."
+        ]
+      },
+      {
+        "type": "image",
+        "body": "CRISP-DM metodolojisi",
+        "items": [
+          "CRISP-DM data mining",
+          "assets/images/lessons/modul-13-01.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "13.5 Yaygın Hatalar ve Önleme"
+      },
+      {
+        "type": "text",
+        "body": "-----------------------------------------------------------------------+"
+      },
+      {
+        "type": "text",
+        "body": "13.3 YZ Proje Metodolojileri"
+      },
+      {
+        "type": "text",
+        "body": "Cross-Industry Standard Process for Data Mining. 6 aşama: İş Anlama → Veri Anlama → Veri Hazırlama → Modelleme → Değerlendirme → Deployment."
+      },
+      {
+        "type": "text",
+        "body": "Klasik Agile'ı ML projelerine uyarlamak gerekir. Sprint'ler veriyle ilgili belirsizlikleri içerir. Spike'lar (araştırma sprint'leri) yaygındır."
+      },
+      {
+        "type": "text",
+        "body": "Basit baseline modelden başlayıp incremental olarak iyileştirin. 'Perfect is the enemy of good' prensibi geçerlidir."
+      },
+      {
+        "type": "text",
+        "body": "13.4 MLOps: Production'a Alma"
+      },
+      {
+        "type": "text",
+        "body": "Kod, veri ve model versiyonları takip edilmeli. DVC (Data Version Control), MLflow, Weights & Biases gibi araçlar kullanılır."
+      },
+      {
+        "type": "text",
+        "body": "Continuous Integration/Deployment ML projelerinde model eğitimi ve deployment otomatize edilir. GitHub Actions, GitLab CI, Kubeflow."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Performans metrikleri (accuracy, latency, throughput)",
+          "Data drift: Giriş verisinin dağılımındaki değişimler Concept drift: Tahmin edilen değişkenin davranışındaki değişimler Model fairness drift"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Yeni modeli production'a almadan önce kontrol grubuyla karşılaştırın. Champion-challenger yaklaşımı."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Scheduled retraining: Belirli aralıklarla (haftalık, aylık).",
+          "Triggered retraining: Drift tespit edilince.",
+          "Online learning: Sürekli güncelleme."
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Data Leakage: Eğitim verisine test verisinden bilgi sızması. En sinsi hatadır. Gelecekteki bilgiyi modelin görmesine yol açar.",
+          "Yanlış Metrik Seçimi: Dengesiz veride accuracy yanıltıcıdır. Tıbbi teşhiste recall, spam tespitinde precision daha önemli olabilir.",
+          "Production-Training Gap: Eğitim ve gerçek ortam arasındaki farklılıklar. Feature engineering tutarsızlığı en yaygın sebep.",
+          "Teknik Borç: 'Hidden technical debt in ML systems' makalesi öne çıkarır. ML kodu bir buz dağının görünen kısmıdır.",
+          "Cold Start Problemi: Yeni kullanıcılar/ürünler için yeterli veri olmaması."
+        ]
+      },
+      {
+        "type": "quiz",
+        "body": "Bölüm sonu değerlendirme soruları",
+        "questions": [
+          {
+            "question": "CRISP-DM nedir?",
+            "options": [
+              "Bir programlama dili",
+              "Veri madenciliği için endüstri standardı süreç metodolojisi",
+              "Bir veri tabanı",
+              "Bir donanım"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "MLOps neyin kısaltmasıdır?",
+            "options": [
+              "Machine Learning Operations",
+              "Multi-Level Operations",
+              "Mobile Learning Optimization",
+              "Modern Logic Operations"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Bir ML projesinde zamanın yaklaşık yüzde kaçı veri hazırlığında geçer?",
+            "options": [
+              "%10",
+              "%30",
+              "%50",
+              "%70-80"
+            ],
+            "correctIndex": 3,
+            "level": "easy"
+          },
+          {
+            "question": "Data leakage (veri sızıntısı) nedir?",
+            "options": [
+              "Verinin internetten sızması",
+              "Test verisinden veya gelecekten gelen bilgilerin eğitim",
+              "Hard diskten veri kaybı",
+              "Şifre kırılması"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "A/B testing ML modelleri için nasıl kullanılır?",
+            "options": [
+              "Hiç kullanılmaz",
+              "Yeni modeli (challenger) production'daki mevcut model",
+              "Sadece e-posta pazarlamasında",
+              "Sadece ofis tasarımında"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Model drift'in iki ana türü nelerdir?",
+            "options": [
+              "Yüksek ve düşük",
+              "Data drift (giriş dağılımının değişimi) ve Concept drift",
+              "Hızlı ve yavaş",
+              "İyi ve kötü"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Production-Training Gap'in en yaygın sebebi nedir?",
+            "options": [
+              "İnternet hızı",
+              "Feature engineering tutarsızlığı: eğitim sırasında kullanılan",
+              "Sadece donanım farkı",
+              "Hiçbir zaman olmaz"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "'Hidden Technical Debt in ML Systems' makalesinin ana mesajı nedir?",
+            "options": [
+              "ML kodları kısadır",
+              "ML kodu bir buz dağının görünen kısmıdır; veri yönetimi,",
+              "ML projeleri ucuzdur",
+              "Sadece akademik bir konu"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Champion-challenger yaklaşımı nedir?",
+            "options": [
+              "Bir oyun teorisi",
+              "Production'daki mevcut modeli (champion) yeni model adayı",
+              "Sadece spor analizi",
+              "Bir veritabanı yöntemi"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "modul-14-yz-araclari-ve-platformlari",
+    "order": 14,
+    "title": "YZ ARAÇLARI VE PLATFORMLARI",
+    "subtitle": "Handbook Bölüm 14 · ~25 dk okuma",
+    "estimatedMinutes": 25,
+    "sections": [
+      {
+        "type": "image",
+        "body": "Python ML ekosistemi",
+        "items": [
+          "python ML libraries TensorFlow PyTorch",
+          "assets/images/lessons/modul-14-00.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "14.2 Cloud AI Servisleri"
+      },
+      {
+        "type": "text",
+        "body": "14.1 Programlama ve Framework'ler"
+      },
+      {
+        "type": "text",
+        "body": "Python, YZ'nin de facto dili. NumPy, Pandas, Matplotlib temel kütüphaneler."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "TensorFlow ve Keras (Google): Production-grade derin öğrenme framework'ü.",
+          "PyTorch (Meta): Araştırmada en popüler, dinamik computation graph.",
+          "Scikit-learn: Klasik ML algoritmaları için altın standart.",
+          "Hugging Face: Önceden eğitilmiş model hub'ı, Transformers kütüphanesi.",
+          "JAX: Google'ın yüksek performanslı sayısal hesaplama kütüphanesi.",
+          "LangChain, LlamaIndex: LLM uygulama geliştirme."
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "AWS AI/ML: SageMaker (uçtan uca ML), Bedrock (foundation models),"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Rekognition (görüntü), Comprehend (NLP), Lex (chatbot)."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Google Cloud AI: Vertex AI, AutoML, Document AI, Translation,"
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Microsoft Azure AI: Azure ML, Cognitive Services, OpenAI Service, Bot"
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "IBM Watson: Watsonx platformu, enterprise odaklı çözümler.",
+          "Anthropic API: Claude modellerine erişim.",
+          "OpenAI API: GPT modelleri, DALL-E, Whisper, embeddings."
+        ]
+      },
+      {
+        "type": "image",
+        "body": "Cloud AI servisleri karşılaştırma",
+        "items": [
+          "AWS Azure GCP AI services",
+          "assets/images/lessons/modul-14-01.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "14.5 Model Deployment"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Google AutoML: Tablular, görüntü, metin, video için otomatik ML.",
+          "DataRobot: Enterprise AutoML platformu.",
+          "H2O.ai: Açık kaynak ve enterprise versiyonlar.",
+          "Azure AutoML, AWS SageMaker Autopilot.",
+          "Power Automate, Zapier: Workflow otomasyonu.",
+          "n8n, Make.com: Görsel iş akışı tasarımı."
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Labelbox: Görüntü, video, metin için labeling platformu.",
+          "Scale AI: Profesyonel data annotation hizmetleri.",
+          "Amazon SageMaker Ground Truth: Crowdsourcing entegrasyonu.",
+          "Roboflow: Bilgisayarlı görü datasetleri için.",
+          "CVAT (Açık Kaynak): Intel'in geliştirdiği video annotation aracı."
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "TensorFlow Serving: Production-grade TF model serving.",
+          "TorchServe: PyTorch için.",
+          "ONNX: Cross-framework model exchange formatı.",
+          "Triton Inference Server (NVIDIA): GPU optimizasyonu.",
+          "Docker ve Kubernetes: Konteynerizasyon ve orkestrasyon.",
+          "Ray Serve, BentoML: Modern ML serving framework'leri.",
+          "Edge deployment: TensorFlow Lite, ONNX Runtime, Core ML."
+        ]
+      },
+      {
+        "type": "quiz",
+        "body": "Bölüm sonu değerlendirme soruları",
+        "questions": [
+          {
+            "question": "Aşağıdakilerden hangisi bir derin öğrenme framework'üdür?",
+            "options": [
+              "Excel",
+              "PyTorch",
+              "Photoshop",
+              "Word"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Hugging Face nedir?",
+            "options": [
+              "Bir gülen yüz emojisi",
+              "Önceden eğitilmiş YZ modellerinin paylaşıldığı platform ve",
+              "Bir kozmetik markası",
+              "Bir oyun"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Aşağıdakilerden hangisi bir cloud AI servisi DEĞİLDİR?",
+            "options": [
+              "AWS SageMaker",
+              "Azure AI",
+              "Google Vertex AI",
+              "Microsoft Word"
+            ],
+            "correctIndex": 3,
+            "level": "easy"
+          },
+          {
+            "question": "TensorFlow ile PyTorch arasındaki temel kullanım farkı nedir?",
+            "options": [
+              "Aynıdır",
+              "Genel olarak TensorFlow production deployment'ta, PyTorch",
+              "TensorFlow sadece görüntü için",
+              "PyTorch sadece metin için"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "AutoML araçlarının temel amacı nedir?",
+            "options": [
+              "Sadece görsel oluşturmak",
+              "Model seçimi, hiperparametre ayarı ve özellik mühendisliği gibi",
+              "Sadece veri silmek",
+              "Sadece dosya yedeklemek"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "ONNX neyin kısaltmasıdır ve ne işe yarar?",
+            "options": [
+              "Online Network Exchange; ağ optimizasyonu",
+              "Open Neural Network Exchange; framework'ler arası model taşıma",
+              "Optic Network X-ray; görüntü analizi",
+              "Hiçbir anlamı yok"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "LangChain ve LlamaIndex gibi araçların temel kullanım amacı nedir?",
+            "options": [
+              "Sadece veri görselleştirme",
+              "LLM uygulamalarının geliştirilmesi: prompt yönetimi, RAG",
+              "Sadece veritabanı yönetimi",
+              "Sadece web tasarımı"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Model deployment'ta TensorFlow Lite ve Core ML'in kullanım alanı nedir?",
+            "options": [
+              "Büyük sunucularda model çalıştırma",
+              "Edge cihazlarda (mobil, embedded) optimize edilmiş model",
+              "Sadece veri analizi",
+              "Sadece veri saklama"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Kubernetes ML projelerinde neden önemlidir?",
+            "options": [
+              "Hiç önemli değil",
+              "Model serving'i konteynerize ederek otomatik scaling, yüksek",
+              "Sadece grafik kartlar için",
+              "Sadece veri görselleştirme"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "modul-15-yapay-zekanin-gelecegi",
+    "order": 15,
+    "title": "YAPAY ZEKANIN GELECEĞİ",
+    "subtitle": "Handbook Bölüm 15 · ~35 dk okuma",
+    "estimatedMinutes": 35,
+    "sections": [
+      {
+        "type": "image",
+        "body": "AGI yolculuğu konsepti",
+        "items": [
+          "artificial general intelligence AGI",
+          "assets/images/lessons/modul-15-00.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "15.1 Teknolojik Trendler"
+      },
+      {
+        "type": "text",
+        "body": "Metin, görsel, ses, video, kodu birlikte anlayan modeller. GPT-4o, Claude Opus, Gemini multimodal yeteneklere sahiptir."
+      },
+      {
+        "type": "text",
+        "body": "Geniş alanlarda çok büyük veriyle eğitilen, sonra spesifik görevlere uyarlanabilen büyük modeller. LLM'ler bunun en bilinen örneği."
+      },
+      {
+        "type": "text",
+        "body": "Sadece soruları yanıtlamayan, otonom olarak görevleri tamamlayan, araçları kullanan, planlama yapan YZ sistemleri. Devin (yazılım), AutoGPT, Claude Computer Use örnekleri."
+      },
+      {
+        "type": "text",
+        "body": "AI Agents (YZ Ajanları)"
+      },
+      {
+        "type": "text",
+        "body": "Kuantum bilgisayarlarda çalışan ML algoritmaları. Optimizasyon, simülasyon gibi alanlarda potansiyel sağlıyor. IBM Q, Google Sycamore."
+      },
+      {
+        "type": "text",
+        "body": "Quantum Machine Learning"
+      },
+      {
+        "type": "text",
+        "body": "İnsan beyninin mimarisini taklit eden çipler. Düşük güçle yüksek verim. Intel Loihi, IBM TrueNorth."
+      },
+      {
+        "type": "text",
+        "body": "Neuromorphic Computing"
+      },
+      {
+        "type": "text",
+        "body": "Neuralink, Synchron gibi şirketler beyin-bilgisayar arayüzleri geliştiriyor. Felçli hastalar için potansiyel."
+      },
+      {
+        "type": "text",
+        "body": "15.2 Genel Yapay Zeka (AGI) Yolunda"
+      },
+      {
+        "type": "text",
+        "body": "AGI: İnsanın yapabileceği her bilişsel görevi yapabilen YZ. Tahminler değişiyor: Sam Altman 2027-2030, Yann LeCun on yıllar, Demis Hassabis 2030-2035."
+      },
+      {
+        "type": "text",
+        "body": "AGI Nedir ve Ne Zaman Gerçekleşebilir?"
+      },
+      {
+        "type": "text",
+        "body": "AGI'yi de aşan, her alanda insandan üstün YZ. Nick Bostrom 'Superintelligence' kitabında riskleri detaylandırır."
+      },
+      {
+        "type": "text",
+        "body": "Süper Zeka (Superintelligence)"
+      },
+      {
+        "type": "text",
+        "body": "YZ'nin amaçlarını insan değerleriyle hizalama problemi. 'AI Safety' alanı bu konuya odaklanır. Anthropic, OpenAI, DeepMind alignment araştırması yapıyor."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Yanlış hizalama: Yanlış amaçları olan süper zeka.",
+          "Kötü niyetli kullanım: Otonom silahlar, kitlesel manipülasyon.",
+          "Güç yoğunlaşması: Az sayıda aktörün YZ'yi kontrol etmesi.",
+          "İş gücü ve sosyal yapı bozulması."
+        ]
+      },
+      {
+        "type": "image",
+        "body": "Multimodal YZ yetenekleri",
+        "items": [
+          "multimodal AI vision language",
+          "assets/images/lessons/modul-15-01.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "15.4 Düzenleyici Gelecek"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Eğitim Sisteminin Evrimi: Kişiselleştirilmiş öğrenme, AI tutor'lar, geleneksel diploma sisteminin sorgulanması.",
+          "Çalışma Hayatının Geleceği: Hibrit insan-YZ takımlar, 4 günlük çalışma haftası, sürekli öğrenme zorunluluğu.",
+          "Demokrasi ve Yönetişim: Seçim kampanyalarında YZ, otomatik politika analizi, derin dezenformasyon riski.",
+          "Sağlık Hizmetlerinde Devrim: Erken teşhis, ilaç keşfi, yaş geri çevirme araştırmaları, kişiselleştirilmiş genomik tedavi.",
+          "Yaratıcı Endüstriler: Yazarlar, sanatçılar, müzisyenler için yeni araçlar ve etik sorunlar."
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Küresel YZ Yönetişimi: BM AI Advisory Body, Bletchley Park"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Deklarasyonu (2023), Seul Zirvesi (2024)."
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Standartlar ve Sertifikasyon: ISO/IEC 42001, NIST AI RMF, sektörel sertifikalar.",
+          "Uluslararası İşbirliği vs Rekabet: ABD-Çin teknoloji yarışı, ihracat kontrolleri, çip kısıtlamaları.",
+          "Ulusal YZ Stratejileri: 60+ ülke YZ stratejisi yayınladı. Türkiye 2021'de strateji belgesini açıkladı."
+        ]
+      },
+      {
+        "type": "image",
+        "body": "Quantum computing ve ML",
+        "items": [
+          "quantum machine learning",
+          "assets/images/lessons/modul-15-02.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "15.5 Etik ve Toplumsal Hazırlık"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "YZ Okuryazarlığı: Her vatandaşın YZ'yi anlama ve eleştirel kullanma yetisi.",
+          "Toplumsal Diyalog: Geliştiriciler, politikacılar, akademisyenler, vatandaşlar arasında diyalog.",
+          "Kapsayıcı YZ Geliştirme: Global Güney'in sesi, az kaynaklı diller için modeller.",
+          "Çeşitlilik ve Temsil: Geliştirici ekiplerinde, eğitim verilerinde, kullanım vakalarında çeşitlilik.",
+          "Sürdürülebilir Gelişim: BM SDG'leri için YZ uygulamaları, gezegen sağlığı."
+        ]
+      },
+      {
+        "type": "quiz",
+        "body": "Bölüm sonu değerlendirme soruları",
+        "questions": [
+          {
+            "question": "AGI neyin kısaltmasıdır?",
+            "options": [
+              "Advanced Graphics Interface",
+              "Artificial General Intelligence",
+              "Automated Game Industry",
+              "Active Group Integration"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Multimodal AI ne demektir?",
+            "options": [
+              "Sadece metin işleyen YZ",
+              "Metin, görsel, ses, video gibi birden fazla veri türünü",
+              "Çok pahalı YZ",
+              "Çok eski YZ"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "AI Agent (YZ Ajanı) ne yapar?",
+            "options": [
+              "Sadece soruları yanıtlar",
+              "Otonom olarak görevleri tamamlar, araçları kullanır, planlama",
+              "Sadece müzik üretir",
+              "Sadece grafik tasarımı"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Foundation Model nedir?",
+            "options": [
+              "Bir inşaat YZ'si",
+              "Geniş alanlarda çok büyük veriyle eğitilen, spesifik görevlere",
+              "Sadece veritabanı temelleri",
+              "Eski bir model türü"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Quantum Machine Learning'in temel vaadi nedir?",
+            "options": [
+              "Daha ucuz olması",
+              "Klasik bilgisayarlarda zor olan optimizasyon ve simülasyon",
+              "Daha güzel grafikler",
+              "Sadece teorik bir konu"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Brain-Computer Interface (BCI) örneği hangisidir?",
+            "options": [
+              "Klavye",
+              "Neuralink",
+              "Mouse",
+              "Monitör"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "AI Alignment problemi neden 'varoluşsal risk' olarak değerlendirilir?",
+            "options": [
+              "Sadece akademik bir konu",
+              "İnsan değerleriyle hizalanmamış süper zeka, insanlık için",
+              "Sadece bilim kurgu",
+              "Hiçbir önemi yok"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Neuromorphic computing'in geleneksel von Neumann mimarisine üstünlüğü hangi alanlarda olabilir?",
+            "options": [
+              "Hiçbir alanda",
+              "İnsan beynini taklit eden mimarisi sayesinde düşük güç",
+              "Sadece grafik üretiminde",
+              "Sadece veri saklamada"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Bletchley Park Deklarasyonu (2023) ne anlama gelir?",
+            "options": [
+              "Sadece akademik bildiri",
+              "ABD, Çin, İngiltere ve 25+ ülkenin frontier AI risklerini ele",
+              "Bir oyun yarışması",
+              "Sadece İngiltere'nin ulusal kararı"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "modul-16-uygulamali-calistay-ve-ornekler",
+    "order": 16,
+    "title": "UYGULAMALI ÇALIŞTAY VE ÖRNEKLER",
+    "subtitle": "Handbook Bölüm 16 · ~30 dk okuma",
+    "estimatedMinutes": 30,
+    "sections": [
+      {
+        "type": "image",
+        "body": "Jupyter notebook ML örneği",
+        "items": [
+          "Jupyter notebook machine learning",
+          "assets/images/lessons/modul-16-00.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "GPT Modelleri ve Dil Devrimi"
+      },
+      {
+        "type": "text",
+        "body": "16.1 Hands-on Egzersizler"
+      },
+      {
+        "type": "text",
+        "body": "Iris veri kümesi ile klasik sınıflandırma örneği:"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Veri yükleme: scikit-learn'den load_iris Eğitim/test ayrımı: train_test_split Model seçimi: DecisionTreeClassifier veya RandomForestClassifier Eğitim: model.fit()",
+          "Tahmin ve değerlendirme: accuracy_score, classification_report Görselleştirme: confusion matrix, decision boundary"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Basit Bir ML Modeli Oluşturma (Jupyter Notebook)"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Role assignment: 'Sen deneyimli bir pazarlama uzmanısın\\...' Few-shot prompting: Örneklerle öğretme Chain-of-thought: 'Adım adım düşün' Çıktı formatı belirleme: JSON, tablo, madde işaretleri Iteratif iyileştirme: Çıktıyı eleştirip yeniden yazdırma"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "ChatGPT/Claude ile Prompt Engineering"
+      },
+      {
+        "type": "text",
+        "body": "Google AutoML veya Azure AutoML'de kod yazmadan model eğitme deneyimi."
+      },
+      {
+        "type": "text",
+        "body": "AutoML ile Model Eğitme"
+      },
+      {
+        "type": "text",
+        "body": "Teachable Machine (Google) ile webcam'den 5 dakikada görüntü sınıflandırıcı eğitme."
+      },
+      {
+        "type": "text",
+        "body": "16.2 Vaka Çalışmaları"
+      },
+      {
+        "type": "text",
+        "body": "Netflix izleme süresinin %75'i öneri sisteminden geliyor. Collaborative filtering, content-based filtering ve deep learning kombinasyonu. 2009'da \\$1M ödüllü 'Netflix Prize' yarışması."
+      },
+      {
+        "type": "text",
+        "body": "Netflix Öneri Sistemi"
+      },
+      {
+        "type": "text",
+        "body": "8 kamera + neural network = otonom sürüş. Tesla'nın 'shadow mode' ile milyonlarca aracın verisini topladığı yaklaşım. FSD (Full Self-Driving) beta süreçleri ve tartışmaları."
+      },
+      {
+        "type": "text",
+        "body": "2016'da Lee Sedol'u yenen DeepMind'ın AlphaGo'su. Monte Carlo Tree Search + Deep Reinforcement Learning. Sonraki versiyon AlphaZero hiç insan verisi kullanmadan satranç, Go ve Shogi'de en iyi oldu."
+      },
+      {
+        "type": "text",
+        "body": "AlphaGo ve Oyun YZ'si"
+      },
+      {
+        "type": "text",
+        "body": "GPT-1 (2018, 117M parametre) → GPT-4 (2023, tahminen 1.7T parametre). ChatGPT 2 ayda 100M kullanıcıya ulaştı (TikTok'un yarısı kadar sürede)."
+      },
+      {
+        "type": "image",
+        "body": "ChatGPT/Claude prompt örnekleri",
+        "items": [
+          "ChatGPT prompt engineering",
+          "assets/images/lessons/modul-16-01.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Katılımcılardan kendi sektörleriyle ilgili problemler getirmeleri istenir ve YZ uygulanabilirliği tartışılır."
+      },
+      {
+        "type": "text",
+        "body": "16.3 İnteraktif Q&A ve Senaryolar"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Bir bankada kredi başvurularının %40'ı manuel inceleniyor. Hangi adımlar? Bir e-ticaret sitesi müşteri sorularını otomatize etmek istiyor."
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Bir fabrika üretim hatasını %5'ten %1'e indirmek istiyor."
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Bir hastane radyoloji yükünü azaltmak istiyor. Hangi YZ çözümleri? Bir lise öğrenci başarısını artırmak istiyor. Kişiselleştirilmiş öğrenme nasıl tasarlanır?"
+        ]
+      },
+      {
+        "type": "quiz",
+        "body": "Bölüm sonu değerlendirme soruları",
+        "questions": [
+          {
+            "question": "Jupyter Notebook nedir?",
+            "options": [
+              "Bir kitap markası",
+              "Veri bilimi ve ML için interaktif kod yazma ortamı",
+              "Bir oyun konsolu",
+              "Sadece İngilizce öğrenme aracı"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "AlphaGo hangi oyunda dünya şampiyonu Lee Sedol'u yenmiştir?",
+            "options": [
+              "Satranç",
+              "Go",
+              "Tavla",
+              "Tetris"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Iris veri kümesi neden ML eğitimlerinde sıkça kullanılır?",
+            "options": [
+              "Çok büyük olduğu için",
+              "Küçük, anlaşılır, dengeli ve klasik sınıflandırma problemini",
+              "Sadece İngilizce olduğu için",
+              "Çok karmaşık olduğu için"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Few-shot prompting tekniği nedir?",
+            "options": [
+              "Birkaç saniyede prompt yazma",
+              "LLM'ye birkaç örnek vererek görevi öğretme tekniği",
+              "Sadece görsel ile prompt verme",
+              "Çok kısa prompt"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Tesla'nın 'shadow mode' yaklaşımı nasıl çalışır?",
+            "options": [
+              "Sadece geceleri çalışır",
+              "Üretimdeki Tesla araçları kendi karar verirken aynı zamanda",
+              "Sadece simülasyonda çalışır",
+              "Hiç çalışmaz"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Netflix Prize yarışması neyle ünlüdür?",
+            "options": [
+              "Film yarışmasıdır",
+              "2009'da öneri sistemi iyileştirmek için 1 milyon dolar ödüllü",
+              "Bir Oscar ödülüdür",
+              "Sadece Hollywood ile ilgilidir"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Iris veri kümesinde DecisionTreeClassifier ve RandomForestClassifier arasında performans farkı genelde küçüktür. Nedeni nedir?",
+            "options": [
+              "Algoritmaların aynı olması",
+              "Iris veri kümesi küçük, dengeli ve doğrusal olarak ayrılabilir",
+              "İnternet hızı",
+              "Çiçek türü olduğu için"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Bir LLM ile prompt engineering yaparken 'iteratif iyileştirme' yaklaşımı nedir?",
+            "options": [
+              "Aynı prompt'u tekrar tekrar atma",
+              "Çıktıyı modelin kendisine eleştirtip yeniden ürettirme; veya",
+              "Sadece İngilizce yazma",
+              "Sadece kısa cevap isteme"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "AlphaZero'nun AlphaGo'ya kıyasla en büyük yeniliği nedir?",
+            "options": [
+              "Daha hızlı olması",
+              "Hiç insan oyun verisi kullanmadan, sadece self-play (kendi",
+              "Sadece satranç oynaması",
+              "Daha ucuz olması"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "modul-17-kaynaklar-ve-i-leri-ogreni-m",
+    "order": 17,
+    "title": "KAYNAKLAR VE İLERİ ÖĞRENİM",
+    "subtitle": "Handbook Bölüm 17 · ~15 dk okuma",
+    "estimatedMinutes": 15,
+    "sections": [
+      {
+        "type": "image",
+        "body": "YZ öğrenme yol haritası",
+        "items": [
+          "AI learning roadmap",
+          "assets/images/lessons/modul-17-00.jpg"
+        ]
+      },
+      {
+        "type": "text",
+        "body": "17.4 BONUS: YZ Sözlüğü (Temel Terimler)"
+      },
+      {
+        "type": "text",
+        "body": "17.1 Önerilen Kaynaklar"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Coursera: Andrew Ng'in 'Machine Learning' (klasik), 'Deep Learning"
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "edX: MIT 'Introduction to Deep Learning', Harvard 'CS50 AI'.",
+          "Udacity: AI for Everyone, Deep Learning Nanodegree.",
+          "Fast.ai: Pratik odaklı derin öğrenme kursları (Jeremy Howard).",
+          "DeepLearning.AI: Specialized courses (NLP, GANs, MLOps)."
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "'Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow' -"
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "'Deep Learning' - Ian Goodfellow, Yoshua Bengio (teorik, ücretsiz online).",
+          "'Pattern Recognition and Machine Learning' - Christopher Bishop (matematiksel).",
+          "'The Hundred-Page Machine Learning Book' - Andriy Burkov (özet).",
+          "'Designing Machine Learning Systems' - Chip Huyen (production odaklı).",
+          "'Life 3.0' - Max Tegmark (felsefi)."
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "arXiv.org: Tüm YZ makalelerinin ön baskıları.",
+          "Papers with Code: Makaleler + kod implementasyonları.",
+          "Distill.pub: Görsel anlatımlı YZ makaleleri.",
+          "Anthropic, OpenAI, DeepMind, Google AI bloglar."
+        ]
+      },
+      {
+        "type": "text",
+        "body": "Araştırma Kaynakları"
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Lex Fridman Podcast: YZ liderleriyle uzun röportajlar.",
+          "Two Minute Papers: Güncel makalelerin özetleri.",
+          "3Blue1Brown: Matematiksel sezgi ile YZ konseptleri.",
+          "Yannic Kilcher: Makale incelemeleri.",
+          "Türkçe: Tirendaz Akademi, Eğitim Sepeti."
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Kaggle: Yarışmalar, datasetler, notebook'lar, kurslar.",
+          "GitHub: Açık kaynak projelere katkı.",
+          "Reddit: r/MachineLearning, r/LocalLLaMA, r/artificial.",
+          "Hugging Face: Model hub, dataset hub, topluluk.",
+          "Stack Overflow & Stack Exchange: Soru-cevap.",
+          "Discord/Slack toplulukları: Anthropic, OpenAI, çeşitli framework toplulukları.",
+          "Yerel Meetup'lar: PyData İstanbul, ML Türkiye, AI Türkiye."
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Google TensorFlow Developer Certificate AWS Certified Machine Learning - Specialty Microsoft Azure AI Engineer Associate Microsoft Azure Data Scientist Associate IBM AI Engineering Professional Certificate DeepLearning.AI Specialization sertifikaları NVIDIA Deep Learning Institute sertifikaları"
+        ]
+      },
+      {
+        "type": "bullet",
+        "body": "",
+        "items": [
+          "Algorithm / Algoritma: Problem çözmek için adım adım talimatlar.",
+          "API: Application Programming Interface, yazılımların birbiriyle iletişim arayüzü.",
+          "Backpropagation / Geri Yayılım: Sinir ağlarında öğrenmenin temeli.",
+          "Bias / Önyargı: Modelin sistematik hatası veya ayrımcılık.",
+          "Dataset / Veri Kümesi: Eğitim için kullanılan veri topluluğu.",
+          "Deep Learning / Derin Öğrenme: Çok katmanlı sinir ağlarıyla ML.",
+          "Epoch: Tüm eğitim verisinin bir kez gözden geçirilmesi.",
+          "Feature / Özellik: Modelin girdi olarak kullandığı değişken.",
+          "Gradient Descent: Hata minimizasyonu için optimizasyon algoritması.",
+          "Hallucination / Halüsinasyon: LLM'lerin yanlış ama emin görünen yanıtları.",
+          "Hyperparameter / Hiperparametre: Modelin eğitim öncesi ayarlanan parametreleri.",
+          "Inference / Çıkarım: Eğitilmiş modelin tahmin yapması.",
+          "Loss Function / Kayıp Fonksiyonu: Modelin hatasını ölçen fonksiyon.",
+          "Neural Network / Sinir Ağı: Beyinden ilham alan ML mimarisi.",
+          "Overfitting: Modelin eğitim verisini ezberlemesi.",
+          "Parameter / Parametre: Modelin öğrendiği değerler (ağırlıklar).",
+          "Prompt: LLM'lere verilen talimat metni.",
+          "Reinforcement Learning: Ödül-ceza ile öğrenme.",
+          "Token: Metnin işlenebilir en küçük birimi.",
+          "Training / Eğitim: Modelin veriden öğrenme süreci.",
+          "Transfer Learning: Bir görevdeki bilgiyi başka göreve aktarma."
+        ]
+      },
+      {
+        "type": "quiz",
+        "body": "Bölüm sonu değerlendirme soruları",
+        "questions": [
+          {
+            "question": "Andrew Ng hangi online eğitim platformunda popüler Machine Learning dersleri vermektedir?",
+            "options": [
+              "Netflix",
+              "Coursera",
+              "Instagram",
+              "TikTok"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Kaggle hangi alanda ünlüdür?",
+            "options": [
+              "Yemek tarifleri",
+              "Veri bilimi yarışmaları ve datasetler",
+              "Müzik paylaşımı",
+              "Sosyal medya"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "arXiv.org ne için kullanılır?",
+            "options": [
+              "Online alışveriş",
+              "Bilimsel makalelerin (özellikle YZ) ön baskılarının paylaşımı",
+              "Müzik dinleme",
+              "Oyun oynama"
+            ],
+            "correctIndex": 1,
+            "level": "easy"
+          },
+          {
+            "question": "Papers with Code'un benzersiz özelliği nedir?",
+            "options": [
+              "Sadece makale gösterir",
+              "Akademik makaleleri kod implementasyonları ve benchmark",
+              "Sadece video paylaşır",
+              "Sadece görsel paylaşır"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Hangi sertifikasyon TensorFlow framework'ünde uzmanlığı belgeler?",
+            "options": [
+              "AWS Solutions Architect",
+              "Google TensorFlow Developer Certificate",
+              "Microsoft Office Specialist",
+              "Cisco CCNA"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Fast.ai kurslarının yaklaşımının özelliği nedir?",
+            "options": [
+              "Sadece teorik",
+              "Top-down ve pratik odaklı yaklaşım: önce uygulamayı yapıp sonra",
+              "Sadece İngilizce",
+              "Sadece çocuklar için"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Distill.pub'ı diğer YZ kaynaklarından ayıran özellik nedir?",
+            "options": [
+              "Sadece kısa makaleler",
+              "İnteraktif görselleştirmeler ve sezgisel açıklamalarla YZ",
+              "Sadece video içerikleri",
+              "Sadece akademik makaleler"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Hugging Face'in ML topluluğuna katkısı nedir?",
+            "options": [
+              "Sadece blog yayınlar",
+              "Transformers kütüphanesi, model hub, dataset hub ve Spaces ile",
+              "Sadece akademik konferans",
+              "Sadece donanım üretir"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          },
+          {
+            "question": "Bir YZ öğrenme yolculuğunda 'derinlik vs genişlik' tercihinde dengeli yaklaşım neden önerilir?",
+            "options": [
+              "Sadece akademik tavsiye",
+              "Temel kavramları (matematik, istatistik, programlama) sağlam",
+              "Sadece bir alana odaklanmak yeterli",
+              "Hiç kavram öğrenmemek lazım"
+            ],
+            "correctIndex": 0,
+            "level": "easy"
+          }
+        ]
+      }
+    ]
+  }
+]

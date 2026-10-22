@@ -1,0 +1,1562 @@
+{
+  "version": 1,
+  "poolSize": 111,
+  "examQuestionCount": 20,
+  "durationMinutes": 45,
+  "questions": [
+    {
+      "id": "web-001",
+      "source": "web",
+      "level": "easy",
+      "question": "Yapay zeka (AI) en genel tanımıyla nedir?",
+      "options": [
+        "Sadece robotlar için geliştirilen bir yazılım türü",
+        "Makinelerin insan zekasını taklit ederek öğrenme, problem çözme ve karar verme gibi bilişsel işlevleri gerçekleştirmesini sağlayan bir teknoloji alanı",
+        "İnternette arama yapmayı sağlayan bir yazılım",
+        "Bilgisayarların daha hızlı çalışmasını sağlayan bir donanım"
+      ],
+      "correctIndex": 1,
+      "feedback": "Yapay zeka, sunumda makinelerin insan zekasını taklit ederek öğrenme, problem çözme ve karar verme gibi bilişsel işlevleri gerçekleştirmesi olarak tanımlanmıştır."
+    },
+    {
+      "id": "web-002",
+      "source": "web",
+      "level": "easy",
+      "question": "Yapay zeka alanında en yaygın kullanılan programlama dili hangisidir?",
+      "options": [
+        "Java",
+        "C++",
+        "Python",
+        "JavaScript"
+      ],
+      "correctIndex": 2,
+      "feedback": "Python, yapay zeka ekosisteminin fiili standardıdır; TensorFlow, PyTorch ve scikit-learn gibi kütüphanelerin tamamı Python üzerine inşa edilmiştir."
+    },
+    {
+      "id": "web-003",
+      "source": "web",
+      "level": "easy",
+      "question": "\"Prompt mühendisliği\" kavramı neyi ifade eder?",
+      "options": [
+        "Yapay zeka modellerinin donanımını tasarlamak",
+        "Yapay zeka ile etkili iletişim kurmak için doğru komut ve talimatlar oluşturma sanatı",
+        "Bilgisayar ağlarını yapılandırma süreci",
+        "Veritabanı tasarımı yapma"
+      ],
+      "correctIndex": 1,
+      "feedback": "Prompt mühendisliği, sunumda \"Yapay Zeka ile Konuşma Sanatı\" olarak tanımlanmış ve AI'dan en iyi sonuçları almak için doğru talimat oluşturma becerisi olarak açıklanmıştır."
+    },
+    {
+      "id": "web-004",
+      "source": "web",
+      "level": "easy",
+      "question": "1997 yılında satranç dünya şampiyonunu yenen yapay zeka sistemi hangisidir?",
+      "options": [
+        "AlphaGo",
+        "Watson",
+        "IBM Deep Blue",
+        "GPT-1"
+      ],
+      "correctIndex": 2,
+      "feedback": "1997 yılında IBM Deep Blue, satranç dünya şampiyonu Garry Kasparov'u yenerek yapay zeka tarihinde bir dönüm noktası oluşturmuştur."
+    },
+    {
+      "id": "web-005",
+      "source": "web",
+      "level": "easy",
+      "question": "Aşağıdakilerden hangisi bir \"Zero-Shot\" prompt örneğidir?",
+      "options": [
+        "\"Örnek 1: Harika → Pozitif. Şimdi bu metni analiz et.\"",
+        "\"Adım adım düşünerek çöz.\"",
+        "\"Şu metni özetle:\"",
+        "\"Sen kıdemli bir CFO olarak cevap ver.\"\nORTA SEVİYE (Soru 6–15)"
+      ],
+      "correctIndex": 2,
+      "feedback": "Zero-Shot, örnek vermeden doğrudan talimat verme tekniğidir; \"Şu metni özetle\" buna en uygun örnektir."
+    },
+    {
+      "id": "web-006",
+      "source": "web",
+      "level": "medium",
+      "question": "Makine öğrenmesinin üç temel türü hangileridir?",
+      "options": [
+        "Denetimli, Denetimsiz ve Pekiştirmeli Öğrenme",
+        "Hızlı, Orta ve Yavaş Öğrenme",
+        "Yapay, Doğal ve Karma Öğrenme",
+        "Tek katmanlı, Çok katmanlı ve Derin Öğrenme"
+      ],
+      "correctIndex": 0,
+      "feedback": "Sunumda ML'nin üç temel türü Denetimli (Supervised), Denetimsiz (Unsupervised) ve Pekiştirmeli (Reinforcement) Öğrenme olarak açıklanmıştır."
+    },
+    {
+      "id": "web-007",
+      "source": "web",
+      "level": "medium",
+      "question": "Derin öğrenme (Deep Learning) ile makine öğrenmesi (Machine Learning) arasındaki temel fark nedir?",
+      "options": [
+        "Derin öğrenme daha az veri ile çalışır",
+        "Derin öğrenme çok katmanlı yapay sinir ağları kullanarak özellikleri otomatik keşfeder; ML'de uzman insan müdahalesi gerekir",
+        "Makine öğrenmesi daha yeni bir teknolojidir",
+        "Aralarında hiçbir fark yoktur, farklı isimlerdir"
+      ],
+      "correctIndex": 1,
+      "feedback": "Sunumda ML'nin rehberli (uzman müdahalesi gerektiren), DL'nin ise otonom (özellikleri kendi keşfeden çok katmanlı sinir ağları) olduğu vurgulanmıştır."
+    },
+    {
+      "id": "web-008",
+      "source": "web",
+      "level": "medium",
+      "question": "Doğal Dil İşleme (NLP) hangi temel bileşenlerden oluşur?",
+      "options": [
+        "Dil Anlama (NLU), Dil Üretimi (NLG), Konuşma Tanıma ve Konuşma Sentezi",
+        "Sadece metin çevirisi ve duygu analizi",
+        "Görüntü işleme ve ses tanıma",
+        "Veri tabanı sorgulama ve raporlama"
+      ],
+      "correctIndex": 0,
+      "feedback": "NLP'nin temel bileşenleri sunumda Dil Anlama (NLU), Dil Üretimi (NLG), Konuşma Tanıma ve Konuşma Sentezi olarak sıralanmıştır."
+    },
+    {
+      "id": "web-009",
+      "source": "web",
+      "level": "medium",
+      "question": "Prompt mühendisliğinde \"Mükemmel Prompt Formülü\"nün bileşenleri nelerdir?",
+      "options": [
+        "Başlık, İçerik, Sonuç, Özet, Kaynakça",
+        "Rol, Görev, Bağlam, Kısıtlamalar, Format",
+        "Giriş, Gelişme, Sonuç",
+        "Soru, Cevap, Doğrulama, Onay"
+      ],
+      "correctIndex": 1,
+      "feedback": "Mükemmel Prompt Formülü sunumda Rol, Görev, Bağlam, Kısıtlamalar ve Format olarak beş bileşenle detaylandırılmıştır."
+    },
+    {
+      "id": "web-010",
+      "source": "web",
+      "level": "medium",
+      "question": "Büyük Verinin (Big Data) 5V özelliği aşağıdakilerden hangisidir?",
+      "options": [
+        "Vision, Value, Verify, Volume, Velocity",
+        "Hacim (Volume), Çeşitlilik (Variety), Hız (Velocity), Değer (Value), Doğruluk (Veracity)",
+        "Video, Voice, Visual, Virtual, Verified",
+        "Veri, Verimlilik, Vizyon, Varsayım, Varlık"
+      ],
+      "correctIndex": 1,
+      "feedback": "Büyük Verinin 5V özelliği sunumda Hacim, Çeşitlilik, Hız, Değer ve Doğruluk olarak gösterilmiştir."
+    },
+    {
+      "id": "web-011",
+      "source": "web",
+      "level": "medium",
+      "question": "Siber güvenlikte \"phishing (oltalama)\" saldırısı nedir?",
+      "options": [
+        "Bilgisayar virüsü ile sistemleri çökertme",
+        "DDoS saldırısı ile sunucuları aşırı yükleme",
+        "Kullanıcıları kandırarak hassas bilgilerini ele geçirme girişimi",
+        "SQL enjeksiyonu ile veritabanlarına izinsiz erişim"
+      ],
+      "correctIndex": 2,
+      "feedback": "Oltalama (Phishing), sunumda kullanıcıları kandırarak hassas bilgilerini ele geçirme girişimi olarak tanımlanmıştır."
+    },
+    {
+      "id": "web-012",
+      "source": "web",
+      "level": "medium",
+      "question": "Sanal Gerçeklik (VR) ile Artırılmış Gerçeklik (AR) arasındaki temel fark nedir?",
+      "options": [
+        "VR daha ucuzdur, AR daha pahalıdır",
+        "VR tamamen sanal bir dünyaya taşırken, AR gerçek dünyayı dijital içeriklerle zenginleştirir",
+        "İkisi aynı teknolojidir, sadece isimleri farklıdır",
+        "AR yalnızca oyunlarda, VR yalnızca eğitimde kullanılır"
+      ],
+      "correctIndex": 1,
+      "feedback": "Sunumda VR tamamen sanal bir dünyaya taşırken, AR gerçek dünyayı dijital içeriklerle zenginleştirdiği karşılaştırmalı olarak gösterilmiştir."
+    },
+    {
+      "id": "web-013",
+      "source": "web",
+      "level": "medium",
+      "question": "Nesnelerin İnterneti (IoT) hangi alanlarda kullanılmaktadır?",
+      "options": [
+        "Sadece akıllı ev sistemlerinde",
+        "Akıllı evler, sağlık, endüstriyel otomasyon, ulaşım ve tarım gibi geniş bir yelpazede",
+        "Yalnızca üretim sektöründe",
+        "Sadece mobil uygulamalarda"
+      ],
+      "correctIndex": 1,
+      "feedback": "IoT'nin uygulama alanları sunumda akıllı evler, sağlık, endüstriyel otomasyon, ulaşım ve tarım olarak geniş bir yelpazede listelenmiştir."
+    },
+    {
+      "id": "web-014",
+      "source": "web",
+      "level": "medium",
+      "question": "Aşağıdaki yapay zeka araçlarından hangisi görsel/resim üretimi için kullanılır?",
+      "options": [
+        "Suno AI",
+        "ElevenLabs",
+        "Midjourney",
+        "Fireflies.ai"
+      ],
+      "correctIndex": 2,
+      "feedback": "Midjourney, sunumda metinden fotorealistik ve sanatsal görseller üreten bir AI görsel aracı olarak tanıtılmıştır."
+    },
+    {
+      "id": "web-015",
+      "source": "web",
+      "level": "medium",
+      "question": "Git ve GitHub arasındaki ilişki nedir?",
+      "options": [
+        "Aynı şeydir, farklı isimlerdir",
+        "Git bir programlama dili, GitHub ise bir derleyicidir",
+        "Git yerel versiyon kontrol sistemi, GitHub ise Git'in bulut tabanlı uzak depo platformudur",
+        "GitHub bir işletim sistemi, Git ise onun terminaldir\nZOR SEVİYE — Analiz Gerektiren (Soru 16–20)"
+      ],
+      "correctIndex": 2,
+      "feedback": "Sunumda Git yerel versiyon kontrol sistemi, GitHub ise uzak depo yönetimi ve iş birliği platformu olarak açıklanmıştır."
+    },
+    {
+      "id": "web-016",
+      "source": "web",
+      "level": "hard",
+      "question": "Bir çağrı merkezi müdürü, müşteri şikayetlerini otomatik olarak kategorize etmek istiyor. Hangi yapay zeka alt dalı ve öğrenme türü en uygun çözümü sunar?",
+      "options": [
+        "Bilgisayarla Görü (Computer Vision) ve Pekiştirmeli Öğrenme",
+        "Doğal Dil İşleme (NLP) ve Denetimli Öğrenme (Supervised Learning)",
+        "Robotik ve Denetimsiz Öğrenme",
+        "Büyük Veri analizi ve Derin Pekiştirmeli Öğrenme"
+      ],
+      "correctIndex": 1,
+      "feedback": "Müşteri şikayetlerinin metin tabanlı olması NLP gerektirir; etiketlenmiş geçmiş verilerden öğrenme ise Denetimli Öğrenme ile yapılır."
+    },
+    {
+      "id": "web-017",
+      "source": "web",
+      "level": "hard",
+      "question": "Bir e-ticaret şirketi, müşteri davranışlarına göre ürün öneri sistemi kurmak istiyor. Bu sistemde hangi makine öğrenmesi yaklaşımlarının birlikte kullanılması en etkili sonucu verir?",
+      "options": [
+        "Sadece Denetimli Öğrenme yeterlidir",
+        "Denetimli Öğrenme (geçmiş satın alma verilerine göre tahmin) + Denetimsiz Öğrenme (müşteri segmentasyonu) birlikte",
+        "Sadece kural tabanlı sistemler yeterlidir",
+        "Pekiştirmeli Öğrenme tek başına en iyi sonucu verir"
+      ],
+      "correctIndex": 1,
+      "feedback": "Ürün öneri sistemleri hem geçmiş satın alma verilerinden tahmin (Denetimli) hem de müşteri gruplaması (Denetimsiz) yaklaşımlarını birlikte gerektirir."
+    },
+    {
+      "id": "web-018",
+      "source": "web",
+      "level": "hard",
+      "question": "Bir yapay zeka danışmanı olarak, bir hastanede tıbbi görüntü analizi projesi tasarlıyorsunuz. Aşağıdaki mimari yaklaşımlardan hangisi röntgen görüntülerinde hastalık tespiti için en uygun tercih olur?",
+      "options": [
+        "Yinelemeli Sinir Ağları (RNN) — metin tabanlı hasta kayıtlarını analiz eder",
+        "Evrişimli Sinir Ağları (CNN) — görüntü tanıma ve sınıflandırmada uzmanlaşmış derin öğrenme mimarisi",
+        "Çekişmeli Üretici Ağlar (GAN) — yeni röntgen görüntüsü üretir",
+        "Dönüştürücüler (Transformers) — dil çevirisi için tasarlanmıştır"
+      ],
+      "correctIndex": 1,
+      "feedback": "CNN'ler görüntü tanıma ve sınıflandırmada uzmanlaşmış derin öğrenme mimarisidir; tıbbi görüntü analizinde standart tercihtir."
+    },
+    {
+      "id": "web-019",
+      "source": "web",
+      "level": "hard",
+      "question": "Aşağıdaki prompt örneklerinden hangisi, yapay zekadan en kaliteli ve tutarlı çıktıyı alma olasılığı en yüksektir?",
+      "options": [
+        "\"Pazarlama hakkında bir şeyler yaz.\"",
+        "\"Bir pazarlama planı hazırla.\"",
+        "\"Sen 15 yıllık deneyimli bir dijital pazarlama uzmanısın. B2B SaaS ürünü için LinkedIn odaklı içerik stratejisi hazırla. Hedef kitle: IT yöneticileri. Format: haftalık takvim tablosu. Kısıt: bütçe 50.000 TL, 3 aylık plan.\"",
+        "\"Adım adım düşünerek pazarlama stratejisi oluştur.\""
+      ],
+      "correctIndex": 2,
+      "feedback": "Bu prompt; rol atama, net görev, hedef kitle, format ve kısıtlamaları birlikte içererek Mükemmel Prompt Formülü'nün tüm bileşenlerini karşılar."
+    },
+    {
+      "id": "web-020",
+      "source": "web",
+      "level": "hard",
+      "question": "Bir şirket, yapay zeka destekli müşteri hizmetleri chatbot'u geliştirmek istiyor. Aşağıdaki etik ve hukuki risklerden hangisi bu projede en öncelikli olarak ele alınmalıdır?",
+      "options": [
+        "Chatbot'un görsel tasarımının beğenilmemesi riski",
+        "Chatbot'un çok hızlı yanıt vermesi riski",
+        "Kişisel verilerin korunması (KVKK/GDPR uyumu), halüsinasyon (uydurma bilgi üretme) riski ve hesap verebilirlik sorunu",
+        "Chatbot'un sadece Türkçe konuşması riski"
+      ],
+      "correctIndex": 2,
+      "feedback": "KVKK/GDPR uyumu, halüsinasyon riski ve hesap verebilirlik; sunumda AI'nın en kritik etik ve hukuki sorunları olarak vurgulanmıştır."
+    },
+    {
+      "id": "web-021",
+      "source": "web",
+      "level": "easy",
+      "question": "Yapay zeka en doğru şekilde nasıl tanımlanır?",
+      "options": [
+        "Sadece robot üretme teknolojisi",
+        "İnsan zekasını taklit eden sistemler geliştirme alanı",
+        "Sadece veri depolama yöntemi",
+        "İnternet altyapısı"
+      ],
+      "correctIndex": 1,
+      "feedback": "Yapay zeka, insan zekasını taklit eden sistemlerdir."
+    },
+    {
+      "id": "web-022",
+      "source": "web",
+      "level": "easy",
+      "question": "Yapay zekanın doğuşu hangi yıl ve olay ile ilişkilidir?",
+      "options": [
+        "1997 – Deep Blue",
+        "1956 – Dartmouth Konferansı",
+        "2010 – Derin öğrenme",
+        "2000 – İnternet yaygınlaşması"
+      ],
+      "correctIndex": 1,
+      "feedback": "1956 Dartmouth Konferansı AI’nin doğuşu kabul edilir."
+    },
+    {
+      "id": "web-023",
+      "source": "web",
+      "level": "easy",
+      "question": "Aşağıdakilerden hangisi bir programlama dili değildir?",
+      "options": [
+        "Python",
+        "Java",
+        "NLP",
+        "C++"
+      ],
+      "correctIndex": 2,
+      "feedback": "NLP bir alan, programlama dili değildir."
+    },
+    {
+      "id": "web-024",
+      "source": "web",
+      "level": "easy",
+      "question": "NLP’nin açılımı nedir?",
+      "options": [
+        "Neural Learning Process",
+        "Natural Language Processing",
+        "Numeric Logic Program",
+        "Network Language Protocol"
+      ],
+      "correctIndex": 1,
+      "feedback": "NLP = Natural Language Processing."
+    },
+    {
+      "id": "web-025",
+      "source": "web",
+      "level": "easy",
+      "question": "Zero-Shot prompting hangi durumda kullanılır?",
+      "options": [
+        "Çok fazla veri olduğunda",
+        "Örnek verilmeden doğrudan talimat verildiğinde",
+        "Model eğitilirken",
+        "Sadece kod yazarken"
+      ],
+      "correctIndex": 1,
+      "feedback": "Zero-shot, örnek vermeden talimat vermektir."
+    },
+    {
+      "id": "web-026",
+      "source": "web",
+      "level": "medium",
+      "question": "Makine öğrenmesi aşağıdakilerden hangisinin alt dalıdır?",
+      "options": [
+        "Veri tabanı yönetimi",
+        "Yapay zeka",
+        "Siber güvenlik",
+        "Donanım mühendisliği"
+      ],
+      "correctIndex": 1,
+      "feedback": "ML, yapay zekanın alt dalıdır."
+    },
+    {
+      "id": "web-027",
+      "source": "web",
+      "level": "medium",
+      "question": "Derin öğrenme neyi kullanır?",
+      "options": [
+        "Basit algoritmalar",
+        "Çok katmanlı yapay sinir ağları",
+        "Sadece istatistik",
+        "Manuel kurallar"
+      ],
+      "correctIndex": 1,
+      "feedback": "Derin öğrenme çok katmanlı sinir ağları kullanır."
+    },
+    {
+      "id": "web-028",
+      "source": "web",
+      "level": "medium",
+      "question": "Denetimli öğrenmede temel özellik nedir?",
+      "options": [
+        "Veri etiketlenmemiştir",
+        "Model kendi kendine öğrenir",
+        "Girdi ve doğru çıktı vardır",
+        "İnsan müdahalesi yoktur"
+      ],
+      "correctIndex": 2,
+      "feedback": "Denetimli öğrenmede doğru etiketli veri vardır."
+    },
+    {
+      "id": "web-029",
+      "source": "web",
+      "level": "medium",
+      "question": "Aşağıdakilerden hangisi NLP uygulama alanıdır?",
+      "options": [
+        "Motor üretimi",
+        "Duygu analizi",
+        "Elektrik devreleri",
+        "GPS sistemleri"
+      ],
+      "correctIndex": 1,
+      "feedback": "Duygu analizi NLP uygulamasıdır."
+    },
+    {
+      "id": "web-030",
+      "source": "web",
+      "level": "medium",
+      "question": "Few-Shot prompting’in amacı nedir?",
+      "options": [
+        "Modeli eğitmek",
+        "Modeli hızlandırmak",
+        "Örneklerle doğru çıktı formatını göstermek",
+        "Veriyi temizlemek"
+      ],
+      "correctIndex": 2,
+      "feedback": "Few-shot, örneklerle yönlendirme yapar."
+    },
+    {
+      "id": "web-031",
+      "source": "web",
+      "level": "medium",
+      "question": "Chain-of-Thought tekniğinin temel amacı nedir?",
+      "options": [
+        "Hız artırmak",
+        "Görsel üretmek",
+        "Adım adım düşünmeyi sağlamak",
+        "Veri saklamak"
+      ],
+      "correctIndex": 2,
+      "feedback": "Chain-of-Thought adım adım akıl yürütme sağlar."
+    },
+    {
+      "id": "web-032",
+      "source": "web",
+      "level": "medium",
+      "question": "Role Prompting ne sağlar?",
+      "options": [
+        "Modelin hızını artırır",
+        "Modele uzman rolü kazandırır",
+        "Veriyi siler",
+        "Donanım gücünü artırır"
+      ],
+      "correctIndex": 1,
+      "feedback": "Role prompting modele rol kazandırır."
+    },
+    {
+      "id": "web-033",
+      "source": "web",
+      "level": "medium",
+      "question": "Structured Output hangi durum için uygundur?",
+      "options": [
+        "Oyun geliştirme",
+        "Rastgele cevaplar",
+        "Belirli formatta çıktı üretmek",
+        "Veri silme işlemi"
+      ],
+      "correctIndex": 2,
+      "feedback": "Structured output, belirli format üretir."
+    },
+    {
+      "id": "web-034",
+      "source": "web",
+      "level": "medium",
+      "question": "Aşağıdakilerden hangisi yapay zekanın kullanım alanlarından biridir?",
+      "options": [
+        "Sadece askeri sistemler",
+        "Sadece bankacılık",
+        "Birçok sektörde yaygın kullanım",
+        "Sadece akademik araştırma"
+      ],
+      "correctIndex": 2,
+      "feedback": "AI çok geniş kullanım alanına sahiptir."
+    },
+    {
+      "id": "web-035",
+      "source": "web",
+      "level": "medium",
+      "question": "1997 yılında gerçekleşen önemli AI olayı nedir?",
+      "options": [
+        "GPT-1",
+        "Deep Blue’nun satranç zaferi",
+        "NLP’nin keşfi",
+        "Python’un çıkışı"
+      ],
+      "correctIndex": 1,
+      "feedback": "Deep Blue satrançta Kasparov’u yenmiştir."
+    },
+    {
+      "id": "web-036",
+      "source": "web",
+      "level": "hard",
+      "question": "Bir modelden karmaşık bir problemi hatasız çözmesi isteniyor. En uygun teknik hangisidir?",
+      "options": [
+        "Zero-Shot",
+        "Few-Shot",
+        "Chain-of-Thought",
+        "Role Prompting"
+      ],
+      "correctIndex": 2,
+      "feedback": "Karmaşık problemlerde adım adım düşünme gerekir."
+    },
+    {
+      "id": "web-037",
+      "source": "web",
+      "level": "hard",
+      "question": "Bir chatbot geliştiriyorsun ve çıktının JSON formatında olması gerekiyor. Hangi yaklaşım en uygundur?",
+      "options": [
+        "Role Prompting",
+        "Structured Output",
+        "Zero-Shot",
+        "Reinforcement Learning"
+      ],
+      "correctIndex": 1,
+      "feedback": "JSON gibi çıktılar için structured output kullanılır."
+    },
+    {
+      "id": "web-038",
+      "source": "web",
+      "level": "hard",
+      "question": "Aşağıdaki senaryolardan hangisi denetimsiz öğrenmeye örnektir?",
+      "options": [
+        "E-posta spam sınıflandırma",
+        "Etiketli veri ile eğitim",
+        "Müşteri segmentasyonu",
+        "Soru-cevap sistemi"
+      ],
+      "correctIndex": 2,
+      "feedback": "Segmentasyon etiket olmadan yapılır (unsupervised)."
+    },
+    {
+      "id": "web-039",
+      "source": "web",
+      "level": "hard",
+      "question": "Bir modele “Kıdemli CFO gibi analiz et” denildiğinde hangi teknik kullanılmış olur?",
+      "options": [
+        "Few-Shot",
+        "Chain-of-Thought",
+        "Role Prompting",
+        "Zero-Shot"
+      ],
+      "correctIndex": 2,
+      "feedback": "Uzman rolü verme = role prompting."
+    },
+    {
+      "id": "web-040",
+      "source": "web",
+      "level": "hard",
+      "question": "Aşağıdaki seçeneklerden hangisi NLP’nin temel bileşenlerinden biri DEĞİLDİR?",
+      "options": [
+        "Dil anlama (NLU)",
+        "Dil üretimi (NLG)",
+        "Konuşma sentezi",
+        "Görüntü işleme"
+      ],
+      "correctIndex": 3,
+      "feedback": "Görüntü işleme NLP’nin değil, computer vision’ın alanıdır."
+    },
+    {
+      "id": "web-041",
+      "source": "web",
+      "level": "easy",
+      "question": "Sunuma göre Yapay Zeka (AI) en kapsamlı şekilde nasıl tanımlanır?",
+      "options": [
+        "Sadece büyük verileri depolamaya yarayan bir bulut teknolojisidir.",
+        "Makinelerin insan zekasını taklit ederek öğrenme, problem çözme ve karar verme gibi bilişsel işlevleri gerçekleştirebilmesini sağlayan teknoloji alanıdır.",
+        "Yalnızca otonom araçların hareket etmesini sağlayan bir sensör ve donanım sistemidir.",
+        "Geleneksel yöntemlerle yönetilemeyecek kadar büyük verilerin istatistiksel analizidir."
+      ],
+      "correctIndex": 1,
+      "feedback": "Sunumda yapay zeka, makinelerin insan zekasını taklit ederek öğrenme, problem çözme ve karar verme gibi bilişsel işlevleri gerçekleştirebilmesini sağlayan alan olarak tanımlanmıştır."
+    },
+    {
+      "id": "web-042",
+      "source": "web",
+      "level": "easy",
+      "question": "Yapay zekanın tarihinde \"Yapay Zekanın Doğuşu\" olarak kabul edilen ve 1956 yılında gerçekleştirilen tarihi etkinlik aşağıdakilerden hangisidir?",
+      "options": [
+        "IBM Deep Blue'nun satranç şampiyonunu yenmesi",
+        "OpenAI tarafından GPT-1'in piyasaya sürülmesi",
+        "Dartmouth Konferansı",
+        "İlk Derin Öğrenme ağının kurulması"
+      ],
+      "correctIndex": 2,
+      "feedback": "Sunuma göre yapay zekanın doğuşu, 1956 yılında gerçekleştirilen Dartmouth Konferansı ile resmen kabul edilmiştir."
+    },
+    {
+      "id": "web-043",
+      "source": "web",
+      "level": "easy",
+      "question": "Bir yapay zeka modelinin \"ödül ve ceza\" (reward/penalty) mantığıyla kendi kendine öğrenmesini sağlayan Makine Öğrenmesi (ML) türü aşağıdakilerden hangisidir?",
+      "options": [
+        "Denetimli Öğrenme (Supervised Learning)",
+        "Denetimsiz Öğrenme (Unsupervised Learning)",
+        "Pekiştirmeli Öğrenme (Reinforcement Learning)",
+        "Doğal Dil İşleme (NLP)"
+      ],
+      "correctIndex": 2,
+      "feedback": "Pekiştirmeli öğrenme (Reinforcement Learning), yapay zekanın ödül ve ceza mekanizmaları ile kendi kendine deneme yanılma yoluyla öğrenmesini sağlayan ML türüdür."
+    },
+    {
+      "id": "web-044",
+      "source": "web",
+      "level": "easy",
+      "question": "Aşağıdakilerden hangisi Büyük Veri'nin (Big Data) 5 temel özelliğinden (5V) biri olan \"Hız\" (Velocity) kavramını açıklar?",
+      "options": [
+        "Verilerin güvenilir ve doğru kaynaklardan elde edilmesi",
+        "Verinin sürekli, kesintisiz ve çok hızlı bir şekilde üretilip işlenmesi",
+        "Terabayt veya petabayt ölçeğinde devasa veri hacimlerinin oluşması",
+        "Veriden anlamlı bilgi çıkarılarak iş süreçlerine ticari değer katılması"
+      ],
+      "correctIndex": 1,
+      "feedback": "Büyük verinin \"Hız (Velocity)\" özelliği, verinin sürekli ve yüksek hızda üretilip yine aynı hızda işlenmesi gerekliliğini ifade eder."
+    },
+    {
+      "id": "web-045",
+      "source": "web",
+      "level": "easy",
+      "question": "İnternet üzerinden sunucu, depolama ve yazılım hizmetlerinin sağlandığı, fiziksel altyapı gerektirmeyen ve \"kullandığın kadar öde\" modeline dayanan dijital çağ teknolojisi hangisidir?",
+      "options": [
+        "Nesnelerin İnterneti (IoT)",
+        "Siber Güvenlik",
+        "Bulut Bilişim (Cloud Computing)",
+        "Artırılmış Gerçeklik (AR)"
+      ],
+      "correctIndex": 2,
+      "feedback": "Bulut bilişim (Cloud Computing), fiziksel bir altyapı gerektirmeden internet üzerinden depolama ve sunucu hizmeti sunan esnek bir sistemdir."
+    },
+    {
+      "id": "web-046",
+      "source": "web",
+      "level": "medium",
+      "question": "Yapay zeka ekosisteminin fiili standardı olarak kabul edilen; TensorFlow, PyTorch, scikit-learn gibi kütüphanelerin üzerine inşa edildiği programlama dili aşağıdakilerden hangisidir?",
+      "options": [
+        "Java",
+        "C++",
+        "Python",
+        "Julia"
+      ],
+      "correctIndex": 2,
+      "feedback": "Python, sözdizimi sadeliği ve derin öğrenme framework'leri (TensorFlow, PyTorch) için altyapı sunmasıyla yapay zeka ekosisteminin fiili standardı olan programlama dilidir."
+    },
+    {
+      "id": "web-047",
+      "source": "web",
+      "level": "medium",
+      "question": "Prompt Mühendisliğinde yapay zeka modelinden beklenen çıktı formatını ve kalitesini somut olarak göstermek için modele 2 ile 5 adet arası önden bilgi girişi yapılan teknik aşağıdakilerden hangisidir?",
+      "options": [
+        "Zero-Shot (Doğrudan Soru)",
+        "Few-Shot (Örnek Göster)",
+        "Chain-of-Thought (Adım Adım Düşün)",
+        "Role Prompting (Rol Ver)"
+      ],
+      "correctIndex": 1,
+      "feedback": "Few-Shot (Örnek Göster) tekniği, yapay zekaya 2-5 arası örnek vererek ondan beklenen çıktı formatını ve kalitesini somutlaştırma yöntemidir."
+    },
+    {
+      "id": "web-048",
+      "source": "web",
+      "level": "medium",
+      "question": "Makine Öğrenmesi (ML) ve Derin Öğrenme (DL) arasındaki temel fark düşünüldüğünde, aşağıdakilerden hangisi Derin Öğrenme'nin bir özelliğidir?",
+      "options": [
+        "Manuel özellik çıkarımına (insan müdahalesine) yoğun olarak ihtiyaç duyması",
+        "Yapay Sinir Ağları (ANN) kullanarak özellikleri kendi kendine otonom olarak keşfetmesi",
+        "Çok az miktarda ve sadece yapısal veriler ile en iyi şekilde çalışması",
+        "Sadece basit algoritmalarla çalışıp sonuçların \"beyaz kutu\" şeklinde açıklanabilir olması"
+      ],
+      "correctIndex": 1,
+      "feedback": "Makine öğrenmesi özelliklerin insanlar tarafından çıkarılmasına ihtiyaç duyarken, derin öğrenme yapay sinir ağları sayesinde özellikleri kendi kendine otonom olarak keşfeder."
+    },
+    {
+      "id": "web-049",
+      "source": "web",
+      "level": "medium",
+      "question": "Bilgisayarla Görü (Computer Vision) sürecinde kameralar ve sensörler aracılığıyla dış dünyadan verinin alındığı ilk aşama aşağıdakilerden hangisidir?",
+      "options": [
+        "Görüntü Edinimi",
+        "Görüntü İşleme",
+        "Özellik Çıkarımı",
+        "Sınıflandırma ve Tahmin"
+      ],
+      "correctIndex": 0,
+      "feedback": "Bilgisayarla görü sürecinin ilk adımı, kamera ve sensörler aracılığıyla çevreden veya kaynaklardan görselin elde edildiği \"Görüntü Edinimi\" aşamasıdır."
+    },
+    {
+      "id": "web-050",
+      "source": "web",
+      "level": "medium",
+      "question": "Doğal Dil İşleme (NLP) uygulamalarında bilgisayarların insan dilini anlamlandırmasını ve yorumlamasını sağlayan \"Dil Anlama\" bileşeninin İngilizce kısaltması aşağıdakilerden hangisidir?",
+      "options": [
+        "NLG (Natural Language Generation)",
+        "NLU (Natural Language Understanding)",
+        "CNN (Convolutional Neural Networks)",
+        "ANN (Artificial Neural Networks)"
+      ],
+      "correctIndex": 1,
+      "feedback": "Bilgisayarların insan dilini anlamasını sağlayan Doğal Dil İşleme bileşeni, Natural Language Understanding kavramının kısaltması olan NLU'dur."
+    },
+    {
+      "id": "web-051",
+      "source": "web",
+      "level": "medium",
+      "question": "Aşağıdakilerden hangisi Nesnelerin İnterneti (IoT) teknolojisinin uygulama alanlarına uygun bir örnek değildir?",
+      "options": [
+        "Akıllı buzdolaplarının eksilen ürünleri tespit edip sipariş verebilmesi",
+        "Akıllı trafik yönetimi ve anlık araç takip sistemleri",
+        "Sistemleri aşırı yükleyerek hizmet kesintisine neden olan DDoS saldırıları",
+        "Hastalık takibi yapan giyilebilir medikal cihazlar"
+      ],
+      "correctIndex": 2,
+      "feedback": "DDoS saldırıları sistemleri çökertmeyi hedefleyen bir siber tehdit türüdür; oysa IoT nesnelerin internete bağlanarak veri üretmesiyle ilgili bir teknolojidir."
+    },
+    {
+      "id": "web-052",
+      "source": "web",
+      "level": "medium",
+      "question": "Kullanıcıları sahte linkler veya e-postalar yoluyla kandırarak şifre, kredi kartı gibi hassas bilgilerini ele geçirmeyi amaçlayan siber tehdit türü aşağıdakilerden hangisidir?",
+      "options": [
+        "SQL Enjeksiyonu",
+        "Oltalama (Phishing)",
+        "Fidye Yazılımı (Ransomware)",
+        "Truva Atı (Trojan)"
+      ],
+      "correctIndex": 1,
+      "feedback": "Kullanıcıları kandırarak şifre, kredi kartı gibi hassas verileri ele geçirmeye çalışan siber saldırı türü oltalama (phishing) olarak adlandırılır."
+    },
+    {
+      "id": "web-053",
+      "source": "web",
+      "level": "medium",
+      "question": "Sunumdaki \"Mükemmel Prompt Formülü\"ne göre, modele \"Rakip ismi verme\" veya \"Süre sınırı koyma\" gibi ne yapmaması gerektiğinin belirtildiği alan aşağıdakilerden hangisidir?",
+      "options": [
+        "Rol",
+        "Bağlam",
+        "Kısıtlamalar",
+        "Format"
+      ],
+      "correctIndex": 2,
+      "feedback": "Mükemmel Prompt Formülündeki \"Kısıtlamalar\" bölümü, yapay zekanın ne yapmaması gerektiğini ve hangi sınırların dışına çıkmaması gerektiğini belirten bileşendir."
+    },
+    {
+      "id": "web-054",
+      "source": "web",
+      "level": "medium",
+      "question": "Hem genel bulutun üçüncü taraf kaynak paylaşım esnekliğini kullanan hem de işletmeye özel (private) yüksek veri kontrolünü bir arada sunan bulut bilişim modeli hangisidir?",
+      "options": [
+        "Genel Bulut (Public Cloud)",
+        "Hibrit Bulut (Hybrid Cloud)",
+        "Açık Kaynaklı Bulut (Open Source Cloud)",
+        "Yerel Ağ (Local Network)"
+      ],
+      "correctIndex": 1,
+      "feedback": "Hibrit bulut, genel bulutun esnekliğini özel bulutun yüksek güvenlik ve tam kontrol özellikleriyle birleştiren karma bir bulut bilişim modelidir."
+    },
+    {
+      "id": "web-055",
+      "source": "web",
+      "level": "medium",
+      "question": "Yapay zeka projelerini üretime taşıma (deployment) sürecindeki karmaşıklığı azaltan, deney takibi ve model kaydı için kullanılan açık kaynaklı MLOps platformu aşağıdakilerden hangisidir?",
+      "options": [
+        "Jupyter Notebook",
+        "Visual Studio Code",
+        "MLflow",
+        "PyTorch"
+      ],
+      "correctIndex": 2,
+      "feedback": "MLflow, yapay zeka modellerinin geliştirme, deney takibi ve üretime alınma aşamalarındaki MLOps süreçlerini yöneten açık kaynaklı platformdur."
+    },
+    {
+      "id": "web-056",
+      "source": "web",
+      "level": "hard",
+      "question": "Bir bankanın kredi onayı sisteminde, başvuru sahibinin dolandırıcılık riski taşıyıp taşımadığını geçmiş müşteri verilerini baz alarak (geçmişte riskli/risksiz olarak etiketlenmiş verilerle) öğrenen bir algoritma kurulmak isteniyor. Bu senaryoda en uygun yapay zeka öğrenme yaklaşımı aşağıdakilerden hangisidir?",
+      "options": [
+        "Pekiştirmeli Öğrenme (Reinforcement Learning)",
+        "Denetimsiz Öğrenme (Unsupervised Learning)",
+        "Derin Pekiştirmeli Öğrenme (Deep Reinforcement Learning)",
+        "Denetimli Öğrenme (Supervised Learning)"
+      ],
+      "correctIndex": 3,
+      "feedback": "Sistem, geçmişte insan tarafından etiketlenmiş riskli/risksiz (rehberli) verilerden kuralları öğrendiği için bu senaryo denetimli öğrenme (supervised learning) örneğidir."
+    },
+    {
+      "id": "web-057",
+      "source": "web",
+      "level": "hard",
+      "question": "Bir yönetici, pazarlama verilerini yapay zekaya analiz ettirmek için şu promptu yazmıştır: \"Kıdemli bir veri analisti gibi davran. Bu raporun içindeki satış verilerini incele. Adım adım düşünerek ve mantıksal bir sıra izleyerek analiz yap. Bana sonuçları sadece bir tablo olarak ver.\" Bu prompt sırasıyla hangi iki ileri düzey Prompt Mühendisliği tekniğini aktif olarak kullanmaktadır?",
+      "options": [
+        "Role Prompting (Rol Ver) ve Chain-of-Thought (Adım Adım Düşün)",
+        "Zero-Shot (Doğrudan Soru) ve Few-Shot (Örnek Göster)",
+        "Few-Shot (Örnek Göster) ve Role Prompting (Rol Ver)",
+        "Zero-Shot (Doğrudan Soru) ve Structured Output (Format Belirle)"
+      ],
+      "correctIndex": 0,
+      "feedback": "Prompt içinde uzman kimliği tanımlanması \"Role Prompting\", analiz yaparken sürecin aşama aşama düşünülerek yapılmasının istenmesi ise \"Chain-of-Thought\" tekniğidir."
+    },
+    {
+      "id": "web-058",
+      "source": "web",
+      "level": "hard",
+      "question": "Bir şirket otonom araçlar için yüksek çözünürlüklü kameralardan gelen anlık trafik videolarını analiz etmek istiyor. Veri hacmi petabaytlar seviyesinde ve kurallar geleneksel algoritmalarla manuel olarak kodlanamayacak kadar karmaşıktır. Bu şirketin teknoloji altyapısı tercihinde aşağıdakilerden hangisine öncelikli olarak yatırım yapması beklenir?",
+      "options": [
+        "Sadece yapısal verilerle çalışan kural tabanlı Makine Öğrenmesi (ML) algoritmalarına",
+        "Özellik çıkarımını manuel yapacak kalabalık bir insan veri etiketleme ekibine",
+        "Derin Öğrenme (DL) ağlarını otonom şekilde eğitebilecek yüksek performanslı GPU donanımlarına",
+        "Oltalama (Phishing) saldırılarını engellemek için kurumsal ağ güvenlik duvarlarına"
+      ],
+      "correctIndex": 2,
+      "feedback": "Otonom araçlar gibi çok yüksek hacimli ve karmaşık görsellerin işlendiği yapılar, otonom çalışan derin öğrenme (DL) ağlarına ve bunları besleyecek güçlü GPU donanımlarına ihtiyaç duyar."
+    },
+    {
+      "id": "web-059",
+      "source": "web",
+      "level": "hard",
+      "question": "Bir e-ticaret şirketi; mağaza içi kameralardan gelen müşteri dolaşım görüntülerini (video), sosyal medyadaki marka yorumlarını (metin) ve satın alma faturalarını (sayısal veriler) aynı anda birleştirerek anlamlı bir satış stratejisi oluşturmak istiyor. Bu durum Büyük Veri'nin (Big Data) en çok hangi \"V\" özelliğini vurgulamaktadır?",
+      "options": [
+        "Hız (Velocity)",
+        "Çeşitlilik (Variety)",
+        "Doğruluk (Veracity)",
+        "Hacim (Volume)"
+      ],
+      "correctIndex": 1,
+      "feedback": "Video, metin ve sayısal verilerin aynı anda işlenmesi, Büyük Veri'nin farklı veri formatlarını barındırma özelliği olan Çeşitlilik (Variety) kavramını temsil eder."
+    },
+    {
+      "id": "web-060",
+      "source": "web",
+      "level": "hard",
+      "question": "Bir üretim tesisinde, makinelerin üzerine yerleştirilen akıllı sensörlerin arıza tahmini yapmak için internet üzerinden birbirleriyle veri paylaşması (1) ve bu esnada sızıntıları engellemek için kurumsal veri koruma mekanizmalarının aktif edilmesi (2) sırasıyla hangi iki dijital teknolojinin entegre çalıştığını gösterir?",
+      "options": [
+        "Artırılmış Gerçeklik (AR) ve Büyük Veri (Big Data)",
+        "Nesnelerin İnterneti (IoT) ve Siber Güvenlik (Cybersecurity)",
+        "Bulut Bilişim (Cloud Computing) ve Doğal Dil İşleme (NLP)",
+        "Bilgisayarla Görü (Computer Vision) ve Robotik (Robotics)"
+      ],
+      "correctIndex": 1,
+      "feedback": "Akıllı sensörler arası otonom iletişim Nesnelerin İnterneti (IoT) ile sağlanırken, dışarıdan gelen tehditlere karşı ağın korunması Siber Güvenlik (Cybersecurity) sistemleriyle gerçekleştirilir."
+    },
+    {
+      "id": "handbook-01-1",
+      "source": "handbook",
+      "level": "easy",
+      "question": "Yapay zeka terimi ilk kez hangi yıl ve nerede ortaya atılmıştır?",
+      "options": [
+        "1950, Cambridge",
+        "1956, Dartmouth Konferansı",
+        "1965, MIT",
+        "1970, Stanford"
+      ],
+      "correctIndex": 1,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-01-2",
+      "source": "handbook",
+      "level": "medium",
+      "question": "Aşağıdakilerden hangisi YZ'nin tarihsel dönemlerinden 'YZ kışı' olarak adlandırılan dönemi en iyi tanımlar?",
+      "options": [
+        "YZ'nin altın çağı",
+        "Beklentilerin karşılanamayıp fonların kesildiği dönem",
+        "Derin öğrenmenin yükselişi",
+        "Büyük dil modellerinin ortaya çıkışı"
+      ],
+      "correctIndex": 1,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-01-3",
+      "source": "handbook",
+      "level": "hard",
+      "question": "Geleneksel programlama ile makine öğrenmesi arasındaki temel paradigma farkı nedir?",
+      "options": [
+        "Geleneksel programlama daha hızlıdır",
+        "Geleneksel: girdi+kurallar=çıktı; ML: girdi+çıktı=kurallar",
+        "ML daha az veri kullanır",
+        "Geleneksel programlama internet gerektirir"
+      ],
+      "correctIndex": 1,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-02-1",
+      "source": "handbook",
+      "level": "easy",
+      "question": "Etiketli verilerle yapılan öğrenme türü hangisidir?",
+      "options": [
+        "Denetimsiz öğrenme",
+        "Denetimli öğrenme",
+        "Pekiştirmeli öğrenme",
+        "Transfer öğrenme"
+      ],
+      "correctIndex": 1,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-02-2",
+      "source": "handbook",
+      "level": "medium",
+      "question": "F1-Score neyi ifade eder?",
+      "options": [
+        "Sadece doğruluk oranını",
+        "Precision ve Recall'un harmonik ortalamasını",
+        "Modelin eğitim süresini",
+        "Modelin parametre sayısını"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-02-3",
+      "source": "handbook",
+      "level": "hard",
+      "question": "Dengesiz (imbalanced) bir veri kümesinde (örn: %99 negatif, %1 pozitif) neden 'accuracy' yanıltıcı olabilir?",
+      "options": [
+        "Çünkü accuracy hesaplaması yavaştır",
+        "Çünkü her şeyi negatif tahmin eden bir model bile %99 accuracy",
+        "Accuracy sadece regresyonda kullanılır",
+        "Dengesiz veride accuracy hesaplanamaz"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-03-1",
+      "source": "handbook",
+      "level": "easy",
+      "question": "Derin öğrenme neyin alt dalıdır?",
+      "options": [
+        "Robotiğin",
+        "Makine öğrenmesinin",
+        "Veritabanı yönetiminin",
+        "Web programlamanın"
+      ],
+      "correctIndex": 1,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-03-2",
+      "source": "handbook",
+      "level": "medium",
+      "question": "ReLU aktivasyon fonksiyonu nasıl çalışır?",
+      "options": [
+        "Her zaman 1 değeri döner",
+        "max(0, x) --- negatif değerleri 0 yapar, pozitifleri aynen",
+        "Sadece 0 veya 1 üretir",
+        "-1 ile 1 arasında değer üretir"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-03-3",
+      "source": "handbook",
+      "level": "hard",
+      "question": "Transformer mimarisindeki 'self-attention' mekanizmasının RNN'lere kıyasla en büyük avantajı nedir?",
+      "options": [
+        "Daha az bellek kullanır",
+        "Sıralı işleme yerine paralel işleme yaparak uzun bağımlılıkları",
+        "Sadece kısa metinlerle çalışır",
+        "Eğitim verisi gerektirmez"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-04-1",
+      "source": "handbook",
+      "level": "easy",
+      "question": "Tokenization ne demektir?",
+      "options": [
+        "Verilerin şifrelenmesi",
+        "Metnin kelime veya alt-kelime parçalarına ayrılması",
+        "Modellerin eğitilmesi",
+        "Veritabanı sorgulaması"
+      ],
+      "correctIndex": 1,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-04-2",
+      "source": "handbook",
+      "level": "medium",
+      "question": "Word Embedding (kelime gömme) nedir?",
+      "options": [
+        "Kelimeleri silme tekniği",
+        "Kelimelerin anlamsal ilişkilerini koruyarak vektör uzayında",
+        "Yazım hatalarını bulma yöntemi",
+        "Cümle uzunluğunu ölçme"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-04-3",
+      "source": "handbook",
+      "level": "hard",
+      "question": "RAG (Retrieval Augmented Generation) tekniği neyi çözer?",
+      "options": [
+        "Modeli hızlandırır",
+        "LLM'nin eğitim verisinde olmayan güncel veya özel bilgileri",
+        "Sadece görüntü işlemede kullanılır",
+        "Veri toplamayı otomatize eder"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-05-1",
+      "source": "handbook",
+      "level": "easy",
+      "question": "Dijital bir görüntüyü oluşturan en küçük birim nedir?",
+      "options": [
+        "Bit",
+        "Pixel",
+        "Byte",
+        "Voksel"
+      ],
+      "correctIndex": 1,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-05-2",
+      "source": "handbook",
+      "level": "medium",
+      "question": "Bir RGB görüntüde her pixel kaç değerle temsil edilir?",
+      "options": [
+        "1 değer",
+        "3 değer (kırmızı, yeşil, mavi kanalları)",
+        "10 değer",
+        "256 değer"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-05-3",
+      "source": "handbook",
+      "level": "hard",
+      "question": "Data augmentation (veri artırma) tekniği neden kullanılır?",
+      "options": [
+        "Sadece dosya boyutunu artırmak için",
+        "Eğitim verisini rotasyon, çevirme, kırpma gibi dönüşümlerle",
+        "Verileri silmek için",
+        "Sadece renkli görüntülerde çalışır"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-06-1",
+      "source": "handbook",
+      "level": "easy",
+      "question": "Big Data'nın 5V'sinden olmayan hangisidir?",
+      "options": [
+        "Volume",
+        "Velocity",
+        "Variety",
+        "Virtuality"
+      ],
+      "correctIndex": 3,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-06-2",
+      "source": "handbook",
+      "level": "medium",
+      "question": "Data Warehouse ile Data Lake arasındaki temel fark nedir?",
+      "options": [
+        "İkisi de aynıdır",
+        "Data Warehouse yapılandırılmış ve işlenmiş veri için, Data Lake",
+        "Data Lake daha pahalıdır",
+        "Data Warehouse sadece görsel veri saklar"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-06-3",
+      "source": "handbook",
+      "level": "hard",
+      "question": "Feature Store'un (özellik deposu) ML pipeline'larındaki rolü nedir?",
+      "options": [
+        "Sadece veri yedekleme",
+        "Özelliklerin merkezi yönetimi, eğitim-production tutarlılığı ve",
+        "Sadece görsel veri depolama",
+        "Internet bağlantısı sağlama"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-07-1",
+      "source": "handbook",
+      "level": "easy",
+      "question": "IoT neyin kısaltmasıdır?",
+      "options": [
+        "Internet of Tools",
+        "Internet of Things",
+        "Information of Technology",
+        "Integration of Telecom"
+      ],
+      "correctIndex": 1,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-07-2",
+      "source": "handbook",
+      "level": "medium",
+      "question": "Predictive Maintenance (kestirimci bakım) nasıl çalışır?",
+      "options": [
+        "Önceden belirlenmiş tarihlerde bakım yapar",
+        "Sensörlerden gelen verileri ML ile analiz ederek arıza olmadan",
+        "Hiç bakım yapmaz",
+        "Sadece elektrik kesintilerinde çalışır"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-07-3",
+      "source": "handbook",
+      "level": "hard",
+      "question": "IIoT (Industrial IoT) uygulamalarında ML modellerinin edge'de çalıştırılması neden tercih edilir?",
+      "options": [
+        "Daha ucuzdur",
+        "Üretim hattında milisaniyelik kararlar gerekir; bulut gecikmesi",
+        "Bulut çalışmaz",
+        "Sadece akşamları çalışır"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-08-1",
+      "source": "handbook",
+      "level": "easy",
+      "question": "VR ve AR arasındaki temel fark nedir?",
+      "options": [
+        "VR ucuzdur, AR pahalıdır",
+        "VR tamamen sanal ortam, AR gerçek dünyaya dijital katmanlar",
+        "VR sadece oyunda kullanılır",
+        "AR sadece askeri amaçlıdır"
+      ],
+      "correctIndex": 1,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-08-2",
+      "source": "handbook",
+      "level": "medium",
+      "question": "MR (Mixed Reality) nedir?",
+      "options": [
+        "Sadece müzik dinleme teknolojisi",
+        "VR ve AR'nin birleşimi; gerçek ve sanal nesnelerin etkileşimli",
+        "Eski bir VR teknolojisi",
+        "Sadece simülasyon yazılımı"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-08-3",
+      "source": "handbook",
+      "level": "hard",
+      "question": "Sağlık alanında VR/AR ile YZ entegrasyonunun en somut faydalarından biri nedir?",
+      "options": [
+        "Sadece eğlence",
+        "Cerrahların sanal ortamda riskli operasyonları pratik etmesi,",
+        "Hiçbir faydası yok",
+        "Sadece reçete yazımı"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-09-1",
+      "source": "handbook",
+      "level": "easy",
+      "question": "YZ'nin siber güvenlikte en yaygın kullanım alanlarından biri nedir?",
+      "options": [
+        "Sadece logo tasarımı",
+        "Anomali tespiti ve tehdit avı",
+        "Sadece e-posta yazımı",
+        "Sadece dosya silme"
+      ],
+      "correctIndex": 1,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-09-2",
+      "source": "handbook",
+      "level": "medium",
+      "question": "Adversarial Attack nedir?",
+      "options": [
+        "Rakip şirketlere saldırı",
+        "YZ modelini yanıltmak için girdiye küçük, insan gözüyle",
+        "Klasik bir hacking yöntemi",
+        "Network kablosu kesme"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-09-3",
+      "source": "handbook",
+      "level": "hard",
+      "question": "Differential Privacy mekanizması ML modellerinde nasıl çalışır?",
+      "options": [
+        "Modeli daha hızlı yapar",
+        "Eğitim verisine matematiksel olarak ölçülebilir gürültü",
+        "Sadece dosya boyutunu küçültür",
+        "Modeli daha doğru yapar"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-10-1",
+      "source": "handbook",
+      "level": "easy",
+      "question": "Netflix izlemelerinin yaklaşık yüzde kaçı öneri sisteminden geliyor?",
+      "options": [
+        "%10",
+        "%25",
+        "%50",
+        "%75"
+      ],
+      "correctIndex": 3,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-10-2",
+      "source": "handbook",
+      "level": "medium",
+      "question": "İK alanında YZ kullanımının en büyük etik riski nedir?",
+      "options": [
+        "Çok yavaş çalışması",
+        "Eğitim verisindeki tarihsel önyargıların (cinsiyet, etnisite)",
+        "Sadece teknik problemler",
+        "Sadece elektrik tüketimi"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-10-3",
+      "source": "handbook",
+      "level": "hard",
+      "question": "Dolandırıcılık tespitinde (fraud detection) precision ve recall arasındaki trade-off neden kritiktir?",
+      "options": [
+        "Önemli değildir",
+        "Çok yüksek recall (her şüpheli işlemi yakalama) müşteri",
+        "Sadece bankalar için geçerlidir",
+        "Sadece teknik bir konudur"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-11-1",
+      "source": "handbook",
+      "level": "easy",
+      "question": "AB Yapay Zeka Yasası (EU AI Act) ne tür bir yaklaşım benimser?",
+      "options": [
+        "YZ'yi tamamen yasaklar",
+        "Risk bazlı yaklaşım (yasaklı, yüksek risk, sınırlı risk,",
+        "Sadece para cezaları",
+        "Hiçbir düzenleme getirmez"
+      ],
+      "correctIndex": 1,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-11-2",
+      "source": "handbook",
+      "level": "medium",
+      "question": "GDPR'ın 22. maddesi neyi düzenler?",
+      "options": [
+        "Bilet fiyatlarını",
+        "Otomatik karar verme süreçlerinde bireylerin haklarını",
+        "Reklam vergilerini",
+        "Domain isimlerini"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-11-3",
+      "source": "handbook",
+      "level": "hard",
+      "question": "YZ tarafından üretilen içeriğin telif hakkı konusunda ABD Telif Hakkı Ofisi'nin yaklaşımı nedir?",
+      "options": [
+        "YZ ürünleri tam olarak korur",
+        "Salt YZ tarafından üretilen içerikleri korumaz; telif için",
+        "Hiçbir telif korunmaz",
+        "Sadece sanatçılara verilir"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-12-1",
+      "source": "handbook",
+      "level": "easy",
+      "question": "YZ etiğinin temel prensiplerinden biri DEĞİLDİR?",
+      "options": [
+        "Şeffaflık",
+        "Adalet",
+        "Mahremiyet",
+        "Maksimum hız"
+      ],
+      "correctIndex": 3,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-12-2",
+      "source": "handbook",
+      "level": "medium",
+      "question": "XAI (Explainable AI) neden önemlidir?",
+      "options": [
+        "Sadece akademik bir konu",
+        "Yüksek riskli kararlarda (sağlık, kredi) kararın gerekçesinin",
+        "Sadece pazarlama amaçlı",
+        "Modeli yavaşlatır"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-12-3",
+      "source": "handbook",
+      "level": "hard",
+      "question": "Fairness metriklerinden 'Demographic Parity' ile 'Equalized Odds' arasındaki fark nedir?",
+      "options": [
+        "İkisi de aynı",
+        "Demographic Parity: tüm gruplarda pozitif tahmin oranı eşit;",
+        "Sadece bankacılıkta kullanılır",
+        "Sadece akademik konu"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-13-1",
+      "source": "handbook",
+      "level": "easy",
+      "question": "CRISP-DM nedir?",
+      "options": [
+        "Bir programlama dili",
+        "Veri madenciliği için endüstri standardı süreç metodolojisi",
+        "Bir veri tabanı",
+        "Bir donanım"
+      ],
+      "correctIndex": 1,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-13-2",
+      "source": "handbook",
+      "level": "medium",
+      "question": "Data leakage (veri sızıntısı) nedir?",
+      "options": [
+        "Verinin internetten sızması",
+        "Test verisinden veya gelecekten gelen bilgilerin eğitim",
+        "Hard diskten veri kaybı",
+        "Şifre kırılması"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-13-3",
+      "source": "handbook",
+      "level": "hard",
+      "question": "Production-Training Gap'in en yaygın sebebi nedir?",
+      "options": [
+        "İnternet hızı",
+        "Feature engineering tutarsızlığı: eğitim sırasında kullanılan",
+        "Sadece donanım farkı",
+        "Hiçbir zaman olmaz"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-14-1",
+      "source": "handbook",
+      "level": "easy",
+      "question": "Aşağıdakilerden hangisi bir derin öğrenme framework'üdür?",
+      "options": [
+        "Excel",
+        "PyTorch",
+        "Photoshop",
+        "Word"
+      ],
+      "correctIndex": 1,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-14-2",
+      "source": "handbook",
+      "level": "medium",
+      "question": "TensorFlow ile PyTorch arasındaki temel kullanım farkı nedir?",
+      "options": [
+        "Aynıdır",
+        "Genel olarak TensorFlow production deployment'ta, PyTorch",
+        "TensorFlow sadece görüntü için",
+        "PyTorch sadece metin için"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-14-3",
+      "source": "handbook",
+      "level": "hard",
+      "question": "LangChain ve LlamaIndex gibi araçların temel kullanım amacı nedir?",
+      "options": [
+        "Sadece veri görselleştirme",
+        "LLM uygulamalarının geliştirilmesi: prompt yönetimi, RAG",
+        "Sadece veritabanı yönetimi",
+        "Sadece web tasarımı"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-15-1",
+      "source": "handbook",
+      "level": "easy",
+      "question": "AGI neyin kısaltmasıdır?",
+      "options": [
+        "Advanced Graphics Interface",
+        "Artificial General Intelligence",
+        "Automated Game Industry",
+        "Active Group Integration"
+      ],
+      "correctIndex": 1,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-15-2",
+      "source": "handbook",
+      "level": "medium",
+      "question": "Foundation Model nedir?",
+      "options": [
+        "Bir inşaat YZ'si",
+        "Geniş alanlarda çok büyük veriyle eğitilen, spesifik görevlere",
+        "Sadece veritabanı temelleri",
+        "Eski bir model türü"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-15-3",
+      "source": "handbook",
+      "level": "hard",
+      "question": "AI Alignment problemi neden 'varoluşsal risk' olarak değerlendirilir?",
+      "options": [
+        "Sadece akademik bir konu",
+        "İnsan değerleriyle hizalanmamış süper zeka, insanlık için",
+        "Sadece bilim kurgu",
+        "Hiçbir önemi yok"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-16-1",
+      "source": "handbook",
+      "level": "easy",
+      "question": "Jupyter Notebook nedir?",
+      "options": [
+        "Bir kitap markası",
+        "Veri bilimi ve ML için interaktif kod yazma ortamı",
+        "Bir oyun konsolu",
+        "Sadece İngilizce öğrenme aracı"
+      ],
+      "correctIndex": 1,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-16-2",
+      "source": "handbook",
+      "level": "medium",
+      "question": "Few-shot prompting tekniği nedir?",
+      "options": [
+        "Birkaç saniyede prompt yazma",
+        "LLM'ye birkaç örnek vererek görevi öğretme tekniği",
+        "Sadece görsel ile prompt verme",
+        "Çok kısa prompt"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-16-3",
+      "source": "handbook",
+      "level": "hard",
+      "question": "Iris veri kümesinde DecisionTreeClassifier ve RandomForestClassifier arasında performans farkı genelde küçüktür. Nedeni nedir?",
+      "options": [
+        "Algoritmaların aynı olması",
+        "Iris veri kümesi küçük, dengeli ve doğrusal olarak ayrılabilir",
+        "İnternet hızı",
+        "Çiçek türü olduğu için"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-17-1",
+      "source": "handbook",
+      "level": "easy",
+      "question": "Andrew Ng hangi online eğitim platformunda popüler Machine Learning dersleri vermektedir?",
+      "options": [
+        "Netflix",
+        "Coursera",
+        "Instagram",
+        "TikTok"
+      ],
+      "correctIndex": 1,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-17-2",
+      "source": "handbook",
+      "level": "medium",
+      "question": "Papers with Code'un benzersiz özelliği nedir?",
+      "options": [
+        "Sadece makale gösterir",
+        "Akademik makaleleri kod implementasyonları ve benchmark",
+        "Sadece video paylaşır",
+        "Sadece görsel paylaşır"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    },
+    {
+      "id": "handbook-17-3",
+      "source": "handbook",
+      "level": "hard",
+      "question": "Distill.pub'ı diğer YZ kaynaklarından ayıran özellik nedir?",
+      "options": [
+        "Sadece kısa makaleler",
+        "İnteraktif görselleştirmeler ve sezgisel açıklamalarla YZ",
+        "Sadece video içerikleri",
+        "Sadece akademik makaleler"
+      ],
+      "correctIndex": 0,
+      "feedback": ""
+    }
+  ]
+}

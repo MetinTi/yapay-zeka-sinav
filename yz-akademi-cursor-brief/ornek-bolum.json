@@ -1,0 +1,58 @@
+{
+  "id": 1,
+  "slug": "yz-temelleri",
+  "title": "Yapay Zeka Temelleri",
+  "description": "YZ'nin ne olduğunu, tarihçesini ve temel kavramlarını öğren.",
+  "icon": "Brain",
+  "color": "purple",
+  "estimatedMinutes": 25,
+  "prerequisites": [],
+  "sections": [
+    {
+      "id": "1-1",
+      "title": "1.1 Yapay Zeka Nedir?",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Yapay zeka (YZ), insan zekasını taklit eden, verilerden öğrenen ve karmaşık problemleri çözebilen bilgisayar sistemlerinin geliştirilmesi alanıdır."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Temel Tanımlar"
+        },
+        {
+          "type": "bullet",
+          "text": "Dar YZ (Narrow AI): Belirli bir görevi yapmak için tasarlanmış."
+        },
+        {
+          "type": "bullet",
+          "text": "Genel YZ (AGI): İnsan seviyesinde her görevi yapabilen, henüz mevcut değil."
+        },
+        {
+          "type": "bullet",
+          "text": "Süper YZ (ASI): İnsan zekasını her alanda aşan, teorik."
+        },
+        {
+          "type": "quote",
+          "text": "Yapay zeka, bir zamanlar imkansız görüneni mümkün kılar. — Stephen Hawking"
+        }
+      ]
+    },
+    {
+      "id": "1-2",
+      "title": "1.2 YZ Tarihçesi",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Yapay zekanın temelleri 1950'lerde atıldı. Alan Turing'in 'Computing Machinery and Intelligence' makalesi felsefi temeli oluşturdu."
+        },
+        {
+          "type": "image",
+          "url": "/images/turing-test.png",
+          "text": "Turing Testi şeması"
+        }
+      ]
+    }
+  ]
+}
