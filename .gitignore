@@ -13,6 +13,9 @@ qa/*
 !qa/participant-state.test.mjs
 !qa/v2-backend.test.cjs
 !qa/closeout-2026-09-28.json
+!qa/ozak-backend.test.cjs
+!qa/ozak-context.test.mjs
+!qa/ozak-release-2026-11-17.json
 
 # Mobile production client configuration stays local; use the example.
 mobile/lib/firebase_options.dart

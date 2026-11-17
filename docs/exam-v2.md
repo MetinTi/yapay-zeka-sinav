@@ -61,3 +61,44 @@ Yayınlanan dizin yalnız `v2/` olur. Ders belgeleri, özel tablo içerikleri, Q
 - [x] **HOST-20260928:** Ana siteye taşıma, özel alan adı bağlantısı ve ikinci Hosting sitesinin silinmesi doğrulandı.
 - [ ] **EXAM-V2-MAIL:** Gerçek e-posta teslim testi bekliyor.
 - [ ] **EXAM-V1-SHEET:** Eski V1 tablo bağlantısı onarımı ayrı iş olarak bekliyor.
+
+<a id="ozak-202612"></a>
+
+## Özak Global Holding — Aralık 2026 ayrı sınavı
+
+17 Kasım 2026 kullanıcı kararıyla Özak için **tamamen ayrı giriş, uygulama dosyaları ve Apps Script projesi** hazırlandı; aynı gün yayın ve gerçek eğitmen tablosuna bağlantı yetkisi verildi. Genel V2'nin altı dosyası ve mevcut Apps Script yayını değiştirilmez. Özak üstte büyük özgün kurum logosu, “Özak Global Holding · Yapay Zekâ Eğitimi” ve “Değerlendirme Testi” başlıklarını içerir. Logo [resmî siteden](https://www.ozakglobal.com/) alındı; [kaynak kaydı](../v2/ozak/assets/README.md) mevcuttur.
+
+### Bağlantılar
+
+| Grup | Ön test | Son test |
+|---|---|---|
+| Grup 1 | [Aç](https://sinav2.metintiryaki.com/ozak/?grup=1&asama=baslangic) | [Aç](https://sinav2.metintiryaki.com/ozak/?grup=1&asama=bitis) |
+| Grup 2 | [Aç](https://sinav2.metintiryaki.com/ozak/?grup=2&asama=baslangic) | [Aç](https://sinav2.metintiryaki.com/ozak/?grup=2&asama=bitis) |
+| Grup 3 | [Aç](https://sinav2.metintiryaki.com/ozak/?grup=3&asama=baslangic) | [Aç](https://sinav2.metintiryaki.com/ozak/?grup=3&asama=bitis) |
+
+[Kurum girişi](https://sinav2.metintiryaki.com/ozak/) parametresiz açıldığında üç gruptan seçim yapılır; grup bağlantısı paylaşıldığında kurum/eğitim/grup otomatik gelir. Yalnız ad soyad ve mevcut katılımcı kodu girilir. Bağlantılar kimlik doğrulama değildir; internetten kayıt gönderilebilir. Bilinmeyen/çift grup veya geçersiz aşama parametresi genel sınava düşmez, form açılmaz.
+
+Yerel açılış: depo kökünde `python3 -m http.server 4187 --bind 127.0.0.1 --directory v2`, ardından `http://127.0.0.1:4187/ozak/`. Yerel sayfa da yapılandırılmış gerçek Özak backend'ini kullanır; denemeler gerçek tabloya yazabilir. Saf testlerde mock kullanılır; gerçek kişisel veriyle deneme yapılmaz.
+
+### Soru seti ve katılımcı davranışı
+
+- Sürüm `ozak-ai-awareness-202612-v1`; 10 soru / 10 dakika / her doğru 10 puan. [Tam sorular, anahtar ve kazanımlar](ozak-exam-questions.md) kullanıcının yayın onayı kapsamındadır; kurumun ayrı içerik onayına dair iddia değildir.
+- Ön/son test aynı soruları kullanır. Ön testte cevap anahtarı/açıklama açılmaz; son testte açılır. İstemci anahtarı yüksek güvenlikli sınav koruması değildir. Tekrar görme etkisi olabilir; puan farkı tek başına eğitimin nedensel etkisini kanıtlamaz.
+- Kurum + eğitim + grup + soru seti sürümü + kod kapsamında tarayıcı ve backend ayrımı vardır. Eski önizleme sürümü genel veya canlı Özak kayıtlarına taşınmaz. Yanıt ve ilk bitiş saati yenilemede korunur.
+- Özak için ilk sunucuya kaydedilen ön ve son test resmî kayıttır; bütün denemeler günlükte tutulur. Tekrar gönderim aynı ID ile tekilleşir. Tekrar denemesi ekranda/JSON'da ilk yerel aşama puanından ayrılır. Genel V2'nin ilk ön/en son son test davranışı aynı kalır.
+- Ön testi olmayan sonuç sıfır başlangıç kabul edilmez; fark boş kalır. Ekrandaki karşılaştırma yalnız aynı tarayıcıdaki ön testten gelir. Farklı cihazda kod elle girilebilir, backend aynı kapsamında eşleştirir; sonuç/katılımcı listesi okuma API'si açılmaz.
+- Ad/kod/sonuç eğitmenin özel tablosuna gönderilir. `saved:true` olmadan “kaydedildi” gösterilmez; hata/yeniden deneme ve JSON indirme vardır. JSON kurum/eğitim/grup/sürüm, tekrar ve sunucu kayıt doğrulaması durumunu içerir. Özak'ta e-posta yoktur; genel V2'nin isteğe bağlı e-postası korunur.
+
+### Ayrı backend ve özel eğitmen tablosu
+
+Özak frontend'i `v2/ozak/app.mjs`, `exam-context.mjs`, `persistence.mjs` ve `backend-config.mjs` kullanır. Ana endpoint'e fallback yoktur. Salt okunur katılımcı/süre yardımcıları ile temel stil dosyası genel V2'den yeniden kullanılır; bunlar değiştirilmez.
+
+`apps-script/Ozak.template.gs` bağımsız proje şablonudur; `apps-script/ozak-appsscript.json` yalnız Sheets izni ve Europe/Istanbul saat dilimi ister. Gerçek tablo kimliği yalnız özel yapılandırmada tutulur; repoya yazılmaz. **Genel sınavın Apps Script projesine bu dosyalar eklenmez ve mevcut dağıtımı güncellenmez.** Özak ayrı proje/endpoint kullanır. Yeni kurulumda şablon `Code.gs`, manifest `appsscript.json` adıyla ayrı projeye yüklenir.
+
+Mevcut özel eğitmen tablosundaki **Özak katılımcılar** ve **Özak sınav kayıtları** sekmeleri kullanılır; eski sekmeler/kayıtlar taşınmaz, silinmez veya Özak'a atanmaz. Cihaz tamamlanma zamanı sunucu kayıt zamanından ayrıdır; sunucu zamanı UTC ISO metindir ve günlükten özete birebir kopyalanır (Apps Script v2). Soru bazında yanıt toplama ve yeni dashboard yoktur. Tablo paylaşımı bu çalışma için genişletilmez.
+
+Backend `Execute as me` ve kullanıcıca ayrıca onaylanan `Anyone` ayarıyla çalışır. İlk Google Sheets yetkisini proje sahibi verir; katılımcıdan Google oturumu/OAuth izni istenmez. Kullanıcının gördüğü “Google hasn't verified this app” ekranı yeni proje sahibinin yetkilendirmesiydi; HTTPS sertifika hatası değildir. Bu ayarda katılımcıların kişisel Google verileri için izin alınmaz. [Google'ın yürütme kimliği açıklaması](https://developers.google.com/apps-script/guides/web#permissions).
+
+Firebase Hosting global CDN; Apps Script/Google Sheets bu kurulumda kaynak bölgesi seçtirmez. Frankfurt'a sabitlenmiş gibi sunulmaz; mevcut tablo taşınmadı, yeni bölgesel GCP veritabanı/servisi kurulmadı.
+
+Yayın, kaynak eşitliği, gerçek kayıt ve kabul kanıtı [17 Kasım yayın kaydında](../history.md#ozak-exam-live-2026-11-17) ayrı izlenir. Önceki yerel taslak kanıtı [korunur](../history.md#ozak-exam-preview-2026-11-17); tek başına canlı kabul değildir.
