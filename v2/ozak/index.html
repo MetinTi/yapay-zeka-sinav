@@ -16,13 +16,15 @@
   <a class="skip" href="#main">İçeriğe geç</a>
   <div class="ambient" aria-hidden="true"></div>
   <header class="institution-header">
-    <div class="header-tools"><span class="edition">ARALIK 2026</span><button id="theme" class="icon-btn" aria-label="Renk temasını değiştir">◐</button></div>
+    <div class="header-tools">
+      <nav class="language-picker" aria-label="Dil seçimi"><a id="language-tr" href="?lang=tr" lang="tr" aria-current="page">🇹🇷 <span>TR Türkçe</span></a><a id="language-en" href="?lang=en" lang="en">🇬🇧 <span>EN English</span></a></nav>
+      <button id="theme" class="theme-button" type="button">Açık tema</button>
+    </div>
+    <div class="brand-row"><img class="trainer-art" src="assets/metin-app-ecosystem.webp" width="1254" height="1254" alt="Metin Tiryaki ve uygulamalarının logoları" fetchpriority="high">
     <div class="logo-surface"><img src="assets/ozak-global-logo.png" width="1160" height="384" alt="Özak Global" fetchpriority="high"></div>
-    <p class="institution-name">ÖZAK GLOBAL HOLDİNG</p>
-    <p class="institution-program">Yapay Zekâ Eğitimi</p>
+    </div>
   </header>
   <main id="main">
-    <p class="preview-note"><span class="dot" aria-hidden="true"></span> Ön test ve son test · Her doğru yanıt 10 puan.</p>
     <section id="welcome" class="welcome">
       <div class="intro">
         <p class="eyebrow"><span class="short-line" aria-hidden="true"></span> BİLİNÇLİ KULLANIM, GÜÇLÜ BİR BAŞLANGIÇ</p>
@@ -34,6 +36,7 @@
           <div><span class="step-number">02</span><span><strong>Son test</strong><small>Eğitimden sonra puan farkını incele.</small></span></div>
         </div>
         <div class="facts"><div><strong>10</strong><span>iş senaryosu</span></div><div><strong>10<span> dk</span></strong><span>test süresi</span></div><div><strong>100</strong><span>üzerinden puan</span></div></div>
+        <p class="preview-note"><span class="dot" aria-hidden="true"></span> Ön test ve son test · Her doğru yanıt 10 puan.</p>
         <p class="intro-footnote">Bu bir yarış değil; öğrenmenin öncesine ve sonrasına kısa bir bakış.</p>
       </div>
       <aside id="group-picker" class="glass group-picker" aria-labelledby="group-title">
@@ -41,11 +44,11 @@
         <p class="hint">Eğitmeninin belirttiği gruptan devam et. Grup bağlantısı paylaşıldıysa bu adım otomatik tamamlanır.</p>
         <p id="link-error" class="warning" role="alert" hidden></p>
         <nav class="group-links" aria-label="Eğitim grupları">
-          <a class="group-link" href="?grup=1&amp;asama=baslangic"><span><small>01</small><strong>Grup 1</strong></span><span aria-hidden="true">↗</span></a>
-          <a class="group-link" href="?grup=2&amp;asama=baslangic"><span><small>02</small><strong>Grup 2</strong></span><span aria-hidden="true">↗</span></a>
-          <a class="group-link" href="?grup=3&amp;asama=baslangic"><span><small>03</small><strong>Grup 3</strong></span><span aria-hidden="true">↗</span></a>
+          <a class="group-link" href="?grup=1&amp;asama=baslangic"><span><small>01</small><span class="group-detail"><strong>Grup 1</strong><span class="group-date">Örnek tarih · 4 Aralık 2026</span></span></span><span aria-hidden="true">↗</span></a>
+          <a class="group-link" href="?grup=2&amp;asama=baslangic"><span><small>02</small><span class="group-detail"><strong>Grup 2</strong><span class="group-date">Örnek tarih · 6 Aralık 2026</span></span></span><span aria-hidden="true">↗</span></a>
+          <a class="group-link" href="?grup=3&amp;asama=baslangic"><span><small>03</small><span class="group-detail"><strong>Grup 3</strong><span class="group-date">Örnek tarih · 10 Aralık 2026</span></span></span><span aria-hidden="true">↗</span></a>
         </nav>
-        <p class="hint">Her grupta aynı 10 soru kullanılır.</p>
+        <p class="hint">Her grupta aynı 10 soru kullanılır. Tarihler örnektir; program henüz kesinleşmedi.</p>
       </aside>
       <form id="start-form" class="glass start-form" hidden>
         <div class="form-heading"><p class="eyebrow" id="group-label"></p><a href="./" class="change-group">Grubu değiştir</a></div>

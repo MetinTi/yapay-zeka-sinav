@@ -1,0 +1,175 @@
+{
+  "date": "2026-11-17",
+  "publicUrl": "https://sinav2.metintiryaki.com/ozak/",
+  "englishUrl": "https://sinav2.metintiryaki.com/ozak/?lang=en",
+  "hosting": {
+    "project": "yapay-zeka-egitim-mt",
+    "site": "yapay-zeka-egitim-mt",
+    "version": "a5eab3f2ab4cc571",
+    "region": "global CDN"
+  },
+  "assessmentVersion": "ozak-ai-awareness-202612-v1",
+  "backendRedeployed": false,
+  "permissionsChanged": false,
+  "privateSheetChanged": false,
+  "newLiveQaWrites": 0,
+  "verification": {
+    "targetedNodeTests": 32,
+    "existingGeneralBackendChecks": 12,
+    "generalSourceFilesUnchanged": 6,
+    "layouts": {
+      "languages": [
+        "tr",
+        "en"
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "views": [
+        "landing",
+        "form"
+      ],
+      "cases": 32,
+      "overflow": false
+    },
+    "mockedRuntime": {
+      "languageSwitchPreserves": [
+        "answer IDs and selections",
+        "attempt ID",
+        "absolute deadline"
+      ],
+      "preScore": 10,
+      "postScore": 100,
+      "delta": 90,
+      "retryPayloadUnchanged": true,
+      "postTestReviewCount": 10,
+      "liveWrites": 0
+    },
+    "httpsAssetParity": [
+      {
+        "file": "index.html",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "3a3ad23385939fa9d114765887641ee79b369d7d8aaa9bc6d15c46746e0b7725"
+      },
+      {
+        "file": "app.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "3ef56126743f671b16ffd04e05a6f55f7a3437ef51d535f800c6dfd2723e7389"
+      },
+      {
+        "file": "persistence.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "9d79b2bdd29678dcda6a00f2e7c9e3e2222688963648bba051711079a77c5505"
+      },
+      {
+        "file": "participant-state.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "42347ef2814f9e104a4db5e3da75563941cb224664e244b5f867035cfc321f6d"
+      },
+      {
+        "file": "questions.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "7d60cf805542ef98f96ba3b9ce62104bb2069bb0aaec1c819962becc0291194c"
+      },
+      {
+        "file": "style.css",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "4c97b66f136fc8dbd508a7b0ef5d5f8d62927682b663715a6b91b49a3490d21e"
+      },
+      {
+        "file": "ozak/app.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "29b5131bb201a36d87261d98d4dcf3a908e87758513c894b633c7da85377f8a0"
+      },
+      {
+        "file": "ozak/backend-config.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "8c5f145d1c471ded58bc8486175f08ea3ab5ee425d17db559e188f46bd3d7a5a"
+      },
+      {
+        "file": "ozak/entry.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "34e80f94a789911ccf6b66919d5da27425bda79d00111f4916a054fc64b75786"
+      },
+      {
+        "file": "ozak/exam-context.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "4727e5551b87fb74fb4f62bdbad7a0dd8bc0f4460c370560b8b12b1db306c046"
+      },
+      {
+        "file": "ozak/index.html",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "4677809635400019ec3193e01e1b2bb7d514c7874c9b390345d176db8801afbb"
+      },
+      {
+        "file": "ozak/ozak.css",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "2f2cbd55b24059fd50c3e7ceb6f2210de23aebba33bde95b711d477040a3841d"
+      },
+      {
+        "file": "ozak/persistence.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "6ba5cbf29474e6ddd735c2c45e6783e5c641ab0230b56a1aa22ebdc12e7288ea"
+      },
+      {
+        "file": "ozak/questions.en.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "c35f4574407e91f2aa78aa863034958035f6297ee11f57cf8b0e2cea6896df46"
+      },
+      {
+        "file": "ozak/questions.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "74236129177f744ddabe021f726d6e25b427db95671f68c5ee7ad7452ce7e377"
+      },
+      {
+        "file": "ozak/ui-copy.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "ccfd59940acffe49dde46df45ad00a3a418aa9470ceff1a1d2f8e57a3066a5a5"
+      },
+      {
+        "file": "ozak/assets/metin-app-ecosystem.webp",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "3e7123f5d5da7eed9a41bebe858691c1df2f2f750ce61d6076590387a4fd6eec"
+      },
+      {
+        "file": "ozak/assets/ozak-global-logo.png",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "73af5deb3c1ef427f2916ca161f99dc3448d5d94ba3a67d51372e97e85317838"
+      }
+    ]
+  },
+  "exampleSchedule": {
+    "confirmed": false,
+    "displayOnly": true,
+    "daysInDecember2026": {
+      "1": 4,
+      "2": 6,
+      "3": 10
+    }
+  }
+}

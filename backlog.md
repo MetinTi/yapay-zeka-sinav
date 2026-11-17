@@ -10,7 +10,6 @@ Son gözden geçirme: **22 Ekim 2026**. Güncel web ürün: [README](README.md) 
 
 ## Açık web ve süreç işleri
 
-- [ ] **EXAM-OZAK-202612:** Kullanıcı yayın/gerçek tablo ve ayrı sınav kararını onayladı; bağımsız Özak backend v1 + Hosting yayını ve gerçek puan kaydı doğrulandı. UTC zaman düzeltmesi Apps Script v2 ve gerçek tarayıcı/tabloyla doğrulandı; kaynak/kanıt incelemesi temiz. Git teslimi [PR #7](https://github.com/MetinTi/yapay-zeka-sinav/pull/7); onaylanan 2 QA katılımcısı/4 deneme temizlendi ve iki yeni sekmenin boş/kayıtlı olduğu doğrulandı. Yalnız PR main merge için otomatik denetimin istediği açık onay bekleniyor. [İşletim ve grup bağlantıları](docs/exam-v2.md#ozak-202612), [yayın/kabul](history.md#ozak-exam-live-2026-11-17).
 - [ ] **EXAM-V2-MAIL · P2:** İsteğe bağlı e-posta teslimi doğrulanmadı; kabul: ayrıca yetkilendirilmiş alıcıya deneme ve gelen kutusu kontrolü. V2 sınıf akışını engellemez.
 - [ ] **EXAM-V1-SHEET · P2:** V1 tablo bağlantısının onarımı; V2 özel tablo kurulumundan ayrı.
 - [ ] **W2:** Mobil havuz üretimi mevcut; V1 `index.html` gömülü P dizisiyle tek kaynak senkronu açık. Bu işi V2'nin 10 sabit soruluk sınıf kapsamıyla birleştirme.
@@ -93,3 +92,7 @@ Kaynak incelemesi yeni özellik uygulama emri değildir. Önce yukarıdaki karar
 ### Hesap verisi güvenliği
 
 - [x] **M-ACCOUNT-LOCAL · P1/P2 · 22 Ekim 2026:** Profil/ilerleme/avatar/hatırlatıcı UID bazında ayrıldı; başarılı hesap silmede yerel temizlik ve hesap değişiminde özel ekranların kapanması 10 yerel testle doğrulandı; gerçek cihaz/Firebase silme kabulü ayrı, [bulgu ve kanıt](history.md#account-local-review-2026-10-22).
+
+### Özak sınavı
+
+- [x] **EXAM-OZAK-202612 · 17 Kasım 2026:** Ayrı sınav/gerçek tablo yayını, UTC düzeltmesi ve QA temizliği tamamlandı; açık kullanıcı onayıyla [PR #7](https://github.com/MetinTi/yapay-zeka-sinav/pull/7) main’e birleştirildi (`3c8b5c9`); [ayrıntılı yayın/kabul](history.md#ozak-exam-live-2026-11-17).

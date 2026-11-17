@@ -176,3 +176,7 @@ Yapay zekâ, bir müşteriye gönderilecek teklif e-postasını hazırladı. E-p
 Sorular gerçek katılımcı, müşteri veya kurum içi belge içermez. Belirli bir yapay zekâ markasının ücretli özelliğini, programlama dilini veya teknik terim ezberini ölçmez. Veri ve onay soruları kurumun doğrulanmamış bir politikasını tarif etmez; geçerli izin ve onay koşullarının kontrol edilmesini ölçer.
 
 Soru bazında kazanım eşlemesi bu içerik taslağının açıklamasıdır; yeni bir katılımcı yanıt verisi toplama veya soru bazında kurumsal raporlama yetkisi değildir.
+
+## İngilizce sunum
+
+17 Kasım 2026 arayüz güncellemesinde [aynı 10 sorunun İngilizce çevirisi](../v2/ozak/questions.en.mjs) eklendi. Kimlikler, seçenek sırası, doğru yanıtlar, puanlama ve sürüm Türkçe setle aynıdır; [English giriş](https://sinav2.metintiryaki.com/ozak/?lang=en) üzerinden açılır. Bu dil eşleştirmesi ayrı bir psikometrik eşdeğerlik çalışması değildir.

@@ -1,3 +1,15 @@
+<a id="ozak-layout-en-2026-11-17"></a>
+
+## 2026-11-17 — Özak giriş düzeni ve İngilizce sınav
+
+- **Kapsam/karar:** Metin, kendi portföyündeki uygulama görselinin Özak logosunun soluna alınmasını, tekrarlayan iki başlığın kaldırılmasını, puan bilgisinin sayısal özetin altına taşınmasını ve grup bölümünün yukarı çıkmasını istedi. Özgün WebP kopyalandı; kaynak [varlık kaydında](v2/ozak/assets/README.md). Grup tarihlerinin kesinleşmediğini belirtti; 4/6/10 Aralık 2026 açıkça “Örnek tarih” olarak gösterilir.
+- **TR/EN ve tema:** Türkçe varsayılan; `?lang=en` paylaşılabilir İngilizce sürüm. Giriş/form/sınav/sonuç/açıklamalar çevrildi. Soru kimlikleri, anahtar, sürüm, puanlama, backend context ve katılımcı kayıt kapsamı korunur; dil değiştirme taslak cevaplarını ve ilk bitiş saatini sıfırlamaz. Üstte bayraklı dil adları, hedef temayı yazan düğme ve Özak’a özel ortak tema tercihi vardır. Genel sınav/backend dosyaları değiştirilmedi.
+- **Doğrulama:** 32 hedefli Node testi ve genel backend’in 12 mock kontrolü geçti. İki dil × iki tema × dört genişlik × giriş/form = 32 yerleşimde yatay taşma/JS hatası yok. Sahte transport ile TR→EN geçişinde cevap/kimlik/deadline, ön10/son100/+90, kayıt hatası/aynı payload ile yeniden deneme ve son testte 10 açıklama doğrulandı. Canlı tabloya test kaydı yazılmadı; önceki gerçek kayıt kabulü ayrı [yayın kaydında](#ozak-exam-live-2026-11-17).
+- **Önceki Git kapanışı:** Kullanıcı PR #7 için açık main merge onayı verdi; 17 Kasım 15:18:37 UTC’de `3c8b5c9863fe8bdfea34e822920d6c7fc3e6c3e4` ile birleştirildi. Aşağıdaki eski “onay bekleniyor” kaydı o anın durumudur; güncel merge GitHub’dan doğrulandı.
+- **Yayın/Git:** Mevcut global Firebase Hosting `yapay-zeka-egitim-mt` hedefinde `a5eab3f2ab4cc571` sürümü yayımlandı. Canlı TR/EN sayfalarında 32 yerleşim ve sahte transport ile sınav akışı doğrulandı; 18 genel/Özak varlığında HTTPS200 ve kaynak SHA256 eşitliği var. [Kişisel veri içermeyen yayın kanıtı](qa/ozak-layout-en-release-2026-11-17.json). Bağımsız kod/güvenlik incelemesi somut bulgusuz; son Git HEAD incelemesi görev PR’sinde izlenir. Backend projesi, izinleri ve tablo paylaşımı değiştirilmedi; yeni servis/ücret açılmadı.
+
+---
+
 # Yapay Zeka Eğitimi & Sınav — geliştirme geçmişi
 
 > Her günün sonunda kısa kayıt: ne eklendi, ne değişti, deploy, görev durumu.

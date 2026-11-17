@@ -123,7 +123,7 @@ test('result UI stays pending until acknowledgment and supports failure then ret
   const elements={'result-sync':{dataset:{},textContent:''},'retry-result-sync':{hidden:false}};
   let finish,markReady;
   let ready=new Promise(resolve=>{markReady=resolve;});
-  const ctx={profile:{remoteEnabled:true},result:current,$:key=>elements[key],persistence:async()=>({saveResult:()=>new Promise(resolve=>{finish=resolve;markReady();})})};
+  const ctx={copy:(tr,en)=>tr,profile:{remoteEnabled:true},result:current,$:key=>elements[key],persistence:async()=>({saveResult:()=>new Promise(resolve=>{finish=resolve;markReady();})})};
   createContext(ctx);runInContext(fn+';globalThis.runSync=syncResult;',ctx);
   let pending=ctx.runSync(current);await ready;
   assert.equal(elements['result-sync'].dataset.state,'pending');assert.equal(current.remoteSaved,false);
@@ -132,6 +132,14 @@ test('result UI stays pending until acknowledgment and supports failure then ret
   assert.equal(elements['result-sync'].dataset.state,'error');assert.equal(elements['retry-result-sync'].hidden,false);assert.equal(current.remoteSaved,false);
   ready=new Promise(resolve=>{markReady=resolve;});pending=ctx.runSync(current);await ready;finish({saved:true});await pending;
   assert.equal(elements['result-sync'].dataset.state,'saved');assert.match(elements['result-sync'].textContent,/kaydedildi/);assert.equal(elements['retry-result-sync'].hidden,true);assert.equal(current.remoteSaved,true);
+  // English failures remain actionable without leaking Turkish backend wording.
+  ctx.copy=(tr,en)=>en;
+  ctx.persistence=async()=>({saveResult:async()=>{throw new Error('Kayıt yapılamadı.');}});
+  await ctx.runSync(current);
+  assert.equal(elements['result-sync'].dataset.state,'error');
+  assert.match(elements['result-sync'].textContent,/Download your result/);
+  assert.doesNotMatch(elements['result-sync'].textContent,/Kayıt yapılamadı/);
+  assert.equal(elements['retry-result-sync'].hidden,false);
 });
 
 test('general persistence keeps its legacy payload and still requires saved:true',async()=>{
@@ -154,7 +162,7 @@ test('institution entry uses local official logo and first-post policy is explic
   const html=readFileSync(new URL('../v2/ozak/index.html',import.meta.url),'utf8');
   const app=readFileSync(new URL('../v2/ozak/app.mjs',import.meta.url),'utf8');
   assert.match(html,/src="assets\/ozak-global-logo.png"/);
-  assert.match(html,/ÖZAK GLOBAL HOLDİNG/);assert.match(html,/Değerlendirme Testi/);
+  assert.match(html,/Özak Global/);assert.match(html,/Değerlendirme Testi/);
   assert.match(html,/id="start-form"[^>]*hidden/);
   assert.match(html,/eğitmenin özel Google tablosuna kayıt için gönderilir/);
   assert.doesNotMatch(html,/Önizleme|yalnız kullandığın tarayıcıda tutulur/);
