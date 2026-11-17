@@ -133,7 +133,7 @@
       768,
       1440
     ],
-    "qaCleanup": "awaiting explicit authorization",
+    "qaCleanup": "completed after explicit user authorization; only 2 generated QA participants and 4 attempts cleared; both tabs saved and empty in native Sheets UI; headers preserved",
     "participantOrPrivateRowsIncluded": false
   },
   "limits": [
