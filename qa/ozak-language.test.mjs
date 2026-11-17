@@ -11,6 +11,7 @@ test('English renders the same ten assessment items and answer identities', () =
   assert.equal(english.questions.length, 10);
   assert.deepEqual(english.questions.map(q => q.id), turkish.questions.map(q => q.id));
   assert.deepEqual(english.questions.map(q => q.correct), turkish.questions.map(q => q.correct));
+  assert.deepEqual(english.questions.map(q => q.sourceId), turkish.questions.map(q => q.sourceId));
   english.questions.forEach((question, index) => {
     assert.equal(question.options.length, 4);
     assert.equal(new Set(question.options).size, 4);
@@ -18,11 +19,16 @@ test('English renders the same ten assessment items and answer identities', () =
       assert.ok(question[field]?.trim());
       assert.notEqual(question[field], turkish.questions[index][field]);
     }
-    question.options.forEach((option, i) => assert.notEqual(option, turkish.questions[index].options[i]));
+    const languageNeutralOptions = new Set(['Vision, Value, Verify, Volume, Velocity', 'Video, Voice, Visual, Virtual, Verified']);
+    question.options.forEach((option, i) => {
+      assert.ok(option.trim());
+      if (question.sourceId === 'web-010' && languageNeutralOptions.has(option)) assert.equal(option, turkish.questions[index].options[i]);
+      else assert.notEqual(option, turkish.questions[index].options[i]);
+    });
   });
   const allCorrect = Object.fromEntries(english.questions.map(q => [q.id, q.correct]));
   assert.deepEqual(english.scoreAnswers(allCorrect), {score: 100, correct: 10, wrong: 0, empty: 0});
-  const mixed = {...allCorrect, 'ai-limits': 0, 'suitable-task': undefined};
+  const mixed = {...allCorrect, [english.questions[0].id]: (english.questions[0].correct + 1) % 4, [english.questions[1].id]: undefined};
   assert.deepEqual(english.scoreAnswers(mixed), {score: 80, correct: 8, wrong: 1, empty: 1});
   assert.deepEqual(english.scoreAnswers(mixed), turkish.scoreAnswers(mixed));
 });
@@ -53,12 +59,12 @@ test('Turkish is default; English changes presentation without splitting partici
 test('switching language preserves an active attempt, answer selection and absolute deadline', async () => {
   const tr = await loadExam('/ozak/', '?grup=1');
   const en = await loadExam('/ozak/', '?grup=1&lang=en');
-  const original = {version: tr.version, id: 'qa_language_123', phase: 'pre', code: 'AI-123456', name: 'İpek Işık', answers: {'ai-limits': 1}, index: 1, started: 100000, deadline: 700000};
+  const original = {version: tr.version, id: 'qa_language_123', phase: 'pre', code: 'AI-123456', name: 'İpek Işık', answers: {'web-009': 1}, index: 1, started: 100000, deadline: 700000};
   const restored = restoreDraft(original, {version: en.version, questions: en.questions, maxSeconds: en.durationSeconds});
   assert.ok(restored);
   assert.equal(restored.id, original.id);
   assert.equal(restored.phase, original.phase);
-  assert.equal(restored.answers['ai-limits'], 1);
+  assert.equal(restored.answers['web-009'], 1);
   assert.equal(restored.index, 1);
   assert.equal(secondsRemaining(restored, 220000), 480);
 });

@@ -1,6 +1,6 @@
 # Yapay Zeka Eğitimi & Sınav — Backlog
 
-Son gözden geçirme: **22 Ekim 2026**. Güncel web ürün: [README](README.md) ve [V2 işletim notu](docs/exam-v2.md). Mobil kaynaklar ayrı geliştirme kapsamıdır; kaynak aktarımı build, servis kurulumu veya mağaza yayını değildir. Tüm eski karar, ayrıntı ve ID'ler [özgün kayıtta](history.md#backlog-audit-2026-10-22) eksiksiz korunur. Tamamlandı kayıtları tarihsel kanıttır; yeni cihaz/Store kabulü sayılmaz.
+Son gözden geçirme: **17 Kasım 2026**. Güncel web ürün: [README](README.md) ve [V2 işletim notu](docs/exam-v2.md). Mobil kaynaklar ayrı geliştirme kapsamıdır; kaynak aktarımı build, servis kurulumu veya mağaza yayını değildir. Tüm eski karar, ayrıntı ve ID'ler [özgün kayıtta](history.md#backlog-audit-2026-10-22) eksiksiz korunur. Tamamlandı kayıtları tarihsel kanıttır; yeni cihaz/Store kabulü sayılmaz.
 
 | Dağıtım | Güncel kanıt sınırı |
 |---|---|
@@ -9,6 +9,9 @@ Son gözden geçirme: **22 Ekim 2026**. Güncel web ürün: [README](README.md) 
 | Galaxy Store | Konsol sorgulanmadı; sürüm/yayın doğrulanmadı; plan yayın değildir. |
 
 ## Açık web ve süreç işleri
+
+- [ ] **EXAM-OZAK-SCHEDULE · P2:** Arayüzdeki 4/6/10 Aralık 2026 günleri kullanıcı isteğiyle etiketsiz gösterilir; kesin eğitim programı ayrıca teyit edilmeli. Günler `v2/ozak/ui-copy.mjs` içindedir.
+- [ ] **EXAM-OZAK-V2-ACCEPT · P2:** Yeni soru sürümü için backend sağlık yanıtı ve mock sürüm ayrımı doğrulandı; gerçek tabloya v2 ön/son test yazma ve eğitmen özeti kabulü bu kapanışta tekrarlanmadı. Önceki v1 gerçek kayıt kabulü korunur; [kanıt sınırı](history.md#ozak-selected10-pdf-2026-11-17).
 
 - [ ] **EXAM-V2-MAIL · P2:** İsteğe bağlı e-posta teslimi doğrulanmadı; kabul: ayrıca yetkilendirilmiş alıcıya deneme ve gelen kutusu kontrolü. V2 sınıf akışını engellemez.
 - [ ] **EXAM-V1-SHEET · P2:** V1 tablo bağlantısının onarımı; V2 özel tablo kurulumundan ayrı.
@@ -68,7 +71,7 @@ Kaynak incelemesi yeni özellik uygulama emri değildir. Önce yukarıdaki karar
 
 - **G18 / K2:** Sosyal rozetler Faz 3'e ertelendi; kullanıcı kararı korunur.
 - **G35 / K3:** Flashcard Faz 3+; G7'de XP kuralının bulunması uygulandığı anlamına gelmez.
-- **L1–L7 / K7–K8:** Çok dil ayrı mobil Faz 2+; henüz başlanmadı. L1 batch script + şema/`correctIndex`, L2 sözlük + Modül 1 pilot insan onayı, L3 statik JSON, L4 Flutter ARB, L5 locale yükleme/seçici, L6 yalnız değişen modülü çevirme ve runtime API olmaması, L7 insan incelemesi/isteğe bağlı DeepL spot-check. TR kaynak; EN ilk, sonra DE/FR/ES planı; web V2 Türkçe kalır. Script/locale varlıkları bu kaynakta bulunmadı; API çalıştırılmadı.
+- **L1–L7 / K7–K8:** Çok dil ayrı mobil Faz 2+; henüz başlanmadı. L1 batch script + şema/`correctIndex`, L2 sözlük + Modül 1 pilot insan onayı, L3 statik JSON, L4 Flutter ARB, L5 locale yükleme/seçici, L6 yalnız değişen modülü çevirme ve runtime API olmaması, L7 insan incelemesi/isteğe bağlı DeepL spot-check. TR kaynak; EN ilk, sonra DE/FR/ES planı; genel web V2 Türkçe kalır; ayrı Özak sınavının yetkili TR/EN sunumu mobil dil planını kapatmaz. Script/locale varlıkları bu kaynakta bulunmadı; API çalıştırılmadı.
 - **E2, E22, E24:** `examTags`/soru-konu eşlemesi/sınav ipucu K5 ile iptal; rastgele tek havuz kararı korunur.
 - **E23 / eski E1:** Sınav odaklı içerik genişletme, v2 müfredat kararıyla aşılmıştır; Güncel E1 eğitim metni/mini quiz geliştirmesi ve E21 kalite işi açık kalır. Yeni sınav odaklı kapsam açma.
 - **G36–G39:** Next.js/App Router, Tailwind/shadcn, IndexedDB/Dexie ve next-pwa tarihsel uygulanmayacak referanslar; karşılıkları Flutter tema/widget, G27 ve M8. Ayrı PWA kararı yok.
@@ -96,3 +99,5 @@ Kaynak incelemesi yeni özellik uygulama emri değildir. Önce yukarıdaki karar
 ### Özak sınavı
 
 - [x] **EXAM-OZAK-202612 · 17 Kasım 2026:** Ayrı sınav/gerçek tablo yayını, UTC düzeltmesi ve QA temizliği tamamlandı; açık kullanıcı onayıyla [PR #7](https://github.com/MetinTi/yapay-zeka-sinav/pull/7) main’e birleştirildi (`3c8b5c9`); [ayrıntılı yayın/kabul](history.md#ozak-exam-live-2026-11-17).
+
+- [x] **EXAM-OZAK-SELECTED10, EXAM-OZAK-PDF · 17 Kasım 2026:** Kullanıcının havuz seçimiyle 10 soru, TR/EN logolu sonuç PDF’si, favicon ve simetrik giriş görselleri yayımlandı; kurum tanıtımı tek yerel PDF olarak hazırlandı. Kaynak/test ve yayın kanıtı [geçmişte](history.md#ozak-selected10-pdf-2026-11-17); gerçek v2 tablo kabulü ve tarih teyidi yukarıda ayrı açık kalır.

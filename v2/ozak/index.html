@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="assets/metin-tiryaki-logo.png">
   <meta name="theme-color" content="#132b42">
   <meta name="author" content="Metin Tiryaki">
   <meta name="robots" content="noindex, nofollow">
@@ -17,7 +18,10 @@
   <div class="ambient" aria-hidden="true"></div>
   <header class="institution-header">
     <div class="header-tools">
-      <nav class="language-picker" aria-label="Dil seçimi"><a id="language-tr" href="?lang=tr" lang="tr" aria-current="page">🇹🇷 <span>TR Türkçe</span></a><a id="language-en" href="?lang=en" lang="en">🇬🇧 <span>EN English</span></a></nav>
+      <details class="language-picker">
+        <summary id="language-current">🇹🇷 <span>TR Türkçe</span><span class="language-chevron" aria-hidden="true">⌄</span></summary>
+        <nav class="language-options" aria-label="Dil seçimi"><a id="language-tr" href="?lang=tr" lang="tr" aria-current="page">🇹🇷 <span>TR Türkçe</span></a><a id="language-en" href="?lang=en" lang="en">🇬🇧 <span>EN English</span></a></nav>
+      </details>
       <button id="theme" class="theme-button" type="button">Açık tema</button>
     </div>
     <div class="brand-row"><img class="trainer-art" src="assets/metin-app-ecosystem.webp" width="1254" height="1254" alt="Metin Tiryaki ve uygulamalarının logoları" fetchpriority="high">
@@ -29,13 +33,13 @@
       <div class="intro">
         <p class="eyebrow"><span class="short-line" aria-hidden="true"></span> BİLİNÇLİ KULLANIM, GÜÇLÜ BİR BAŞLANGIÇ</p>
         <h1>Yapay Zekâ Eğitimi<br><span>Değerlendirme Testi</span></h1>
-        <p class="lead">Günlük işlerde yapay zekâyı doğru, güvenli ve etkili kullanmaya dair bilgini değerlendir.</p>
+        <p class="lead">Yapay zekânın temel kavramları, öğrenme türleri ve kullanım yöntemleriyle ilgili bilgini değerlendir.</p>
         <div class="learning-path" aria-label="Değerlendirme akışı">
           <div><span class="step-number">01</span><span><strong>Ön test</strong><small>Eğitimden önce başlangıç noktanı gör.</small></span></div>
           <span class="path-line" aria-hidden="true"></span>
           <div><span class="step-number">02</span><span><strong>Son test</strong><small>Eğitimden sonra puan farkını incele.</small></span></div>
         </div>
-        <div class="facts"><div><strong>10</strong><span>iş senaryosu</span></div><div><strong>10<span> dk</span></strong><span>test süresi</span></div><div><strong>100</strong><span>üzerinden puan</span></div></div>
+        <div class="facts"><div><strong>10</strong><span>soru</span></div><div><strong>10<span> dk</span></strong><span>test süresi</span></div><div><strong>100</strong><span>üzerinden puan</span></div></div>
         <p class="preview-note"><span class="dot" aria-hidden="true"></span> Ön test ve son test · Her doğru yanıt 10 puan.</p>
         <p class="intro-footnote">Bu bir yarış değil; öğrenmenin öncesine ve sonrasına kısa bir bakış.</p>
       </div>
@@ -44,11 +48,11 @@
         <p class="hint">Eğitmeninin belirttiği gruptan devam et. Grup bağlantısı paylaşıldıysa bu adım otomatik tamamlanır.</p>
         <p id="link-error" class="warning" role="alert" hidden></p>
         <nav class="group-links" aria-label="Eğitim grupları">
-          <a class="group-link" href="?grup=1&amp;asama=baslangic"><span><small>01</small><span class="group-detail"><strong>Grup 1</strong><span class="group-date">Örnek tarih · 4 Aralık 2026</span></span></span><span aria-hidden="true">↗</span></a>
-          <a class="group-link" href="?grup=2&amp;asama=baslangic"><span><small>02</small><span class="group-detail"><strong>Grup 2</strong><span class="group-date">Örnek tarih · 6 Aralık 2026</span></span></span><span aria-hidden="true">↗</span></a>
-          <a class="group-link" href="?grup=3&amp;asama=baslangic"><span><small>03</small><span class="group-detail"><strong>Grup 3</strong><span class="group-date">Örnek tarih · 10 Aralık 2026</span></span></span><span aria-hidden="true">↗</span></a>
+          <a class="group-link" href="?grup=1&amp;asama=baslangic"><span><small>01</small><span class="group-detail"><strong>Grup 1</strong><span class="group-date">4 Aralık 2026</span></span></span><span aria-hidden="true">↗</span></a>
+          <a class="group-link" href="?grup=2&amp;asama=baslangic"><span><small>02</small><span class="group-detail"><strong>Grup 2</strong><span class="group-date">6 Aralık 2026</span></span></span><span aria-hidden="true">↗</span></a>
+          <a class="group-link" href="?grup=3&amp;asama=baslangic"><span><small>03</small><span class="group-detail"><strong>Grup 3</strong><span class="group-date">10 Aralık 2026</span></span></span><span aria-hidden="true">↗</span></a>
         </nav>
-        <p class="hint">Her grupta aynı 10 soru kullanılır. Tarihler örnektir; program henüz kesinleşmedi.</p>
+        <p class="hint">Her grupta aynı 10 soru kullanılır.</p>
       </aside>
       <form id="start-form" class="glass start-form" hidden>
         <div class="form-heading"><p class="eyebrow" id="group-label"></p><a href="./" class="change-group">Grubu değiştir</a></div>
@@ -78,7 +82,7 @@
     </section>
     <section id="result" class="result-view" hidden aria-labelledby="result-title">
       <p class="eyebrow" id="result-phase"></p><h1 id="result-title" tabindex="-1">Bilgini işe dönüştür.</h1><p class="lead" id="result-message"></p>
-      <div class="glass result-card"><div class="score-ring" id="score-ring"><div><strong id="score">0</strong><span>/ 100</span></div></div><div class="result-numbers"><div><strong id="correct">0</strong><span>doğru</span></div><div><strong id="wrong">0</strong><span>yanlış</span></div><div><strong id="empty">0</strong><span>boş</span></div></div><p id="elapsed" class="hint"></p><div id="comparison" class="comparison" hidden></div><p id="result-storage" class="hint"></p><p id="result-sync" class="hint" role="status"></p><button type="button" id="retry-result-sync" class="text-btn" hidden>Eğitmen listesine kaydı tekrar dene</button><div class="result-actions"><button id="download" class="primary">Sonucu indir ↓</button><button id="review-toggle" class="secondary" hidden>Yanıtları ve açıklamaları gör</button><button id="home" class="text-btn">Başlangıca dön</button></div></div>
+      <div class="glass result-card"><div class="score-ring" id="score-ring"><div><strong id="score">0</strong><span>/ 100</span></div></div><div class="result-numbers"><div><strong id="correct">0</strong><span>doğru</span></div><div><strong id="wrong">0</strong><span>yanlış</span></div><div><strong id="empty">0</strong><span>boş</span></div></div><p id="elapsed" class="hint"></p><div id="comparison" class="comparison" hidden></div><p id="result-storage" class="hint"></p><p id="result-sync" class="hint" role="status"></p><button type="button" id="retry-result-sync" class="text-btn" hidden>Eğitmen listesine kaydı tekrar dene</button><div class="result-actions"><button id="download" class="primary">Sonuç PDF’sini indir ↓</button><button id="review-toggle" class="secondary" hidden>Yanıtları ve açıklamaları gör</button><button id="home" class="text-btn">Başlangıca dön</button></div><p id="download-status" class="hint" role="status" aria-live="polite"></p></div>
       <div id="review" class="review" hidden></div>
     </section>
   </main>

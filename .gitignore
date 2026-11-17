@@ -16,6 +16,8 @@ qa/*
 !qa/ozak-backend.test.cjs
 !qa/ozak-context.test.mjs
 !qa/ozak-language.test.mjs
+!qa/ozak-report.test.mjs
+!qa/ozak-selected10-release-2026-11-17.json
 !qa/ozak-release-2026-11-17.json
 !qa/ozak-layout-en-release-2026-11-17.json
 

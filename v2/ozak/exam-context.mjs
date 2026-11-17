@@ -11,7 +11,7 @@ export function resolveExamContext(pathname, search = '') {
     throw new Error('Değerlendirme aşaması geçersiz. Grubunun başlangıç veya bitiş bağlantısını aç.');
   }
   const language = params.getAll('lang').length === 1 && params.get('lang') === 'en' ? 'en' : 'tr';
-  const version = 'ozak-ai-awareness-202612-v1';
+  const version = 'ozak-ai-awareness-202612-v2';
   return {
     kind: 'ozak', version, group, language,
     storagePrefix: `ozak:2026-12:${group}:${version}:`,

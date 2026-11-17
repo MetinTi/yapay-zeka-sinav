@@ -1,145 +1,155 @@
-// Faithful English rendering of the same assessment, with identical answer identities.
+// Faithful English rendering of the approved source items and option order.
 export {EXAM_VERSION, DURATION_SECONDS, scoreAnswers} from './questions.mjs';
 
 export const questions = [
   {
-    id: 'ai-limits',
-    topic: 'The limits of AI',
-    text: 'A colleague says, “The AI sounded very confident in this explanation, so it must be correct.” Which response is most appropriate?',
-    options: [
-      'A confident explanation shows that the information was recently verified.',
-      'Even a fluent answer can be wrong; we should verify important information.',
-      'Producing the same answer again is enough to verify the information.',
-      'If the answer is detailed, we only need to check for spelling mistakes.'
+    "id": "web-009",
+    "sourceId": "web-009",
+    "topic": "The components of a prompt",
+    "text": "In prompt engineering, what are the components of the “Perfect Prompt Formula”?",
+    "options": [
+      "Title, Content, Conclusion, Summary, References",
+      "Role, Task, Context, Constraints, Format",
+      "Introduction, Development, Conclusion",
+      "Question, Answer, Verification, Approval"
     ],
-    correct: 1,
-    explanation: 'Generative AI creates new content from patterns it has learned. Fluency and confidence do not guarantee accuracy; important claims need separate verification.',
-    outcome: 'Recognises that generative AI can produce convincing but incorrect content.'
+    "correct": 1,
+    "explanation": "The training presentation describes the Perfect Prompt Formula using five components: Role, Task, Context, Constraints and Format.",
+    "outcome": "Recognises the role, task, context, constraints and format components of a prompt."
   },
   {
-    id: 'suitable-task',
-    topic: 'Choosing a suitable use case',
-    text: 'A team will use AI in its daily work for the first time. Which task is a more suitable starting point with human review?',
-    options: [
-      'Finalising and approving a supplier contract.',
-      'Assigning employee performance ratings and entering them into the system.',
-      'Deciding how much to pay for customer complaints and making the payments.',
-      'Drafting a short summary of a public announcement for the team.'
+    "id": "web-025",
+    "sourceId": "web-025",
+    "topic": "Zero-shot prompting",
+    "text": "When is zero-shot prompting used?",
+    "options": [
+      "When there is a large amount of data",
+      "While the model is being trained",
+      "Only when writing code",
+      "When a direct instruction is given without examples"
     ],
-    correct: 3,
-    explanation: 'Drafting tasks with a clear scope, an easily checked result and no direct action are a suitable starting point. An employee still reviews the result.',
-    outcome: 'Chooses an AI use case that is low risk and easy to review.'
+    "correct": 3,
+    "explanation": "Zero-shot prompting means giving an instruction without providing examples.",
+    "outcome": "Identifies a direct instruction without examples as zero-shot prompting."
   },
   {
-    id: 'effective-prompt',
-    topic: 'Writing an effective prompt',
-    text: 'Using an approved tool, you will prepare a summary for your manager from project notes that contain no personal information. Which prompt defines the task most clearly?',
-    options: [
-      'Summarise these notes for the manager in no more than 5 bullet points; separate risks from next steps and identify missing information.',
-      'Make these notes impressive for the manager; write a text that is as detailed and professional as possible.',
-      'Complete the notes to meet the manager’s expectations; make suitable guesses about any next steps that are not stated.',
-      'Write a summary of this project; decide its length and which information matters.'
+    "id": "web-006",
+    "sourceId": "web-006",
+    "topic": "Types of machine learning",
+    "text": "What are the three main types of machine learning?",
+    "options": [
+      "Supervised, Unsupervised and Reinforcement Learning",
+      "Fast, Medium and Slow Learning",
+      "Artificial, Natural and Hybrid Learning",
+      "Single-layer, Multi-layer and Deep Learning"
     ],
-    correct: 0,
-    explanation: 'An effective prompt specifies the task, audience, output format and constraints. It asks for missing information to be flagged rather than invented.',
-    outcome: 'Identifies a prompt that includes a task, context, constraints and output format.'
+    "correct": 0,
+    "explanation": "The presentation describes the three main types of machine learning as Supervised, Unsupervised and Reinforcement Learning.",
+    "outcome": "Recognises supervised, unsupervised and reinforcement learning as the main types."
   },
   {
-    id: 'meeting-actions',
-    topic: 'Turning meeting notes into action items',
-    text: 'An action list prepared from meeting notes does not specify the owner or deadline for one task. What output should you ask the AI to produce?',
-    options: [
-      'Assign the task to the person mentioned most often in similar meetings.',
-      'Remove the task from the list to deal with the missing fields.',
-      'Mark the missing fields as “not specified” and leave them for confirmation.',
-      'Infer an owner and deadline from the team’s usual way of working and add them to the list.'
+    "id": "web-028",
+    "sourceId": "web-028",
+    "topic": "Supervised learning",
+    "text": "What is the defining feature of supervised learning?",
+    "options": [
+      "The data is unlabelled",
+      "The model learns by itself",
+      "Inputs and correct outputs are provided",
+      "There is no human involvement"
     ],
-    correct: 2,
-    explanation: 'When extracting action items from a meeting, decisions absent from the record should not be presented as agreed. Missing owners and deadlines are flagged for confirmation with the people involved.',
-    outcome: 'Distinguishes missing information from invented information in summaries and action lists.'
+    "correct": 2,
+    "explanation": "Supervised learning uses data with correct labels.",
+    "outcome": "Identifies that supervised learning pairs inputs with correct output labels."
   },
   {
-    id: 'verify-research',
-    topic: 'Checking sources and currency',
-    text: 'AI has provided an industry percentage and a source link for your presentation. What should you do before using the percentage?',
-    options: [
-      'Ask another AI for the percentage and check whether it gives the same answer.',
-      'Open the source and check that the percentage, scope and date support the claim in your presentation.',
-      'Check that the link works, then add the percentage and the source name to the presentation.',
-      'Round the percentage and mention that AI was used in preparing the presentation.'
+    "id": "web-043",
+    "sourceId": "web-043",
+    "topic": "Reinforcement learning",
+    "text": "Which type of machine learning enables an AI model to learn on its own through a reward/penalty mechanism?",
+    "options": [
+      "Supervised Learning",
+      "Reinforcement Learning",
+      "Unsupervised Learning",
+      "Natural Language Processing (NLP)"
     ],
-    correct: 1,
-    explanation: 'Having a source link is not enough. Check that the source actually supports the same number for the same scope and time period.',
-    outcome: 'Verifies a research claim against its source, scope and currency.'
+    "correct": 1,
+    "explanation": "Reinforcement learning is the type of machine learning in which an AI system learns through trial and error using rewards and penalties.",
+    "outcome": "Recognises learning from reward and penalty feedback as reinforcement learning."
   },
   {
-    id: 'excel-check',
-    topic: 'Checking an Excel result',
-    text: 'An Excel formula suggested by AI runs successfully and produces a monthly sales total. Which check is most useful before sharing the report?',
-    options: [
-      'Check that the formula covers the correct rows and agrees with sample calculations.',
-      'Publish the result alongside the other totals in the report because no error message appeared.',
-      'Repeat the calculation with the same prompt and add it to the report if both answers match.',
-      'Format the cell as currency and check that the total looks reasonable.'
+    "id": "web-008",
+    "sourceId": "web-008",
+    "topic": "The components of natural language processing",
+    "text": "What are the main components of Natural Language Processing (NLP)?",
+    "options": [
+      "Natural Language Understanding (NLU), Natural Language Generation (NLG), Speech Recognition and Speech Synthesis",
+      "Only text translation and sentiment analysis",
+      "Image processing and speech recognition",
+      "Database queries and reporting"
     ],
-    correct: 0,
-    explanation: 'A formula can use the wrong range or conditions without displaying an error. Check the scope, business rule and several independent sample calculations together.',
-    outcome: 'Independently checks an apparently working result from an AI-assisted formula.'
+    "correct": 0,
+    "explanation": "The presentation lists Natural Language Understanding (NLU), Natural Language Generation (NLG), Speech Recognition and Speech Synthesis as the main components covered under NLP.",
+    "outcome": "Recognises the language understanding, language generation, speech recognition and speech synthesis components covered in training."
   },
   {
-    id: 'presentation-flow',
-    topic: 'Presenting for your audience',
-    text: 'You will prepare a five-minute PowerPoint presentation to management about an improvement proposal. What outline should you ask for first?',
-    options: [
-      'A detailed and comprehensive slide deck that presents all working notes in order.',
-      'A technical slide deck comparing the features of the tools to be used.',
-      'An outline focused on visual variety, introducing a different topic on every slide.',
-      'An outline that briefly covers the problem, expected benefit, risks and decision requested.'
+    "id": "web-016",
+    "sourceId": "web-016",
+    "topic": "Text classification",
+    "text": "A call centre manager wants to categorise customer complaints automatically. Which AI field and type of learning provide the most suitable solution?",
+    "options": [
+      "Computer Vision and Reinforcement Learning",
+      "Robotics and Unsupervised Learning",
+      "Big Data analysis and Deep Reinforcement Learning",
+      "Natural Language Processing (NLP) and Supervised Learning"
     ],
-    correct: 3,
-    explanation: 'A presentation outline is shaped by its audience, available time and intended decision. Asking AI for this structure first helps keep the slides focused on their purpose.',
-    outcome: 'Connects a presentation draft to its audience, duration and communication goal.'
+    "correct": 3,
+    "explanation": "Text-based customer complaints call for NLP; learning from labelled historical examples uses supervised learning.",
+    "outcome": "Connects text-based complaint classification with NLP and supervised learning."
   },
   {
-    id: 'protect-data',
-    topic: 'Information security',
-    text: 'You will summarise trends from a file containing customer names and contact details. What should you do before giving the file to AI?',
-    options: [
-      'Rename the file and upload it to a tool in your personal account.',
-      'Delete the customer names and assume the remaining fields can be used freely.',
-      'Check the permissions for the tool and data use, then appropriately remove sensitive information from the data you need.',
-      'Upload the entire file as long as the tool’s history is turned off.'
+    "id": "web-010",
+    "sourceId": "web-010",
+    "topic": "The five Vs of Big Data",
+    "text": "Which option lists the five Vs of Big Data?",
+    "options": [
+      "Vision, Value, Verify, Volume, Velocity",
+      "Video, Voice, Visual, Virtual, Verified",
+      "Volume, Variety, Velocity, Value, Veracity",
+      "Data, Efficiency, Vision, Assumption, Asset"
     ],
-    correct: 2,
-    explanation: 'First check which tools and data uses your organisation permits. Use only necessary data that is appropriate to share; deleting names alone does not guarantee anonymity.',
-    outcome: 'Checks tool permissions and data necessity before sharing personal or organisational data.'
+    "correct": 2,
+    "explanation": "The presentation lists the five Vs of Big Data as Volume, Variety, Velocity, Value and Veracity.",
+    "outcome": "Recognises the volume, variety, velocity, value and veracity dimensions of Big Data."
   },
   {
-    id: 'responsible-use',
-    topic: 'Bias and responsible use',
-    text: 'In a training announcement drafted by AI, technology-related tasks are recommended only to younger employees. What is the most appropriate approach?',
-    options: [
-      'Remove the age-based assumption and review the recommendations according to work-related needs and skills.',
-      'Soften the wording while keeping the age-based division of tasks unchanged.',
-      'Generate the text again and keep using the first version if similar recommendations appear.',
-      'Add a note saying the text was prepared with AI and share the task recommendations unchanged.'
+    "id": "web-059",
+    "sourceId": "web-059",
+    "topic": "Data variety",
+    "text": "An e-commerce company wants to develop a meaningful sales strategy by combining customer movement footage from in-store cameras (video), comments about the brand on social media (text), and purchase invoices (numerical data). Which “V” of Big Data does this situation emphasise most?",
+    "options": [
+      "Variety",
+      "Velocity",
+      "Veracity",
+      "Volume"
     ],
-    correct: 0,
-    explanation: 'AI output may contain biased assumptions. Review recommendations against work-related needs and skills rather than generalisations such as age.',
-    outcome: 'Spots a biased assumption in workplace content and corrects it using relevant criteria.'
+    "correct": 0,
+    "explanation": "Using video, text and numerical data together represents Variety: the Big Data dimension that covers different data formats.",
+    "outcome": "Connects the use of different data formats together with the variety dimension."
   },
   {
-    id: 'human-approval',
-    topic: 'Human review before sending',
-    text: 'AI has drafted a proposal email to a customer. What is the most appropriate step before sending it?',
-    options: [
-      'Check the spelling and wording, and accept the prices and terms as drafted.',
-      'Verify the recipient, prices and terms, then send it after obtaining any required approval from an authorised person.',
-      'Ask a second AI to approve the draft and send it if both tools agree.',
-      'Send the email first and check the prices and terms if the customer replies.'
+    "id": "web-058",
+    "sourceId": "web-058",
+    "topic": "Deep learning and GPUs",
+    "text": "A company wants to analyse live traffic videos from high-resolution cameras for autonomous vehicles. The data volume is at the petabyte scale, and the rules are too complex to code manually using traditional algorithms. Which technology infrastructure would the company be expected to prioritise?",
+    "options": [
+      "Rule-based machine learning algorithms that work only with structured data",
+      "High-performance GPU hardware capable of training deep learning networks autonomously",
+      "A large team of human data labellers to perform feature extraction manually",
+      "Corporate network firewalls to prevent phishing attacks"
     ],
-    correct: 1,
-    explanation: 'A proposal sent outside the organisation can create a commitment. A person should check the AI draft against the actual facts and the applicable approval process.',
-    outcome: 'Verifies information and obtains necessary human approval before an action that affects the outside world.'
+    "correct": 1,
+    "explanation": "In this scenario, the very large volume of complex imagery points to deep learning networks and powerful GPU hardware to support their training.",
+    "outcome": "Recognises the role of deep learning and GPU infrastructure in analysing large volumes of complex imagery."
   }
 ];

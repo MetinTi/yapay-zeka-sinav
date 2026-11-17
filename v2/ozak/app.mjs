@@ -185,6 +185,7 @@ function complete(timedOut) {
 }
 function showResult() {
   show('result');
+  $('download-status').textContent = '';
   $('result-phase').textContent=`${phaseName(result.phase).toLocaleUpperCase(language)} · ${result.name} · ${result.code}`;
   $('result-title').textContent=result.phase==='pre'?copy('Başlangıç noktan hazır.', 'Your starting point is ready.'):copy('Bilgini işe dönüştür.', 'Put your knowledge to work.');
   $('result-message').textContent=result.phase==='pre'?copy('Bu bir yarış değil. Eğitim sonunda aynı sorularla gelişimini göreceksin.', 'This is not a competition. At the end of the training, the same questions will help you see your progress.'):copy('Şimdi sıra öğrendiklerini kendi işinde uygulamakta.', 'Now it is time to apply what you have learned in your own work.');
@@ -220,10 +221,28 @@ $('review-toggle').addEventListener('click',()=>{
     article.append(label,title,chosen,correct,explanation); $('review').append(article);
   });
 });
-$('download').addEventListener('click',()=>{
-  const data={egitim:profile.title,surum:EXAM_VERSION,katilimciKodu:result.code,adSoyad:result.name,asama:phaseName(result.phase),puan:result.score,dogru:result.correct,yanlis:result.wrong,bos:result.empty,baslangicPuani:result.phase==='pre'?result.score:result.baseline,fark:result.phase==='post'&&result.baseline!==null?result.score-result.baseline:null,tarih:result.completed,sureSaniye:result.elapsed,...(profile.context?{kurum:'Özak Global Holding',egitimDonemi:profile.context.training,grup:profile.context.group,onizleme:!profile.remoteEnabled,sunucuKaydiDogrulandi:result.remoteSaved===true,kayitId:result.id,tekrarDenemesi:result.retake,buTarayicidakiIlkAsamaPuani:result.firstScore,karsilastirmaKaynagi:copy('Bu tarayıcıdaki ön test', 'The pre-test in this browser')}:{})};
-  const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json;charset=utf-8'}));
-  const a=document.createElement('a'); a.href=url;a.download=`${profile.kind==='ozak'?`OZAK-${profile.group}-`:'AI-'}${result.code}-${result.phase}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+let reportModuleAttempt = 0;
+async function loadReportModule() {
+  const path = reportModuleAttempt ? `./result-pdf.mjs?retry=${reportModuleAttempt}` : './result-pdf.mjs';
+  try { return await import(path); }
+  catch (error) { reportModuleAttempt++; throw error; }
+}
+$('download').addEventListener('click', async () => {
+  if (!result || $('download').disabled) return;
+  const current = {...result};
+  const button = $('download'), status = $('download-status');
+  const idleLabel = copy('Sonuç PDF’sini indir ↓', 'Download result PDF ↓');
+  button.disabled = true; button.textContent = copy('PDF hazırlanıyor…', 'Preparing PDF…');
+  status.textContent = '';
+  try {
+    const {downloadResultPdf} = await loadReportModule();
+    await downloadResultPdf(current, profile, language);
+    if (result?.id === current.id) status.textContent = copy('Sonuç PDF’n hazır. İndirilenler klasöründen açabilirsin.', 'Your result PDF is ready. Open it from your downloads folder.');
+  } catch {
+    if (result?.id === current.id) status.textContent = copy('PDF hazırlanamadı. İnternet bağlantını kontrol edip tekrar dene.', 'The PDF could not be prepared. Check your connection and try again.');
+  } finally {
+    button.disabled = false; button.textContent = idleLabel;
+  }
 });
 $('home').addEventListener('click',()=>{show('welcome'); $('participant').value=result.code;$('participant-name').value=result.name;baselineHint();window.scrollTo({top:0,behavior:'instant'});});
 

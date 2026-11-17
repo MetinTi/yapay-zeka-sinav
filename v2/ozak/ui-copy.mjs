@@ -3,12 +3,12 @@ const english = [
   ['.skip', 'Skip to content'],
   ['.intro .eyebrow', '<span class="short-line" aria-hidden="true"></span> INFORMED USE, A STRONG START'],
   ['.intro h1', 'AI Training<br><span>Assessment Test</span>'],
-  ['.intro .lead', 'Assess your knowledge of using AI accurately, safely and effectively in everyday work.'],
+  ['.intro .lead', 'Assess your knowledge of core AI concepts, learning approaches and methods of use.'],
   ['.learning-path>div:first-child strong', 'Pre-test'],
   ['.learning-path>div:first-child small', 'See your starting point before training.'],
   ['.learning-path>div:last-child strong', 'Post-test'],
   ['.learning-path>div:last-child small', 'Compare your scores after training.'],
-  ['.facts>div:nth-child(1)>span', 'work scenarios'],
+  ['.facts>div:nth-child(1)>span', 'questions'],
   ['.facts>div:nth-child(2)>strong>span', ' min'],
   ['.facts>div:nth-child(2)>span', 'test duration'],
   ['.facts>div:nth-child(3)>span', 'maximum score'],
@@ -17,7 +17,7 @@ const english = [
   ['#group-picker>.eyebrow', 'YOUR SESSION'],
   ['#group-title', 'Choose your group'],
   ['#group-title + .hint', 'Continue with the group your trainer assigned. If you received a group link, this step is completed automatically.'],
-  ['#group-picker>.hint:last-child', 'All groups use the same 10 questions. Dates shown are examples; the schedule is not confirmed.'],
+  ['#group-picker>.hint:last-child', 'All groups use the same 10 questions.'],
   ['.change-group', 'Change group'],
   ['#start-form>h2', 'Start your assessment'],
   ['.phase-picker legend', 'Assessment stage'],
@@ -43,7 +43,7 @@ const english = [
   ['.result-numbers>div:nth-child(2)>span', 'wrong'],
   ['.result-numbers>div:nth-child(3)>span', 'unanswered'],
   ['#retry-result-sync', 'Retry saving to the trainer’s list'],
-  ['#download', 'Download result ↓'],
+  ['#download', 'Download result PDF ↓'],
   ['#review-toggle', 'View answers and explanations'],
   ['#home', 'Back to start'],
   ['footer>span', 'Özak Global Holding · Training Assessment Test'],
@@ -53,7 +53,7 @@ const english = [
   ['#confirm-dialog button[value="finish"]', 'Finish']
 ];
 const attributes = [
-  ['.language-picker', 'aria-label', 'Language selection'],
+  ['.language-options', 'aria-label', 'Language selection'],
   ['.trainer-art', 'alt', 'Metin Tiryaki and his applications’ logos'],
   ['.learning-path', 'aria-label', 'Assessment flow'],
   ['.group-links', 'aria-label', 'Training groups'],
@@ -61,12 +61,13 @@ const attributes = [
   ['.progress', 'aria-label', 'Questions answered'],
   ['#question-nav', 'aria-label', 'Questions']
 ];
-export const exampleDays = {1: 4, 2: 6, 3: 10};
-export function exampleDate(group, language) {
-  return language === 'en' ? `Example date · ${exampleDays[group]} December 2026` : `Örnek tarih · ${exampleDays[group]} Aralık 2026`;
+export const groupDays = {1: 4, 2: 6, 3: 10};
+export function groupDate(group, language) {
+  return language === 'en' ? `${groupDays[group]} December 2026` : `${groupDays[group]} Aralık 2026`;
 }
 export function applyPageLanguage(language) {
   document.documentElement.lang = language;
+  document.querySelector('#language-current').innerHTML = language === 'en' ? '🇬🇧 <span>EN English</span><span class="language-chevron" aria-hidden="true">⌄</span>' : '🇹🇷 <span>TR Türkçe</span><span class="language-chevron" aria-hidden="true">⌄</span>';
   if (language === 'en') {
     document.title = 'Özak Global Holding · AI Training Assessment Test';
     document.querySelector('meta[name="description"]').content = 'Özak Global Holding AI Training: assessment before and after training.';
@@ -76,7 +77,7 @@ export function applyPageLanguage(language) {
   document.querySelectorAll('.group-link').forEach((link, index) => {
     const group = index + 1;
     link.querySelector('strong').textContent = language === 'en' ? `Group ${group}` : `Grup ${group}`;
-    link.querySelector('.group-date').textContent = exampleDate(group, language);
+    link.querySelector('.group-date').textContent = groupDate(group, language);
     if (language === 'en') link.href += '&lang=en';
   });
   if (language === 'en') document.querySelector('.change-group').href = './?lang=en';

@@ -87,3 +87,10 @@ Kullanıcı, Özak sınavının ana sınav korunarak ayrı yayımlanmasını ve 
 Özak backend'i **ayrı Apps Script projesidir**. `apps-script/Ozak.template.gs` ve `apps-script/ozak-appsscript.json` yalnız bu ayrı projeye aittir; ana Apps Script'e yüklenmez. Özel tablo kimliği repoya alınmaz. Ayrı endpoint `v2/ozak/backend-config.mjs` içindedir. `Execute as me` / açıkça onaylanmış `Anyone` ayarı, katılımcıdan Google izni istemeden yazma sağlar; public okuma yolu yoktur. Proje sahibi ilk Sheets iznini kendisi tamamladı.
 
 [Grup bağlantıları ve işletim](docs/exam-v2.md#ozak-202612) · [soru seti](docs/ozak-exam-questions.md) · [tarihli yayın/kabul kanıtı](history.md#ozak-exam-live-2026-11-17). Kaynak/test, Apps Script v2, Hosting yayını ve gerçek tablo kabulü ayrı kanıtlardır; Google OAuth proje sahibi uyarısı ile HTTPS sertifika hatası karıştırılmaz.
+
+
+### 17 Kasım — seçilen 10 soru ve PDF güncellemesi
+
+Özak girişinin sağ üst dil menüsü/tema sırası, eşit yükseklikteki görselleri ve portföy favicon’u güncellendi. Sonuç indirme JSON yerine yerel jsPDF/Manrope ile logolu PDF üretir. Genel V2’nin JSON/e-posta davranışı değişmedi. Yeni soru seti `ozak-ai-awareness-202612-v2`; Özak Apps Script v3 eski ve yeni sürümü ayrı anahtarlarla kabul eder. Son kayıtlı Hosting yayını `a87c8f87f30e4fa6`; bu belge/repo kapanışı yeniden deploy başlatmaz.
+
+[Kaynak/HTTPS/sağlık kanıtı](qa/ozak-selected10-release-2026-11-17.json) · [işletim](docs/exam-v2.md#ozak-202612) · [ayrıntılı karar ve kabul sınırı](history.md#ozak-selected10-pdf-2026-11-17). Tanıtım PDF’si ve kişisel ekran/PDF kanıtları Downloads’ta kalır, herkese açık repoya eklenmez.

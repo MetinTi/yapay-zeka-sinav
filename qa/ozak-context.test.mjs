@@ -21,7 +21,7 @@ test('three groups have isolated context/state; stage stays inside the same part
   const generalPrefix='ai-training-v2-20260928:';
   for(const exam of exams){
     assert.notEqual(exam.storagePrefix,generalPrefix);
-    assert.match(exam.storagePrefix,/ozak:2026-12:[123]:ozak-ai-awareness-202612-v1:/);
+    assert.match(exam.storagePrefix,/ozak:2026-12:[123]:ozak-ai-awareness-202612-v2:/);
     assert.equal(exam.remoteEnabled,true);assert.equal(exam.allowEmail,false);
     assert.deepEqual(exam.context,{organization:'ozak',training:'2026-12',group:exam.group});
     assert.equal(resolveExamContext('/ozak/index.html',`?grup=${exam.group}&asama=bitis`).storagePrefix,exam.storagePrefix);
@@ -44,6 +44,23 @@ test('live set has 10 four-option questions, one outcome each, balanced key and 
   assert.deepEqual(exam.scoreAnswers(Object.fromEntries(exam.questions.map(q=>[q.id,(q.correct+1)%4]))),{score:0,correct:0,wrong:10,empty:0});
 });
 
+test('approved selection preserves the ten retained source items and their correct option texts',async()=>{
+  const exam=await loadExam('/ozak/','?grup=1');
+  const source=JSON.parse(readFileSync(new URL('../mobile/assets/data/exam_pool.json',import.meta.url),'utf8')).questions;
+  const approved=['web-009','web-025','web-006','web-028','web-043','web-008','web-016','web-010','web-059','web-058'];
+  const removed=['web-030','web-031','web-037','web-048','web-056'];
+  assert.deepEqual(exam.questions.map(q=>q.sourceId),approved);
+  assert.deepEqual(exam.questions.map(q=>q.id),approved);
+  assert.equal(exam.version,'ozak-ai-awareness-202612-v2');
+  for(const item of exam.questions){
+    const original=source.find(q=>q.id===item.sourceId);
+    assert.ok(original);assert.equal(item.text,original.question);
+    assert.deepEqual([...item.options].sort(),[...original.options].sort());
+    assert.equal(item.options[item.correct],original.options[original.correctIndex]);
+    assert.ok(!removed.includes(item.sourceId));
+  }
+});
+
 test('Ozak answers and absolute deadline survive refresh; old/general version cannot resume',async()=>{
   const exam=await loadExam('/ozak/','?grup=1');
   const draft={version:exam.version,id:'qa_attempt_123',phase:'pre',code:'AI-123456',name:'İpek Işık',index:3,answers:{[exam.questions[0].id]:1},started:100000,deadline:700000};
@@ -53,6 +70,7 @@ test('Ozak answers and absolute deadline survive refresh; old/general version ca
   assert.equal(restoreDraft({...draft,version:'ai-training-v2-20260928'},options),null);
   assert.equal(restoreDraft({...draft,version:'ozak-ai-awareness-202612-draft0'},options),null);
   assert.equal(restoreDraft({...draft,version:'ozak-ai-awareness-202612-draft1'},options),null);
+  assert.equal(restoreDraft({...draft,version:'ozak-ai-awareness-202612-v1'},options),null);
   const first=rememberParticipant([],{name:'İpek Işık',code:'AI-123456'});
   assert.equal(rememberParticipant(first,{name:'İpek Işık',code:'AI-654321'}).length,2);
   assert.throws(()=>rememberParticipant(first,{name:'Başka Kişi',code:'AI-123456'}));
@@ -74,7 +92,7 @@ test('Ozak persistence sends live context and device time only through mocked tr
     assert.deepEqual(await api.saveResult({...identity,id:'qa_attempt_123',phase:'post',score:40,correct:4,wrong:6,empty:0,elapsed:120,timedOut:false,completed:'2026-11-17T12:00:00.000Z'}),{saved:true});
     assert.deepEqual(captured.map(c=>c.action),['register-v2','result-v2']);
     for(const {payload} of captured){
-      assert.equal(payload.version,'ozak-ai-awareness-202612-v1');
+      assert.equal(payload.version,'ozak-ai-awareness-202612-v2');
       assert.deepEqual(payload.context,{organization:'ozak',training:'2026-12',group:'2'});
       assert.equal(payload.code,identity.code);assert.equal(payload.name,identity.name);
     }
@@ -167,5 +185,5 @@ test('institution entry uses local official logo and first-post policy is explic
   assert.match(html,/eğitmenin özel Google tablosuna kayıt için gönderilir/);
   assert.doesNotMatch(html,/Önizleme|yalnız kullandığın tarayıcıda tutulur/);
   assert.match(app,/result\.retake/);assert.match(app,/Bu bir tekrar denemesi/);
-  assert.match(app,/tekrarDenemesi:result\.retake/);
+  assert.match(app,/downloadResultPdf\(current, profile, language\)/);
 });

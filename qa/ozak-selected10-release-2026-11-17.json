@@ -1,0 +1,247 @@
+{
+  "date": "2026-11-17",
+  "publicUrl": "https://sinav2.metintiryaki.com/ozak/",
+  "englishUrl": "https://sinav2.metintiryaki.com/ozak/?lang=en",
+  "assessmentVersion": "ozak-ai-awareness-202612-v2",
+  "selection": {
+    "source": "index.html V1 pool; mirrored mobile/assets/data/exam_pool.json",
+    "retainedIds": [
+      "web-009",
+      "web-025",
+      "web-006",
+      "web-028",
+      "web-043",
+      "web-008",
+      "web-016",
+      "web-010",
+      "web-059",
+      "web-058"
+    ],
+    "removedSelectionPositions": [
+      3,
+      4,
+      5,
+      9,
+      10
+    ],
+    "sourceQuestionAndCorrectOptionTextsPreserved": true,
+    "optionsReordered": true,
+    "questions": 10,
+    "durationSeconds": 600,
+    "pointsPerCorrect": 10
+  },
+  "hosting": {
+    "project": "yapay-zeka-egitim-mt",
+    "site": "yapay-zeka-egitim-mt",
+    "recordedReleaseVersion": "a87c8f87f30e4fa6",
+    "releaseEvidence": "existing 17 November deploy success record",
+    "region": "global CDN",
+    "redeployedDuringRepoCloseout": false
+  },
+  "backend": {
+    "recordedAppsScriptVersion": 3,
+    "health": {
+      "status": "ok",
+      "service": "ozak-exam",
+      "version": "ozak-ai-awareness-202612-v2"
+    },
+    "liveWritesDuringCloseout": 0,
+    "newVersionSheetAcceptanceRepeated": false,
+    "legacyVersionAcceptedByTemplateAndMock": true,
+    "versionSeparatesParticipantKeys": true,
+    "permissionsChangedDuringCloseout": false
+  },
+  "verification": {
+    "checkedAt": "2026-11-17T18:10:38.953060+00:00",
+    "targetedNodeTests": 39,
+    "generalBackendMockChecks": 12,
+    "generalClientFilesUnchanged": 6,
+    "httpsAssetParity": [
+      {
+        "file": "index.html",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "3a3ad23385939fa9d114765887641ee79b369d7d8aaa9bc6d15c46746e0b7725"
+      },
+      {
+        "file": "app.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "3ef56126743f671b16ffd04e05a6f55f7a3437ef51d535f800c6dfd2723e7389"
+      },
+      {
+        "file": "persistence.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "9d79b2bdd29678dcda6a00f2e7c9e3e2222688963648bba051711079a77c5505"
+      },
+      {
+        "file": "participant-state.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "42347ef2814f9e104a4db5e3da75563941cb224664e244b5f867035cfc321f6d"
+      },
+      {
+        "file": "questions.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "7d60cf805542ef98f96ba3b9ce62104bb2069bb0aaec1c819962becc0291194c"
+      },
+      {
+        "file": "style.css",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "4c97b66f136fc8dbd508a7b0ef5d5f8d62927682b663715a6b91b49a3490d21e"
+      },
+      {
+        "file": "ozak/app.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "4bef7e6326d6287ea66a232b7793077f58b3d0a2ddbc7b8c9d9a2e62a5697377"
+      },
+      {
+        "file": "ozak/assets/fonts/Manrope-Bold.ttf",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "47ef283f58b435a491caa115df1f7c50b2a9c600df16a371522b82d61cf48d77"
+      },
+      {
+        "file": "ozak/assets/fonts/Manrope-Regular.ttf",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "49ad3d097277e465e27d0d4b44c66af79294336f460d3f667682076187a719ae"
+      },
+      {
+        "file": "ozak/assets/metin-app-ecosystem.webp",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "3e7123f5d5da7eed9a41bebe858691c1df2f2f750ce61d6076590387a4fd6eec"
+      },
+      {
+        "file": "ozak/assets/metin-tiryaki-logo.png",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "2ce084476a798004590963bc76d76b6cb5dda594d72f1cc07b8abc843af5ba56"
+      },
+      {
+        "file": "ozak/assets/ozak-global-logo.png",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "73af5deb3c1ef427f2916ca161f99dc3448d5d94ba3a67d51372e97e85317838"
+      },
+      {
+        "file": "ozak/backend-config.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "8c5f145d1c471ded58bc8486175f08ea3ab5ee425d17db559e188f46bd3d7a5a"
+      },
+      {
+        "file": "ozak/entry.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "f9ed1d8c1b855ba57d65e369b145f6077084acc6c15354aeec71094da7fabf83"
+      },
+      {
+        "file": "ozak/exam-context.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "31c28dad8b69f20b09b36587ca50d979099f2060b99491f6463037e943b89fb2"
+      },
+      {
+        "file": "ozak/index.html",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "1f2ab5c48a8f76ccd2fad51887be7e1ab60b161e96caa6cdbdb675f853a9e2a7"
+      },
+      {
+        "file": "ozak/ozak.css",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "289b8ab0cfb746def36fe5e9bd20baa4ef139047559eefa69b29237609514244"
+      },
+      {
+        "file": "ozak/persistence.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "6ba5cbf29474e6ddd735c2c45e6783e5c641ab0230b56a1aa22ebdc12e7288ea"
+      },
+      {
+        "file": "ozak/questions.en.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "032a3df6ad1cc88cbca9c3f63ce4fdb85efb1d8d2cf2777a1015da1c35b21c0c"
+      },
+      {
+        "file": "ozak/questions.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "668badca9ffef8f6fa1b10c060f91ced339d2616fe5c1d81a53b1dd171ff9501"
+      },
+      {
+        "file": "ozak/report-model.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "ae4b67da61baeab562f0ef3f2aa8fd2e3993c762ba220c195e70061c376e0ac8"
+      },
+      {
+        "file": "ozak/result-pdf.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "a36b3bc74e89ba627263854fee14067491845fa3c9fa85a77927042e3be5f7a8"
+      },
+      {
+        "file": "ozak/ui-copy.mjs",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "6dee87ce06f75af017ddbff923acd07081fdf941d9eb45f9088c90953742d780"
+      },
+      {
+        "file": "ozak/vendor/jspdf-4.2.1.umd.min.js",
+        "status": 200,
+        "matchesSource": true,
+        "sha256": "e6551fcdc32f09d6853b2c5126d18d01d9447e0da618a41a11ebeee0f6c20d54"
+      }
+    ],
+    "newVersionRealTableAcceptance": "not repeated; prior v1 live acceptance remains in ozak-release-2026-11-17.json"
+  },
+  "presentation": {
+    "participantDownload": "local branded PDF; TR/EN; no external PDF service",
+    "pdfRuntimeCasesPreviouslyChecked": [
+      "TR pre-test",
+      "EN post-test",
+      "post-test without baseline",
+      "repeat attempt"
+    ],
+    "fixtureResults": {
+      "pre": 40,
+      "post": 90,
+      "delta": 50,
+      "realTrainingResults": false,
+      "liveTableWrites": 0
+    },
+    "brochure": {
+      "file": "Ozak_Global_Holding_Degerlendirme_Testi_Tanitim.pdf",
+      "pages": 7,
+      "bytes": 3196639,
+      "sha256": "e96508774812210fe89adfbe926ba07b41f98e9c3fcf46d9803ff087c6a7ec20",
+      "storedOutsideGit": true,
+      "remainingSourceScreenshots": 5,
+      "sourceResultPdfs": 2,
+      "sentToCompany": false
+    }
+  },
+  "schedule": {
+    "confirmed": false,
+    "daysInDecember2026": {
+      "1": 4,
+      "2": 6,
+      "3": 10
+    },
+    "exampleLabelRemovedAtUserRequest": true
+  },
+  "repository": {
+    "pullRequest": 8,
+    "mergeHeldAtUserRequest": true,
+    "ciUsed": false
+  }
+}

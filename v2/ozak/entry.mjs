@@ -1,5 +1,5 @@
 import {resolveExamContext} from './exam-context.mjs';
-import {applyPageLanguage, exampleDate} from './ui-copy.mjs';
+import {applyPageLanguage, groupDate} from './ui-copy.mjs';
 
 const params = new URLSearchParams(location.search);
 const language = params.getAll('lang').length === 1 && params.get('lang') === 'en' ? 'en' : 'tr';
@@ -13,6 +13,16 @@ for (const locale of ['tr', 'en']) {
   if (locale === language) link.setAttribute('aria-current', 'page');
   else link.removeAttribute('aria-current');
 }
+const languagePicker = document.querySelector('.language-picker');
+document.addEventListener('click', event => {
+  if (!languagePicker.contains(event.target)) languagePicker.open = false;
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && languagePicker.open) {
+    languagePicker.open = false;
+    document.getElementById('language-current').focus();
+  }
+});
 // One control for both landing and exam views; language links keep the active draft.
 const themeButton = document.getElementById('theme');
 try {
@@ -43,7 +53,7 @@ try {
 }
 if (profile) {
   groupPicker.hidden = true;
-  document.getElementById('group-label').textContent = `${language === 'en' ? 'GROUP' : 'GRUP'} ${profile.group} · ${exampleDate(profile.group, language)}`;
+  document.getElementById('group-label').textContent = `${language === 'en' ? 'GROUP' : 'GRUP'} ${profile.group} · ${groupDate(profile.group, language)}`;
   try {
     await import('./app.mjs');
     // A restored exam may already be visible. Do not change its view.

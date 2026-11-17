@@ -1,182 +1,198 @@
 # Özak Global Holding — Eğitim Değerlendirme Testi
 
-**Durum: 17 Kasım 2026 tarihinde kullanıcı canlı yayın için onayladı.** Bu ayrı soru modülü mevcut genel V2 soru setini değiştirmez. Kullanıcının yayın yetkisi, kurumun ayrı içerik onayına dair kanıt olarak sunulmaz.
+**Güncel set: 17 Kasım 2026 kullanıcı seçimi.** Genel V2 sınavı değişmez. Kurumun ayrı içerik onayı verilmiş gibi sunulmaz.
 
-Soru seti sürümü: `ozak-ai-awareness-202612-v1`. Hedef: Aralık 2026 Yapay Zekâ Farkındalık Eğitimi, başlangıç/temel seviye iş kullanıcıları.
+Soru seti sürümü: `ozak-ai-awareness-202612-v2`. Kullanıcı, özgün V1 havuzundan hazırlanan 15 soruluk seçkinin **3, 4, 5, 9 ve 10** numaralarını çıkardı; kalan sorular seçkideki sırayla kullanılır. Kaynak: [V1 havuzu](../index.html) ve aynı kimlikleri taşıyan [mobil havuz](../mobile/assets/data/exam_pool.json). Önceki genel iş senaryosu seti v1 olarak geçmişte korunur; güncel set aşağıdadır.
 
-Ön test ve son test aynı 10 soruyu kullanır. Her test 10 dakikadır; her doğru cevap 10 puan, yanlış ve boş cevap 0 puandır. Yanlışlar doğruları götürmez. Ön testte cevap anahtarı ve açıklamalar açılmaz; son test tamamlanınca gösterilir.
+Ön ve son test aynı **10 soruyu** kullanır; süre 10 dakika, her doğru 10 puan, yanlış/boş 0 puandır. Yanlışlar doğruları götürmez. Ön testte anahtar ve açıklama açılmaz; son testte açılır. Soru ve doğru seçenek içerikleri kaynaktan korunur; seçenek sırası dengeli cevap anahtarı için düzenlenmiştir.
 
-Her sorunun tek ana kazanımı vardır. Bu kısa testin puan farkı tek başına öğrenmeyi veya eğitimin etkisini kanıtlamaz; aynı soruları tekrar görmenin etkisi de dikkate alınır.
+Amaç, eğitimdeki istem bileşenleri, öğrenme türleri, NLP, büyük veri ve DL/GPU konularını ölçmektir. Bu konuların ders programında bulunması gerekir. Ön testin düşük, son testin yüksek çıkacağı garanti edilmez; aynı soruları tekrar görme etkisi nedeniyle puan farkı tek başına eğitimin nedensel etkisini kanıtlamaz.
 
-| Soru | Konu | Doğru seçenek |
-|---|---|---|
-| 1 | Yapay zekânın sınırları | B |
-| 2 | Uygun kullanım alanı | D |
-| 3 | Etkili istem yazma | A |
-| 4 | Toplantı notlarından iş takibi | C |
-| 5 | Kaynak ve güncellik kontrolü | B |
-| 6 | Excel sonucunu kontrol etme | A |
-| 7 | Hedef kitleye uygun sunum | D |
-| 8 | Bilgi güvenliği | C |
-| 9 | Önyargı ve sorumlu kullanım | A |
-| 10 | Gönderim öncesi insan kontrolü | B |
+| Sınav sırası | İlk seçkideki sıra | Kaynak | Konu | Doğru |
+|---|---|---|---|---|
+| 1 | 1 | web-009 | İstemin bileşenleri | B |
+| 2 | 2 | web-025 | Zero-shot istem | D |
+| 3 | 6 | web-006 | Makine öğrenmesi türleri | A |
+| 4 | 7 | web-028 | Denetimli öğrenme | C |
+| 5 | 8 | web-043 | Pekiştirmeli öğrenme | B |
+| 6 | 11 | web-008 | Doğal dil işlemenin bileşenleri | A |
+| 7 | 12 | web-016 | Metin sınıflandırma | D |
+| 8 | 13 | web-010 | Büyük verinin 5V özelliği | C |
+| 9 | 14 | web-059 | Veri çeşitliliği | A |
+| 10 | 15 | web-058 | Derin öğrenme ve GPU | B |
 
-## 1. Yapay zekânın sınırları
+## 1. İstemin bileşenleri
 
-Bir çalışma arkadaşın, “Yapay zekâ bu açıklamayı çok emin yazmış; doğru olmalı” diyor. Hangi yanıt en uygundur?
+Kaynak: `web-009`.
 
-- **A)** Emin bir anlatım, bilginin yakın zamanda doğrulandığını gösterir.
-- **B)** Akıcı bir yanıt da hatalı olabilir; önemli bilgileri doğrulamalıyız.
-- **C)** Aynı yanıtı tekrar üretmesi, bilgiyi doğrulamak için yeterlidir.
-- **D)** Yanıt ayrıntılıysa yalnızca yazım hatalarını kontrol etmeliyiz.
+Prompt mühendisliğinde "Mükemmel Prompt Formülü"nün bileşenleri nelerdir?
 
-**Doğru cevap: B.** Akıcı bir yanıt da hatalı olabilir; önemli bilgileri doğrulamalıyız.
+- **A)** Başlık, İçerik, Sonuç, Özet, Kaynakça
+- **B)** Rol, Görev, Bağlam, Kısıtlamalar, Format
+- **C)** Giriş, Gelişme, Sonuç
+- **D)** Soru, Cevap, Doğrulama, Onay
 
-**Kısa açıklama:** Üretken yapay zekâ, öğrendiği örüntülerden yeni içerik oluşturur. Akıcılık ve kendinden emin anlatım doğruluk garantisi değildir; önemli iddialar ayrıca kontrol edilir.
+**Doğru cevap: B.** Rol, Görev, Bağlam, Kısıtlamalar, Format
 
-**Ölçülen kazanım:** Üretken yapay zekânın ikna edici fakat hatalı içerik üretebileceğini fark eder.
+**Açıklama:** Mükemmel Prompt Formülü sunumda Rol, Görev, Bağlam, Kısıtlamalar ve Format olarak beş bileşenle detaylandırılmıştır.
 
-## 2. Uygun kullanım alanı
+**Ölçülen kazanım:** Bir istemin rol, görev, bağlam, kısıtlamalar ve format bileşenlerini tanır.
 
-Bir ekip, yapay zekâyı günlük işlerinde ilk kez kullanacak. İnsan kontrolüyle başlamak için hangi görev daha uygundur?
+## 2. Zero-shot istem
 
-- **A)** Tedarikçi sözleşmesinin son hâlini belirleyip onaylamak.
-- **B)** Çalışanların performans notlarını belirleyip sisteme işlemek.
-- **C)** Müşteri şikâyetlerinde ödenecek tutara karar verip işlemi yapmak.
-- **D)** Herkese açık bir duyurudan ekip için kısa bir özet taslağı çıkarmak.
+Kaynak: `web-025`.
 
-**Doğru cevap: D.** Herkese açık bir duyurudan ekip için kısa bir özet taslağı çıkarmak.
+Zero-Shot prompting hangi durumda kullanılır?
 
-**Kısa açıklama:** Kapsamı belli, sonucu kolayca kontrol edilebilen ve doğrudan işlem başlatmayan taslak işleri uygun bir başlangıçtır. Sonuç yine bir çalışan tarafından kontrol edilir.
+- **A)** Çok fazla veri olduğunda
+- **B)** Model eğitilirken
+- **C)** Sadece kod yazarken
+- **D)** Örnek verilmeden doğrudan talimat verildiğinde
 
-**Ölçülen kazanım:** Düşük riskli ve kontrol edilebilir bir yapay zekâ kullanım alanı seçer.
+**Doğru cevap: D.** Örnek verilmeden doğrudan talimat verildiğinde
 
-## 3. Etkili istem yazma
+**Açıklama:** Zero-shot, örnek vermeden talimat vermektir.
 
-Onaylı bir araçta, kişisel bilgi içermeyen proje notlarından yöneticine özet hazırlayacaksın. Hangi istem görevi en açık biçimde tanımlar?
+**Ölçülen kazanım:** Örnek içermeyen doğrudan talimatı zero-shot olarak ayırt eder.
 
-- **A)** Yönetici için bu notları özetle: en çok 5 madde; risk ve sonraki adımları ayır, eksik bilgiyi belirt.
-- **B)** Bu notları yönetici için etkileyici hâle getir; mümkün olduğunca ayrıntılı ve profesyonel bir metin yaz.
-- **C)** Notları yöneticinin beklentilerine göre tamamla; belirtilmeyen sonraki adımları uygun biçimde tahmin et.
-- **D)** Bu proje hakkında bir özet yaz; uzunluğunu ve hangi bilgilerin önemli olduğunu sen belirle.
+## 3. Makine öğrenmesi türleri
 
-**Doğru cevap: A.** Yönetici için bu notları özetle: en çok 5 madde; risk ve sonraki adımları ayır, eksik bilgiyi belirt.
+Kaynak: `web-006`.
 
-**Kısa açıklama:** Etkili istem; görevi, hedef kitleyi, çıktı biçimini ve sınırları belirtir. Eksik bilgiyi uydurmak yerine açıkça işaretlemeyi ister.
+Makine öğrenmesinin üç temel türü hangileridir?
 
-**Ölçülen kazanım:** Görev, bağlam, sınır ve çıktı biçimi içeren bir istemi ayırt eder.
+- **A)** Denetimli, Denetimsiz ve Pekiştirmeli Öğrenme
+- **B)** Hızlı, Orta ve Yavaş Öğrenme
+- **C)** Yapay, Doğal ve Karma Öğrenme
+- **D)** Tek katmanlı, Çok katmanlı ve Derin Öğrenme
 
-## 4. Toplantı notlarından iş takibi
+**Doğru cevap: A.** Denetimli, Denetimsiz ve Pekiştirmeli Öğrenme
 
-Toplantı notlarından hazırlanan iş listesinde bir görevin sorumlusu ve teslim tarihi yazmıyor. Yapay zekâdan nasıl bir çıktı istemelisin?
+**Açıklama:** Sunumda ML'nin üç temel türü Denetimli (Supervised), Denetimsiz (Unsupervised) ve Pekiştirmeli (Reinforcement) Öğrenme olarak açıklanmıştır.
 
-- **A)** Görevi, benzer toplantılarda en çok adı geçen kişiye atamasını.
-- **B)** Eksik alanları doldurmak için görev satırını listeden çıkarmasını.
-- **C)** Eksik alanları “belirtilmedi” diye işaretleyip teyide bırakmasını.
-- **D)** Ekibin alışılmış işleyişinden bir sorumlu ve tarih çıkarıp listeye işlemesini.
+**Ölçülen kazanım:** Denetimli, denetimsiz ve pekiştirmeli öğrenmeyi temel türler olarak tanır.
 
-**Doğru cevap: C.** Eksik alanları “belirtilmedi” diye işaretleyip teyide bırakmasını.
+## 4. Denetimli öğrenme
 
-**Kısa açıklama:** Toplantıdan iş takibi çıkarırken kayıtta olmayan kararlar verilmiş gibi gösterilmez. Eksik sorumlu ve tarih alanları, ilgili kişilerle teyit edilmek üzere işaretlenir.
+Kaynak: `web-028`.
 
-**Ölçülen kazanım:** Özet ve iş takibi çıktılarında eksik bilgiyle uydurulmuş bilgiyi ayırır.
+Denetimli öğrenmede temel özellik nedir?
 
-## 5. Kaynak ve güncellik kontrolü
+- **A)** Veri etiketlenmemiştir
+- **B)** Model kendi kendine öğrenir
+- **C)** Girdi ve doğru çıktı vardır
+- **D)** İnsan müdahalesi yoktur
 
-Yapay zekâ, sunumunda kullanman için sektörle ilgili bir oran ve kaynak bağlantısı verdi. Oranı kullanmadan önce ne yapmalısın?
+**Doğru cevap: C.** Girdi ve doğru çıktı vardır
 
-- **A)** Oranı başka bir yapay zekâya sorup aynı yanıtı verip vermediğine bakmak.
-- **B)** Kaynağı açıp oranın, kapsamın ve tarihin sunumdaki iddiaya uyduğunu kontrol etmek.
-- **C)** Bağlantının çalıştığını kontrol edip sunuma kaynak adıyla birlikte eklemek.
-- **D)** Oranı yuvarlayıp sunumda yapay zekâ desteği kullanıldığını belirtmek.
+**Açıklama:** Denetimli öğrenmede doğru etiketli veri vardır.
 
-**Doğru cevap: B.** Kaynağı açıp oranın, kapsamın ve tarihin sunumdaki iddiaya uyduğunu kontrol etmek.
+**Ölçülen kazanım:** Denetimli öğrenmede girdi ile doğru çıktı etiketinin birlikte bulunduğunu ayırt eder.
 
-**Kısa açıklama:** Kaynak bağlantısının bulunması yeterli değildir. Kaynağın gerçekten aynı sayıyı, aynı kapsam ve dönem için destekleyip desteklemediği kontrol edilir.
+## 5. Pekiştirmeli öğrenme
 
-**Ölçülen kazanım:** Araştırma çıktısındaki iddiayı kaynak, kapsam ve güncellik bakımından doğrular.
+Kaynak: `web-043`.
 
-## 6. Excel sonucunu kontrol etme
+Bir yapay zeka modelinin "ödül ve ceza" (reward/penalty) mantığıyla kendi kendine öğrenmesini sağlayan Makine Öğrenmesi (ML) türü aşağıdakilerden hangisidir?
 
-Yapay zekânın önerdiği Excel formülü çalışıyor ve aylık satış toplamı üretiyor. Raporu paylaşmadan önce en yararlı kontrol hangisidir?
+- **A)** Denetimli Öğrenme (Supervised Learning)
+- **B)** Pekiştirmeli Öğrenme (Reinforcement Learning)
+- **C)** Denetimsiz Öğrenme (Unsupervised Learning)
+- **D)** Doğal Dil İşleme (NLP)
 
-- **A)** Formülün doğru satırları kapsadığını ve örnek hesaplarla uyuştuğunu kontrol etmek.
-- **B)** Hata mesajı çıkmadığı için sonucu rapordaki diğer toplamlarla birlikte yayımlamak.
-- **C)** Sonucu aynı istemle tekrar hesaplatıp iki yanıt aynıysa rapora eklemek.
-- **D)** Hücreyi para birimi biçimine çevirip toplamın makul göründüğünü kontrol etmek.
+**Doğru cevap: B.** Pekiştirmeli Öğrenme (Reinforcement Learning)
 
-**Doğru cevap: A.** Formülün doğru satırları kapsadığını ve örnek hesaplarla uyuştuğunu kontrol etmek.
+**Açıklama:** Pekiştirmeli öğrenme (Reinforcement Learning), yapay zekanın ödül ve ceza mekanizmaları ile kendi kendine deneme yanılma yoluyla öğrenmesini sağlayan ML türüdür.
 
-**Kısa açıklama:** Bir formül hata vermeden yanlış aralığı veya yanlış koşulları kullanabilir. Kapsam, iş kuralı ve birkaç bağımsız örnek hesap birlikte kontrol edilir.
+**Ölçülen kazanım:** Ödül ve ceza geri bildirimiyle öğrenmeyi pekiştirmeli öğrenme olarak tanır.
 
-**Ölçülen kazanım:** Yapay zekâ destekli formüllerde çalışır görünen sonucu bağımsız olarak kontrol eder.
+## 6. Doğal dil işlemenin bileşenleri
 
-## 7. Hedef kitleye uygun sunum
+Kaynak: `web-008`.
 
-Yönetime, bir iyileştirme önerisi için beş dakikalık PowerPoint sunumu hazırlayacaksın. İlk olarak nasıl bir akış istemelisin?
+Doğal Dil İşleme (NLP) hangi temel bileşenlerden oluşur?
 
-- **A)** Tüm çalışma notlarını sırayla anlatan, ayrıntılı ve kapsamlı bir slayt dizisi.
-- **B)** Kullanılacak araçların özelliklerini karşılaştıran, teknik ağırlıklı bir slayt dizisi.
-- **C)** Görsel çeşitliliği öne çıkaran, her slaytta farklı bir konuyu tanıtan bir akış.
-- **D)** Sorun, beklenen fayda, risk ve istenen kararı kısa biçimde anlatan bir akış.
+- **A)** Dil Anlama (NLU), Dil Üretimi (NLG), Konuşma Tanıma ve Konuşma Sentezi
+- **B)** Sadece metin çevirisi ve duygu analizi
+- **C)** Görüntü işleme ve ses tanıma
+- **D)** Veri tabanı sorgulama ve raporlama
 
-**Doğru cevap: D.** Sorun, beklenen fayda, risk ve istenen kararı kısa biçimde anlatan bir akış.
+**Doğru cevap: A.** Dil Anlama (NLU), Dil Üretimi (NLG), Konuşma Tanıma ve Konuşma Sentezi
 
-**Kısa açıklama:** Sunum akışı hedef kitleye, süreye ve beklenen karara göre kurulur. Yapay zekâdan önce bu yapıyı istemek, slaytların amaca hizmet etmesini kolaylaştırır.
+**Açıklama:** NLP'nin temel bileşenleri sunumda Dil Anlama (NLU), Dil Üretimi (NLG), Konuşma Tanıma ve Konuşma Sentezi olarak sıralanmıştır.
 
-**Ölçülen kazanım:** Sunum taslağını hedef kitle, süre ve iletişim amacıyla ilişkilendirir.
+**Ölçülen kazanım:** Eğitimde ele alınan dil anlama, dil üretimi, konuşma tanıma ve konuşma sentezi bileşenlerini tanır.
 
-## 8. Bilgi güvenliği
+## 7. Metin sınıflandırma
 
-Müşteri adları ve iletişim bilgileri içeren bir dosyadan eğilim özeti çıkaracaksın. Dosyayı yapay zekâya vermeden önce ne yapmalısın?
+Kaynak: `web-016`.
 
-- **A)** Dosya adını değiştirip kişisel hesabındaki araca yüklemelisin.
-- **B)** Müşteri adlarını silip kalan alanların kullanımını serbest saymalısın.
-- **C)** Araç ve veri kullanım izinlerini kontrol edip gerekli veriyi uygun biçimde arındırmalısın.
-- **D)** Aracın geçmişi kapalıysa dosyanın tamamını yükleyebilmelisin.
+Bir çağrı merkezi müdürü, müşteri şikayetlerini otomatik olarak kategorize etmek istiyor. Hangi yapay zeka alt dalı ve öğrenme türü en uygun çözümü sunar?
 
-**Doğru cevap: C.** Araç ve veri kullanım izinlerini kontrol edip gerekli veriyi uygun biçimde arındırmalısın.
+- **A)** Bilgisayarla Görü (Computer Vision) ve Pekiştirmeli Öğrenme
+- **B)** Robotik ve Denetimsiz Öğrenme
+- **C)** Büyük Veri analizi ve Derin Pekiştirmeli Öğrenme
+- **D)** Doğal Dil İşleme (NLP) ve Denetimli Öğrenme (Supervised Learning)
 
-**Kısa açıklama:** Önce kurumun izin verdiği araç ve veri kullanım koşulları kontrol edilir. Yalnız gerekli ve paylaşılması uygun veriler kullanılır; adları silmek tek başına anonimlik garantisi değildir.
+**Doğru cevap: D.** Doğal Dil İşleme (NLP) ve Denetimli Öğrenme (Supervised Learning)
 
-**Ölçülen kazanım:** Kişisel ve kurumsal veri paylaşımından önce araç izni ve veri gerekliliğini kontrol eder.
+**Açıklama:** Müşteri şikayetlerinin metin tabanlı olması NLP gerektirir; etiketlenmiş geçmiş verilerden öğrenme ise Denetimli Öğrenme ile yapılır.
 
-## 9. Önyargı ve sorumlu kullanım
+**Ölçülen kazanım:** Metin tabanlı şikâyet sınıflandırmasını NLP ve denetimli öğrenmeyle ilişkilendirir.
 
-Yapay zekânın hazırladığı eğitim duyurusunda teknolojiyle ilgili görevler yalnız genç çalışanlara öneriliyor. En uygun yaklaşım hangisidir?
+## 8. Büyük verinin 5V özelliği
 
-- **A)** Yaşa dayalı varsayımı kaldırıp önerileri işle ilgili ihtiyaç ve becerilere göre gözden geçirmek.
-- **B)** Metnin üslubunu yumuşatıp yaşa göre yapılan görev ayrımını olduğu gibi korumak.
-- **C)** Aynı metni tekrar ürettirip benzer öneri gelirse ilk metni kullanmaya devam etmek.
-- **D)** Metne yapay zekâyla hazırlandığı notunu ekleyip görev önerilerini değiştirmeden paylaşmak.
+Kaynak: `web-010`.
 
-**Doğru cevap: A.** Yaşa dayalı varsayımı kaldırıp önerileri işle ilgili ihtiyaç ve becerilere göre gözden geçirmek.
+Büyük Verinin (Big Data) 5V özelliği aşağıdakilerden hangisidir?
 
-**Kısa açıklama:** Yapay zekâ çıktıları önyargılı varsayımlar içerebilir. Öneriler yaş gibi genellemeler yerine işle ilgili ihtiyaç ve beceriler bakımından kontrol edilir.
+- **A)** Vision, Value, Verify, Volume, Velocity
+- **B)** Video, Voice, Visual, Virtual, Verified
+- **C)** Hacim (Volume), Çeşitlilik (Variety), Hız (Velocity), Değer (Value), Doğruluk (Veracity)
+- **D)** Veri, Verimlilik, Vizyon, Varsayım, Varlık
 
-**Ölçülen kazanım:** İş içeriğinde önyargılı bir varsayımı fark edip uygun ölçütlerle düzeltir.
+**Doğru cevap: C.** Hacim (Volume), Çeşitlilik (Variety), Hız (Velocity), Değer (Value), Doğruluk (Veracity)
 
-## 10. Gönderim öncesi insan kontrolü
+**Açıklama:** Büyük Verinin 5V özelliği sunumda Hacim, Çeşitlilik, Hız, Değer ve Doğruluk olarak gösterilmiştir.
 
-Yapay zekâ, bir müşteriye gönderilecek teklif e-postasını hazırladı. E-postayı göndermeden önce en uygun adım hangisidir?
+**Ölçülen kazanım:** Büyük verinin hacim, çeşitlilik, hız, değer ve doğruluk boyutlarını tanır.
 
-- **A)** Yazım ve anlatımı kontrol edip fiyat ve koşulları taslaktaki gibi kabul etmek.
-- **B)** Alıcıyı, fiyatı ve koşulları doğrulayıp gerekli yetkili onayından sonra göndermek.
-- **C)** Taslağı ikinci bir yapay zekâya onaylatıp iki araç uzlaşırsa göndermek.
-- **D)** Önce e-postayı gönderip müşteriden yanıt gelirse fiyat ve koşulları kontrol etmek.
+## 9. Veri çeşitliliği
 
-**Doğru cevap: B.** Alıcıyı, fiyatı ve koşulları doğrulayıp gerekli yetkili onayından sonra göndermek.
+Kaynak: `web-059`.
 
-**Kısa açıklama:** Dışarıya gönderilen bir teklif taahhüt doğurabilir. Yapay zekânın taslağı, gerçek bilgiler ve geçerli onay süreci bakımından insan tarafından kontrol edilir.
+Bir e-ticaret şirketi; mağaza içi kameralardan gelen müşteri dolaşım görüntülerini (video), sosyal medyadaki marka yorumlarını (metin) ve satın alma faturalarını (sayısal veriler) aynı anda birleştirerek anlamlı bir satış stratejisi oluşturmak istiyor. Bu durum Büyük Veri'nin (Big Data) en çok hangi "V" özelliğini vurgulamaktadır?
 
-**Ölçülen kazanım:** Dış dünyaya etkisi olan bir işlemden önce doğrulama ve gerekli insan onayını uygular.
+- **A)** Çeşitlilik (Variety)
+- **B)** Hız (Velocity)
+- **C)** Doğruluk (Veracity)
+- **D)** Hacim (Volume)
 
-## İçerik sınırı
+**Doğru cevap: A.** Çeşitlilik (Variety)
 
-Sorular gerçek katılımcı, müşteri veya kurum içi belge içermez. Belirli bir yapay zekâ markasının ücretli özelliğini, programlama dilini veya teknik terim ezberini ölçmez. Veri ve onay soruları kurumun doğrulanmamış bir politikasını tarif etmez; geçerli izin ve onay koşullarının kontrol edilmesini ölçer.
+**Açıklama:** Video, metin ve sayısal verilerin aynı anda işlenmesi, Büyük Veri'nin farklı veri formatlarını barındırma özelliği olan Çeşitlilik (Variety) kavramını temsil eder.
 
-Soru bazında kazanım eşlemesi bu içerik taslağının açıklamasıdır; yeni bir katılımcı yanıt verisi toplama veya soru bazında kurumsal raporlama yetkisi değildir.
+**Ölçülen kazanım:** Farklı veri biçimlerinin birlikte kullanılmasını çeşitlilik boyutuyla ilişkilendirir.
 
-## İngilizce sunum
+## 10. Derin öğrenme ve GPU
 
-17 Kasım 2026 arayüz güncellemesinde [aynı 10 sorunun İngilizce çevirisi](../v2/ozak/questions.en.mjs) eklendi. Kimlikler, seçenek sırası, doğru yanıtlar, puanlama ve sürüm Türkçe setle aynıdır; [English giriş](https://sinav2.metintiryaki.com/ozak/?lang=en) üzerinden açılır. Bu dil eşleştirmesi ayrı bir psikometrik eşdeğerlik çalışması değildir.
+Kaynak: `web-058`.
+
+Bir şirket otonom araçlar için yüksek çözünürlüklü kameralardan gelen anlık trafik videolarını analiz etmek istiyor. Veri hacmi petabaytlar seviyesinde ve kurallar geleneksel algoritmalarla manuel olarak kodlanamayacak kadar karmaşıktır. Bu şirketin teknoloji altyapısı tercihinde aşağıdakilerden hangisine öncelikli olarak yatırım yapması beklenir?
+
+- **A)** Sadece yapısal verilerle çalışan kural tabanlı Makine Öğrenmesi (ML) algoritmalarına
+- **B)** Derin Öğrenme (DL) ağlarını otonom şekilde eğitebilecek yüksek performanslı GPU donanımlarına
+- **C)** Özellik çıkarımını manuel yapacak kalabalık bir insan veri etiketleme ekibine
+- **D)** Oltalama (Phishing) saldırılarını engellemek için kurumsal ağ güvenlik duvarlarına
+
+**Doğru cevap: B.** Derin Öğrenme (DL) ağlarını otonom şekilde eğitebilecek yüksek performanslı GPU donanımlarına
+
+**Açıklama:** Otonom araçlar gibi çok yüksek hacimli ve karmaşık görsellerin işlendiği yapılar, otonom çalışan derin öğrenme (DL) ağlarına ve bunları besleyecek güçlü GPU donanımlarına ihtiyaç duyar.
+
+**Ölçülen kazanım:** Yüksek hacimli karmaşık görüntü analizinde derin öğrenme ve GPU altyapısının rolünü tanır.
+
+## Dil ve veri sınırı
+
+[Aynı 10 sorunun İngilizce sunumu](../v2/ozak/questions.en.mjs), aynı kimlik, seçenek sırası, doğru yanıt ve sürümü kullanır. TR varsayılandır; [English giriş](https://sinav2.metintiryaki.com/ozak/?lang=en) paylaşılabilir. Bu çeviri eşleştirmesi ayrı psikometrik eşdeğerlik çalışması değildir.
+
+Sorular gerçek katılımcı/müşteri verisi içermez. Soru bazında kuruma raporlama veya yeni kişisel veri toplama yetkisi oluşturmaz. Eski soru sürümünün kayıtları yeni sürümden ayrıdır; [işletim ve kabul sınırı](exam-v2.md#ozak-202612), [17 Kasım değişiklik kaydı](../history.md#ozak-selected10-pdf-2026-11-17).
