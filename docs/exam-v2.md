@@ -95,7 +95,7 @@ Yerel açılış: depo kökünde `python3 -m http.server 4187 --bind 127.0.0.1 -
 
 `apps-script/Ozak.template.gs` bağımsız proje şablonudur; `apps-script/ozak-appsscript.json` yalnız Sheets izni ve Europe/Istanbul saat dilimi ister. Gerçek tablo kimliği yalnız özel yapılandırmada tutulur; repoya yazılmaz. **Genel sınavın Apps Script projesine bu dosyalar eklenmez ve mevcut dağıtımı güncellenmez.** Özak ayrı proje/endpoint kullanır. Yeni kurulumda şablon `Code.gs`, manifest `appsscript.json` adıyla ayrı projeye yüklenir.
 
-Mevcut özel eğitmen tablosundaki **Özak katılımcılar** ve **Özak sınav kayıtları** sekmeleri kullanılır; eski sekmeler/kayıtlar taşınmaz, silinmez veya Özak'a atanmaz. Cihaz tamamlanma zamanı sunucu kayıt zamanından ayrıdır. Soru bazında yanıt toplama ve yeni dashboard yoktur. Tablo paylaşımı bu çalışma için genişletilmez.
+Mevcut özel eğitmen tablosundaki **Özak katılımcılar** ve **Özak sınav kayıtları** sekmeleri kullanılır; eski sekmeler/kayıtlar taşınmaz, silinmez veya Özak'a atanmaz. Cihaz tamamlanma zamanı sunucu kayıt zamanından ayrıdır; sunucu zamanı UTC ISO metindir ve günlükten özete birebir kopyalanır (Apps Script v2). Soru bazında yanıt toplama ve yeni dashboard yoktur. Tablo paylaşımı bu çalışma için genişletilmez.
 
 Backend `Execute as me` ve kullanıcıca ayrıca onaylanan `Anyone` ayarıyla çalışır. İlk Google Sheets yetkisini proje sahibi verir; katılımcıdan Google oturumu/OAuth izni istenmez. Kullanıcının gördüğü “Google hasn't verified this app” ekranı yeni proje sahibinin yetkilendirmesiydi; HTTPS sertifika hatası değildir. Bu ayarda katılımcıların kişisel Google verileri için izin alınmaz. [Google'ın yürütme kimliği açıklaması](https://developers.google.com/apps-script/guides/web#permissions).
 

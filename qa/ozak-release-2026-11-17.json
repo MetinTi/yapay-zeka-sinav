@@ -1,0 +1,144 @@
+{
+  "date": "2026-11-17",
+  "assessmentVersion": "ozak-ai-awareness-202612-v1",
+  "publicUrl": "https://sinav2.metintiryaki.com/ozak/",
+  "hosting": {
+    "project": "yapay-zeka-egitim-mt",
+    "site": "yapay-zeka-egitim-mt",
+    "version": "1cb2d22ad1b5ec9c",
+    "region": "global CDN"
+  },
+  "backend": {
+    "separateFromGeneralExam": true,
+    "appsScriptVersion": 2,
+    "questionVersion": "ozak-ai-awareness-202612-v1",
+    "executionIdentity": "USER_DEPLOYING",
+    "access": "ANYONE_ANONYMOUS",
+    "ownerAuthorizedSheets": true,
+    "publicReadOrListRoute": false,
+    "emailEnabled": false,
+    "serverTimes": "UTC ISO strings; log-to-summary exact equality verified",
+    "privateSheetIdIncluded": false,
+    "regionSelectable": false
+  },
+  "verification": {
+    "localTestsPassed": 28,
+    "existingGeneralBackendChecksPassed": 12,
+    "mainExamSourceFilesUnchanged": 6,
+    "httpsAssetParity": [
+      {
+        "file": "index.html",
+        "status": 200,
+        "matches_source": true,
+        "sha256": "3a3ad23385939fa9d114765887641ee79b369d7d8aaa9bc6d15c46746e0b7725"
+      },
+      {
+        "file": "app.mjs",
+        "status": 200,
+        "matches_source": true,
+        "sha256": "3ef56126743f671b16ffd04e05a6f55f7a3437ef51d535f800c6dfd2723e7389"
+      },
+      {
+        "file": "persistence.mjs",
+        "status": 200,
+        "matches_source": true,
+        "sha256": "9d79b2bdd29678dcda6a00f2e7c9e3e2222688963648bba051711079a77c5505"
+      },
+      {
+        "file": "participant-state.mjs",
+        "status": 200,
+        "matches_source": true,
+        "sha256": "42347ef2814f9e104a4db5e3da75563941cb224664e244b5f867035cfc321f6d"
+      },
+      {
+        "file": "questions.mjs",
+        "status": 200,
+        "matches_source": true,
+        "sha256": "7d60cf805542ef98f96ba3b9ce62104bb2069bb0aaec1c819962becc0291194c"
+      },
+      {
+        "file": "style.css",
+        "status": 200,
+        "matches_source": true,
+        "sha256": "4c97b66f136fc8dbd508a7b0ef5d5f8d62927682b663715a6b91b49a3490d21e"
+      },
+      {
+        "file": "ozak/index.html",
+        "status": 200,
+        "matches_source": true,
+        "sha256": "4919a4326f2a0914d344b1e150a22e1ec762b73f533ed0aa58df7fae43f9aa56"
+      },
+      {
+        "file": "ozak/app.mjs",
+        "status": 200,
+        "matches_source": true,
+        "sha256": "1eb5e87fb44b821f1aab1f98614a7438ad14f574fd038eed7b0c12706fbf005b"
+      },
+      {
+        "file": "ozak/persistence.mjs",
+        "status": 200,
+        "matches_source": true,
+        "sha256": "6ba5cbf29474e6ddd735c2c45e6783e5c641ab0230b56a1aa22ebdc12e7288ea"
+      },
+      {
+        "file": "ozak/exam-context.mjs",
+        "status": 200,
+        "matches_source": true,
+        "sha256": "4bab37d27032f89a91cff04b164c28622048b9367ced465838525b9a17681f62"
+      },
+      {
+        "file": "ozak/backend-config.mjs",
+        "status": 200,
+        "matches_source": true,
+        "sha256": "8c5f145d1c471ded58bc8486175f08ea3ab5ee425d17db559e188f46bd3d7a5a"
+      },
+      {
+        "file": "ozak/entry.mjs",
+        "status": 200,
+        "matches_source": true,
+        "sha256": "fca1c34d7d0b44963470ffe9eda5b49390f3c10453c904359fd912b95eaf4460"
+      },
+      {
+        "file": "ozak/questions.mjs",
+        "status": 200,
+        "matches_source": true,
+        "sha256": "74236129177f744ddabe021f726d6e25b427db95671f68c5ee7ad7452ce7e377"
+      },
+      {
+        "file": "ozak/ozak.css",
+        "status": 200,
+        "matches_source": true,
+        "sha256": "92ea2650ac654e06e30d9ceb4304e39e34a6e70fd49c61f42cd889f355834cfb"
+      },
+      {
+        "file": "ozak/assets/ozak-global-logo.png",
+        "status": 200,
+        "matches_source": true,
+        "sha256": "73af5deb3c1ef427f2916ca161f99dc3448d5d94ba3a67d51372e97e85317838"
+      }
+    ],
+    "realSyntheticPreScore": 40,
+    "realSyntheticPostScore": 70,
+    "realSyntheticDelta": 30,
+    "realDuplicateIdempotenceVerified": true,
+    "modifiedDuplicateRejected": true,
+    "unknownGroupRejected": true,
+    "anonymousHealthHttp": 200,
+    "anonymousBrowserOAuthWarningRequests": 0,
+    "anonymousBrowserMainBackendRequests": 0,
+    "anonymousBrowserJavaScriptErrors": 0,
+    "viewportsWithoutOverflow": [
+      320,
+      390,
+      768,
+      1440
+    ],
+    "qaCleanup": "awaiting explicit authorization",
+    "participantOrPrivateRowsIncluded": false
+  },
+  "limits": [
+    "Classroom assessment; client answer key is not high-security exam protection.",
+    "Displayed score comparison uses same-browser baseline; private backend matches across devices within context.",
+    "No real email was sent; general exam optional email delivery remains a separate open task."
+  ]
+}
