@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#132b42">
+  <meta name="author" content="Metin Tiryaki">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Özak Global Holding Yapay Zekâ Eğitimi: eğitim öncesi ve sonrası değerlendirme testi.">
+  <title>Özak Global Holding · Yapay Zekâ Eğitimi Değerlendirme Testi</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="ozak.css">
+  <script type="module" src="entry.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#main">İçeriğe geç</a>
+  <div class="ambient" aria-hidden="true"></div>
+  <header class="institution-header">
+    <div class="header-tools"><span class="edition">ARALIK 2026</span><button id="theme" class="icon-btn" aria-label="Renk temasını değiştir">◐</button></div>
+    <div class="logo-surface"><img src="assets/ozak-global-logo.png" width="1160" height="384" alt="Özak Global" fetchpriority="high"></div>
+    <p class="institution-name">ÖZAK GLOBAL HOLDİNG</p>
+    <p class="institution-program">Yapay Zekâ Eğitimi</p>
+  </header>
+  <main id="main">
+    <p class="preview-note"><span class="dot" aria-hidden="true"></span> Ön test ve son test · Her doğru yanıt 10 puan.</p>
+    <section id="welcome" class="welcome">
+      <div class="intro">
+        <p class="eyebrow"><span class="short-line" aria-hidden="true"></span> BİLİNÇLİ KULLANIM, GÜÇLÜ BİR BAŞLANGIÇ</p>
+        <h1>Yapay Zekâ Eğitimi<br><span>Değerlendirme Testi</span></h1>
+        <p class="lead">Günlük işlerde yapay zekâyı doğru, güvenli ve etkili kullanmaya dair bilgini değerlendir.</p>
+        <div class="learning-path" aria-label="Değerlendirme akışı">
+          <div><span class="step-number">01</span><span><strong>Ön test</strong><small>Eğitimden önce başlangıç noktanı gör.</small></span></div>
+          <span class="path-line" aria-hidden="true"></span>
+          <div><span class="step-number">02</span><span><strong>Son test</strong><small>Eğitimden sonra puan farkını incele.</small></span></div>
+        </div>
+        <div class="facts"><div><strong>10</strong><span>iş senaryosu</span></div><div><strong>10<span> dk</span></strong><span>test süresi</span></div><div><strong>100</strong><span>üzerinden puan</span></div></div>
+        <p class="intro-footnote">Bu bir yarış değil; öğrenmenin öncesine ve sonrasına kısa bir bakış.</p>
+      </div>
+      <aside id="group-picker" class="glass group-picker" aria-labelledby="group-title">
+        <p class="eyebrow">SANA AİT OTURUM</p><h2 id="group-title">Grubunu seç</h2>
+        <p class="hint">Eğitmeninin belirttiği gruptan devam et. Grup bağlantısı paylaşıldıysa bu adım otomatik tamamlanır.</p>
+        <p id="link-error" class="warning" role="alert" hidden></p>
+        <nav class="group-links" aria-label="Eğitim grupları">
+          <a class="group-link" href="?grup=1&amp;asama=baslangic"><span><small>01</small><strong>Grup 1</strong></span><span aria-hidden="true">↗</span></a>
+          <a class="group-link" href="?grup=2&amp;asama=baslangic"><span><small>02</small><strong>Grup 2</strong></span><span aria-hidden="true">↗</span></a>
+          <a class="group-link" href="?grup=3&amp;asama=baslangic"><span><small>03</small><strong>Grup 3</strong></span><span aria-hidden="true">↗</span></a>
+        </nav>
+        <p class="hint">Her grupta aynı 10 soru kullanılır.</p>
+      </aside>
+      <form id="start-form" class="glass start-form" hidden>
+        <div class="form-heading"><p class="eyebrow" id="group-label"></p><a href="./" class="change-group">Grubu değiştir</a></div>
+        <h2>Değerlendirmeye başla</h2>
+        <fieldset class="phase-picker"><legend class="sr-only">Değerlendirme aşaması</legend>
+          <label><input type="radio" name="phase" value="pre" checked><span><small>01</small><strong>Ön test</strong><em>Eğitimden önce</em></span></label>
+          <label><input type="radio" name="phase" value="post"><span><small>02</small><strong>Son test</strong><em>Eğitimden sonra</em></span></label>
+        </fieldset>
+        <label class="field-label" for="participant-name">Adın ve soyadın</label><input id="participant-name" name="participantName" autocomplete="name" minlength="2" maxlength="80" required>
+        <label class="field-label" for="participant">Katılımcı kodun</label>
+        <div class="code-row"><input id="participant" name="participant" minlength="4" maxlength="24" pattern="[A-Za-z0-9-]{4,24}" autocomplete="off" autocapitalize="characters" required aria-describedby="code-hint"><button type="button" id="new-code" class="text-btn">Yeni kod</button></div>
+        <p id="code-hint" class="hint">Kodunu sakla; son testte aynı kodu kullan. Bu tarayıcıdaki ön testle puanın karşılaştırılır. Farklı cihazda ön test puanın burada görünmez.</p>
+        <button type="button" id="recover-code" class="text-btn">Kodumu unuttum · adımdan bul</button>
+        <div id="recovery" class="recovery" hidden><p id="recovery-message" class="hint" role="status"></p><div id="recovery-options" class="recovery-options"></div></div>
+        <p id="start-error" class="warning" role="alert" hidden></p><p id="resume-message" class="hint" hidden></p><p id="baseline-hint" class="baseline-hint" aria-live="polite"></p>
+        <p class="rules">Her doğru yanıt <strong>10 puan</strong>. Yanlışlar doğruları götürmez. Ön test ve son test aynı 10 sorudan oluşur.</p>
+        <button class="primary" type="submit">Teste başla <span aria-hidden="true">↗</span></button>
+        <p class="data-note">Teste başladığında adın ve kodun, tamamladığında test sonucun eğitmenin özel Google tablosuna kayıt için gönderilir. Kodun ve puanların bu tarayıcıda da saklanır.</p>
+        <p id="storage-warning" class="warning" hidden>Tarayıcı kayda izin vermiyor. Sonucunu indirerek sakla.</p>
+      </form>
+    </section>
+    <section id="exam" class="exam-view" hidden>
+      <div class="exam-top"><div><p class="eyebrow" id="phase-label"></p><p id="participant-label" class="hint"></p></div><div class="timer" role="timer" aria-label="Kalan süre"><span aria-hidden="true">◷</span> <span id="timer">10:00</span></div></div>
+      <p id="exam-sync" class="hint" role="status"></p><div class="progress" role="progressbar" aria-label="Yanıtlanan sorular" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><div id="progress-fill"></div></div>
+      <nav id="question-nav" class="question-nav" aria-label="Sorular"></nav>
+      <div class="glass question-panel"><div class="question-meta"><span id="question-count"></span><span id="question-topic"></span></div><h1 id="question-title" tabindex="-1"></h1><fieldset id="options"><legend class="sr-only">Yanıt seçenekleri</legend></fieldset><div class="question-actions"><button id="previous" class="secondary">← Önceki</button><span id="answered-count" class="hint" aria-live="polite"></span><button id="next" class="primary">Sonraki →</button></div></div><button id="finish" class="text-btn finish-btn">Değerlendirmeyi bitir</button>
+    </section>
+    <section id="result" class="result-view" hidden aria-labelledby="result-title">
+      <p class="eyebrow" id="result-phase"></p><h1 id="result-title" tabindex="-1">Bilgini işe dönüştür.</h1><p class="lead" id="result-message"></p>
+      <div class="glass result-card"><div class="score-ring" id="score-ring"><div><strong id="score">0</strong><span>/ 100</span></div></div><div class="result-numbers"><div><strong id="correct">0</strong><span>doğru</span></div><div><strong id="wrong">0</strong><span>yanlış</span></div><div><strong id="empty">0</strong><span>boş</span></div></div><p id="elapsed" class="hint"></p><div id="comparison" class="comparison" hidden></div><p id="result-storage" class="hint"></p><p id="result-sync" class="hint" role="status"></p><button type="button" id="retry-result-sync" class="text-btn" hidden>Eğitmen listesine kaydı tekrar dene</button><div class="result-actions"><button id="download" class="primary">Sonucu indir ↓</button><button id="review-toggle" class="secondary" hidden>Yanıtları ve açıklamaları gör</button><button id="home" class="text-btn">Başlangıca dön</button></div></div>
+      <div id="review" class="review" hidden></div>
+    </section>
+  </main>
+  <footer><span>Özak Global Holding · Eğitim Değerlendirme Testi</span><a href="https://metintiryaki.com" target="_blank" rel="noopener">Eğitmen: Metin Tiryaki ↗</a></footer>
+  <dialog id="confirm-dialog"><form method="dialog"><h2>Bitirmeye hazır mısın?</h2><p id="confirm-text"></p><div class="dialog-actions"><button value="cancel" class="secondary">Sorulara dön</button><button value="finish" class="primary">Bitir</button></div></form></dialog>
+  <noscript><p>Bu değerlendirmeyi açmak için tarayıcında JavaScript etkin olmalı.</p></noscript>
+</body>
+</html>

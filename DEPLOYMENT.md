@@ -78,3 +78,12 @@ Mevcut `/exec` dağıtımı **v15** olarak güncellendi; URL değişmedi. Yerel 
 V2 web yayını `firebase.v2.json` ile yalnız `yapay-zeka-egitim-mt` projesinin ana `yapay-zeka-egitim-mt` Hosting sitesine gider. Son sürüm `f4c63895a7e7c5eb` (Revizyon 6 klonu); altı canlı dosya kaynakla eşleşir. Gün sonu belge/repo kapanışı yeni deploy başlatmaz. [V2 işletim ve doğrulama özeti](docs/exam-v2.md).
 
 28 Eylül 22:05 TRT: Eski `yapay-zeka-sinav2-mt` Hosting sitesi silindi. `sinav2.metintiryaki.com` ana siteye bağlıdır; gelecekteki yayınlarda yukarıdaki `firebase.v2.json` yapılandırmasını kullanın.
+
+
+## Özak — ayrı sınav dağıtımı (17 Kasım 2026)
+
+Kullanıcı, Özak sınavının ana sınav korunarak ayrı yayımlanmasını ve mevcut özel eğitmen tablosuna bağlanmasını istedi. Özak yolu `https://sinav2.metintiryaki.com/ozak/`, frontend dizini `v2/ozak/`; genel kök sınav dosyaları aynı bırakılır. Hosting aynı global siteye yalnız ek dosyalarla yayımlanır.
+
+Özak backend'i **ayrı Apps Script projesidir**. `apps-script/Ozak.template.gs` ve `apps-script/ozak-appsscript.json` yalnız bu ayrı projeye aittir; ana Apps Script'e yüklenmez. Özel tablo kimliği repoya alınmaz. Ayrı endpoint `v2/ozak/backend-config.mjs` içindedir. `Execute as me` / açıkça onaylanmış `Anyone` ayarı, katılımcıdan Google izni istemeden yazma sağlar; public okuma yolu yoktur. Proje sahibi ilk Sheets iznini kendisi tamamladı.
+
+[Grup bağlantıları ve işletim](docs/exam-v2.md#ozak-202612) · [soru seti](docs/ozak-exam-questions.md) · [tarihli yayın/kabul kanıtı](history.md#ozak-exam-live-2026-11-17). Kaynak/test, Apps Script v1, Hosting yayını ve gerçek tablo kabulü ayrı kanıtlardır; Google OAuth proje sahibi uyarısı ile HTTPS sertifika hatası karıştırılmaz.

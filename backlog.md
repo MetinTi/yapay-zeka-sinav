@@ -10,6 +10,7 @@ Son gözden geçirme: **22 Ekim 2026**. Güncel web ürün: [README](README.md) 
 
 ## Açık web ve süreç işleri
 
+- [ ] **EXAM-OZAK-202612:** Kullanıcı yayın/gerçek tablo ve ayrı sınav kararını onayladı; bağımsız Özak backend v1 + Hosting yayını ve gerçek puan kaydı doğrulandı. Canlı kabulde yakalanan yalnız Özak UTC zaman düzeltmesinin yayını, son tarayıcı/QA temizliği ve PR kapanışı sürüyor. [İşletim ve grup bağlantıları](docs/exam-v2.md#ozak-202612), [yayın/kabul](history.md#ozak-exam-live-2026-11-17).
 - [ ] **EXAM-V2-MAIL · P2:** İsteğe bağlı e-posta teslimi doğrulanmadı; kabul: ayrıca yetkilendirilmiş alıcıya deneme ve gelen kutusu kontrolü. V2 sınıf akışını engellemez.
 - [ ] **EXAM-V1-SHEET · P2:** V1 tablo bağlantısının onarımı; V2 özel tablo kurulumundan ayrı.
 - [ ] **W2:** Mobil havuz üretimi mevcut; V1 `index.html` gömülü P dizisiyle tek kaynak senkronu açık. Bu işi V2'nin 10 sabit soruluk sınıf kapsamıyla birleştirme.
