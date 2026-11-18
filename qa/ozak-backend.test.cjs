@@ -175,3 +175,68 @@ test('new question version isolates first scores while open legacy exams remain 
   assert.equal(people(b)[2][4],'ozak-ai-awareness-202612-v2');
   assert.equal(b.request('result-v2',attempt({version:'ozak-ai-awareness-202612-v3'})).saved,false);
 });
+
+const blanchard = {
+  ...base,
+  version: 'blanchard-ai-awareness-202612-v1',
+  context: { organization:'blanchard', training:'2026-12', group:'1' }
+};
+const blanchardScore = (overrides={}) => attempt({ ...blanchard, ...overrides });
+const blanchardPeople = backend => backend.sheets['Blanchard katılımcılar'].rows;
+const blanchardAttempts = backend => backend.sheets['Blanchard sınav kayıtları'].rows;
+
+test('Blanchard and both Özak versions use independent keys and worksheet rows', () => {
+  const b = backend();
+  assert.equal(b.request('register-v2', base).saved, true);
+  assert.equal(b.request('register-v2', { ...blanchard, name:'Farklı Örnek' }).saved, true);
+  assert.equal(b.request('result-v2', attempt({version:'ozak-ai-awareness-202612-v1'})).saved, true);
+  assert.equal(b.request('result-v2', attempt()).saved, true);
+  assert.equal(b.request('result-v2', blanchardScore({name:'Farklı Örnek',score:70,correct:7,wrong:2})).saved,true);
+  assert.deepEqual(Object.keys(b.sheets).sort(), [
+    'Blanchard katılımcılar','Blanchard sınav kayıtları','Özak katılımcılar','Özak sınav kayıtları'
+  ]);
+  assert.equal(blanchardPeople(b).length, 2);
+  assert.equal(people(b).length, 3);
+  assert.match(blanchardAttempts(b)[1][0], /^blanchard:2026-12:1:blanchard-ai-awareness-202612-v1:/);
+  assert.match(attempts(b)[2][0], /^ozak:2026-12:1:ozak-ai-awareness-202612-v2:/);
+  assert.equal(blanchardPeople(b)[1][1], 'Blanchard Türkiye');
+  assert.equal(blanchardPeople(b)[1][8], 70);
+  assert.equal(people(b)[1][8], 40);
+});
+
+test('Blanchard saves first scores and rejects inconsistent retries without touching Özak', () => {
+  const b = backend();
+  const before = blanchardScore();
+  const after = blanchardScore({id:'blanchard_post_01',phase:'post',score:90,correct:9,wrong:0});
+  assert.equal(b.request('result-v2', before).saved, true);
+  assert.equal(b.request('result-v2', before).duplicate, true);
+  assert.equal(b.request('result-v2', after).saved, true);
+  assert.equal(b.request('result-v2', {...after,score:100,correct:10,wrong:0,empty:0}).saved, false);
+  assert.deepEqual(Array.from(blanchardPeople(b)[1].slice(8,11)),[40,90,50]);
+  assert.equal(blanchardAttempts(b).length, 3);
+  assert.deepEqual(Object.keys(b.sheets).sort(), ['Blanchard katılımcılar','Blanchard sınav kayıtları']);
+});
+
+test('Blanchard rejects mismatched org/version, invalid group and malformed result before opening Sheets', () => {
+  const b = backend();
+  for (const change of [
+    {version:base.version},
+    {context:base.context},
+    {context:{...blanchard.context,group:'2'}},
+    {context:{...blanchard.context,group:1}},
+    {context:{...blanchard.context,training:'2026-11'}},
+    {context:{...blanchard.context,organization:'__proto__'}},
+    {context:{...blanchard.context,extra:true}},
+    {score:41},{correct:11},{elapsed:601}
+  ]) assert.equal(b.request('result-v2', blanchardScore(change)).saved, false);
+  assert.equal(b.request('read-v2',blanchard).saved,false);
+  assert.equal(b.opens(),0);
+});
+
+test('Blanchard health discloses service and version only and opens no sheet', () => {
+  const b = backend();
+  assert.deepEqual(JSON.parse(b.rawRequest({action:'health',organization:'blanchard'}).text),{
+    status:'ok',service:'blanchard-exam',version:'blanchard-ai-awareness-202612-v1'
+  });
+  assert.equal(b.opens(),0);
+});
