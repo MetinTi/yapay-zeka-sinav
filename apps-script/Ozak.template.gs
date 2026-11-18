@@ -2,7 +2,7 @@
 // Configure this private instructor spreadsheet ID locally; never commit the real ID.
 // This project must not replace or be added to the existing generic exam project.
 var OZAK_SPREADSHEET_ID = 'YOUR_PRIVATE_INSTRUCTOR_SPREADSHEET_ID';
-var OZAK_VERSION = 'ozak-ai-awareness-202612-v1';
+var OZAK_VERSION = 'ozak-ai-awareness-202612-v2';
 
 function doGet(e) {
   var callback = getParam(e, 'callback', '');
@@ -56,7 +56,7 @@ function v2Sheet(ss, name, headers) {
 }
 function ozakPerson(data) {
   var context = data.context;
-  if (data.version !== 'ozak-ai-awareness-202612-v1' || !context || Array.isArray(context) || typeof context !== 'object' ||
+  if (['ozak-ai-awareness-202612-v1','ozak-ai-awareness-202612-v2'].indexOf(data.version) === -1 || !context || Array.isArray(context) || typeof context !== 'object' ||
       Object.keys(context).sort().join(',') !== 'group,organization,training' ||
       context.organization !== 'ozak' || context.training !== '2026-12' || !/^[123]$/.test(context.group) || typeof context.group !== 'string') {
     throw new Error('Özak eğitim veya grup bağlantısını kontrol et.');

@@ -31,7 +31,7 @@ function backend() {
   const request=(action,data,callback='v2_ozak_test')=>{const out=rawRequest({action,data:JSON.stringify(data),callback});return JSON.parse(out.mime==='javascript'?out.text.slice(out.text.indexOf('(')+1,-2):out.text);};
   return {sheets,request,rawRequest,emails:()=>emails,opens:()=>opens,locked:()=>locked};
 }
-const base={version:'ozak-ai-awareness-202612-v1',context:{organization:'ozak',training:'2026-12',group:'1'},name:'İpek Işık',code:'AI-123456'};
+const base={version:'ozak-ai-awareness-202612-v2',context:{organization:'ozak',training:'2026-12',group:'1'},name:'İpek Işık',code:'AI-123456'};
 const attempt=(overrides={})=>({...base,id:'ozak_attempt_0001',phase:'pre',score:40,correct:4,wrong:5,empty:1,elapsed:120,timedOut:false,clientCompletedAt:'2026-12-01T06:10:00.000Z',...overrides});
 const people=backend=>backend.sheets['Özak katılımcılar'].rows;
 const attempts=backend=>backend.sheets['Özak sınav kayıtları'].rows;
@@ -122,7 +122,7 @@ test('device completion and server receipt are distinct; no per-question answers
 
 test('health is public metadata only; unsupported and malformed routes do not touch any spreadsheet',()=>{
   const b=backend();
-  const expected={status:'ok',service:'ozak-exam',version:'ozak-ai-awareness-202612-v1'};
+  const expected={status:'ok',service:'ozak-exam',version:'ozak-ai-awareness-202612-v2'};
   assert.deepEqual(JSON.parse(b.rawRequest().text),expected);
   assert.deepEqual(JSON.parse(b.rawRequest({action:'health'}).text),expected);
   assert.equal(b.rawRequest({action:'health',callback:'v2_health'}).mime,'javascript');
@@ -159,4 +159,19 @@ test('server time cells are UTC ISO text and pre/post summary copies log timesta
   assert.equal(people(b)[1][11],pre[7]);assert.equal(people(b)[1][12],post[7]);
   assert.doesNotMatch(source,/new Date\(\)(?!\.toISOString\(\))/);
   assert.equal(JSON.stringify(person).includes('Etc/GMT'),false);
+});
+
+
+test('new question version isolates first scores while open legacy exams remain accepted',()=>{
+  const b=backend();
+  const old=attempt({version:'ozak-ai-awareness-202612-v1'});
+  const current=attempt();
+  assert.equal(b.request('result-v2',old).saved,true);
+  assert.equal(b.request('result-v2',current).saved,true);
+  assert.equal(people(b).length,3);
+  assert.equal(attempts(b).length,3);
+  assert.notEqual(people(b)[1][0],people(b)[2][0]);
+  assert.equal(people(b)[1][4],'ozak-ai-awareness-202612-v1');
+  assert.equal(people(b)[2][4],'ozak-ai-awareness-202612-v2');
+  assert.equal(b.request('result-v2',attempt({version:'ozak-ai-awareness-202612-v3'})).saved,false);
 });

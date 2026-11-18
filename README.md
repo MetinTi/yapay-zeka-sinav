@@ -2,7 +2,7 @@
 
 İki günlük yapay zeka eğitimi için Türkçe sınıf değerlendirmesi. Güncel web sürümü `v2/` içinde bulunur: **10 sabit soru, 10 dakika, her doğru 10 puan**. Başlangıç ve bitiş aynı soruları kullanır; ilk başlangıç puanı korunur, bitişte sonuç ve puan farkı gösterilir.
 
-**Özak için ayrı sınav:** `v2/ozak/` altında büyük kurum logolu giriş ve başlangıç seviyesinde 10 iş senaryosu bulunur. Genel sınavın altı dosyası ve çalışan Apps Script'i korunur; Özak kendi uygulama dosyaları ve bağımsız backend'iyle aynı özel eğitmen tablosunda ayrı sekmeler kullanır. [Özak sınavı](https://sinav2.metintiryaki.com/ozak/) · [sorular ve kazanımlar](docs/ozak-exam-questions.md) · [grup bağlantıları ve işletim](docs/exam-v2.md#ozak-202612).
+**Özak için ayrı sınav:** `v2/ozak/` altında eşit yükseklikte kurum/eğitmen görselleri, Türkçe/İngilizce giriş ve özgün soru havuzundan seçilen 10 soru bulunur. Genel sınavın altı dosyası ve çalışan Apps Script'i korunur; Özak kendi uygulama dosyaları ve bağımsız backend'iyle aynı özel eğitmen tablosunda ayrı sekmeler kullanır. [Özak sınavı](https://sinav2.metintiryaki.com/ozak/) · [English](https://sinav2.metintiryaki.com/ozak/?lang=en) · [sorular ve kazanımlar](docs/ozak-exam-questions.md) · [grup bağlantıları ve işletim](docs/exam-v2.md#ozak-202612). Özak sonuçları kurum logolu PDF olarak indirilir; genel V2’nin JSON indirmesi değişmez.
 
 [Sınavı aç](https://sinav2.metintiryaki.com/) · [Başlangıç](https://sinav2.metintiryaki.com/?asama=baslangic) · [Bitiş](https://sinav2.metintiryaki.com/?asama=bitis)
 
@@ -23,7 +23,7 @@ Node.js ile hedefli web kontrolleri:
 ```sh
 node --test qa/participant-state.test.mjs
 node qa/v2-backend.test.cjs
-node --test qa/ozak-context.test.mjs qa/ozak-backend.test.cjs
+node --test qa/ozak-context.test.mjs qa/ozak-backend.test.cjs qa/ozak-language.test.mjs qa/ozak-report.test.mjs
 ```
 
 ## Kaynaklar ve kapsam

@@ -2,7 +2,7 @@
 
 Bu kurallar Claude Code, Cursor Agent, OpenAI Codex, Gemini CLI, Windsurf ve projede kullanılan diğer LLM araçları için geçerlidir.
 
-*Son güncelleme: 22 Ekim 2026*
+*Son güncelleme: 17 Kasım 2026*
 
 ## 1. Çalışma yaklaşımı ve iletişim
 
@@ -17,7 +17,7 @@ Bu kurallar Claude Code, Cursor Agent, OpenAI Codex, Gemini CLI, Windsurf ve pro
 ## 2. Ürün kapsamı, teknoloji ve dil
 
 - Sınıf V2 ürünü `v2/` altındaki **Türkçe statik web sınavıdır**; Google Apps Script ve özel eğitmen Google Sheet kullanır. Güncel ürün bağlamı için `README.md` ve `docs/exam-v2.md` esas alınır.
-- Katılımcı verileri ve özel backend verileri public repo dışında kalır.
+- Katılımcı verileri ve özel backend verileri public repo dışında kalır. Ayrı `v2/ozak/` sınavının Türkçe/İngilizce sunumu 17 Kasım 2026’da yetkilendirildi; genel V2 Türkçe kalır.
 - V1 ve EN/TR/DE/FR/ES, ileride Arapça/RTL öneren eski mobil plan, sınıf V2 yayınının kapsamını genişletmez. 22 Ekim 2026 kararıyla yerel mobil kaynaklar ve ilgili plan/belgeler içerik ve gizli bilgi kontrolüyle ayrı kaynak kapsamı olarak repoya alınabilir; bu karar build, deploy veya mağaza yayını yetkisi değildir.
 - Flutter/React Native, Firebase Auth, Firestore, Storage, Analytics, Crashlytics veya Remote Config'i eski genel mobil varsayımlarda geçtiği için web ürününe ekleme. Açıkça yetkilendirilmiş yeni hizmeti ve gerekçesini belgele.
 - Türkçede `ç ş ğ ü ö ı İ` karakterlerini doğru kullan; `İ/i` ve `I/ı` ayrımını koru. Dil bilgisi ve doğal anlatımı kontrol et; kuşkulu çeviriyi insan incelemesine bildir.
@@ -31,6 +31,7 @@ Bu kurallar Claude Code, Cursor Agent, OpenAI Codex, Gemini CLI, Windsurf ve pro
 
 ## 4. Git, doğrulama ve inceleme
 
+- Kullanıcı açıkça repo güncellemesi istemeden commit/push/PR güncellemesi yapma; canlı deploy yetkisi repo gönderimi yetkisi değildir. “update docs and repo” bu kapsamda açık repo güncelleme talebidir. Belirli bir PR’yi açık tutma kararı varsa ayrıca kaldırılana kadar merge yapma.
 - İzole görev dalında çalış; önce commit, sonra PR oluştur. `main` dalına doğrudan push yapma; ilgisiz dosya değişikliklerini ve worktree'leri koru.
 - **Bu projede CI kullanılmıyor.** Olmayan GitHub CI kontrolünü zorunlu kılma veya başarı kanıtı olarak gösterme. Kullanıcı kararına göre değişiklikle orantılı hedefli yerel doğrulama, güvenlik incelemesi ve tamamlanmış Codex incelemesi yeterlidir; merge öncesinde son ilgili PR HEAD'ini kapsamalıdır.
 - Düzeltme geldiyse etkilenen kontrolü ve incelemeyi yenile. Boş/atlanan sonuç, `NEUTRAL`, sessizlik, incelemeyi tetiklemek veya emoji tamamlanma kanıtı değildir; sırf bot emojisi için sonsuz tekrar yapma. İnceleme ya da erişim eksikse PR'ı açık bırak ve engeli raporla.
