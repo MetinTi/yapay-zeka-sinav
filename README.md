@@ -4,7 +4,7 @@
 
 **Özak için ayrı sınav:** `v2/ozak/` altında eşit yükseklikte kurum/eğitmen görselleri, Türkçe/İngilizce giriş ve özgün soru havuzundan seçilen 10 soru bulunur. Genel sınavın altı dosyası ve çalışan Apps Script'i korunur; Özak kendi uygulama dosyaları ve bağımsız backend'iyle aynı özel eğitmen tablosunda ayrı sekmeler kullanır. [Özak sınavı](https://sinav2.metintiryaki.com/ozak/) · [English](https://sinav2.metintiryaki.com/ozak/?lang=en) · [sorular ve kazanımlar](docs/ozak-exam-questions.md) · [grup bağlantıları ve işletim](docs/exam-v2.md#ozak-202612). Özak sonuçları kurum logolu PDF olarak indirilir; genel V2’nin JSON indirmesi değişmez.
 
-**Blanchard değerlendirmesi:** Ön ve son test, eğitmenin paylaştığı tek özel sınıf bağlantısıyla açılır. Sınav otomatik katılımcı kodu verir. Sunucu puanı Özak soru setindeki yanıtlardan hesaplar ve ortak özel eğitmen tablosunun Blanchard sekmelerine yazar. [Genel giriş](https://sinav2.metintiryaki.com/blanchard/) · [İşletim notları](docs/exam-v2.md#blanchard-türkiye--aralık-2026).
+**Blanchard değerlendirmesi:** Ön ve son test, eğitmenin paylaştığı tek özel sınıf bağlantısıyla açılır. Sınav otomatik katılımcı kodu verir. Sunucu puanı Özak soru setindeki yanıtlardan hesaplar ve ortak özel eğitmen tablosunun Blanchard sekmelerine yazar. [Genel giriş](https://sinav2.metintiryaki.com/blanchard/) · [İşletim notları](docs/exam-v2.md#blanchard-türkiye--aralık-2026) · [Özak ve Blanchard yayın kaydı](history.md#kurum-sinavlari-kapanis-2026-11-19).
 
 [Sınavı aç](https://sinav2.metintiryaki.com/) · [Başlangıç](https://sinav2.metintiryaki.com/?asama=baslangic) · [Bitiş](https://sinav2.metintiryaki.com/?asama=bitis)
 
@@ -25,7 +25,7 @@ Node.js ile hedefli web kontrolleri:
 ```sh
 node --test qa/participant-state.test.mjs
 node qa/v2-backend.test.cjs
-node --test qa/ozak-context.test.mjs qa/ozak-backend.test.cjs qa/ozak-language.test.mjs qa/ozak-report.test.mjs
+node --test qa/ozak-context.test.mjs qa/ozak-backend.test.cjs qa/ozak-language.test.mjs qa/ozak-report.test.mjs qa/blanchard-pending.test.mjs
 ```
 
 ## Kaynaklar ve kapsam
@@ -51,4 +51,4 @@ Mobil kaynaklar ve eğitim taslakları, 22 Ekim 2026 kullanıcı kararıyla ayr�
 - [Çalışma kuralları](AGENTS.md) ve [çalışma düzeni P0 işleri](docs/WORKFLOW_BACKLOG.md)
 - [Geliştirme ve yayın geçmişi](history.md); [önceki README'nin V1 kurulum/e-posta notları](history.md#readme-snapshot-2026-10-22)
 
-Depo herkese açıktır. Gerçek `apps-script/V2.gs`, özel tablo kimliği, katılımcı kayıtları ve özel ekran kanıtları Git dışında kalır. Kayıtlar özel eğitmen tablosunda tutulur; katılımcı listesi herkese açık değildir. E-posta teslimi için mevcut kabul sınırı ve tarihli yayın/test kanıtları V2 rehberi ile geçmiş kaydında izlenir.
+Depo herkese açıktır. Gerçek `apps-script/V2.gs`, özel sınıf bağlantısı, özel tablo kimliği, katılımcı kayıtları ve özel ekran kanıtları Git dışında kalır. Kayıtlar özel eğitmen tablosunda tutulur; katılımcı listesi herkese açık değildir. E-posta teslimi için mevcut kabul sınırı ve tarihli yayın/test kanıtları V2 rehberi ile geçmiş kaydında izlenir.

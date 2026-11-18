@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-19",
+  "site": "yapay-zeka-egitim-mt",
+  "blanchard": {
+    "merge": "3624586fffe0ce38ef82f727d168620e0ee63b25",
+    "hostingVersion": "7b48467875633839",
+    "fileCount": 39,
+    "nonBlanchardFilesPreserved": 30,
+    "liveAssetParity": true,
+    "liveScopedCsp": true,
+    "appsScriptVersion": 5,
+    "syntheticQa": {
+      "scores": {
+        "pre": 40,
+        "post": 90
+      },
+      "delta": 50,
+      "deniedRequests": 3,
+      "idempotentRetries": 2,
+      "corsRedirectAndResponse": true
+    }
+  },
+  "ozakLanguageResult": {
+    "merge": "77648b49cb8327b19552b65263d8eff615ccb219",
+    "hostingVersion": "2a3214db87c51d16",
+    "sourcesSnapshot": "3624586fffe0ce38ef82f727d168620e0ee63b25",
+    "changedFile": "/ozak/entry.mjs",
+    "liveSha256": "933757da7b805183333417f54340343b1a93c180e0ccf264c4370365924fd0d2",
+    "unchangedFiles": 38,
+    "liveAssetParity": true,
+    "unaffectedEntryChecks": [
+      "/",
+      "/ozak/",
+      "/blanchard/",
+      "/blanchard/entry.mjs"
+    ]
+  }
+}

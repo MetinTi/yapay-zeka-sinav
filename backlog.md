@@ -1,6 +1,6 @@
 # Yapay Zeka Eğitimi & Sınav — Backlog
 
-Son gözden geçirme: **17 Kasım 2026**. Güncel web ürün: [README](README.md) ve [V2 işletim notu](docs/exam-v2.md). Mobil kaynaklar ayrı geliştirme kapsamıdır; kaynak aktarımı build, servis kurulumu veya mağaza yayını değildir. Tüm eski karar, ayrıntı ve ID'ler [özgün kayıtta](history.md#backlog-audit-2026-10-22) eksiksiz korunur. Tamamlandı kayıtları tarihsel kanıttır; yeni cihaz/Store kabulü sayılmaz.
+Son gözden geçirme: **19 Kasım 2026**. Güncel web ürün: [README](README.md) ve [V2 işletim notu](docs/exam-v2.md). Mobil kaynaklar ayrı geliştirme kapsamıdır; kaynak aktarımı build, servis kurulumu veya mağaza yayını değildir. Tüm eski karar, ayrıntı ve ID'ler [özgün kayıtta](history.md#backlog-audit-2026-10-22) eksiksiz korunur. Tamamlandı kayıtları tarihsel kanıttır; yeni cihaz/Store kabulü sayılmaz.
 
 | Dağıtım | Güncel kanıt sınırı |
 |---|---|
@@ -11,7 +11,7 @@ Son gözden geçirme: **17 Kasım 2026**. Güncel web ürün: [README](README.md
 ## Açık web ve süreç işleri
 
 - [ ] **EXAM-OZAK-SCHEDULE · P2:** Arayüzdeki 4/6/10 Aralık 2026 günleri kullanıcı isteğiyle etiketsiz gösterilir; kesin eğitim programı ayrıca teyit edilmeli. Günler `v2/ozak/ui-copy.mjs` içindedir.
-- [ ] **EXAM-OZAK-V2-ACCEPT · P2:** Yeni soru sürümü için backend sağlık yanıtı ve mock sürüm ayrımı doğrulandı; gerçek tabloya v2 ön/son test yazma ve eğitmen özeti kabulü bu kapanışta tekrarlanmadı. Önceki v1 gerçek kayıt kabulü korunur; [kanıt sınırı](history.md#ozak-selected10-pdf-2026-11-17).
+- [ ] **EXAM-OZAK-V2-ACCEPT · P2:** Yeni soru sürümü için backend sağlık yanıtı ve mock sürüm ayrımı doğrulandı; gerçek tabloya Özak v2 ön/son test yazma ve eğitmen özeti kabulü bekliyor. Önceki v1 gerçek kayıt kabulü korunur; [kanıt sınırı](history.md#ozak-selected10-pdf-2026-11-17).
 
 - [ ] **EXAM-V2-MAIL · P2:** İsteğe bağlı e-posta teslimi doğrulanmadı; kabul: ayrıca yetkilendirilmiş alıcıya deneme ve gelen kutusu kontrolü. V2 sınıf akışını engellemez.
 - [ ] **EXAM-V1-SHEET · P2:** V1 tablo bağlantısının onarımı; V2 özel tablo kurulumundan ayrı.
@@ -101,3 +101,8 @@ Kaynak incelemesi yeni özellik uygulama emri değildir. Önce yukarıdaki karar
 - [x] **EXAM-OZAK-202612 · 17 Kasım 2026:** Ayrı sınav/gerçek tablo yayını, UTC düzeltmesi ve QA temizliği tamamlandı; açık kullanıcı onayıyla [PR #7](https://github.com/MetinTi/yapay-zeka-sinav/pull/7) main’e birleştirildi (`3c8b5c9`); [ayrıntılı yayın/kabul](history.md#ozak-exam-live-2026-11-17).
 
 - [x] **EXAM-OZAK-SELECTED10, EXAM-OZAK-PDF · 17 Kasım 2026:** Kullanıcının havuz seçimiyle 10 soru, TR/EN logolu sonuç PDF’si, favicon ve simetrik giriş görselleri yayımlandı; kurum tanıtımı tek yerel PDF olarak hazırlandı. Kaynak/test ve yayın kanıtı [geçmişte](history.md#ozak-selected10-pdf-2026-11-17); gerçek v2 tablo kabulü ve tarih teyidi yukarıda ayrı açık kalır.
+
+### Özak ve Blanchard güvenlik ve yayın kapanışı
+
+- [x] **EXAM-OZAK-LANGUAGE-RESULT · 19 Kasım 2026:** Özak sonuç ekranında dil seçimi sonuç ve kayıt yeniden denemesini koruyor. PR [#8](https://github.com/MetinTi/yapay-zeka-sinav/pull/8) `main`e alındı ve dosya canlıya çıktı. [Kanıt](history.md#kurum-sinavlari-kapanis-2026-11-19).
+- [x] **EXAM-BLANCHARD-CLASS-LINK · 19 Kasım 2026:** Tek özel sınıf bağlantısı, otomatik kod, sunucu puanlaması ve yeniden deneme mevcut altyapıda doğrulandı. PR [#9](https://github.com/MetinTi/yapay-zeka-sinav/pull/9) `main`e alındı. [Kanıt](history.md#kurum-sinavlari-kapanis-2026-11-19).
