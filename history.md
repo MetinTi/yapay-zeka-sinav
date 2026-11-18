@@ -1,3 +1,8 @@
+## 2026-11-19 — Özak ve Blanchard repo kapanışı
+
+- Önceki açık PR notu 19 Kasım kullanıcı düzeltmesiyle güncelliğini yitirdi. Özak PR #8 ve Blanchard PR #9 için ana dala alınma süreci yeniden doğrulandı. PR #8 önce birleşir. Blanchard farkı ardından main tabanına taşınır.
+- Blanchard güvenlik incelemesinin ardından kullanıcı tek özel sınıf bağlantısını onayladı. Otomatik katılımcı kodu, sunucuda bağlantı doğrulaması ve 10 yanıttan puanlama, kayıt ön koşulu ve kota sınırları eklendi. Onay bekleyen kayıt aynı sekmede kurtarılır. GitHub inceleme ve canlı yayın kanıtları [Blanchard PR #9](https://github.com/MetinTi/yapay-zeka-sinav/pull/9) üzerinden izlenir.
+
 <a id="ozak-selected10-pdf-2026-11-17"></a>
 
 ## 2026-11-17 — Özak seçilen 10 soru, sonuç PDF’si ve tanıtım belgesi

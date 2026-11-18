@@ -121,3 +121,17 @@ Yayın, kaynak eşitliği, gerçek kayıt ve kabul kanıtı [17 Kasım yayın ka
 Özak Apps Script v3, eski `ozak-ai-awareness-202612-v1` ile yeni `ozak-ai-awareness-202612-v2` kayıtlarını kabul eder. Anahtarın sürüm alanı sayesinde eski sonuçlar yeni soruların başlangıç puanı olarak kullanılmaz; devam eden eski sınavın kaydı reddedilmez. Tarayıcıda yeni set de ayrı kapsamda saklanır. Genel V2 ve eski Apps Script değişmez.
 
 17 Kasım son yayın kaydı: Hosting `a87c8f87f30e4fa6`. Kapanışta canlı statik dosyalar kaynak SHA256’larıyla, backend’in salt okunur sağlık yanıtı ise yeni soru sürümüyle karşılaştırılır. Bu kontrol gerçek tabloya yeni sonuç yazma/kabul denemesi değildir; ilk ayrı backend’in gerçek tablo kabulü önceki tarihli kayıtta, yeni sürümün mock kabulü ve güncel HTTPS kanıtı [yeni yayın kaydında](../qa/ozak-selected10-release-2026-11-17.json) ayrıdır. [Kararlar, tanıtım belgesi ve repo durumu](../history.md#ozak-selected10-pdf-2026-11-17).
+
+## Blanchard Türkiye — Aralık 2026
+
+[Ortak sınav bağlantısı](https://sinav2.metintiryaki.com/blanchard/) tek grup için ön ve son test seçimini sunar. Özak’ın 10 sorusu, 10 dakikalık süre, katılımcının kendi koduyla eşleştirme ve logolu sonuç PDF’si akışı kullanılır. Türkçe varsayılandır. Grup ve eğitim tarihi ayrıca kesinleşir.
+
+Blanchard aynı Apps Script dağıtımının 4. sürümünde ve aynı özel çalışma kitabında ayrı **Blanchard katılımcılar** ve **Blanchard sınav kayıtları** sekmelerini kullanır. Soru sürümü `blanchard-ai-awareness-202612-v1` olarak ayrılır.
+
+Blanchard için sekiz yeni Hosting dosyası yayımlandı. Önceki 30 dosya korundu, Özak sağlık yanıtı doğrulandı. Mock tarayıcı testinde aynı katılımcının ön ve son testi ile markalı sonuç PDF’si, canlı özel çalışma kitabında ise QA olarak etiketlenen 40/90/+50 kayıtları doğrulandı. İlk son test çağrısı zaman aşımına uğradı, deneme aynı katılımcı kaydında başarıyla tamamlandı.
+
+**Sınıf bağlantısı.** Eğitmen tek bir özel bağlantıyı sınıfla paylaşır. Katılımcılar ön ve son test için aynı tarayıcıyı kullanır. Sınav otomatik katılımcı kodu oluşturur. Genel girişte geçerli bağlantıyı açma yönergesi görünür.
+
+**Sunucu doğrulaması.** Blanchard kayıtları POST ile gider. Sunucu sınıf davetinin özetini ve son kullanma tarihini Apps Script özelliklerinden, katılımcı kodunu cihazın sakladığı benzersiz değerden doğrular. Önce katılımcıyı kaydeder ve sonra 10 yanıttan resmî puanı hesaplar. Sınıf için 120 yeni katılımcı, katılımcı başına 10 deneme kabul edilir. İlk ön ve son puan özete yazılır. Kişiye özel hesap doğrulaması yapılmaz.
+
+Gönderim onayı gelmeden sayfa yenilenirse aynı sekme aynı kimlikle yeniden gönderir. Yeniden deneme için yanıtlar geçici olarak sekmede saklanır ve kayıt onaylandığında silinir. Eğitmen tablosuna puan ve yanıt sayıları yazılır. Davet, cihazın doğrulama değeri ve tek tek yanıtlar tabloya eklenmez. Önceki kayıtlar ve Özak’ın kayıt akışı korunur. [Kurulum notu](../DEPLOYMENT.md#blanchard-özel-sınıf-bağlantısı).

@@ -4,6 +4,8 @@
 
 **Özak için ayrı sınav:** `v2/ozak/` altında eşit yükseklikte kurum/eğitmen görselleri, Türkçe/İngilizce giriş ve özgün soru havuzundan seçilen 10 soru bulunur. Genel sınavın altı dosyası ve çalışan Apps Script'i korunur; Özak kendi uygulama dosyaları ve bağımsız backend'iyle aynı özel eğitmen tablosunda ayrı sekmeler kullanır. [Özak sınavı](https://sinav2.metintiryaki.com/ozak/) · [English](https://sinav2.metintiryaki.com/ozak/?lang=en) · [sorular ve kazanımlar](docs/ozak-exam-questions.md) · [grup bağlantıları ve işletim](docs/exam-v2.md#ozak-202612). Özak sonuçları kurum logolu PDF olarak indirilir; genel V2’nin JSON indirmesi değişmez.
 
+**Blanchard değerlendirmesi:** Ön ve son test, eğitmenin paylaştığı tek özel sınıf bağlantısıyla açılır. Sınav otomatik katılımcı kodu verir. Sunucu puanı Özak soru setindeki yanıtlardan hesaplar ve ortak özel eğitmen tablosunun Blanchard sekmelerine yazar. [Genel giriş](https://sinav2.metintiryaki.com/blanchard/) · [İşletim notları](docs/exam-v2.md#blanchard-türkiye--aralık-2026).
+
 [Sınavı aç](https://sinav2.metintiryaki.com/) · [Başlangıç](https://sinav2.metintiryaki.com/?asama=baslangic) · [Bitiş](https://sinav2.metintiryaki.com/?asama=bitis)
 
 ## Web sürümünü yerelde çalıştır
