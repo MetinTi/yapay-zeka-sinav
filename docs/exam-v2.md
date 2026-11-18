@@ -1,6 +1,6 @@
 # Eğitim sınavı V2
 
-Yayın ve kabul kanıtlarının tarihi **28 Eylül 2026**; 22 Ekim belge kapanışı bunları yeniden canlı doğrulama saymaz. Yayın adresi: https://sinav2.metintiryaki.com/ . Başlangıç için `?asama=baslangic`, bitiş için `?asama=bitis` kullanılır.
+Genel V2’nin ilk yayın ve kabul kanıtları **28 Eylül 2026** tarihlidir. İlk ve son test için [genel sınav girişini](https://sinav2.metintiryaki.com/) sırasıyla `?asama=baslangic` ve `?asama=bitis` ile aç. Özak ve Blanchard için [19 Kasım yayın kaydı](../DEPLOYMENT.md#kurum-sinavlari-yayin-kaydi-2026-11-19) geçerlidir.
 
 ## Katılımcı akışı
 
@@ -81,7 +81,7 @@ Yayınlanan dizin yalnız `v2/` olur. Ders belgeleri, özel tablo içerikleri, Q
 ### Dil, tema ve grup tarihleri
 
 - Türkçe varsayılandır: [TR giriş](https://sinav2.metintiryaki.com/ozak/). [English giriş](https://sinav2.metintiryaki.com/ozak/?lang=en) aynı sayfanın paylaşılabilir İngilizce sürümüdür. Grup/aşama bağlantısına `&lang=en` eklenir; örneğin [Group 1 pre-test](https://sinav2.metintiryaki.com/ozak/?grup=1&asama=baslangic&lang=en). Dil seçimi mevcut grup/aşamayı korur; bilinmeyen veya çift `lang` Türkçeye döner.
-- İngilizce giriş, form, 10 soru, sonuç ve açıklamalar statik çevrilir; çeviri API’si kullanılmaz. Soru kimliği, seçenek sırası, cevap anahtarı, sürüm, süre, puanlama ve katılımcı kayıt kapsamı aynıdır. Dil değiştirmek devam eden sınavın cevaplarını, kimliğini veya ilk bitiş saatini sıfırlamaz. Dil veya tarih backend payload’ına eklenmez.
+- İngilizce giriş, form, 10 soru, sonuç ve açıklamalar statik çevrilir; çeviri API’si kullanılmaz. Soru kimliği, seçenek sırası, cevap anahtarı, sürüm, süre, puanlama ve katılımcı kayıt kapsamı aynıdır. Dil seçimi devam eden sınavın yanıtlarını, kimliğini ve ilk bitiş saatini korur. Sonuç ekranında dil seçimi yeni sayfaya geçmeden PDF indirmeye yönlendirir. Sonuç ve kayıt yeniden deneme seçeneği ekranda kalır. Dil ve tarih sunucuya gönderilen kaydın parçası değildir.
 - Grup 1 **4 Aralık 2026**, Grup 2 **6 Aralık 2026**, Grup 3 **10 Aralık 2026** yalnız **örnek tarihlerdir**; eğitim programı kesinleşmiş değildir. Kullanıcı isteğiyle arayüzde “örnek” etiketi gösterilmez; programın kesinleştiğine dair yeni bir teyit alınmadı. Görüntüleme günleri `ui-copy.mjs` içindeki `groupDays` alanındadır; sunucu kayıt zamanını belirlemez.
 - Sağ üstte yalnız etkin dilin bayrağı ve adı görünür; düğmeye basınca TR/EN menüsü açılır. Hemen altında hedef temayı yazan “Açık tema / Koyu tema” düğmesi vardır. Tema Özak için ortak `ozak:theme` anahtarında saklanır; genel sınavın ayarı değiştirilmez. İlk açılış sistem temasını izler.
 
@@ -118,20 +118,20 @@ Yayın, kaynak eşitliği, gerçek kayıt ve kabul kanıtı [17 Kasım yayın ka
 
 `report-model.mjs` katılımcının göreceği alanları hazırlar; `result-pdf.mjs` düğmeye basıldığında yerel jsPDF, Manrope fontları ve kurum logosuyla A4 PDF üretir. Sonuç dış PDF servisine gönderilmez; bu bağımlılıklar yalnız Özak dizinindedir. [Sürümler ve MIT/OFL lisansları](../v2/ozak/vendor/README.md). İndirme hatasında kullanıcı yeniden deneyebilir; kayıt doğrulanmadıysa PDF bunu açıkça yazar.
 
-Özak Apps Script v3, eski `ozak-ai-awareness-202612-v1` ile yeni `ozak-ai-awareness-202612-v2` kayıtlarını kabul eder. Anahtarın sürüm alanı sayesinde eski sonuçlar yeni soruların başlangıç puanı olarak kullanılmaz; devam eden eski sınavın kaydı reddedilmez. Tarayıcıda yeni set de ayrı kapsamda saklanır. Genel V2 ve eski Apps Script değişmez.
+Özak’ın v3 dağıtımında eklenen `ozak-ai-awareness-202612-v1` ve `ozak-ai-awareness-202612-v2` kayıt desteği v5’te korunur. Anahtarın sürüm alanı sayesinde eski sonuçlar yeni soruların başlangıç puanı olarak kullanılmaz; devam eden eski sınavın kaydı reddedilmez. Tarayıcıda yeni set de ayrı kapsamda saklanır. Genel V2 ve eski Apps Script değişmez.
 
 17 Kasım son yayın kaydı: Hosting `a87c8f87f30e4fa6`. Kapanışta canlı statik dosyalar kaynak SHA256’larıyla, backend’in salt okunur sağlık yanıtı ise yeni soru sürümüyle karşılaştırılır. Bu kontrol gerçek tabloya yeni sonuç yazma/kabul denemesi değildir; ilk ayrı backend’in gerçek tablo kabulü önceki tarihli kayıtta, yeni sürümün mock kabulü ve güncel HTTPS kanıtı [yeni yayın kaydında](../qa/ozak-selected10-release-2026-11-17.json) ayrıdır. [Kararlar, tanıtım belgesi ve repo durumu](../history.md#ozak-selected10-pdf-2026-11-17).
 
 ## Blanchard Türkiye — Aralık 2026
 
-[Ortak sınav bağlantısı](https://sinav2.metintiryaki.com/blanchard/) tek grup için ön ve son test seçimini sunar. Özak’ın 10 sorusu, 10 dakikalık süre, katılımcının kendi koduyla eşleştirme ve logolu sonuç PDF’si akışı kullanılır. Türkçe varsayılandır. Grup ve eğitim tarihi ayrıca kesinleşir.
+[Genel giriş](https://sinav2.metintiryaki.com/blanchard/) özel sınıf bağlantısını açma yönergesini gösterir. Sınıf bağlantısıyla açılan ön ve son test, Özak’ın 10 sorusunu, 10 dakikalık süreyi, otomatik katılımcı koduyla eşleştirmeyi ve logolu sonuç PDF’sini kullanır. Türkçe varsayılandır. Eğitim tarihi ayrıca kesinleşir.
 
-Blanchard aynı Apps Script dağıtımının 4. sürümünde ve aynı özel çalışma kitabında ayrı **Blanchard katılımcılar** ve **Blanchard sınav kayıtları** sekmelerini kullanır. Soru sürümü `blanchard-ai-awareness-202612-v1` olarak ayrılır.
+Blanchard, Özak ile aynı Apps Script v5 dağıtımını ve aynı özel çalışma kitabında ayrı **Blanchard katılımcılar** ve **Blanchard sınav kayıtları** sekmelerini kullanır. Soru sürümü `blanchard-ai-awareness-202612-v1` olarak ayrılır.
 
-Blanchard için sekiz yeni Hosting dosyası yayımlandı. Önceki 30 dosya korundu, Özak sağlık yanıtı doğrulandı. Mock tarayıcı testinde aynı katılımcının ön ve son testi ile markalı sonuç PDF’si, canlı özel çalışma kitabında ise QA olarak etiketlenen 40/90/+50 kayıtları doğrulandı. İlk son test çağrısı zaman aşımına uğradı, deneme aynı katılımcı kaydında başarıyla tamamlandı.
+İlk v4 yayını sekiz Blanchard dosyası ekledi ve önceki 30 dosyayı korudu. Mock tarayıcı testi aynı katılımcının ön ve son testi ile markalı PDF’yi doğruladı. Canlı tablodaki ilk QA son test isteği zaman aşımına uğradı. Aynı kayıt için yapılan yeniden deneme başarıyla tamamlandı. 19 Kasım v5 kontrolü geçersiz erişimlerin reddini, iki tekilleştirilen denemeyi ve QA puanlarını 40/90/+50 olarak doğruladı. [Yayın ve QA kanıtı](../qa/organization-exam-closeout-2026-11-19.json).
 
 **Sınıf bağlantısı.** Eğitmen tek bir özel bağlantıyı sınıfla paylaşır. Katılımcılar ön ve son test için aynı tarayıcıyı kullanır. Sınav otomatik katılımcı kodu oluşturur. Genel girişte geçerli bağlantıyı açma yönergesi görünür.
 
 **Sunucu doğrulaması.** Blanchard kayıtları POST ile gider. Sunucu sınıf davetinin özetini ve son kullanma tarihini Apps Script özelliklerinden, katılımcı kodunu cihazın sakladığı benzersiz değerden doğrular. Önce katılımcıyı kaydeder ve sonra 10 yanıttan resmî puanı hesaplar. Sınıf için 120 yeni katılımcı, katılımcı başına 10 deneme kabul edilir. İlk ön ve son puan özete yazılır. Kişiye özel hesap doğrulaması yapılmaz.
 
-Gönderim onayı gelmeden sayfa yenilenirse aynı sekme aynı kimlikle yeniden gönderir. Yeniden deneme için yanıtlar geçici olarak sekmede saklanır ve kayıt onaylandığında silinir. Eğitmen tablosuna puan ve yanıt sayıları yazılır. Davet, cihazın doğrulama değeri ve tek tek yanıtlar tabloya eklenmez. Önceki kayıtlar ve Özak’ın kayıt akışı korunur. [Kurulum notu](../DEPLOYMENT.md#blanchard-özel-sınıf-bağlantısı).
+Gönderim onayı gelmeden sayfa yenilenirse aynı sekme aynı kimlikle yeniden gönderir. Yeniden deneme için yanıtlar geçici olarak sekmede saklanır ve kayıt onaylandığında silinir. Eğitmen tablosuna puan ve yanıt sayıları yazılır. Davet, cihazın doğrulama değeri ve tek tek yanıtlar tabloya eklenmez. Önceki kayıtlar ve Özak’ın kayıt akışı korunur. [Kurulum notu](../DEPLOYMENT.md#blanchard-özel-sınıf-bağlantısı) · [Canlı yayın kaydı](../DEPLOYMENT.md#kurum-sinavlari-yayin-kaydi-2026-11-19).
