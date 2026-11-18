@@ -94,3 +94,10 @@ Kullanıcı, Özak sınavının ana sınav korunarak ayrı yayımlanmasını ve 
 Özak girişinin sağ üst dil menüsü/tema sırası, eşit yükseklikteki görselleri ve portföy favicon’u güncellendi. Sonuç indirme JSON yerine yerel jsPDF/Manrope ile logolu PDF üretir. Genel V2’nin JSON/e-posta davranışı değişmedi. Yeni soru seti `ozak-ai-awareness-202612-v2`; Özak Apps Script v3 eski ve yeni sürümü ayrı anahtarlarla kabul eder. Son kayıtlı Hosting yayını `a87c8f87f30e4fa6`; bu belge/repo kapanışı yeniden deploy başlatmaz.
 
 [Kaynak/HTTPS/sağlık kanıtı](qa/ozak-selected10-release-2026-11-17.json) · [işletim](docs/exam-v2.md#ozak-202612) · [ayrıntılı karar ve kabul sınırı](history.md#ozak-selected10-pdf-2026-11-17). Tanıtım PDF’si ve kişisel ekran/PDF kanıtları Downloads’ta kalır, herkese açık repoya eklenmez.
+
+
+## Blanchard özel sınıf bağlantısı
+
+Mevcut Özak Apps Script projesinde Blanchard için `BLANCHARD_CLASS_SHA256` ve `BLANCHARD_CLASS_EXPIRES_AT` Script Properties değerlerini ayarla. İlk değer, rastgele üretilmiş 64 küçük onaltılık karakterin UTF-8 SHA-256 özetidir. İkinci değer UTC ISO tarihidir. Davetin kendisini yalnız özel sınıf bağlantısında `/blanchard/#sinif=…` biçiminde paylaş. Ön ve son test için aynı bağlantı ve tarayıcı kullanılır. Yeni süre veya davet gerekiyorsa değerleri yayındaki projenin ayarlarında değiştir.
+
+`apps-script/Ozak.template.gs` içindeki çalışma kitabı yer tutucusu dağıtımdan önce mevcut özel değerle doldurulur. Aynı Apps Script dağıtımı yeni sürüme alınır. Ardından `firebase.v2.json` yapılandırmasıyla yalnız Blanchard dosyalarını güncelle. İlgili Hosting kuralı Apps Script bağlantısını Blanchard sayfalarında açar. Önceki Özak ve genel sınav varlıklarını koru. [Apps Script özellikleri](https://developers.google.com/apps-script/guides/properties) · [Firebase Hosting başlıkları](https://firebase.google.com/docs/hosting/full-config#headers).

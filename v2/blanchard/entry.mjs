@@ -1,8 +1,10 @@
 import {resolveExamContext} from './exam-context.mjs';
 import {applyPageLanguage} from './ui-copy.mjs';
+import {enterClassroom} from './classroom.mjs';
 
 const params = new URLSearchParams(location.search);
 const language = params.getAll('lang').length === 1 && params.get('lang') === 'en' ? 'en' : 'tr';
+const invite = enterClassroom();
 const languagePicker = document.querySelector('.language-picker');
 const resultView = document.getElementById('result');
 applyPageLanguage(language);
@@ -54,18 +56,33 @@ themeButton.addEventListener('click', () => {
 });
 const linkStatus = document.getElementById('link-status');
 const error = document.getElementById('link-error');
-const openDefault = document.getElementById('default-link');
-if (language === 'en') openDefault.href = './?lang=en';
-try {
-  resolveExamContext(location.pathname, location.search);
-  document.getElementById('group-label').textContent = language === 'en' ? 'BLANCHARD TÜRKİYE · GROUP 1' : 'BLANCHARD TÜRKİYE · GRUP 1';
-  await import('./app.mjs');
-  // A restored exam may already be visible. Do not change its view.
-  document.getElementById('start-form').hidden = false;
-} catch (reason) {
+async function openAssessment() {
+  linkStatus.hidden = true;
+  try {
+    resolveExamContext(location.pathname, location.search);
+    document.getElementById('group-label').textContent = language === 'en' ? 'BLANCHARD TÜRKİYE · GROUP 1' : 'BLANCHARD TÜRKİYE · GRUP 1';
+    await import('./app.mjs');
+    // A restored exam may already be visible. Do not change its view.
+    document.getElementById('start-form').hidden = false;
+  } catch {
+    linkStatus.hidden = false;
+    error.textContent = language === 'en'
+      ? 'The assessment could not be opened. Check that browser storage is enabled and reopen your classroom link.'
+      : 'Değerlendirme açılamadı. Tarayıcı depolamasına izin ver ve sınıf bağlantını yeniden aç.';
+  }
+}
+async function openFromFragment() {
+  if (!enterClassroom()) return;
+  window.removeEventListener('hashchange', openFromFragment);
+  await openAssessment();
+}
+if (invite) {
+  await openAssessment();
+} else {
   linkStatus.hidden = false;
   error.textContent = language === 'en'
-    ? 'The assessment could not be loaded. Open the default link to try again.'
-    : 'Değerlendirme açılamadı. Bağlantını kontrol et veya aşağıdaki düğmeden tekrar aç.';
+    ? 'Open the private classroom link your trainer shared in this browser.'
+    : 'Eğitmeninin paylaştığı özel sınıf bağlantısını bu tarayıcıda aç.';
+  window.addEventListener('hashchange', openFromFragment);
 }
 document.documentElement.dataset.ready = 'true';

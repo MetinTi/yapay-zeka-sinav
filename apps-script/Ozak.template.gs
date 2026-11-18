@@ -4,6 +4,11 @@
 var OZAK_SPREADSHEET_ID = 'YOUR_PRIVATE_INSTRUCTOR_SPREADSHEET_ID';
 var OZAK_VERSION = 'ozak-ai-awareness-202612-v2';
 var BLANCHARD_VERSION = 'blanchard-ai-awareness-202612-v1';
+// Keep this order aligned with the approved 10-item Özak question bank.
+var BLANCHARD_ANSWER_KEY = [1, 3, 0, 2, 1, 0, 3, 2, 0, 1];
+var BLANCHARD_CLASS_LIMIT = 120;
+var BLANCHARD_ATTEMPTS_LIMIT = 10;
+var BLANCHARD_ACCESS_ERROR = 'Blanchard sınıf bağlantısı geçersiz veya süresi dolmuş.';
 var ASSESSMENT_TENANTS = {
   ozak: {
     title: 'Özak Global Holding',
@@ -40,10 +45,58 @@ function doGet(e) {
     var data;
     try { data = JSON.parse(raw); } catch (err) { throw new Error('Geçersiz veri.'); }
     if (!data || Array.isArray(data) || typeof data !== 'object') throw new Error('Geçersiz veri.');
+    if (getParam(e, 'organization', '') === 'blanchard' || data.version === BLANCHARD_VERSION ||
+        (data.context && data.context.organization === 'blanchard')) throw new Error(BLANCHARD_ACCESS_ERROR);
     return ozakResponse(data, action, callback);
   } catch (err) {
     return jsonOut({status:'error',saved:false,message:String(err.message || 'Kayıt yapılamadı.').slice(0,160)}, callback);
   }
+}
+
+function doPost(e) {
+  try {
+    var post = e && e.postData;
+    if (!post || typeof post.type !== 'string' || !/^text\/plain(?:\s*;.*)?$/i.test(post.type) ||
+        typeof post.contents !== 'string' || post.contents.length > 3000) throw blanchardError(BLANCHARD_ACCESS_ERROR);
+    var request;
+    try { request = JSON.parse(post.contents); } catch (err) { throw blanchardError(BLANCHARD_ACCESS_ERROR); }
+    if (!request || Object.keys(request).sort().join(',') !== 'action,data' ||
+        (request.action !== 'register-v2' && request.action !== 'result-v2') ||
+        !request.data || typeof request.data.name !== 'string' ||
+        !request.data.context || request.data.context.organization !== 'blanchard' ||
+        !blanchardHasAccess(request.data)) throw blanchardError(BLANCHARD_ACCESS_ERROR);
+    return ozakResponse(request.data, request.action, '');
+  } catch (err) {
+    return jsonOut({status:'error',saved:false,message:(err && err.blanchardMessage) || 'Kayıt yapılamadı. Tekrar dene veya eğitmenine haber ver.'}, '');
+  }
+}
+
+function blanchardError(message) {
+  var error = new Error(message);
+  error.blanchardMessage = message;
+  return error;
+}
+
+function sha256Hex(value) {
+  return Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, value, Utilities.Charset.UTF_8)
+    .map(function(byte){return ('0'+(byte & 255).toString(16)).slice(-2);}).join('');
+}
+
+function blanchardHasAccess(data) {
+  var secretFormat = /^[a-f0-9]{64}$/;
+  if (typeof data.invite !== 'string' || !secretFormat.test(data.invite) ||
+      typeof data.deviceSecret !== 'string' || !secretFormat.test(data.deviceSecret) ||
+      typeof data.code !== 'string' || !/^AI-[A-F0-9]{20}$/.test(data.code)) return false;
+  var properties = PropertiesService.getScriptProperties().getProperties();
+  var expected = properties.BLANCHARD_CLASS_SHA256;
+  var expiresAt = properties.BLANCHARD_CLASS_EXPIRES_AT;
+  if (!secretFormat.test(expected || '') || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/.test(expiresAt || '')) return false;
+  var expiry = Date.parse(expiresAt);
+  var canonical = expiresAt.length === 20 ? expiresAt.slice(0,-1)+'.000Z' : expiresAt;
+  if (!isFinite(expiry) || new Date(expiry).toISOString() !== canonical || expiry <= Date.now()) return false;
+  var actual = sha256Hex(data.invite), difference = 0;
+  for (var index = 0; index < expected.length; index++) difference |= expected.charCodeAt(index) ^ actual.charCodeAt(index);
+  return difference === 0 && data.code === 'AI-'+sha256Hex(data.deviceSecret).slice(0,20).toUpperCase();
 }
 
 function getParam(e, name, fallback) {
@@ -113,20 +166,70 @@ function ozakResult(data) {
   return result;
 }
 
+function blanchardResult(data) {
+  var answers = data.answers;
+  if (!Array.isArray(answers) || answers.length !== BLANCHARD_ANSWER_KEY.length ||
+      !answers.every(function(answer){return answer === null || Number.isInteger(answer) && answer >= 0 && answer <= 3;}) ||
+      typeof data.id !== 'string' || (data.phase !== 'pre' && data.phase !== 'post') ||
+      typeof data.timedOut !== 'boolean') throw blanchardError('Geçersiz sınav sonucu.');
+  var correct = 0, empty = 0;
+  answers.forEach(function(answer, index){
+    if (answer === null) empty++;
+    else if (answer === BLANCHARD_ANSWER_KEY[index]) correct++;
+  });
+  return ozakResult({
+    id:data.id, phase:data.phase, elapsed:data.elapsed, timedOut:data.timedOut, clientCompletedAt:data.clientCompletedAt,
+    score:correct*10, correct:correct, wrong:answers.length-correct-empty, empty:empty
+  });
+}
+
+function blanchardEnrollmentCount(people, person) {
+  if (people.getLastRow() < 2) return 0;
+  // The secure code format distinguishes current registrations from historical records.
+  var prefix = person.key.slice(0,-person.code.length);
+  return people.getRange(2,1,people.getLastRow()-1,1).getValues().filter(function(row){
+    return typeof row[0] === 'string' && row[0].indexOf(prefix) === 0 && /^AI-[A-F0-9]{20}$/.test(row[0].slice(prefix.length));
+  }).length;
+}
+
+function blanchardAttemptCount(attempts, key) {
+  if (attempts.getLastRow() < 2) return 0;
+  return attempts.getRange(2,1,attempts.getLastRow()-1,1).createTextFinder(key)
+    .matchEntireCell(true).useRegularExpression(false).findAll().length;
+}
+
+function assessmentSaved(result, duplicate, blanchard, callback) {
+  var response = {status:'ok',saved:true};
+  if (duplicate) response.duplicate = true;
+  if (blanchard && result) {
+    response.score = result.score;
+    response.correct = result.correct;
+    response.wrong = result.wrong;
+    response.empty = result.empty;
+  }
+  return jsonOut(response, callback);
+}
+
 function ozakResponse(data, action, callback) {
   if (action !== 'register-v2' && action !== 'result-v2') throw new Error('Bu değerlendirmede işlem desteklenmiyor.');
   var person = ozakPerson(data);
-  var result = action === 'result-v2' ? ozakResult(data) : null;
+  var blanchard = person.tenant === ASSESSMENT_TENANTS.blanchard;
+  var result = action !== 'result-v2' ? null : (blanchard ? blanchardResult(data) : ozakResult(data));
   var lock = LockService.getScriptLock();
   if (!lock.tryLock(8000)) throw new Error('Kayıt meşgul; yeniden dene.');
   try {
     var ss = SpreadsheetApp.openById(OZAK_SPREADSHEET_ID);
-    var people = v2Sheet(ss, person.tenant.participantsSheet, ['Kapsam anahtarı','Kurum','Eğitim','Grup','Soru seti sürümü','Katılımcı kodu','Ad soyad','Kayıt zamanı','Ön test puanı','Son test puanı','Fark','Ön test sunucu zamanı','Son test sunucu zamanı','Ön test cihaz zamanı','Son test cihaz zamanı','Son işlem']);
-    var row = v2Find(people,1,person.key);
+    var people = blanchard && result ? ss.getSheetByName(person.tenant.participantsSheet) :
+      v2Sheet(ss, person.tenant.participantsSheet, ['Kapsam anahtarı','Kurum','Eğitim','Grup','Soru seti sürümü','Katılımcı kodu','Ad soyad','Kayıt zamanı','Ön test puanı','Son test puanı','Fark','Ön test sunucu zamanı','Son test sunucu zamanı','Ön test cihaz zamanı','Son test cihaz zamanı','Son işlem']);
+    var row = people ? v2Find(people,1,person.key) : 0;
+    if (!row && blanchard && result) throw blanchardError('Sonucu kaydetmeden önce katılımcı kaydını tamamla.');
     if (row) {
       var oldName = String(people.getRange(row,7).getValue()).replace(/^'/,'');
       if (oldName.toLocaleLowerCase('tr') !== person.name.toLocaleLowerCase('tr')) throw new Error('Bu kod başka bir adla kayıtlı. Eğitmeninden kodunu kontrol etmesini iste.');
     } else {
+      if (blanchard && blanchardEnrollmentCount(people, person) >= BLANCHARD_CLASS_LIMIT) {
+        throw blanchardError('Sınıfın katılımcı sınırına ulaşıldı. Eğitmenine haber ver.');
+      }
       if (people.getLastRow() >= 3000) throw new Error('Katılımcı sınırına ulaşıldı.');
       people.appendRow([person.key,person.tenant.title,person.tenant.trainingTitle,'Grup '+person.group,person.version,v2Cell(person.code),v2Cell(person.name),new Date().toISOString(),'','','','','','','',new Date().toISOString()]);
       row = people.getLastRow();
@@ -140,12 +243,15 @@ function ozakResponse(data, action, callback) {
       var expected = [result.clientCompletedAt,result.phase,result.score,result.correct,result.wrong,result.empty,result.elapsed,!!data.timedOut];
       if (JSON.stringify(stored) !== JSON.stringify(expected)) throw new Error('Aynı kayıt kimliği farklı sonuçla kullanılamaz.');
       ozakReconcile(people,row,attempts,person.key);
-      return jsonOut({status:'ok',saved:true,duplicate:true}, callback);
+      return assessmentSaved(result, true, blanchard, callback);
+    }
+    if (blanchard && blanchardAttemptCount(attempts, person.key) >= BLANCHARD_ATTEMPTS_LIMIT) {
+      throw blanchardError('Katılımcının sınav denemesi sınırına ulaşıldı.');
     }
     if (attempts.getLastRow() >= 10000) throw new Error('Eğitim kayıt sınırına ulaşıldı.');
     attempts.appendRow([person.key,person.tenant.title,person.tenant.trainingTitle,'Grup '+person.group,person.version,v2Cell(person.code),v2Cell(person.name),new Date().toISOString(),result.clientCompletedAt,result.phase,result.score,result.correct,result.wrong,result.empty,result.elapsed,!!data.timedOut,result.id,submissionKey]);
     ozakReconcile(people,row,attempts,person.key);
-    return jsonOut({status:'ok',saved:true}, callback);
+    return assessmentSaved(result, false, blanchard, callback);
   } finally { lock.releaseLock(); }
 }
 

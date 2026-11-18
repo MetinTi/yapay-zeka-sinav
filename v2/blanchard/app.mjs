@@ -1,7 +1,11 @@
 import {loadExam} from './exam-context.mjs';
-import {normalizeName, normalizeCode, validName, participantIndex, rememberParticipant, findParticipants, restoreDraft, secondsRemaining, elapsedSeconds} from '../participant-state.mjs';
+import {deviceIdentity, savedClassroom} from './classroom.mjs';
+import {normalizeName, validName, restoreDraft, secondsRemaining, elapsedSeconds} from '../participant-state.mjs';
 
 const profile = await loadExam(location.pathname, location.search);
+const invite = savedClassroom();
+if (!invite) throw new Error('Classroom access required');
+const {code, deviceSecret} = await deviceIdentity();
 const {questions, scoreAnswers, version:EXAM_VERSION, durationSeconds:DURATION_SECONDS} = profile;
 const language = profile.language === 'en' ? 'en' : 'tr';
 const copy = (tr, en) => language === 'en' ? en : tr;
@@ -10,17 +14,21 @@ const storePrefix = profile.storagePrefix;
 const pendingPrefix = storePrefix + 'pending-result:';
 const pendingLifetime = 24 * 60 * 60 * 1000;
 const inFlight = new Set();
-let state = null, result = null, timer = null, pendingDraft = null;
+let state = null, result = null, timer = null, pendingDraft = null, starting = false;
 let persistenceModule;
-const persistence = () => persistenceModule ||= import('./persistence.mjs');
+const persistence = () => persistenceModule ||= import('./persistence.mjs')
+  .then(({openPersistence}) => openPersistence({invite, deviceSecret}));
 function read(key, fallback = null) { try { return JSON.parse(localStorage.getItem(storePrefix + key)) ?? fallback; } catch { return fallback; } }
 function write(key, value) { try { localStorage.setItem(storePrefix + key, JSON.stringify(value)); return true; } catch { $('storage-warning').hidden = false; return false; } }
 function draftRead() { try { return JSON.parse(sessionStorage.getItem(storePrefix + 'draft')); } catch { return null; } }
 function draftWrite() { try { sessionStorage.setItem(storePrefix + 'draft', JSON.stringify(state)); } catch {} }
 function clearDraft() { try { sessionStorage.removeItem(storePrefix + 'draft'); } catch {} }
 function submission(current) {
-  const {id,version,code,name,phase,score,correct,wrong,empty,completed,elapsed,timedOut} = current;
-  return {id,version,code,name,phase,score,correct,wrong,empty,completed,elapsed,timedOut};
+  const {id,version,code,name,phase,completed,elapsed,timedOut} = current;
+  const answers = Array.isArray(current.answers)
+    ? current.answers
+    : questions.map(question => current.answers[question.id] ?? null);
+  return {id,version,code,name,phase,answers,completed,elapsed,timedOut};
 }
 function rememberPending(current) {
   try { sessionStorage.setItem(pendingPrefix + current.id, JSON.stringify(submission(current))); } catch {}
@@ -33,10 +41,10 @@ function validPending(saved, id, now) {
   if (typeof timestamp !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(timestamp)) return false;
   const completed = Date.parse(timestamp);
   return saved?.id === id && saved.version === EXAM_VERSION && /^[a-f0-9-]{36}$/.test(id) &&
-    ['pre','post'].includes(saved.phase) && validName(saved.name) && typeof saved.code === 'string' && /^[A-Z0-9-]{4,24}$/.test(saved.code) &&
-    [saved.correct,saved.wrong,saved.empty,saved.elapsed].every(n => Number.isInteger(n) && n >= 0) &&
-    saved.correct + saved.wrong + saved.empty === questions.length && saved.score === saved.correct * 10 &&
-    saved.elapsed <= DURATION_SECONDS && typeof saved.timedOut === 'boolean' &&
+    ['pre','post'].includes(saved.phase) && validName(saved.name) && saved.code === code &&
+    Array.isArray(saved.answers) && saved.answers.length === questions.length &&
+    saved.answers.every((answer,index) => answer === null || (Number.isInteger(answer) && answer >= 0 && answer < questions[index].options.length)) &&
+    Number.isInteger(saved.elapsed) && saved.elapsed >= 0 && saved.elapsed <= DURATION_SECONDS && typeof saved.timedOut === 'boolean' &&
     completed <= now && completed > now - pendingLifetime && new Date(completed).toISOString() === timestamp;
 }
 function readPending() {
@@ -52,67 +60,58 @@ function readPending() {
   }
   return pending.sort((a,b) => a.completed.localeCompare(b.completed));
 }
-function newCode() { return `AI-${crypto.randomUUID().replaceAll('-','').slice(0,6).toUpperCase()}`; }
 function phaseName(phase) { return phase === 'pre' ? copy('Ön test', 'Pre-test') : copy('Son test', 'Post-test'); }
 function show(id) { for (const name of ['welcome','exam','result']) $(name).hidden = name !== id; }
 function countAnswered() { return questions.filter(q => Number.isInteger(state.answers[q.id])).length; }
 function selectedPhase() { return document.querySelector('[name=phase]:checked').value; }
 function baselineHint() {
-  const code = normalizeCode($('participant').value);
   const baseline = read(`baseline:${code}`);
   $('baseline-hint').textContent = baseline ? copy(`Bu tarayıcıda ${code} için başlangıç kaydı var: ${baseline.score}/100. İlk başlangıç puanı karşılaştırma için korunur.`, `This browser has a pre-test result for ${code}: ${baseline.score}/100. The first pre-test score is kept for comparison.`) : selectedPhase() === 'post' ? copy('Bu kod için bu tarayıcıda başlangıç kaydı yok. Bitiş sınavını yine çözebilirsin; otomatik fark hesaplanamaz.', 'This browser has no pre-test result for this code. You can still take the post-test, but a score difference cannot be calculated automatically.') : '';
 }
 
-$('participant').value = read('last-code') || newCode();
-const knownParticipant = participantIndex(read('participants',[])).find(person=>person.code===$('participant').value);
-$('participant-name').value = knownParticipant?.name || '';
-$('participant-name').addEventListener('input',()=>{$('participant-name').setCustomValidity('');$('start-error').hidden=true;$('recovery').hidden=true;});
-$('recover-code').addEventListener('click',()=>{
-  const name=normalizeName($('participant-name').value), matches=findParticipants(read('participants',[]),name);
-  $('recovery').hidden=false; $('recovery-options').replaceChildren();
-  $('recovery-message').textContent=!validName(name)?copy('Önce adını ve soyadını yaz.', 'Enter your full name first.'):!matches.length?copy('Bu tarayıcıda bu adla kayıt bulunamadı. Daha önce sınava girdiysen eğitmenin özel listesinden kodunu bulabilir.', 'No record with this name was found in this browser. If you have taken the test before, your trainer can find your code in the private list.'):matches.length>1?copy('Bu adla birden fazla kod var. Kendi kodunu seç; emin değilsen eğitmenine sor.', 'There is more than one code for this name. Select your own code; ask your trainer if you are unsure.'):copy('Bu tarayıcıdaki kaydını seç:', 'Select your record from this browser:');
-  for(const person of matches){
-    const button=document.createElement('button');button.type='button';button.className='secondary';button.textContent=`${person.name} · ${person.code}`;
-    button.addEventListener('click',()=>{$('participant').value=person.code;$('participant-name').value=person.name;$('recovery').hidden=true;$('start-error').hidden=true;baselineHint();});
-    $('recovery-options').append(button);
-  }
-});
+$('participant').value = code;
+$('participant-name').value = read('name','');
+$('participant-name').addEventListener('input',()=>{$('participant-name').setCustomValidity('');$('start-error').hidden=true;});
 const requestedPhase = new URLSearchParams(location.search).get('asama');
 if (requestedPhase === 'bitis') document.querySelector('[name=phase][value=post]').checked = true;
-$('participant').addEventListener('input',baselineHint);
 for (const el of document.querySelectorAll('[name=phase]')) el.addEventListener('change',baselineHint);
-$('new-code').addEventListener('click',() => { $('participant').value = newCode(); $('start-error').hidden=true; baselineHint(); });
 baselineHint();
 
 $('start-form').addEventListener('submit', event => {
   event.preventDefault();
-  const code = normalizeCode($('participant').value), name = normalizeName($('participant-name').value);
+  const name = normalizeName($('participant-name').value);
   if(!validName(name)){$('participant-name').setCustomValidity(copy('Adını ve soyadını yaz (2–80 karakter).', 'Enter your full name (2–80 characters).'));$('participant-name').reportValidity();return;}
-  if (!/^[A-Z0-9-]{4,24}$/.test(code)) { $('participant').reportValidity(); return; }
-  let records;
-  try { records=rememberParticipant(read('participants',[]),{code,name}); }
-  catch(error){$('start-error').textContent=copy(error.message, 'This code is saved under a different name in this browser. Select your own code or create a new one.');$('start-error').hidden=false;return;}
-  write('participants',records); write('last-code', code);
-  const now=Date.now();
-  state = pendingDraft ? {...pendingDraft,name} : {version:EXAM_VERSION,code,name,phase:selectedPhase(),answers:{},index:0,started:now,deadline:now+DURATION_SECONDS*1000,durationSeconds:DURATION_SECONDS,id:crypto.randomUUID()};
-  pendingDraft=null; $('participant').readOnly=false; $('new-code').disabled=false; $('recover-code').disabled=false;
-  for(const el of document.querySelectorAll('[name=phase]'))el.disabled=false;
-  $('resume-message').hidden=true; result = null; begin();
+  void startAssessment(name, selectedPhase());
 });
-async function registerCurrentParticipant(current){
-  if (!profile.remoteEnabled) {
-    $('exam-sync').textContent=copy('Bu değerlendirmede eğitmen listesine kayıt kapalı.', 'Saving to the trainer’s list is disabled for this assessment.');
-    return;
-  }
-  $('exam-sync').dataset.state='pending';$('exam-sync').textContent=copy('Katılımcı kaydı kontrol ediliyor…', 'Checking your participant record…');
-  try{
-    const api=await persistence();const response=await api.registerParticipant({code:current.code,name:current.name});
-    if(!state || state.id!==current.id)return;
-    $('exam-sync').dataset.state=response?.saved===true?'saved':'pending';
-    $('exam-sync').textContent=response?.saved===true?copy('Katılımcı kaydı eğitmen listesinde.', 'Your participant record is in the trainer’s list.'):copy('Sonucun tamamlandığında eğitmen listesine kayıt denenecek.', 'We will try saving to the trainer’s list when you finish.');
-  }catch(error){
-    if(!state || state.id!==current.id)return;
-    $('exam-sync').dataset.state='error';$('exam-sync').textContent=copy(`Katılımcı kaydı doğrulanamadı: ${String(error?.message||'Bağlantı kurulamadı.').slice(0,160)} Sınava devam edebilirsin; sonuçta kayıt yeniden denenecek.`, 'Your participant record could not be confirmed. You can continue the test; saving will be retried with your result.');
+async function startAssessment(name, phase) {
+  if (starting || state) return;
+  starting = true;
+  $('start-test').disabled = true;
+  $('start-error').hidden = true;
+  $('start-status').textContent = copy('Sınıf erişimi ve katılımcı kaydı doğrulanıyor…', 'Checking classroom access and your registration…');
+  try {
+    const api = await persistence();
+    const response = await api.registerParticipant({code,name});
+    if (response?.saved !== true) throw new Error('Registration not confirmed');
+    write('name',name);
+    const now = Date.now();
+    state = pendingDraft ? {...pendingDraft,name} :
+      {version:EXAM_VERSION,code,name,phase,answers:{},index:0,started:now,deadline:now+DURATION_SECONDS*1000,durationSeconds:DURATION_SECONDS,id:crypto.randomUUID()};
+    pendingDraft = null;
+    for (const el of document.querySelectorAll('[name=phase]')) el.disabled = false;
+    $('resume-message').hidden = true;
+    result = null;
+    begin();
+  } catch {
+    $('start-error').textContent = copy(
+      'Katılımcı kaydı doğrulanamadı. Eğitmeninin sınıf bağlantısını ve adını kontrol edip tekrar dene.',
+      'Your registration could not be confirmed. Check your classroom link and name, then try again.',
+    );
+    $('start-error').hidden = false;
+  } finally {
+    $('start-status').textContent = '';
+    $('start-test').disabled = false;
+    starting = false;
   }
 }
 async function syncResult(current){
@@ -137,9 +136,9 @@ async function syncResult(current){
     current.remoteSaved=true;
     if(!isVisible())return;
     $('result-sync').dataset.state='saved';$('result-sync').textContent=copy('Sonucun eğitmenin özel listesine kaydedildi.', 'Your result has been saved to the trainer’s private list.');
-  }catch(error){
+  }catch{
     if(!isVisible())return;
-    $('result-sync').dataset.state='error';$('result-sync').textContent=copy(`Eğitmen listesine kayıt doğrulanamadı: ${String(error?.message||'Bağlantı kurulamadı.').slice(0,160)} Sonucunu indirerek sakla; kaydı tekrar deneyebilirsin.`, 'Saving to the trainer’s list could not be confirmed. Download your result to keep a copy, then try saving again.');$('retry-result-sync').hidden=false;
+    $('result-sync').dataset.state='error';$('result-sync').textContent=copy('Eğitmen listesine kayıt doğrulanamadı. Sonucunu indirerek sakla; kaydı tekrar deneyebilirsin.', 'Saving to the trainer’s list could not be confirmed. Download your result to keep a copy, then try saving again.');$('retry-result-sync').hidden=false;
   }finally{inFlight.delete(current.id);}
 }
 $('retry-result-sync').addEventListener('click',()=>{if(result)syncResult(result);});
@@ -148,7 +147,7 @@ function begin() {
   show('exam');
   $('phase-label').textContent = copy(`${phaseName(state.phase).toLocaleUpperCase(language)} DEĞERLENDİRMESİ`, `${phaseName(state.phase).toUpperCase()} ASSESSMENT`);
   $('participant-label').textContent = copy(`${state.name} · ${state.code} · 10 soru · Her doğru 10 puan`, `${state.name} · ${state.code} · 10 questions · 10 points per correct answer`);
-  registerCurrentParticipant({...state});
+  $('exam-sync').textContent = copy('Katılımcı kaydın doğrulandı.', 'Your participant registration was confirmed.');
   $('question-nav').replaceChildren();
   questions.forEach((q,i) => {
     const button = document.createElement('button'); button.textContent = i+1; button.type='button';
@@ -236,7 +235,7 @@ function showResult() {
   for(const key of ['score','correct','wrong','empty']) $(key).textContent=result[key];
   $('score-ring').style.setProperty('--score',`${result.score}%`);
   $('elapsed').textContent=copy(`${Math.floor(result.elapsed/60)} dk ${result.elapsed%60} sn${result.timedOut?' · Süre dolduğu için otomatik tamamlandı.':''}`, `${Math.floor(result.elapsed/60)} min ${result.elapsed%60} sec${result.timedOut?' · Automatically completed because time ran out.':''}`);
-  $('result-storage').textContent=result.stored ? copy(`${result.code} · ${result.phase==='pre'?'Bitişte aynı kodu ve tarayıcıyı kullan. İlk başlangıç kaydı korunur.':'Sonucun bu tarayıcıda saklandı.'}`, `${result.code} · ${result.phase==='pre'?'Use the same code and browser for the post-test. The first pre-test result is kept.':'Your result is stored in this browser.'}`) : copy('Bu tarayıcı kayıt yapamadı. Sonucunu indirerek sakla; otomatik karşılaştırma kullanılamayabilir.', 'This browser could not save your result. Download it to keep a copy; automatic comparison may be unavailable.');
+  $('result-storage').textContent=result.stored ? copy(`${result.code} · ${result.phase==='pre'?'Son testte bu tarayıcıyı kullan. Kodun ve ilk ön test puanın korunur.':'Sonucun bu tarayıcıda saklandı.'}`, `${result.code} · ${result.phase==='pre'?'Use this browser for the post-test. Your code and first pre-test score are kept.':'Your result is stored in this browser.'}`) : copy('Bu tarayıcı kayıt yapamadı. Sonucunu indirerek sakla; otomatik karşılaştırma kullanılamayabilir.', 'This browser could not save your result. Download it to keep a copy; automatic comparison may be unavailable.');
   if(profile.kind==='blanchard' && result.retake) $('result-storage').textContent=copy(`Bu bir tekrar denemesi. Bu tarayıcıdaki ilk ${phaseName(result.phase).toLocaleLowerCase(language)} puanın ${result.firstScore}/100 olarak korunuyor. Bu denemenin puanı onun yerine geçmez; ayrıca indirebilirsin.`, `This is a repeat attempt. Your first ${phaseName(result.phase).toLowerCase()} score in this browser remains ${result.firstScore}/100. This attempt does not replace it; you can download this result separately.`);
   $('comparison').replaceChildren(); $('comparison').hidden=result.phase==='pre';
   if(result.phase==='post') {
@@ -290,31 +289,38 @@ $('download').addEventListener('click', async () => {
 });
 $('home').addEventListener('click',()=>{show('welcome'); $('participant').value=result.code;$('participant-name').value=result.name;baselineHint();window.scrollTo({top:0,behavior:'instant'});});
 
-const draft=restoreDraft(draftRead(),{version:EXAM_VERSION,questions,maxSeconds:DURATION_SECONDS});
-if(draft){
-  if(validName(draft.name)){
-    state=draft;begin();
-  }else{
-    pendingDraft=draft;
-    $('participant').value=draft.code;$('participant').readOnly=true;
-    $('participant-name').value=participantIndex(read('participants',[])).find(person=>person.code===draft.code)?.name||'';
-    document.querySelector(`[name=phase][value=${draft.phase}]`).checked=true;
-    for(const el of document.querySelectorAll('[name=phase]'))el.disabled=true;
-    $('new-code').disabled=true;$('recover-code').disabled=true;
-    $('resume-message').textContent=copy('Yarım kalan sınavın bulundu. Adını yazıp devam et; cevapların ve önceki bitiş saatin korunur.', 'An unfinished test was found. Enter your name to continue; your answers and original deadline are kept.');$('resume-message').hidden=false;baselineHint();
-  }
-}else if(draftRead()){
-  clearDraft();$('resume-message').textContent=copy('Önceki sınav taslağı okunamadı. Yeni bir değerlendirme başlatabilirsin.', 'The previous test draft could not be read. You can start a new assessment.');$('resume-message').hidden=false;
+const storedDraft = draftRead();
+const candidate = restoreDraft(storedDraft,{version:EXAM_VERSION,questions,maxSeconds:DURATION_SECONDS});
+const draft = candidate?.code === code ? candidate : null;
+if (draft) {
+  pendingDraft = draft;
+  if (draft.name) $('participant-name').value = draft.name;
+  document.querySelector(`[name=phase][value=${draft.phase}]`).checked = true;
+  for (const el of document.querySelectorAll('[name=phase]')) el.disabled = true;
+  $('resume-message').textContent = copy(
+    'Yarım kalan sınavın bulundu. Cevapların ve önceki bitiş saatin korunur.',
+    'An unfinished test was found. Your answers and original deadline are kept.',
+  );
+  $('resume-message').hidden = false;
+  baselineHint();
+  if (validName(draft.name)) void startAssessment(draft.name, draft.phase);
+} else if (storedDraft) {
+  clearDraft();
+  $('resume-message').textContent = copy('Önceki sınav taslağı okunamadı. Yeni bir değerlendirme başlatabilirsin.', 'The previous test draft could not be read. You can start a new assessment.');
+  $('resume-message').hidden = false;
 }
 
 async function recoverPending() {
   const pending = readPending();
   if (!draft && pending.length) {
     const saved = pending[0];
+    const answers = Object.fromEntries(questions.flatMap((question,index) =>
+      saved.answers[index] === null ? [] : [[question.id,saved.answers[index]]]));
+    const scores = scoreAnswers(answers);
     const baseline = read(`baseline:${saved.code}`);
     const first = saved.phase === 'pre' ? baseline : read(`final:${saved.code}`);
-    result = {...saved, baseline:baseline?.score ?? null, stored:!!first,
-      retake:!!first && first.id !== saved.id, firstScore:first?.score ?? saved.score};
+    result = {...saved, answers, ...scores, baseline:baseline?.score ?? null, stored:!!first,
+      retake:!!first && first.id !== saved.id, firstScore:first?.score ?? scores.score};
     showResult();
   }
   for (const saved of pending) await syncResult(result?.id === saved.id ? result : saved);

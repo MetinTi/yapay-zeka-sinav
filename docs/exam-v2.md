@@ -130,4 +130,8 @@ Blanchard aynı Apps Script dağıtımının 4. sürümünde ve aynı özel çal
 
 Blanchard için sekiz yeni Hosting dosyası yayımlandı. Önceki 30 dosya korundu, Özak sağlık yanıtı doğrulandı. Mock tarayıcı testinde aynı katılımcının ön ve son testi ile markalı sonuç PDF’si, canlı özel çalışma kitabında ise QA olarak etiketlenen 40/90/+50 kayıtları doğrulandı. İlk son test çağrısı zaman aşımına uğradı, deneme aynı katılımcı kaydında başarıyla tamamlandı.
 
-Repo kapanışındaki Blanchard düzeltmesi, gönderim onayı alınana kadar bekleyen sonucu aynı sekmede tutar. Sayfa yenilendiğinde aynı kayıt kimliğiyle yeniden gönderir. Soru yanıtları bu geçici kayda eklenmez. Düzeltme bu repo kapanışında yeniden yayımlanmadı.
+**Sınıf bağlantısı.** Eğitmen tek bir özel bağlantıyı sınıfla paylaşır. Katılımcılar ön ve son test için aynı tarayıcıyı kullanır. Sınav otomatik katılımcı kodu oluşturur. Genel girişte geçerli bağlantıyı açma yönergesi görünür.
+
+**Sunucu doğrulaması.** Blanchard kayıtları POST ile gider. Sunucu sınıf davetinin özetini ve son kullanma tarihini Apps Script özelliklerinden, katılımcı kodunu cihazın sakladığı benzersiz değerden doğrular. Önce katılımcıyı kaydeder ve sonra 10 yanıttan resmî puanı hesaplar. Sınıf için 120 yeni katılımcı, katılımcı başına 10 deneme kabul edilir. İlk ön ve son puan özete yazılır. Kişiye özel hesap doğrulaması yapılmaz.
+
+Gönderim onayı gelmeden sayfa yenilenirse aynı sekme aynı kimlikle yeniden gönderir. Yeniden deneme için yanıtlar geçici olarak sekmede saklanır ve kayıt onaylandığında silinir. Eğitmen tablosuna puan ve yanıt sayıları yazılır. Davet, cihazın doğrulama değeri ve tek tek yanıtlar tabloya eklenmez. Önceki kayıtlar ve Özak’ın kayıt akışı korunur. [Kurulum notu](../DEPLOYMENT.md#blanchard-özel-sınıf-bağlantısı).

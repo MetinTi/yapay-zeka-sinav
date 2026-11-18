@@ -46,7 +46,6 @@
       <aside id="link-status" class="glass group-picker" aria-labelledby="link-title" hidden>
         <h2 id="link-title">Değerlendirme bağlantısı</h2>
         <p id="link-error" class="warning" role="alert"></p>
-        <a id="default-link" class="change-group" href="./">Değerlendirmeyi aç</a>
       </aside>
       <form id="start-form" class="glass start-form" hidden>
         <div class="form-heading"><p class="eyebrow" id="group-label"></p></div>
@@ -57,14 +56,13 @@
         </fieldset>
         <label class="field-label" for="participant-name">Adın ve soyadın</label><input id="participant-name" name="participantName" autocomplete="name" minlength="2" maxlength="80" required>
         <label class="field-label" for="participant">Katılımcı kodun</label>
-        <div class="code-row"><input id="participant" name="participant" minlength="4" maxlength="24" pattern="[A-Za-z0-9-]{4,24}" autocomplete="off" autocapitalize="characters" required aria-describedby="code-hint"><button type="button" id="new-code" class="text-btn">Yeni kod</button></div>
-        <p id="code-hint" class="hint">Kodunu sakla; son testte aynı kodu kullan. Bu tarayıcıdaki ön testle puanın karşılaştırılır. Farklı cihazda ön test puanın burada görünmez.</p>
-        <button type="button" id="recover-code" class="text-btn">Kodumu unuttum · adımdan bul</button>
-        <div id="recovery" class="recovery" hidden><p id="recovery-message" class="hint" role="status"></p><div id="recovery-options" class="recovery-options"></div></div>
+        <input id="participant" name="participant" readonly aria-describedby="code-hint">
+        <p id="code-hint" class="hint">Kodun otomatik oluştu. Ön ve son testi aynı tarayıcıda çöz.</p>
         <p id="start-error" class="warning" role="alert" hidden></p><p id="resume-message" class="hint" hidden></p><p id="baseline-hint" class="baseline-hint" aria-live="polite"></p>
         <p class="rules">Her doğru yanıt <strong>10 puan</strong>. Yanlışlar doğruları götürmez. Ön test ve son test aynı 10 sorudan oluşur.</p>
-        <button class="primary" type="submit">Teste başla <span aria-hidden="true">↗</span></button>
-        <p class="data-note">Teste başladığında adın ve kodun, tamamladığında test sonucun eğitmenin özel Google tablosuna kayıt için gönderilir. Kodun ve puanların bu tarayıcıda da saklanır.</p>
+        <button class="primary" id="start-test" type="submit">Teste başla <span aria-hidden="true">↗</span></button>
+        <p id="start-status" class="hint" role="status"></p>
+        <p class="data-note">Teste başladığında adın ve kodun kayıt için gönderilir. Test sonunda yanıtların puanlama için gönderilir. Puanın eğitmenin özel tablosuna kaydedilir ve bu tarayıcıda da saklanır.</p>
         <p id="storage-warning" class="warning" hidden>Tarayıcı kayda izin vermiyor. Sonucunu indirerek sakla.</p>
       </form>
     </section>
