@@ -97,3 +97,42 @@ test('English uses the same dedicated backend payload, with no new language or s
     Object.assign(globalThis, prior);
   }
 });
+
+test('language links preserve a visible result and keep navigation available before it', async () => {
+  const previous = {location: globalThis.location, document: globalThis.document, matchMedia: globalThis.matchMedia};
+  try {
+    for (const locale of ['tr', 'en']) {
+      const elements = new Map();
+      const element = key => {
+        if (!elements.has(key)) elements.set(key, Object.assign(new EventTarget(), {
+          dataset: {}, setAttribute() {}, removeAttribute() {}, focus() { this.focused = true; }
+        }));
+        return elements.get(key);
+      };
+      globalThis.location = new URL(locale === 'en' ? 'https://example.test/ozak/?lang=en' : 'https://example.test/ozak/');
+      globalThis.matchMedia = () => ({matches: false, addEventListener() {}});
+      globalThis.document = {
+        documentElement: element('html'), addEventListener() {}, querySelectorAll: () => [],
+        querySelector: element, getElementById: element
+      };
+      element('result').hidden = true;
+      await import(`../v2/ozak/entry.mjs?result-test=${locale}`);
+      const status = element('download-status');
+      assert.equal(element('language-en').href, '/ozak/?lang=en');
+      assert.equal(element('language-tr').href, '/ozak/');
+      for (const link of [element('language-en'), element('language-tr')]) {
+        assert.equal(link.dispatchEvent(new Event('click', {cancelable: true})), true);
+        element('result').hidden = false;
+        element('.language-picker').open = true;
+        assert.equal(link.dispatchEvent(new Event('click', {cancelable: true})), false);
+        assert.equal(element('.language-picker').open, false);
+        assert.equal(status.tabIndex, -1);
+        assert.equal(status.focused, true);
+        assert.match(status.textContent, locale === 'en' ? /return to the start/ : /başlangıca dön/);
+        element('result').hidden = true;
+      }
+    }
+  } finally {
+    Object.assign(globalThis, previous);
+  }
+});
