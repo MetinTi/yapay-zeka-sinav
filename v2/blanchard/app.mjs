@@ -7,6 +7,9 @@ const language = profile.language === 'en' ? 'en' : 'tr';
 const copy = (tr, en) => language === 'en' ? en : tr;
 const $ = id => document.getElementById(id);
 const storePrefix = profile.storagePrefix;
+const pendingPrefix = storePrefix + 'pending-result:';
+const pendingLifetime = 24 * 60 * 60 * 1000;
+const inFlight = new Set();
 let state = null, result = null, timer = null, pendingDraft = null;
 let persistenceModule;
 const persistence = () => persistenceModule ||= import('./persistence.mjs');
@@ -15,6 +18,40 @@ function write(key, value) { try { localStorage.setItem(storePrefix + key, JSON.
 function draftRead() { try { return JSON.parse(sessionStorage.getItem(storePrefix + 'draft')); } catch { return null; } }
 function draftWrite() { try { sessionStorage.setItem(storePrefix + 'draft', JSON.stringify(state)); } catch {} }
 function clearDraft() { try { sessionStorage.removeItem(storePrefix + 'draft'); } catch {} }
+function submission(current) {
+  const {id,version,code,name,phase,score,correct,wrong,empty,completed,elapsed,timedOut} = current;
+  return {id,version,code,name,phase,score,correct,wrong,empty,completed,elapsed,timedOut};
+}
+function rememberPending(current) {
+  try { sessionStorage.setItem(pendingPrefix + current.id, JSON.stringify(submission(current))); } catch {}
+}
+function forgetPending(id) {
+  try { sessionStorage.removeItem(pendingPrefix + id); } catch {}
+}
+function validPending(saved, id, now) {
+  const timestamp = saved?.completed;
+  if (typeof timestamp !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(timestamp)) return false;
+  const completed = Date.parse(timestamp);
+  return saved?.id === id && saved.version === EXAM_VERSION && /^[a-f0-9-]{36}$/.test(id) &&
+    ['pre','post'].includes(saved.phase) && validName(saved.name) && typeof saved.code === 'string' && /^[A-Z0-9-]{4,24}$/.test(saved.code) &&
+    [saved.correct,saved.wrong,saved.empty,saved.elapsed].every(n => Number.isInteger(n) && n >= 0) &&
+    saved.correct + saved.wrong + saved.empty === questions.length && saved.score === saved.correct * 10 &&
+    saved.elapsed <= DURATION_SECONDS && typeof saved.timedOut === 'boolean' &&
+    completed <= now && completed > now - pendingLifetime && new Date(completed).toISOString() === timestamp;
+}
+function readPending() {
+  let keys;
+  try { keys = Object.keys(sessionStorage).filter(key => key.startsWith(pendingPrefix)); } catch { return []; }
+  const now = Date.now(), pending = [];
+  for (const key of keys) {
+    let saved;
+    try { saved = JSON.parse(sessionStorage.getItem(key)); } catch {}
+    const id = key.slice(pendingPrefix.length);
+    if (validPending(saved, id, now)) pending.push(submission(saved));
+    else forgetPending(id);
+  }
+  return pending.sort((a,b) => a.completed.localeCompare(b.completed));
+}
 function newCode() { return `AI-${crypto.randomUUID().replaceAll('-','').slice(0,6).toUpperCase()}`; }
 function phaseName(phase) { return phase === 'pre' ? copy('Ön test', 'Pre-test') : copy('Son test', 'Post-test'); }
 function show(id) { for (const name of ['welcome','exam','result']) $(name).hidden = name !== id; }
@@ -79,25 +116,31 @@ async function registerCurrentParticipant(current){
   }
 }
 async function syncResult(current){
-  if(result?.id!==current.id)return;
-  current.remoteSaved=false;
+  const isVisible = () => result?.id === current.id;
   if (!profile.remoteEnabled) {
+    if (!isVisible()) return;
     $('result-sync').dataset.state='disabled';
     $('result-sync').textContent=copy('Sonucun eğitmen listesine gönderilmedi. İstersen cihazına indirebilirsin.', 'Your result was not sent to the trainer’s list. You can download it to your device.');
     $('retry-result-sync').hidden=true;
     return;
   }
-  $('result-sync').dataset.state='pending';$('result-sync').textContent=copy('Sonucun eğitmen listesine kaydediliyor…', 'Saving your result to the trainer’s list…');$('retry-result-sync').hidden=true;
+  if (inFlight.has(current.id)) return;
+  inFlight.add(current.id);
+  current.remoteSaved=false;
+  if (isVisible()) {
+    $('result-sync').dataset.state='pending';$('result-sync').textContent=copy('Sonucun eğitmen listesine kaydediliyor…', 'Saving your result to the trainer’s list…');$('retry-result-sync').hidden=true;
+  }
   try{
-    const api=await persistence();const response=await api.saveResult({id:current.id,version:current.version,code:current.code,name:current.name,phase:current.phase,score:current.score,correct:current.correct,wrong:current.wrong,empty:current.empty,completed:current.completed,elapsed:current.elapsed,timedOut:current.timedOut});
+    const api=await persistence();const response=await api.saveResult(submission(current));
     if(response?.saved!==true)throw new Error('unconfirmed');
+    forgetPending(current.id);
     current.remoteSaved=true;
-    if(result?.id!==current.id)return;
+    if(!isVisible())return;
     $('result-sync').dataset.state='saved';$('result-sync').textContent=copy('Sonucun eğitmenin özel listesine kaydedildi.', 'Your result has been saved to the trainer’s private list.');
   }catch(error){
-    if(result?.id!==current.id)return;
+    if(!isVisible())return;
     $('result-sync').dataset.state='error';$('result-sync').textContent=copy(`Eğitmen listesine kayıt doğrulanamadı: ${String(error?.message||'Bağlantı kurulamadı.').slice(0,160)} Sonucunu indirerek sakla; kaydı tekrar deneyebilirsin.`, 'Saving to the trainer’s list could not be confirmed. Download your result to keep a copy, then try saving again.');$('retry-result-sync').hidden=false;
-  }
+  }finally{inFlight.delete(current.id);}
 }
 $('retry-result-sync').addEventListener('click',()=>{if(result)syncResult(result);});
 
@@ -181,6 +224,7 @@ function complete(timedOut) {
   let stored=true;
   if(state.phase==='pre' && !existing) stored=write(`baseline:${state.code}`,{score:result.score,completed:result.completed,id:result.id});
   if(state.phase==='post' && (profile.kind!=='blanchard' || !firstFinal)) stored=write(`final:${state.code}`,{score:result.score,completed:result.completed,id:result.id});
+  if (profile.remoteEnabled) rememberPending(result);
   result.stored=stored; clearDraft(); state=null; showResult(); syncResult(result);
 }
 function showResult() {
@@ -204,12 +248,12 @@ function showResult() {
     } else { strong.textContent=copy('Başlangıç kaydı bulunamadı', 'No pre-test record found'); detail.textContent=copy('Aynı kod ve tarayıcıdaki başlangıç sonucu gerekir. İndirdiğin başlangıç belgesi varsa iki puanı onunla karşılaştır.', 'A pre-test result with the same code in this browser is required. If you downloaded your pre-test result, use it to compare the two scores.'); }
     $('comparison').append(strong,detail);
   }
-  $('review-toggle').hidden=result.phase==='pre'; $('review-toggle').textContent=copy('Yanıtları ve açıklamaları gör', 'View answers and explanations');
+  $('review-toggle').hidden=result.phase==='pre'||!result.answers; $('review-toggle').textContent=copy('Yanıtları ve açıklamaları gör', 'View answers and explanations');
   $('review').hidden=true; $('review').replaceChildren();
   $('result-title').focus({preventScroll:true}); window.scrollTo({top:0,behavior:'instant'});
 }
 $('review-toggle').addEventListener('click',()=>{
-  if (!result || result.phase!=='post') return;
+  if (!result?.answers || result.phase!=='post') return;
   $('review').hidden=!$('review').hidden;
   $('review-toggle').textContent=$('review').hidden?copy('Yanıtları ve açıklamaları gör', 'View answers and explanations'):copy('Açıklamaları gizle', 'Hide explanations');
   if(!$('review').childElementCount) questions.forEach((q,i)=>{
@@ -262,3 +306,17 @@ if(draft){
 }else if(draftRead()){
   clearDraft();$('resume-message').textContent=copy('Önceki sınav taslağı okunamadı. Yeni bir değerlendirme başlatabilirsin.', 'The previous test draft could not be read. You can start a new assessment.');$('resume-message').hidden=false;
 }
+
+async function recoverPending() {
+  const pending = readPending();
+  if (!draft && pending.length) {
+    const saved = pending[0];
+    const baseline = read(`baseline:${saved.code}`);
+    const first = saved.phase === 'pre' ? baseline : read(`final:${saved.code}`);
+    result = {...saved, baseline:baseline?.score ?? null, stored:!!first,
+      retake:!!first && first.id !== saved.id, firstScore:first?.score ?? saved.score};
+    showResult();
+  }
+  for (const saved of pending) await syncResult(result?.id === saved.id ? result : saved);
+}
+if (profile.remoteEnabled) void recoverPending();

@@ -129,3 +129,5 @@ Yayın, kaynak eşitliği, gerçek kayıt ve kabul kanıtı [17 Kasım yayın ka
 Blanchard aynı Apps Script dağıtımının 4. sürümünde ve aynı özel çalışma kitabında ayrı **Blanchard katılımcılar** ve **Blanchard sınav kayıtları** sekmelerini kullanır. Soru sürümü `blanchard-ai-awareness-202612-v1` olarak ayrılır.
 
 Blanchard için sekiz yeni Hosting dosyası yayımlandı. Önceki 30 dosya korundu, Özak sağlık yanıtı doğrulandı. Mock tarayıcı testinde aynı katılımcının ön ve son testi ile markalı sonuç PDF’si, canlı özel çalışma kitabında ise QA olarak etiketlenen 40/90/+50 kayıtları doğrulandı. İlk son test çağrısı zaman aşımına uğradı, deneme aynı katılımcı kaydında başarıyla tamamlandı.
+
+Repo kapanışındaki Blanchard düzeltmesi, gönderim onayı alınana kadar bekleyen sonucu aynı sekmede tutar. Sayfa yenilendiğinde aynı kayıt kimliğiyle yeniden gönderir. Soru yanıtları bu geçici kayda eklenmez. Düzeltme bu repo kapanışında yeniden yayımlanmadı.

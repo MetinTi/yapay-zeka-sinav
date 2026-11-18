@@ -1,3 +1,8 @@
+## 2026-11-19 — Özak ve Blanchard repo kapanışı
+
+- Önceki açık PR notu 19 Kasım kullanıcı düzeltmesiyle güncelliğini yitirdi. Özak PR #8 ve Blanchard PR #9 için ana dala alınma süreci yeniden doğrulandı. PR #8 önce birleşir. Blanchard farkı ardından main tabanına taşınır.
+- Blanchard’da sunucu sonucu onaylamadan sayfa yenilenirse aynı kayıt kimliğiyle yeniden deneme, sekmeye özel bekleyen kayıtla korunur. Kaynak düzeltmesi canlı yayın değişikliğinden ayrı tutulur. [İşletim notu](docs/exam-v2.md#blanchard-türkiye--aralık-2026).
+
 <a id="ozak-selected10-pdf-2026-11-17"></a>
 
 ## 2026-11-17 — Özak seçilen 10 soru, sonuç PDF’si ve tanıtım belgesi

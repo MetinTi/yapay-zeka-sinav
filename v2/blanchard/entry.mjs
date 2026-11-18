@@ -3,6 +3,8 @@ import {applyPageLanguage} from './ui-copy.mjs';
 
 const params = new URLSearchParams(location.search);
 const language = params.getAll('lang').length === 1 && params.get('lang') === 'en' ? 'en' : 'tr';
+const languagePicker = document.querySelector('.language-picker');
+const resultView = document.getElementById('result');
 applyPageLanguage(language);
 for (const locale of ['tr', 'en']) {
   const link = document.getElementById(`language-${locale}`);
@@ -12,8 +14,16 @@ for (const locale of ['tr', 'en']) {
   link.href = target.pathname + target.search;
   if (locale === language) link.setAttribute('aria-current', 'page');
   else link.removeAttribute('aria-current');
+  link.addEventListener('click', event => {
+    if (resultView.hidden) return;
+    event.preventDefault();
+    languagePicker.open = false;
+    document.getElementById('download-status').textContent = language === 'en'
+      ? 'Download your result PDF and return to the start before switching languages.'
+      : 'Dili değiştirmeden önce sonuç PDF’sini indir ve başlangıca dön.';
+    document.getElementById('download').focus();
+  });
 }
-const languagePicker = document.querySelector('.language-picker');
 document.addEventListener('click', event => {
   if (!languagePicker.contains(event.target)) languagePicker.open = false;
 });
@@ -23,7 +33,7 @@ document.addEventListener('keydown', event => {
     document.getElementById('language-current').focus();
   }
 });
-// One control for both landing and exam views; language links keep the active draft.
+// Language changes on the welcome and exam views keep the active draft.
 const themeButton = document.getElementById('theme');
 try {
   const saved = JSON.parse(localStorage.getItem('blanchard:theme'));
